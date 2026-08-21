@@ -34,3 +34,10 @@
 1. [実験のREADME](hierarchical-se-prompt/README.md)
 2. [用途別ガイド](hierarchical-se-prompt/05_USE_CASE_GUIDE.md)
 3. [実行用コアプロンプト](hierarchical-se-prompt/01_CORE_PROMPT.md)
+
+生成後の評価方法を調べる場合は、次の順に読みます。
+
+1. [40点GateとStop Rule](hierarchical-se-prompt/17_FORTY_POINT_GATE.md)
+2. [独立AI評価プロトコル](hierarchical-se-prompt/18_AI_EVALUATION_PROTOCOL.md)
+3. [実験計画](hierarchical-se-prompt/19_EXPERIMENT_PLAN.md)
+4. [情報源の境界と人の権限](hierarchical-se-prompt/20_SOURCE_TRUST_AND_HUMAN_AUTHORITY.md)

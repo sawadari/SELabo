@@ -6,6 +6,17 @@
 
 ここでの`pass`は、実施した検査に合格したという意味です。プロンプトが必ず良い成果物を作る、または規格に適合するという意味ではありません。
 
+## 調査結果を反映した更新
+
+1.1.0では、`01_CORE_PROMPT.md`の本文を変更せず、生成後に使う評価レイヤを追加しました。
+
+- `17_FORTY_POINT_GATE.md`：40点をGateとして判定するルール
+- `18_AI_EVALUATION_PROTOCOL.md`：独立ReviewerとMeta-Judgeの手順
+- `19_EXPERIMENT_PLAN.md`：B0/B1/B2比較とPilot計画
+- `20_SOURCE_TRUST_AND_HUMAN_AUTHORITY.md`：情報源と人の権限の境界
+
+これは仕組みを追加したという意味であり、生成物の品質やGate通過率を実測したという意味ではありません。
+
 ## 確認したこと
 
 | 確認した内容 | 結果 | 確認方法 |
@@ -34,6 +45,9 @@ Schemaとは、JSONに必要な項目と形式を定めたルールです。SHA-
 - 製造設備、ソフトウェア、安全関連など、複数分野での比較
 - 日本語の曖昧な表現を、形態素解析などで自動検出する機能
 - カスタムGPTやChatGPT Appとしての実運用
+- 40点GateのPilot（B0/B1/B2、54実行）
+- 独立ReviewerのFalse PassとReviewer間不一致率
+- `linguistic_quality`と`semantic_validity`の一致度
 
 ## 今後の実験で調べること
 

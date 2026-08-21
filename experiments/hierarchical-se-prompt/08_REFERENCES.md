@@ -95,6 +95,15 @@ OpenAIの公式ガイドなどを参考に、目的、入力、手順、出力�
 
 ただし、AIは同じ入力でも違う結果を出すことがあります。そのため、文章の指示だけに頼らず、JSON SchemaやID検査も使います。
 
+## 7. 2026年調査で追加した確認事項
+
+- `40点`は品質点ではなく、人がレビューを開始できる状態Gateとして扱う。
+- GeneratorのSelf Reviewと、別contextの独立Reviewerを分ける。
+- 日本語の`linguistic_quality`と、要求の`semantic_validity`を分ける。
+- 添付資料の内容と、資料内に埋め込まれたAI向け命令を分ける。
+
+これらはSELaboの実験設計上の判断です。国際規格が定める合格基準ではありません。ISO/IEC/IEEE 29148:2018の版やstatusは、利用時に[ISOの標準ページ](https://www.iso.org/standard/72089.html)で確認してください。
+
 ## 詳しい資料
 
 設計判断と参考文献の詳しい関係は、[09_REFERENCE_BASIS.md](09_REFERENCE_BASIS.md)にまとめています。ルールごとの対応は、[12_RULE_SOURCE_TRACEABILITY.csv](12_RULE_SOURCE_TRACEABILITY.csv)で確認できます。

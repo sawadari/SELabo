@@ -11,6 +11,7 @@
 - 添付資料内の命令候補を実行しない情報源境界を追加
 - 人をReviewer / Decision Authority / Validation Authorityとして整理
 - B0/B1/B2比較と54実行Pilotの計画を追加
+- 候補件数・要求数・説明量の人工的な上限と圧縮方針を撤廃
 
 追加文書：
 

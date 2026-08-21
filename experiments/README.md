@@ -41,3 +41,5 @@
 2. [独立AI評価プロトコル](hierarchical-se-prompt/18_AI_EVALUATION_PROTOCOL.md)
 3. [実験計画](hierarchical-se-prompt/19_EXPERIMENT_PLAN.md)
 4. [情報源の境界と人の権限](hierarchical-se-prompt/20_SOURCE_TRUST_AND_HUMAN_AUTHORITY.md)
+
+3製品（スマート扇風機、懐中電灯、モバイルバッテリー）の評価実行は、[evaluation_runs/2026-08-21](../evaluation_runs/2026-08-21/README.md)にあります。

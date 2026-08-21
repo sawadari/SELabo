@@ -270,13 +270,11 @@
       "not_performed"
     ]
   },
-  "compression_order": [
-    "shorten_low_priority_explanations",
-    "group_similar_low_impact_items",
-    "limit_L6_L7_to_patterns",
-    "replace_markdown_attribute_duplication_with_ID_references",
-    "limit_alternative_analysis_to_key_decisions"
-  ],
+  "compression_order": [],
+  "compression_policy": "disabled",
+  "artifact_count_policy": "unbounded",
+  "artifact_detail_policy": "preserve_all_supported_detail",
+  "platform_truncation_policy": "report_not_performed_and_preserve_the_untruncated_scope_for_follow_up",
   "fallback": {
     "when_file_or_zip_tools_unavailable": "Create one zip_ready_bundle.md with explicit file delimiters and set zip_creation_status to not_performed.",
     "must_not_invent_download_link": true

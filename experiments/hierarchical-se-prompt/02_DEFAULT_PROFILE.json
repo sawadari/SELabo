@@ -212,9 +212,7 @@
       "material",
       "natural_entity"
     ],
-    "key_decision_limit": 5,
-    "alternatives_per_key_decision_min": 2,
-    "alternatives_per_key_decision_max": 3,
+    "key_decision_policy": "cover_all_material_decisions_and_show_alternatives_when_evidence_supports_them",
     "include_normal_abnormal_shutdown_recovery_maintenance": true
   },
   "verification_validation": {
@@ -286,14 +284,10 @@
     "force_every_diagram_at_every_level": false
   },
   "limits": {
-    "maximum_stakeholders": 18,
-    "maximum_needs": 36,
-    "maximum_system_requirements": 60,
-    "maximum_total_requirements": 120,
-    "maximum_structures": 60,
-    "maximum_interfaces": 60,
-    "maximum_key_decisions": 5,
-    "compress_low_priority_explanations_before_omitting_artifact_types": true
+    "item_count_policy": "unbounded",
+    "compression_policy": "disabled",
+    "artifact_omission_policy": "never_omit_required_artifact_types",
+    "platform_constraints_policy": "report_context_or_tool_limit_without_reducing_candidate_scope"
   },
   "output": {
     "canonical_file": "10_se_model.json",
@@ -301,6 +295,8 @@
     "write_utf8": true,
     "validate_json_syntax": true,
     "validate_reference_integrity_when_tooling_available": true,
+    "artifact_count_policy": "unbounded",
+    "artifact_detail_policy": "preserve_all_supported_detail",
     "do_not_paste_all_artifacts_into_chat": true,
     "fallback_when_file_tools_unavailable": "zip_ready_bundle.md"
   },

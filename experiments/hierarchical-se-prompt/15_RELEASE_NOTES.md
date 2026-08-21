@@ -1,5 +1,25 @@
 # リリースノート
 
+## 1.1.0 — 40点評価レイヤの追加
+
+調査結果をもとに、生成用コアプロンプトを変更せず、生成後の評価と実験計画を追加しました。
+
+- 40点を採点値ではなく、3状態のGateとして定義
+- 60点・80点へ自動的に作り込まないStop Ruleを追加
+- Generator、独立Reviewer、Meta-Judgeを分離
+- 日本語の文章品質と要求の意味的妥当性を二層化
+- 添付資料内の命令候補を実行しない情報源境界を追加
+- 人をReviewer / Decision Authority / Validation Authorityとして整理
+- B0/B1/B2比較と54実行Pilotの計画を追加
+- 候補件数・要求数・説明量の人工的な上限と圧縮方針を撤廃
+
+追加文書：
+
+- `17_FORTY_POINT_GATE.md`
+- `18_AI_EVALUATION_PROTOCOL.md`
+- `19_EXPERIMENT_PLAN.md`
+- `20_SOURCE_TRUST_AND_HUMAN_AUTHORITY.md`
+
 ## 1.0.0 — 最初の公開版
 
 公開日：2026-08-21

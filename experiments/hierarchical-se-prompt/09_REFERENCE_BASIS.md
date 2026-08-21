@@ -158,6 +158,24 @@ XMIは、モデリングツール間でデータを交換するための形式�
 - AIの内部思考や反復回数ではなく、完成したファイルを検査する。
 - できなかった検査を、実施済みと書かない。
 
+## 8. 40点Gateと独立評価
+
+今回の調査を受け、生成後の評価を別レイヤとして追加しました。
+
+- `40点`を採点値ではなく、`below_reviewable`、`reviewable_40_candidate`、`overspecified_beyond_40`のGateにする。
+- 根拠のない高影響数値、未管理の重大矛盾、承認済みと誤表示したAI推測をHard Blockerにする。
+- GeneratorとReviewerを分け、複数Reviewerは議論ではなく独立Findingを作り、Meta-Judgeが統合する。
+- 日本語の文章品質と、要求の意味的妥当性を別の評価軸にする。
+- 人は作成者の代わりではなく、Decision AuthorityとValidation Authorityとして承認を行う。
+
+この判断は、LLMの自己評価にある偏りと、要求生成の品質が文脈に依存するという調査結果を、SELaboの実験で測定可能な形にしたものです。`17_FORTY_POINT_GATE.md`、`18_AI_EVALUATION_PROTOCOL.md`、`19_EXPERIMENT_PLAN.md`に手順を分けています。
+
+## 9. 参照情報の更新
+
+ISO/IEC/IEEE 29148:2018は、[ISOの標準ページ](https://www.iso.org/standard/72089.html)でstatusを確認してください。調査時点では「International Standard to be revised」と表示されていました。改訂後の要求工学規則を、この実験のルールが自動的に満たすとは解釈しません。
+
+ChatGPTのGPT作成・共有・公開条件は、アカウント種別とワークスペース権限で変わります。配布時は[OpenAI Help Centerの共有・公開ガイド](https://help.openai.com/en/articles/8798878)を確認してください。
+
 ## 主な参考文献
 
 ### 規格と正式仕様

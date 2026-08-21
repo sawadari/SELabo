@@ -22,6 +22,7 @@ SEとは、複雑な製品やサービスを「誰のために、何を実現し
 実験の共通ルールは、[experiments/README.md](experiments/README.md)にまとめています。
 
 3製品でのQ&A評価実行は、[evaluation_runs/2026-08-21](evaluation_runs/2026-08-21/README.md)に記録しています。
+第三者向けの説明は、[3製品で見るプロンプトの使い方（HTML）](evaluation_runs/2026-08-21/third_party_story.html)で読めます。
 
 ## 大切にすること
 

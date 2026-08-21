@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3製品で見る、階層型SEプロンプトの使い方</title>
+  <meta name="description" content="スマート扇風機、懐中電灯、モバイルバッテリーを例に、階層型SEプロンプトでどんな会話をし、どんな初稿と課題が得られるかを物語形式で説明します。">
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #5f6b7a;
+      --paper: #ffffff;
+      --wash: #f4f7fb;
+      --line: #dbe3ef;
+      --blue: #2457c5;
+      --blue-soft: #eaf1ff;
+      --green: #177245;
+      --green-soft: #e9f7ef;
+      --amber: #8a5b00;
+      --amber-soft: #fff5d8;
+      --red: #a12b37;
+      --red-soft: #fff0f1;
+      --shadow: 0 12px 30px rgba(28, 49, 84, .10);
+      font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(180deg, #eef4ff 0, var(--wash) 420px, #fff 100%);
+      line-height: 1.75;
+    }
+    a { color: var(--blue); }
+    a:focus-visible, summary:focus-visible { outline: 3px solid #f4b400; outline-offset: 3px; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 1rem; top: 1rem; z-index: 10; background: #fff; padding: .5rem 1rem; }
+    .shell { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
+    .hero { padding: 4.5rem 0 3rem; }
+    .eyebrow { color: var(--blue); font-weight: 700; letter-spacing: .08em; font-size: .85rem; }
+    h1, h2, h3 { line-height: 1.3; margin: 0 0 1rem; }
+    h1 { max-width: 850px; font-size: clamp(2.1rem, 5vw, 4.5rem); letter-spacing: -.04em; }
+    h2 { font-size: clamp(1.65rem, 3vw, 2.5rem); }
+    h3 { font-size: 1.25rem; }
+    p { margin: .45rem 0 1rem; }
+    .lead { max-width: 790px; font-size: clamp(1.05rem, 2vw, 1.35rem); color: #334158; }
+    .notice {
+      margin-top: 1.5rem;
+      padding: 1rem 1.2rem;
+      border-left: 5px solid var(--amber);
+      background: var(--amber-soft);
+      border-radius: 0 .65rem .65rem 0;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 5;
+      border-bottom: 1px solid rgba(219, 227, 239, .9);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(10px);
+    }
+    nav .shell { display: flex; gap: .6rem 1.2rem; padding: .75rem 0; overflow-x: auto; }
+    nav a { white-space: nowrap; text-decoration: none; font-size: .95rem; font-weight: 650; }
+    section { padding: 3.5rem 0; }
+    .section-intro { max-width: 780px; color: var(--muted); margin-bottom: 1.5rem; }
+    .panel, .story, .result, .closing {
+      background: var(--paper); border: 1px solid var(--line); border-radius: 1.1rem; box-shadow: var(--shadow);
+    }
+    .panel { padding: 1.6rem; }
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: .8rem; margin: 2rem 0 1rem; }
+    .flow-step { position: relative; padding: 1.1rem .9rem; min-height: 130px; background: #fff; border: 1px solid var(--line); border-radius: .9rem; }
+    .flow-step:not(:last-child)::after { content: "→"; position: absolute; right: -.75rem; top: 42%; color: var(--blue); font-size: 1.4rem; font-weight: 800; }
+    .number { display: inline-grid; place-items: center; width: 2rem; height: 2rem; margin-bottom: .5rem; border-radius: 50%; color: #fff; background: var(--blue); font-weight: 800; }
+    .flow-step strong { display: block; line-height: 1.35; }
+    .flow-step span { display: block; margin-top: .35rem; color: var(--muted); font-size: .9rem; line-height: 1.45; }
+    .story { margin: 2rem 0; overflow: hidden; }
+    .story-head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; padding: 1.5rem 1.6rem; color: #fff; background: linear-gradient(120deg, #1f4eae, #3c7be7); }
+    .story-head h3 { margin-bottom: .2rem; font-size: 1.6rem; }
+    .story-head p { margin: 0; opacity: .9; }
+    .story-body { padding: 1.5rem 1.6rem 1.8rem; }
+    .tag { display: inline-block; padding: .2rem .55rem; border-radius: 99px; background: rgba(255,255,255,.18); font-size: .82rem; white-space: nowrap; }
+    .chapter { margin: 1.4rem 0 0; }
+    .chapter-title { display: flex; align-items: center; gap: .6rem; color: #20385e; }
+    .chapter-title b { display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--blue-soft); color: var(--blue); font-size: .9rem; }
+    .chat { display: grid; gap: .75rem; margin: 1rem 0 1.2rem; }
+    .message { max-width: 86%; padding: .85rem 1rem; border-radius: .9rem; border: 1px solid var(--line); }
+    .message .who { display: block; margin-bottom: .2rem; font-size: .8rem; font-weight: 800; color: var(--muted); }
+    .message.user { justify-self: end; background: var(--blue-soft); border-color: #c9d9ff; border-bottom-right-radius: .25rem; }
+    .message.ai { justify-self: start; background: #fff; border-bottom-left-radius: .25rem; }
+    .message p { margin: 0; }
+    .answer-grid, .two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .mini-card { padding: 1rem; border: 1px solid var(--line); border-radius: .8rem; background: #fbfcff; }
+    .mini-card h4 { margin: 0 0 .45rem; font-size: 1rem; }
+    .mini-card ul, .result ul { margin: .35rem 0 0; padding-left: 1.25rem; }
+    .result { margin-top: 1.2rem; padding: 1.35rem; box-shadow: none; }
+    .result h4 { margin: 0 0 .6rem; }
+    .result.good { border-left: 5px solid var(--green); background: var(--green-soft); }
+    .result.warn { border-left: 5px solid var(--amber); background: var(--amber-soft); }
+    .result.block { border-left: 5px solid var(--red); background: var(--red-soft); }
+    .score { display: inline-block; margin-bottom: .6rem; padding: .25rem .7rem; border-radius: 99px; font-weight: 800; color: var(--red); background: #ffdfe2; }
+    .legend { display: flex; flex-wrap: wrap; gap: .6rem 1rem; margin: .8rem 0; color: var(--muted); font-size: .9rem; }
+    .legend span::before { content: ""; display: inline-block; width: .75rem; height: .75rem; margin-right: .35rem; border-radius: 50%; background: var(--blue); vertical-align: -.05rem; }
+    .legend .human::before { background: var(--amber); }
+    .legend .review::before { background: var(--red); }
+    details { margin-top: .8rem; border: 1px solid var(--line); border-radius: .7rem; background: #fff; }
+    summary { cursor: pointer; padding: .75rem 1rem; font-weight: 750; }
+    details > div { padding: 0 1rem 1rem; }
+    .comparison { width: 100%; border-collapse: collapse; margin-top: 1rem; background: #fff; }
+    .comparison th, .comparison td { padding: .85rem .75rem; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .comparison th { width: 24%; background: #f0f4fa; }
+    .pill { display: inline-block; padding: .1rem .5rem; border-radius: 99px; font-size: .82rem; font-weight: 750; background: var(--blue-soft); color: var(--blue); }
+    .closing { padding: 1.7rem; margin: 2rem 0 4rem; }
+    .closing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .closing-grid .yes { border-top: 4px solid var(--green); }
+    .closing-grid .no { border-top: 4px solid var(--red); }
+    footer { padding: 2rem 0 3rem; color: var(--muted); font-size: .9rem; }
+    @media (max-width: 820px) {
+      .flow { grid-template-columns: 1fr; }
+      .flow-step { min-height: auto; }
+      .flow-step:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -.95rem; }
+      .answer-grid, .two-col, .closing-grid { grid-template-columns: 1fr; }
+      .story-head { display: block; }
+      .tag { margin-top: .65rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      nav { position: static; }
+      .panel, .story, .result, .closing { box-shadow: none; break-inside: avoid; }
+      .hero { padding-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">本文へ移動</a>
+  <nav aria-label="ページ内ナビゲーション">
+    <div class="shell">
+      <a href="#what">何が得られるか</a>
+      <a href="#fan">スマート扇風機</a>
+      <a href="#light">懐中電灯</a>
+      <a href="#battery">モバイルバッテリー</a>
+      <a href="#summary">まとめ</a>
+    </div>
+  </nav>
+
+  <header class="hero shell">
+    <div class="eyebrow">SE LABO / 実験ストーリー</div>
+    <h1>「こんな製品にしたい」を、<br>レビューできる設計の地図に変える。</h1>
+    <p class="lead">このページでは、階層型SEプロンプトを3製品に試した様子を、第三者にも追いやすい物語として紹介します。会話から何が整理され、どこで人の判断が必要になったのかを、実際の評価記録に沿って説明します。</p>
+    <div class="notice"><strong>最初に大切なこと：</strong>ここで紹介するQ&Aは、評価手順をそろえるための合成会話です。完成した設計書、実機試験の合格証明、法規認証の代わりではありません。</div>
+  </header>
+
+  <main id="main">
+    <section id="what" class="shell">
+      <h2>このプロンプトで得られるもの</h2>
+      <p class="section-intro">プロンプトは、いきなり細かな部品や数値を決めません。まず「誰が、何のために、どんな環境で使うのか」を聞き、答えを設計議論の入口に並べ替えます。</p>
+      <div class="panel">
+        <div class="flow" aria-label="プロンプトが会話を整理する流れ">
+          <div class="flow-step"><span class="number">1</span><strong>目的を聞く</strong><span>何を実現したい製品かを確認</span></div>
+          <div class="flow-step"><span class="number">2</span><strong>利用者と環境を聞く</strong><span>誰が、どこで、どう使うか</span></div>
+          <div class="flow-step"><span class="number">3</span><strong>重視点と制約を分ける</strong><span>安全、使いやすさ、性能など</span></div>
+          <div class="flow-step"><span class="number">4</span><strong>設計候補へ並べ替える</strong><span>Need、要求、振る舞い、構造、V&amp;V</span></div>
+          <div class="flow-step"><span class="number">5</span><strong>未確定を人へ返す</strong><span>勝手に決めず、確認質問として残す</span></div>
+        </div>
+        <div class="legend"><span>AIが整理した候補</span><span class="human">人が決める事項</span><span class="review">独立評価で見つかった課題</span></div>
+        <p>つまり、得られるのは「正解の設計」ではなく、<strong>次に何を決め、何を試し、どこをレビューすればよいかが見える初稿</strong>です。</p>
+      </div>
+    </section>
+
+    <section id="fan" class="shell">
+      <div class="story">
+        <div class="story-head">
+          <div><h3>第1話：寝室で使うスマート扇風機</h3><p>「静かに使いたい。でも、通信が切れても止めたい」</p></div>
+          <span class="tag">EVAL-2026-08-21-SF-01</span>
+        </div>
+        <div class="story-body">
+          <div class="chapter"><div class="chapter-title"><b>1</b><h4>最初の相談は、まだ設計図ではない</h4></div>
+            <div class="chat" aria-label="スマート扇風機の会話例">
+              <div class="message user"><span class="who">利用者</span><p>寝室や居室で、暑いときに静かに送風できる扇風機がほしいです。子どもが近くにいることもあります。</p></div>
+              <div class="message ai"><span class="who">プロンプト</span><p>主な利用者、使う場所、重視すること、通信が切れた場合の操作、まだ決まっていない仕様を順番に確認します。</p></div>
+              <div class="message user"><span class="who">利用者（Q&amp;Aの回答）</span><p>一般家庭の成人が、夜間の寝室で使います。羽根への接触防止、運転音、操作の分かりやすさ、消費電力を重視します。通信がなくても本体から停止・再開したいです。</p></div>
+              <div class="message ai"><span class="who">プロンプト</span><p>では、風量・音・タイマー・遠隔操作・清掃・カバー開放検出は未決定事項として、候補と確認質問に分けます。</p></div>
+            </div>
+          </div>
+          <div class="chapter"><div class="chapter-title"><b>2</b><h4>会話が、5本の設計候補になる</h4></div>
+            <div class="answer-grid">
+              <div class="mini-card"><h4>誰のため？</h4><ul><li>家庭の利用者</li><li>子どもの保護者</li><li>清掃・点検をする人</li></ul></div>
+              <div class="mini-card"><h4>どんな要求？</h4><ul><li>選んだ運転モードを表示する</li><li>カバー開放や接触リスクで羽根を止める</li><li>通信断でも本体操作を受け付ける</li></ul></div>
+              <div class="mini-card"><h4>中で何が起きる？</h4><ul><li>待機中から送風中へ遷移</li><li>安全停止中は駆動要求を拒否</li><li>通信切断中はローカル操作を有効化</li></ul></div>
+              <div class="mini-card"><h4>どう確かめる？</h4><ul><li>本体操作のデモ</li><li>危険状態を再現する停止試験</li><li>通信を切った停止・再開試験</li></ul></div>
+            </div>
+          </div>
+          <div class="result warn"><h4>独立評価で分かったこと</h4><span class="score">below_reviewable / hard blockerあり</span><p>候補は豊富でしたが、Traceが参照するNeed IDが独立したレコードとして定義されていませんでした。また、Behavior・Structure・V&amp;V候補には、個別の「AI推測」「仮定」「提案中」といった属性が不足していました。</p><p><strong>人が決めること：</strong>安全停止の時間、静音の音圧・風量、通信断時の責任境界、電源方式、保守・復帰条件。</p></div>
+          <details><summary>この話のポイントを一言で</summary><div><p>AIは「安全な扇風機がほしい」という会話を、安全停止・ローカル操作・測定候補まで展開できました。一方、「何秒以内に止まればよいか」「静かとは何dBか」は、AIが決めてはいけない人の判断として残りました。</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="light" class="shell">
+      <div class="story">
+        <div class="story-head">
+          <div><h3>第2話：停電と夜道のための懐中電灯</h3><p>「暗い場所を照らしたい。でも、電池切れで突然消えるのは困る」</p></div>
+          <span class="tag">EVAL-2026-08-21-FL-01</span>
+        </div>
+        <div class="story-body">
+          <div class="chapter"><div class="chapter-title"><b>1</b><h4>使う場面を、先に具体化する</h4></div>
+            <div class="chat" aria-label="懐中電灯の会話例">
+              <div class="message user"><span class="who">利用者</span><p>停電時や夜道で使える懐中電灯がほしいです。片手で操作できて、雨やほこりにも少し耐えてほしいです。</p></div>
+              <div class="message ai"><span class="who">プロンプト</span><p>利用者は誰ですか。明るさ以外に何を重視しますか。低電池、発熱、故障時にどうなってほしいですか。</p></div>
+              <div class="message user"><span class="who">利用者（Q&amp;Aの回答）</span><p>家庭の成人、夜間に移動する人、屋外活動の利用者です。誤操作しにくさ、安全な発熱、電池の持続時間を重視します。低電池でも突然消灯せず、電池状態を知らせてほしいです。</p></div>
+              <div class="message ai"><span class="who">プロンプト</span><p>光量、照射角、耐水等級、落下耐性、点滅モード、輸送条件は未決定として、候補と人への質問に分けます。</p></div>
+            </div>
+          </div>
+          <div class="chapter"><div class="chapter-title"><b>2</b><h4>「明るくする」だけで終わらない</h4></div>
+            <div class="answer-grid">
+              <div class="mini-card"><h4>要求候補</h4><ul><li>スイッチで照明モードを選ぶ</li><li>低電池状態を通知する</li><li>環境暴露後も点灯できる</li></ul></div>
+              <div class="mini-card"><h4>安全候補</h4><ul><li>温度保護で出力を下げるか停止</li><li>短絡・過電流・異常温度で停止</li><li>復旧条件を確認する</li></ul></div>
+              <div class="mini-card"><h4>確認候補</h4><ul><li>放電条件と低電池の閾値</li><li>点灯継続時間の測定</li><li>水・ほこり・落下条件</li></ul></div>
+              <div class="mini-card"><h4>人への質問</h4><ul><li>「突然消灯しない」を正式要求にするか</li><li>光量・照射範囲・点灯時間の合格値</li><li>故障時の停止・再起動方針</li></ul></div>
+            </div>
+          </div>
+          <div class="result warn"><h4>独立評価で分かったこと</h4><span class="score">below_reviewable / hard blockerあり</span><p>低電池状態を知らせる候補は出ましたが、Q&amp;Aにあった「突然消灯しない」という重要な制約が、独立した要求とV&amp;Vへ十分につながっていませんでした。低電池の閾値、残り点灯時間、光量、耐水・落下条件、過熱時の復旧条件も未確定です。</p><p><strong>人が決めること：</strong>電池方式、安全閾値、環境等級、対象市場、利用者が「十分」と感じる明るさと時間。</p></div>
+          <details><summary>この話のポイントを一言で</summary><div><p>プロンプトは「懐中電灯」という一語から、操作、電池、環境耐性、熱、故障、保守を別々の論点に広げました。同時に、会話の大事な一文が要求へ抜け落ちる危険も、第三者レビューで見つかりました。</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="battery" class="shell">
+      <div class="story">
+        <div class="story-head">
+          <div><h3>第3話：外出先で使うモバイルバッテリー</h3><p>「確実に給電したい。でも、電池製品だから安全を最優先にしたい」</p></div>
+          <span class="tag">EVAL-2026-08-21-MB-01</span>
+        </div>
+        <div class="story-body">
+          <div class="chapter"><div class="chapter-title"><b>1</b><h4>便利さの裏側にある条件を聞く</h4></div>
+            <div class="chat" aria-label="モバイルバッテリーの会話例">
+              <div class="message user"><span class="who">利用者</span><p>通勤や旅行、停電時にスマートフォンへ給電できるモバイルバッテリーがほしいです。USB-Cを主な候補にしたいです。</p></div>
+              <div class="message ai"><span class="who">プロンプト</span><p>何を安全と考えますか。残量・接続状態・過大な電力・高温・電池の膨張や破損をどう扱いますか。</p></div>
+              <div class="message user"><span class="who">利用者（Q&amp;Aの回答）</span><p>安全な充電、残量の分かりやすさ、接続の確実さ、携帯性を重視します。接続機器へ過大な電力を供給せず、膨張や破損があれば再使用しないことが必要です。</p></div>
+              <div class="message ai"><span class="who">プロンプト</span><p>容量・出力・同時充電・急速充電・航空輸送・電池寿命は未決定として、性能と安全を分けて整理します。</p></div>
+            </div>
+          </div>
+          <div class="chapter"><div class="chapter-title"><b>2</b><h4>便利な機能と、止める仕組みを同じ地図に置く</h4></div>
+            <div class="answer-grid">
+              <div class="mini-card"><h4>給電の要求候補</h4><ul><li>互換機器への給電を開始する</li><li>残量状態を表示する</li><li>接続状態と供給状態を判断できる</li></ul></div>
+              <div class="mini-card"><h4>保護の候補</h4><ul><li>過電流・短絡・異常電圧で出力停止</li><li>温度異常で受電・給電を停止</li><li>膨張・破損品を隔離し再使用しない</li></ul></div>
+              <div class="mini-card"><h4>検証候補</h4><ul><li>代表機器で電圧・電流を測る</li><li>安全な治具で異常停止を試す</li><li>異常品の隔離・廃棄手順を確認</li></ul></div>
+              <div class="mini-card"><h4>人への質問</h4><ul><li>過充電・過放電を含む保護方式</li><li>対象市場・航空・輸送条件</li><li>容量、重量、出力、充電時間</li></ul></div>
+            </div>
+          </div>
+          <div class="result block"><h4>独立評価で分かったこと</h4><span class="score">below_reviewable / hard blockerあり</span><p>3製品の中で、最も重要な追加確認が見つかりました。出力側の保護は候補化されましたが、過充電・過放電など<strong>充電側の保護</strong>が要求・振る舞い・V&amp;Vへ十分に分解されていませんでした。また、航空・輸送・市場規制や、膨張・破損電池の隔離責任も未確定です。</p><p><strong>人が決めること：</strong>電池安全の試験方法、対象市場と輸送条件、USB互換性、異常品の隔離場所・廃棄責任。</p></div>
+          <details><summary>この話のポイントを一言で</summary><div><p>プロンプトは、モバイルバッテリーを「電気を出す箱」ではなく、受電・蓄電・給電・保護・表示・保守・廃棄がつながるシステムとして見せました。安全と法規は、AIの文章だけで確定してはいけない領域として止まりました。</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="summary" class="shell">
+      <h2>3つの物語から分かること</h2>
+      <p class="section-intro">3製品の結果を並べると、このプロンプトの役割と限界がはっきりします。</p>
+      <table class="comparison">
+        <thead><tr><th>観点</th><th>プロンプトで得られたもの</th><th>まだ得られていないもの</th></tr></thead>
+        <tbody>
+          <tr><th>会話</th><td>目的、利用者、環境、重視点、制約、未確定事項を同じ順番で整理</td><td>実際の製品担当者・利用者が確認した事実</td></tr>
+          <tr><th>設計の初稿</th><td>Stakeholder、Need、Requirement、Behavior、Structure、V&amp;V候補</td><td>承認済み要求、設計正本、ベースライン</td></tr>
+          <tr><th>レビュー</th><td>「どこがつながっていないか」「誰に何を聞くか」</td><td>実機試験の合否、法規適合、認証、安全承認</td></tr>
+          <tr><th>AIの扱い</th><td>推測・仮定・提案をラベル付きの候補として残す</td><td>AIの自己判断だけでの合格判定</td></tr>
+        </tbody>
+      </table>
+      <div class="closing">
+        <h3>第三者向けに一言でいうと</h3>
+        <p>このプロンプトは、製品のアイデアを受け取ると、設計者が次に話し合うための「論点の地図」を作ります。地図には、要求だけでなく、安全上の分岐、検証方法、未確定の質問も載ります。だから、文章をきれいにする道具というより、<strong>曖昧な会話を、レビュー可能な候補へ変換する道具</strong>です。</p>
+        <div class="closing-grid">
+          <div class="panel yes"><h4>得られるもの</h4><ul><li>会話の抜けを減らす質問</li><li>要求と検証のつながりの初稿</li><li>人が確認すべき安全・性能・法規の一覧</li></ul></div>
+          <div class="panel no"><h4>得られないもの</h4><ul><li>自動的に正しい製品仕様</li><li>実機試験や認証の代わり</li><li>人の承認なしの設計確定</li></ul></div>
+        </div>
+      </div>
+      <p class="section-intro">詳細な入力候補と独立レビューは、<a href="README.md">評価実行のREADME</a>と、各製品の<a href="smart-fan/chat_and_candidate.md">スマート扇風機</a>、<a href="flashlight/chat_and_candidate.md">懐中電灯</a>、<a href="mobile-battery/chat_and_candidate.md">モバイルバッテリー</a>の記録で確認できます。</p>
+    </section>
+  </main>
+
+  <footer class="shell">
+    SE Labo / 2026-08-21 evaluation run — このページは第三者向けの説明資料です。Q&amp;Aは合成入力であり、製品の安全性・法規適合・設計承認を保証しません。
+  </footer>
+</body>
+</html>

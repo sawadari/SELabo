@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/japanese_writing_profile.schema.json",
+  "title": "Japanese SE Technical Writing Profile",
+  "type": "object",
+  "required": [
+    "profile_id",
+    "profile_version",
+    "language",
+    "normative_style",
+    "naming",
+    "quality_checks"
+  ],
+  "properties": {
+    "profile_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "const": "ja-JP"
+    },
+    "status": {
+      "type": "string"
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "priority_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "document_language": {
+      "type": "object"
+    },
+    "normative_style": {
+      "type": "object"
+    },
+    "naming": {
+      "type": "object"
+    },
+    "requirement_patterns": {
+      "type": "object"
+    },
+    "required_requirement_slots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "flagged_expressions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "expression",
+          "reason"
+        ],
+        "properties": {
+          "expression": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "quality_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "rule"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^JA-[A-Z]+-[0-9]{2}$"
+          },
+          "severity": {
+            "enum": [
+              "critical",
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "rule": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "auto_fix_policy": {
+      "type": "object"
+    },
+    "outputs": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

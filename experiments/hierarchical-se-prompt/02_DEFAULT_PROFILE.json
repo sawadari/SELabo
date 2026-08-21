@@ -1,0 +1,322 @@
+{
+  "profile_name": "one_shot_hierarchical_se_40_sysml_v1",
+  "profile_version": "1.0.0",
+  "output_language": "ja",
+  "target_maturity": {
+    "label": "40_of_100_concept_candidate",
+    "purpose": "レビュー開始に必要な広いSE観点と一貫した設計ストーリーを作る",
+    "not_intended_for": [
+      "design_approval",
+      "requirements_baseline",
+      "certification_evidence",
+      "production_release"
+    ]
+  },
+  "execution": {
+    "one_shot": true,
+    "ask_user_questions": false,
+    "return_control_before_completion": false,
+    "report_hidden_reasoning": false,
+    "generate_files": true,
+    "generate_zip": true
+  },
+  "authority_policy": {
+    "priority_order": [
+      "user_confirmed",
+      "safety_truthfulness",
+      "semantic_consistency",
+      "candidate_coverage",
+      "output_convenience"
+    ],
+    "origins": [
+      "user_explicit",
+      "user_confirmed",
+      "assistant_prior_unconfirmed",
+      "ai_context_inference",
+      "ai_generic_seed",
+      "external_candidate"
+    ],
+    "claim_states": [
+      "stated",
+      "inferred",
+      "assumed"
+    ],
+    "decision_states": [
+      "not_decided",
+      "proposed",
+      "selected_provisional",
+      "user_confirmed",
+      "rejected",
+      "deferred"
+    ],
+    "validity_states": [
+      "active",
+      "stale",
+      "superseded"
+    ],
+    "baseline_states": [
+      "outside_baseline",
+      "proposed_for_baseline",
+      "baselined"
+    ],
+    "confidence_scale": [
+      "high",
+      "medium",
+      "low"
+    ]
+  },
+  "inference_policy": {
+    "overall": "broad_candidate_generation_with_explicit_provenance",
+    "stakeholders": "generate_even_when_absent_from_conversation",
+    "non_numeric_functions_and_scenarios": "aggressive",
+    "architecture_patterns": "generate_alternatives_for_key_decisions",
+    "numeric_values": "range_or_provisional_value_with_rationale_and_sensitivity",
+    "safety_regulatory_certification_values": "conservative_candidate_and_human_confirmation_required",
+    "deep_levels": "implementation_pattern_when_evidence_is_weak",
+    "never_promote_ai_inference_to_user_fact": true
+  },
+  "stakeholder_seed_categories": [
+    "business_owner_or_funder",
+    "customer_acquirer_contracting_party",
+    "end_user",
+    "operator_or_administrator",
+    "maintainer_or_service",
+    "manufacturer_installer_logistics",
+    "integrator_deployer_migration",
+    "supplier_external_service_provider",
+    "safety_quality_security_privacy_regulatory",
+    "verification_validation_test_audit_configuration",
+    "external_system_owner_data_provider_consumer",
+    "management_sales_procurement_legal_finance",
+    "society_community_environment_end_of_life",
+    "indirectly_affected_party"
+  ],
+  "level_profile": [
+    {
+      "level": "L0",
+      "name_ja": "運用文脈・使命・価値",
+      "abstraction": "context",
+      "purpose": "対象システム、外部世界、使命、価値、境界、運用環境を定める"
+    },
+    {
+      "level": "L1",
+      "name_ja": "利害関係者ニーズ・運用構想",
+      "abstraction": "operational",
+      "purpose": "関心事、ニーズ、運用概念、ユースケース、妥当性確認観点を具体化する"
+    },
+    {
+      "level": "L2",
+      "name_ja": "システム要求・ブラックボックス振る舞い",
+      "abstraction": "black_box",
+      "purpose": "外部へ提供する能力、性能、インターフェース、制約を定める"
+    },
+    {
+      "level": "L3",
+      "name_ja": "論理・機能アーキテクチャ",
+      "abstraction": "logical",
+      "purpose": "要求と振る舞いを実装方式へ依存しすぎない論理責任へ分解する"
+    },
+    {
+      "level": "L4",
+      "name_ja": "物理アーキテクチャ・システム要素割り当て",
+      "abstraction": "physical",
+      "purpose": "論理責任を実現するハードウェア、ソフトウェア、データ、人、プロセス、設備、材料を定める"
+    },
+    {
+      "level": "L5",
+      "name_ja": "専門領域アーキテクチャ・領域間契約",
+      "abstraction": "domain_architecture",
+      "purpose": "専門領域内部のアーキテクチャと領域間契約を定める"
+    },
+    {
+      "level": "L6",
+      "name_ja": "構成要素・詳細設計候補",
+      "abstraction": "detailed",
+      "purpose": "領域アーキテクチャを設計責任を持つ構成要素へ具体化する"
+    },
+    {
+      "level": "L7",
+      "name_ja": "実装・製造・設定・単体検証候補",
+      "abstraction": "implementation",
+      "purpose": "実装、製造、設定、単体試験、検査へ接続する候補を定める"
+    }
+  ],
+  "independent_axes": {
+    "product_layers": [
+      "system",
+      "system_element",
+      "subsystem",
+      "assembly",
+      "component",
+      "implementation_unit",
+      "other"
+    ],
+    "lifecycle_stages": [
+      "concept",
+      "development",
+      "production",
+      "utilization",
+      "support",
+      "retirement",
+      "unknown"
+    ],
+    "domains": [
+      "system",
+      "software",
+      "mechanical",
+      "electrical",
+      "electronics",
+      "control",
+      "data",
+      "human",
+      "process",
+      "facility",
+      "material",
+      "mixed",
+      "unknown"
+    ],
+    "recursive_application_to_system_elements": true
+  },
+  "requirements": {
+    "stakeholder_need_template_ja": "〈利害関係者〉は、〈価値または目的〉したい。",
+    "system_requirement_template_ja": "〈条件〉、対象システムは、〈判定可能な応答または特性〉する。",
+    "use_ears_like_patterns": true,
+    "one_primary_obligation_per_statement": true,
+    "require_rationale": true,
+    "require_source_trace": true,
+    "require_verification_candidate": true,
+    "avoid_unnecessary_design_constraint": true,
+    "ambiguous_terms_must_be_resolved_or_flagged": true,
+    "requirement_types": [
+      "system_requirement",
+      "element_requirement",
+      "interface_requirement",
+      "constraint_requirement",
+      "quality_requirement",
+      "operational_requirement",
+      "support_requirement",
+      "verification_requirement",
+      "regulatory_candidate"
+    ]
+  },
+  "architecture": {
+    "separate_logical_and_physical": true,
+    "system_element_kinds": [
+      "hardware",
+      "software",
+      "data",
+      "human",
+      "process",
+      "procedure",
+      "facility",
+      "material",
+      "natural_entity"
+    ],
+    "key_decision_limit": 5,
+    "alternatives_per_key_decision_min": 2,
+    "alternatives_per_key_decision_max": 3,
+    "include_normal_abnormal_shutdown_recovery_maintenance": true
+  },
+  "verification_validation": {
+    "verification_methods": [
+      "analysis",
+      "inspection",
+      "demonstration",
+      "test",
+      "similarity",
+      "review_candidate"
+    ],
+    "verification_traces_to_requirements": true,
+    "validation_traces_to_needs_mission_and_use_context": true,
+    "require_acceptance_criteria_candidate": true,
+    "do_not_equate_verification_and_validation": true
+  },
+  "sysml": {
+    "version_target": "1.7",
+    "family": "1.x",
+    "tool_target": "tool_independent",
+    "canonical_source": "10_se_model.json",
+    "standard_elements_and_relationships": [
+      "requirement",
+      "block",
+      "value_type",
+      "activity",
+      "action",
+      "state_machine",
+      "state",
+      "use_case",
+      "constraint_block",
+      "port",
+      "connector",
+      "item_flow",
+      "test_case",
+      "satisfy",
+      "verify",
+      "deriveReqt",
+      "refine",
+      "trace",
+      "copy",
+      "allocate"
+    ],
+    "custom_profile_candidates": [
+      "stakeholder",
+      "concern",
+      "need",
+      "risk",
+      "hazard",
+      "decision",
+      "assumption",
+      "validationCase",
+      "finding",
+      "measureOfEffectiveness",
+      "technicalPerformanceMeasure"
+    ],
+    "generate_xmi_without_tool_contract": false,
+    "diagram_types": [
+      "package_diagram",
+      "requirement_diagram",
+      "use_case_diagram",
+      "activity_diagram",
+      "state_machine_diagram",
+      "sequence_diagram",
+      "block_definition_diagram",
+      "internal_block_diagram",
+      "parametric_diagram"
+    ],
+    "force_every_diagram_at_every_level": false
+  },
+  "limits": {
+    "maximum_stakeholders": 18,
+    "maximum_needs": 36,
+    "maximum_system_requirements": 60,
+    "maximum_total_requirements": 120,
+    "maximum_structures": 60,
+    "maximum_interfaces": 60,
+    "maximum_key_decisions": 5,
+    "compress_low_priority_explanations_before_omitting_artifact_types": true
+  },
+  "output": {
+    "canonical_file": "10_se_model.json",
+    "archive_name_template": "<project_slug>_se_candidate_bundle.zip",
+    "write_utf8": true,
+    "validate_json_syntax": true,
+    "validate_reference_integrity_when_tooling_available": true,
+    "do_not_paste_all_artifacts_into_chat": true,
+    "fallback_when_file_tools_unavailable": "zip_ready_bundle.md"
+  },
+  "japanese_technical_writing": {
+    "enabled": true,
+    "profile_file": "11_JAPANESE_WRITING_PROFILE.json",
+    "human_readable_rules_file": "10_JAPANESE_TECHNICAL_WRITING_STANDARD.md",
+    "language": "ja-JP",
+    "requirement_modal_style": "controlled_declarative",
+    "stakeholder_need_style": "desire_form",
+    "function_and_use_case_naming": "object_particle_verb_dictionary_form",
+    "explicit_subject_required": true,
+    "one_obligation_per_requirement": true,
+    "arabic_numerals_preferred": true,
+    "avoid_undefined_abbreviations": true,
+    "quality_report_required": true,
+    "user_override_allowed": true
+  }
+}

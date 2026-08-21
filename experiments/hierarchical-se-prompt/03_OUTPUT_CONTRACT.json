@@ -1,0 +1,313 @@
+{
+  "contract_name": "hierarchical_se_candidate_bundle",
+  "contract_version": "1.0.0",
+  "archive": {
+    "required": true,
+    "name_template": "<project_slug>_se_candidate_bundle.zip",
+    "root_directory_template": "<project_slug>_se_candidate",
+    "encoding": "UTF-8",
+    "must_not_claim_success_when_not_created": true
+  },
+  "source_of_truth": {
+    "file": "10_se_model.json",
+    "role": "candidate_semantic_source_of_truth",
+    "other_files_are_projections": true,
+    "duplication_policy": "Use IDs and summaries in projections; do not create independent competing copies of the same facts."
+  },
+  "required_files": [
+    {
+      "path": "00_manifest.json",
+      "format": "json",
+      "purpose": "Execution metadata, scope label, target maturity, file inventory, validation status, unrecognized configuration.",
+      "required_sections": [
+        "artifact_type",
+        "project_slug",
+        "target_system",
+        "target_maturity",
+        "source_of_truth",
+        "files",
+        "validation_status",
+        "limitations"
+      ]
+    },
+    {
+      "path": "01_executive_summary.md",
+      "format": "markdown",
+      "purpose": "Answer-first summary for reviewers.",
+      "required_sections": [
+        "対象システム",
+        "目的と価値",
+        "対象範囲",
+        "L0からL7の設計ストーリー",
+        "主要なAI暫定仮定",
+        "主要リスク",
+        "成熟度と限界"
+      ]
+    },
+    {
+      "path": "02_source_scope_glossary.json",
+      "format": "json",
+      "purpose": "Source fragments, provenance, scope, exclusions, glossary, aliases and conflicts.",
+      "required_sections": [
+        "source_fragments",
+        "scope",
+        "glossary",
+        "conflicts",
+        "scope_alternatives"
+      ]
+    },
+    {
+      "path": "03_stakeholders_needs.md",
+      "format": "markdown",
+      "purpose": "Candidate stakeholder map, applicability, concerns, needs, value and validation measures.",
+      "required_sections": [
+        "利害関係者候補の生成方針",
+        "利害関係者一覧",
+        "関心事とニーズ",
+        "価値と成功尺度",
+        "不足・不確実性"
+      ]
+    },
+    {
+      "path": "04_requirements_specification.md",
+      "format": "markdown",
+      "purpose": "Human-readable requirements specification derived from the canonical model.",
+      "required_sections": [
+        "要求記述規則",
+        "システム要求",
+        "システム要素要求",
+        "インターフェース要求",
+        "制約・品質・運用・支援要求",
+        "要求品質finding"
+      ]
+    },
+    {
+      "path": "05_behavior_architecture.md",
+      "format": "markdown",
+      "purpose": "Operational scenarios, states, logical and physical architecture, domain decomposition and allocations.",
+      "required_sections": [
+        "運用シナリオ",
+        "状態とモード",
+        "ブラックボックス振る舞い",
+        "論理・機能アーキテクチャ",
+        "物理アーキテクチャ",
+        "専門領域アーキテクチャ",
+        "構成要素・実装パターン候補",
+        "配分と予算"
+      ]
+    },
+    {
+      "path": "06_interface_specification.md",
+      "format": "markdown",
+      "purpose": "External and internal interface contracts.",
+      "required_sections": [
+        "インターフェース方針",
+        "外部インターフェース",
+        "内部インターフェース",
+        "領域間契約",
+        "異常時挙動",
+        "未確定の型・単位・タイミング"
+      ]
+    },
+    {
+      "path": "07_verification_validation_plan.md",
+      "format": "markdown",
+      "purpose": "Verification and validation strategy and candidate cases.",
+      "required_sections": [
+        "検証戦略",
+        "妥当性確認戦略",
+        "検証ケース候補",
+        "妥当性確認ケース候補",
+        "必要な証拠",
+        "合否基準の不足"
+      ]
+    },
+    {
+      "path": "08_risk_assumption_decision_register.md",
+      "format": "markdown",
+      "purpose": "Risks, hazards, failure modes, assumptions, alternatives, provisional decisions and rollback conditions.",
+      "required_sections": [
+        "リスク",
+        "ハザード候補",
+        "故障モード候補",
+        "仮定",
+        "アーキテクチャ代替案",
+        "AI暫定決定",
+        "差し戻し条件"
+      ]
+    },
+    {
+      "path": "09_traceability.csv",
+      "format": "csv",
+      "purpose": "Normalized relation export.",
+      "required_columns": [
+        "relation_id",
+        "relation_type",
+        "source_id",
+        "target_id",
+        "rationale",
+        "origin",
+        "confidence",
+        "validity_state"
+      ]
+    },
+    {
+      "path": "10_se_model.json",
+      "format": "json",
+      "purpose": "Normalized candidate semantic source of truth.",
+      "schema": "schemas/se_model.schema.json",
+      "required_sections": [
+        "meta",
+        "source_fragments",
+        "scope",
+        "glossary",
+        "stakeholders",
+        "concerns",
+        "needs",
+        "measures",
+        "use_cases",
+        "scenarios",
+        "requirements",
+        "behaviors",
+        "structures",
+        "interfaces",
+        "constraints",
+        "allocations",
+        "verification_cases",
+        "validation_cases",
+        "risks",
+        "hazards",
+        "failure_modes",
+        "assumptions",
+        "alternatives",
+        "decisions",
+        "relations",
+        "findings",
+        "quality_summary"
+      ]
+    },
+    {
+      "path": "11_sysml_v1_model_spec.json",
+      "format": "json",
+      "purpose": "Tool-independent SysML 1.x projection specification.",
+      "required_sections": [
+        "meta",
+        "package_hierarchy",
+        "standard_elements",
+        "custom_profile_candidates",
+        "relationships",
+        "diagram_refs",
+        "canonical_id_mapping",
+        "tooling_constraints"
+      ]
+    },
+    {
+      "path": "12_sysml_v1_diagram_specifications.md",
+      "format": "markdown",
+      "purpose": "Concrete diagram definitions for modelers and reviewers.",
+      "required_sections": [
+        "投影方針",
+        "パッケージ構成",
+        "図一覧",
+        "各図の目的・利用者・問い",
+        "具体要素と具体関係",
+        "推奨レイアウト",
+        "レビュー規則",
+        "独自プロファイル候補"
+      ]
+    },
+    {
+      "path": "13_quality_report.md",
+      "format": "markdown",
+      "purpose": "Observable quality checks and remaining failures.",
+      "required_sections": [
+        "検査実施状況",
+        "意味的一貫性",
+        "要求品質",
+        "構造・参照整合性",
+        "トレーサビリティ",
+        "SysML投影一致",
+        "未解決fail",
+        "検査できなかった項目"
+      ]
+    },
+    {
+      "path": "14_human_confirmation_backlog.md",
+      "format": "markdown",
+      "purpose": "Prioritized human confirmation plan.",
+      "required_sections": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ],
+      "required_fields_per_item": [
+        "確認事項",
+        "AI暫定案",
+        "採用根拠",
+        "代替案",
+        "影響ID",
+        "誤り時の影響",
+        "推奨確認者",
+        "推奨確認方法",
+        "差し戻し条件"
+      ]
+    }
+  ],
+  "validation": {
+    "json_parse_required_when_tooling_available": true,
+    "schema_validation_required_when_tooling_available": true,
+    "unique_id_check": true,
+    "reference_integrity_check": true,
+    "relation_type_check": true,
+    "projection_source_check": true,
+    "no_false_pass": true,
+    "allowed_results": [
+      "pass",
+      "pass_with_provisional_assumption",
+      "fail",
+      "not_applicable",
+      "not_performed"
+    ]
+  },
+  "compression_order": [
+    "shorten_low_priority_explanations",
+    "group_similar_low_impact_items",
+    "limit_L6_L7_to_patterns",
+    "replace_markdown_attribute_duplication_with_ID_references",
+    "limit_alternative_analysis_to_key_decisions"
+  ],
+  "fallback": {
+    "when_file_or_zip_tools_unavailable": "Create one zip_ready_bundle.md with explicit file delimiters and set zip_creation_status to not_performed.",
+    "must_not_invent_download_link": true
+  },
+  "final_chat_response": {
+    "include": [
+      "archive_link",
+      "target_system",
+      "target_maturity",
+      "file_count",
+      "top_three_provisional_assumptions",
+      "top_three_unresolved_items",
+      "not_performed_validations"
+    ],
+    "do_not_include_full_artifact_contents": true
+  },
+  "japanese_writing_extension": {
+    "required_outputs": [
+      {
+        "path": "15_japanese_technical_writing_report.md",
+        "purpose": "日本語の命名、要求構文、仕様構文、用語、単位、曖昧性の品質検査結果"
+      },
+      {
+        "path": "16_generation_manifest.json",
+        "purpose": "全成果物、適用プロファイル、検証状態、ハッシュ値の一覧"
+      }
+    ],
+    "cross_file_consistency": [
+      "要素ID、正規名称、要求本文、数値、単位、状態を全投影で一致させる",
+      "自動修正前後の文と修正理由を日本語品質報告へ残す",
+      "意味変更を伴う修正は人間確認対象にする"
+    ]
+  }
+}

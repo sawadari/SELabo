@@ -1,0 +1,113 @@
+{
+  "experiment_id": "hierarchical-se-prompt",
+  "package": "hierarchical_se_prompt",
+  "version": "1.0.0",
+  "release_kind": "initial_public_experimental_release",
+  "published_at": "2026-08-21",
+  "sysml_target": "SysML 1.x (reference version 1.7)",
+  "language_profile": "ja_se_technical_writing_v1",
+  "entry_points": {
+    "experiment_readme": "README.md",
+    "core_prompt": "01_CORE_PROMPT.md",
+    "use_case_guide": "05_USE_CASE_GUIDE.md"
+  },
+  "hash_algorithm": "SHA-256",
+  "manifest_self_excluded": true,
+  "files": [
+    {
+      "path": "01_CORE_PROMPT.md",
+      "size_bytes": 10824,
+      "sha256": "315e135f46f9fe5c31dbbe1e6ca95f4d28ad01e8ebf598081e4f14ee29ec5eec"
+    },
+    {
+      "path": "02_DEFAULT_PROFILE.json",
+      "size_bytes": 9670,
+      "sha256": "6d2d51c2777076ec37602dcedeb44e1d18304ebe21485981e779dc675155998a"
+    },
+    {
+      "path": "03_OUTPUT_CONTRACT.json",
+      "size_bytes": 9465,
+      "sha256": "3bcf91451e886b3459914f54bacaae71d6a5df9fcc7e9df373a09bbd5e4e24b6"
+    },
+    {
+      "path": "04_QUALITY_RULES.md",
+      "size_bytes": 15586,
+      "sha256": "c4b2e5d6294adcf6221dd7bc9b68821c62d7bcc4226743f01e2fd6a00f9f5718"
+    },
+    {
+      "path": "05_USE_CASE_GUIDE.md",
+      "size_bytes": 9917,
+      "sha256": "a5be48ad5c50c97590e8fdad6c4fec9c70d5fd0d0337befa87fc159ba09a12ac"
+    },
+    {
+      "path": "06_CUSTOMIZATION_EXAMPLES.json",
+      "size_bytes": 4337,
+      "sha256": "b36c7ff8250a8c37c5cf9c4a2400a9ec9e8a3c3a91c49390a8a6e50596971675"
+    },
+    {
+      "path": "07_VALIDATION_REPORT.md",
+      "size_bytes": 3072,
+      "sha256": "41833e20d6b2cc1a7ab7f5214006458701381baa58d9499e158e0bc0e69c646a"
+    },
+    {
+      "path": "08_REFERENCES.md",
+      "size_bytes": 4505,
+      "sha256": "d36816a75e84328947b650e7b85d45f443d31c58335bd2cb0df080f38e6960f6"
+    },
+    {
+      "path": "09_REFERENCE_BASIS.md",
+      "size_bytes": 9281,
+      "sha256": "6536036428cc39bcdbf9b4365f1af0bd9c3cdd94296f24b6909593433baee8b6"
+    },
+    {
+      "path": "10_JAPANESE_TECHNICAL_WRITING_STANDARD.md",
+      "size_bytes": 20658,
+      "sha256": "9267c84d7fe07c3ca53237c21e6253ae47610bb5782e6481cae93e4667048b27"
+    },
+    {
+      "path": "11_JAPANESE_WRITING_PROFILE.json",
+      "size_bytes": 8976,
+      "sha256": "a5be64ea9883e3e53d9b7da8a57695418c58beee571ecb99a2862be65a78c76e"
+    },
+    {
+      "path": "12_RULE_SOURCE_TRACEABILITY.csv",
+      "size_bytes": 5987,
+      "sha256": "b51b5ab39a2aa0956ae3032981110e994f28c37293db5fca4c1ba95526850bed"
+    },
+    {
+      "path": "13_CHATGPT_DISTRIBUTION_GUIDE.md",
+      "size_bytes": 5360,
+      "sha256": "d5f0303a19404e9ea7556c16e02539bf93f5b77d3dfba8188a7837a56c9a863b"
+    },
+    {
+      "path": "14_CHATGPT_APP_CONCEPT_SPEC.md",
+      "size_bytes": 5141,
+      "sha256": "883890546315ad41a7d271ffb3c13292fbed24ee5e03ad51055b81673f80fce6"
+    },
+    {
+      "path": "15_RELEASE_NOTES.md",
+      "size_bytes": 1488,
+      "sha256": "58a734013bf7e8bdbda0cc596c717a5258bc807908652fc54a36446e482deca0"
+    },
+    {
+      "path": "16_PUBLICATION_CHECKLIST.md",
+      "size_bytes": 1883,
+      "sha256": "9bf57ae835c811bb1d83e69af7d57c42031cbb1adb8d78e8a1cb8b61e1febd3f"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 7344,
+      "sha256": "5c0cc334bcd7c854f00079cf1b0636aed1402d7e1425d6ee2b2a4332a7e7f91b"
+    },
+    {
+      "path": "schemas/japanese_writing_profile.schema.json",
+      "size_bytes": 2279,
+      "sha256": "a9dd0b85d4bb392e63e5d28310b639596db16996014d80f7fa453587efe1787f"
+    },
+    {
+      "path": "schemas/se_model.schema.json",
+      "size_bytes": 40165,
+      "sha256": "935ffee4c2bde09ca4893b204bab9d8a6763c1c99f78acab094321124ac3d875"
+    }
+  ]
+}

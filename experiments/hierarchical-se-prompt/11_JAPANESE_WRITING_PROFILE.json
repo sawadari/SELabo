@@ -1,0 +1,303 @@
+{
+  "profile_id": "ja_se_technical_writing_v1",
+  "profile_version": "1.0.0",
+  "language": "ja-JP",
+  "status": "default_candidate_profile",
+  "references": [
+    "09_REFERENCE_BASIS.md",
+    "10_JAPANESE_TECHNICAL_WRITING_STANDARD.md",
+    "12_RULE_SOURCE_TRACEABILITY.csv"
+  ],
+  "priority_order": [
+    "user_confirmed_override",
+    "applicable_law_contract_customer_standard",
+    "safety_and_factuality",
+    "semantic_consistency",
+    "this_profile",
+    "general_readability"
+  ],
+  "document_language": {
+    "use_plain_japanese": true,
+    "explicit_subject": true,
+    "arabic_numerals": true,
+    "japanese_punctuation": true,
+    "avoid_unnecessary_abbreviations": true,
+    "preserve_official_product_and_standard_names": true
+  },
+  "normative_style": {
+    "default": "controlled_declarative",
+    "supported": [
+      "controlled_declarative",
+      "strict_normative"
+    ],
+    "controlled_declarative": {
+      "mandatory": "〜する。",
+      "prohibition": "〜してはならない。",
+      "recommendation": "〜することが望ましい。",
+      "permission": "〜してもよい。",
+      "capability": "〜することができる。",
+      "mandatory_metadata_required": true
+    },
+    "strict_normative": {
+      "mandatory": "〜しなければならない。",
+      "prohibition": "〜してはならない。",
+      "recommendation": "〜することが望ましい。",
+      "permission": "〜してもよい。",
+      "capability": "〜することができる。"
+    }
+  },
+  "naming": {
+    "stakeholder_need": "〈利害関係者〉は、〈目的または利用状況〉のために、〈達成したい結果〉したい。",
+    "mission": "〈価値〉を〈対象〉へ提供する",
+    "capability": "〈成果または対象〉能力",
+    "use_case": "〈対象〉を〈動詞の辞書形〉",
+    "function": "〈対象〉を〈動詞の辞書形〉",
+    "action": "〈対象〉を〈動詞の辞書形〉",
+    "state": "〈持続条件〉中、または状態を表す名詞句",
+    "event": "〈対象〉＋発生／完了／到達",
+    "structure_type": "単数の名詞句",
+    "structure_role": "文脈内の役割を表す名詞句",
+    "interface": "〈交換対象〉インターフェース、または〈接続者〉間インターフェース",
+    "exchange_item": "名詞句",
+    "requirement_title": "短い名詞句",
+    "verification_case": "〈対象特性〉＋〈検証方法〉",
+    "risk": "〈原因または事象〉による〈影響〉"
+  },
+  "requirement_patterns": {
+    "ubiquitous": "〈対象システム〉は、〈対象〉を〈動作〉する。",
+    "event_driven": "〈トリガー〉したとき、〈対象システム〉は、〈対象〉を〈動作〉する。",
+    "state_driven": "〈状態〉の間、〈対象システム〉は、〈対象〉を〈動作〉する。",
+    "conditional": "〈条件〉の場合、〈対象システム〉は、〈対象〉を〈動作〉する。",
+    "unwanted_event": "〈望ましくない事象〉を検出したとき、〈対象システム〉は、〈安全側応答〉する。",
+    "performance": "〈条件またはトリガー〉、〈対象システム〉は、〈対象動作〉し、〈測定量〉を〈閾値・単位・範囲〉とする。",
+    "prohibition": "〈条件〉、〈対象システム〉は、〈禁止行為〉してはならない。"
+  },
+  "required_requirement_slots": [
+    "subject",
+    "condition",
+    "trigger",
+    "action",
+    "object",
+    "performance",
+    "unit",
+    "tolerance_or_range",
+    "rationale",
+    "source_refs",
+    "verification_refs",
+    "normative_level"
+  ],
+  "flagged_expressions": [
+    {
+      "expression": "適切に",
+      "reason": "判定基準が不明"
+    },
+    {
+      "expression": "十分に",
+      "reason": "尺度と閾値が不明"
+    },
+    {
+      "expression": "迅速に",
+      "reason": "時間基準が不明"
+    },
+    {
+      "expression": "速やかに",
+      "reason": "時間基準が不明"
+    },
+    {
+      "expression": "容易に",
+      "reason": "評価尺度が不明"
+    },
+    {
+      "expression": "柔軟に",
+      "reason": "変更対象と範囲が不明"
+    },
+    {
+      "expression": "効率的に",
+      "reason": "効率の尺度が不明"
+    },
+    {
+      "expression": "可能な限り",
+      "reason": "限界と優先順位が不明"
+    },
+    {
+      "expression": "必要に応じて",
+      "reason": "発動条件が不明"
+    },
+    {
+      "expression": "通常",
+      "reason": "通常状態の定義が必要"
+    },
+    {
+      "expression": "原則として",
+      "reason": "例外条件が不明"
+    },
+    {
+      "expression": "基本的に",
+      "reason": "例外条件が不明"
+    },
+    {
+      "expression": "等",
+      "reason": "開いた列挙"
+    },
+    {
+      "expression": "など",
+      "reason": "開いた列挙"
+    },
+    {
+      "expression": "その他",
+      "reason": "開いた列挙"
+    },
+    {
+      "expression": "および／または",
+      "reason": "論理条件が不明"
+    }
+  ],
+  "quality_checks": [
+    {
+      "id": "JA-NAM-01",
+      "severity": "medium",
+      "rule": "機能・アクション名が対象を明示した動詞句である"
+    },
+    {
+      "id": "JA-NAM-02",
+      "severity": "high",
+      "rule": "ユースケース名がアクターの観測可能な目標を表す"
+    },
+    {
+      "id": "JA-NAM-03",
+      "severity": "high",
+      "rule": "状態と事象を混同しない"
+    },
+    {
+      "id": "JA-NAM-04",
+      "severity": "medium",
+      "rule": "構造・信号・交換項目が名詞句である"
+    },
+    {
+      "id": "JA-NAM-05",
+      "severity": "high",
+      "rule": "正規名称が全投影で一致する"
+    },
+    {
+      "id": "JA-REQ-01",
+      "severity": "critical",
+      "rule": "要求主体が明示される"
+    },
+    {
+      "id": "JA-REQ-02",
+      "severity": "high",
+      "rule": "原則として1要求1義務である"
+    },
+    {
+      "id": "JA-REQ-03",
+      "severity": "high",
+      "rule": "条件・トリガー・状態・例外が明示される"
+    },
+    {
+      "id": "JA-REQ-04",
+      "severity": "critical",
+      "rule": "性能に尺度・単位・閾値・範囲または許容差がある"
+    },
+    {
+      "id": "JA-REQ-05",
+      "severity": "high",
+      "rule": "理由・注記・例・設計候補を要求本文から分離する"
+    },
+    {
+      "id": "JA-REQ-06",
+      "severity": "high",
+      "rule": "派生理由または上位参照がある"
+    },
+    {
+      "id": "JA-REQ-07",
+      "severity": "critical",
+      "rule": "必須・禁止・推奨・許可・能力を区別する"
+    },
+    {
+      "id": "JA-AMB-01",
+      "severity": "high",
+      "rule": "曖昧語を無定義で使用しない"
+    },
+    {
+      "id": "JA-AMB-02",
+      "severity": "high",
+      "rule": "指示語の参照先が一意である"
+    },
+    {
+      "id": "JA-AMB-03",
+      "severity": "high",
+      "rule": "開いた列挙を使用しない"
+    },
+    {
+      "id": "JA-AMB-04",
+      "severity": "critical",
+      "rule": "論理条件を省略しない"
+    },
+    {
+      "id": "JA-AMB-05",
+      "severity": "medium",
+      "rule": "二重否定と過度な受動態を避ける"
+    },
+    {
+      "id": "JA-TERM-01",
+      "severity": "high",
+      "rule": "正規語・別名・定義を用語集で管理する"
+    },
+    {
+      "id": "JA-TERM-02",
+      "severity": "medium",
+      "rule": "略語を統制する"
+    },
+    {
+      "id": "JA-TERM-03",
+      "severity": "medium",
+      "rule": "数字表記を統一する"
+    },
+    {
+      "id": "JA-TERM-04",
+      "severity": "critical",
+      "rule": "単位・範囲・許容差を統一する"
+    },
+    {
+      "id": "JA-SPEC-01",
+      "severity": "high",
+      "rule": "文の役割を識別できる"
+    },
+    {
+      "id": "JA-SPEC-02",
+      "severity": "critical",
+      "rule": "注記と例が要求を新設しない"
+    },
+    {
+      "id": "JA-SPEC-03",
+      "severity": "critical",
+      "rule": "文書投影が正本へ一致する"
+    },
+    {
+      "id": "JA-SPEC-04",
+      "severity": "high",
+      "rule": "見出し・表・図仕様の用語が一致する"
+    }
+  ],
+  "auto_fix_policy": {
+    "allowed": [
+      "punctuation_width_spacing",
+      "canonical_term_substitution_when_unambiguous",
+      "typo_and_reference_typo",
+      "sentence_split_without_semantic_change"
+    ],
+    "human_confirmation_required": [
+      "numeric_change",
+      "threshold_or_tolerance_change",
+      "subject_or_responsibility_change",
+      "and_or_selection",
+      "normative_level_change",
+      "architecture_selection",
+      "safety_regulatory_semantic_change"
+    ]
+  },
+  "outputs": {
+    "quality_report": "15_japanese_technical_writing_report.md",
+    "manifest": "16_generation_manifest.json"
+  }
+}

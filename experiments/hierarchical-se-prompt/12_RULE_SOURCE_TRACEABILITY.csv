@@ -1,0 +1,35 @@
+rule_id,category,rule_summary,primary_basis,secondary_basis,basis_level,applied_to,notes
+RULE-ARCH-001,SE/アーキテクチャ,ステークホルダー、関心事、ビューポイント、ビューを区別する,ISO/IEC/IEEE 42010:2022,INCOSE SE Handbook 5th,A,プロンプト・図仕様,図の種類だけをビューポイントとみなさない
+RULE-SE-001,SE,ニーズ、要求、アーキテクチャ、検証、妥当性確認を接続する,ISO/IEC/IEEE 15288:2023,NASA SE Handbook Rev.2,A,全体構造,L0〜L7自体は方法プロファイル
+RULE-REQ-001,要求,利害関係者ニーズとシステム要求を分離する,ISO/IEC/IEEE 29148:2018,INCOSE Guide for Writing Requirements v4,A,正本JSON・文書,ニーズは要求の導出元
+RULE-REQ-002,要求,要求の由来、理由、検証、状態を属性化する,ISO/IEC/IEEE 29148:2018,INCOSE Guide for Writing Requirements v4,A,要求スキーマ,本文だけで管理しない
+RULE-REQ-003,要求,1要求1中心義務を原則とする,INCOSE Guide for Writing Requirements v4,Wiegers & Beatty 2013,B,JA-REQ-02,不可分なトランザクションは理由を記録
+RULE-REQ-004,要求,主体を明示する,INCOSE Guide for Writing Requirements v4,公用文作成の考え方 2022,B,JA-REQ-01,受動態使用時も責任主体属性を持つ
+RULE-REQ-005,要求,条件・トリガー・応答を明示する,Mavin et al. EARS 2009,ISO/IEC/IEEE 29148:2018,C,要求構文,EARSを日本語の意味スロットへ翻案
+RULE-REQ-006,要求,性能要求を測定可能にする,ISO/IEC/IEEE 29148:2018,INCOSE Guide for Writing Requirements v4,A,JA-REQ-04,測定量・単位・閾値・条件を必要とする
+RULE-REQ-007,要求,理由と要求本文を分離する,ISO/IEC/IEEE 29148:2018,ISO/IEC Directives Part 2,A,JA-REQ-05,理由は義務を追加しない
+RULE-REQ-008,要求,注記と例に必須事項を入れない,JIS Z 8301:2019,ISO/IEC Directives Part 2,A,JA-SPEC-02,規範情報は独立要求へ移す
+RULE-REQ-009,要求,必須・禁止・推奨・許可・能力を区別する,JIS Z 8301:2019,ISO/IEC Directives Part 2,A,JA-REQ-07,controlled_declarativeでは属性も使用
+RULE-AMB-001,曖昧性,曖昧語・主観語を検出する,Femmer et al. 2017,INCOSE Guide for Writing Requirements v4,C,JA-AMB-01,定義済み尺度があれば使用可能
+RULE-AMB-002,曖昧性,指示語・代名詞の参照を一意にする,Femmer et al. 2017,公用文作成の考え方 2022,C,JA-AMB-02,ID参照を優先
+RULE-AMB-003,曖昧性,開いた列挙を要求本文で避ける,Femmer et al. 2017,INCOSE Guide for Writing Requirements v4,C,JA-AMB-03,拡張点を別要求へ定義
+RULE-AMB-004,曖昧性,and/orやスラッシュによる論理省略を避ける,INCOSE Guide for Writing Requirements v4,Pohl & Rupp 2015,B,JA-AMB-04,論理演算子を属性化
+RULE-AMB-005,曖昧性,二重否定と過度な受動態を避ける,Femmer et al. 2017,公用文作成の考え方 2022,C,JA-AMB-05,安全上の禁止は明示形を使用
+RULE-NAME-001,命名,機能・アクションは対象を明示した動詞句とする,NASA SE Handbook Rev.2,SysML 1.7 / UML 2.5.1,B,JA-NAM-01,日本語では対象＋を＋辞書形を既定
+RULE-NAME-002,命名,ユースケースはアクター目標で命名する,UML 2.5.1,Cockburn 2000,A/B,JA-NAM-02,UI操作や内部処理だけを名称にしない
+RULE-NAME-003,命名,状態と事象を区別する,UML 2.5.1,SysML 1.7,A,JA-NAM-03,状態は持続、事象は瞬間
+RULE-NAME-004,命名,構造・信号・交換項目は名詞句とする,SysML 1.7,UML 2.5.1,A,JA-NAM-04,型と役割を分離
+RULE-NAME-005,命名,正規名称と別名を管理する,ISO/IEC/IEEE 24765:2017,ISO 704,A,JA-NAM-05,全投影で正規名称を一致
+RULE-JA-001,日本語,主述対応と読み手中心の語順を用いる,公用文作成の考え方 2022,JTF日本語標準スタイルガイド,B,全文章,要求工学規則を優先
+RULE-JA-002,日本語,文の役割を明示する,JIS Z 8301:2019,ISO/IEC Directives Part 2,A,JA-SPEC-01,要求・定義・注記等を分類
+RULE-JA-003,日本語,算用数字を基本とする,公用文作成の考え方 2022,JTF日本語標準スタイルガイド,B,JA-TERM-03,固有名詞は例外
+RULE-UNIT-001,単位,SI単位と単位記号の表記を統一する,BIPM SI Brochure 9th,ISO 80000 series,A,JA-TERM-04,業界固有単位は明示的に許可
+RULE-SYSML-001,SysML,SE意味データをSysML 1.xへ投影する,OMG SysML 1.7,OMG UML 2.5.1,A,SysMLモデル仕様,投影を正本にしない
+RULE-SYSML-002,SysML,独自概念を標準要素と断定しない,OMG SysML 1.7,ISO/IEC/IEEE 42010:2022,A,ステレオタイプ候補,need/risk等はプロファイル候補
+RULE-VV-001,V&V,VerificationとValidationを区別する,ISO/IEC/IEEE 15288:2023,NASA SE Handbook Rev.2,A,V&V計画,要求適合と意図利用適合を分ける
+RULE-TRACE-001,追跡,上位価値から下位実装・検証まで追跡する,ISO/IEC/IEEE 29148:2018,INCOSE SE Handbook 5th,A,関係・CSV,無理な関係はFinding化
+RULE-PROMPT-001,プロンプト,指示・文脈・出力契約を分離する,OpenAI Prompt engineering guide,OpenAI Custom GPT instruction guidelines,B,プロンプト構造,モデル依存の細部は更新対象
+RULE-PROMPT-002,プロンプト,複雑な作業を明示的な段階に分ける,OpenAI Custom GPT instruction guidelines,White et al. 2023,B/C,実行フェーズ,内部思考の開示は要求しない
+RULE-PROMPT-003,プロンプト,正本JSONから複数投影を生成する,JSON Schema,一般的なSSOT設計,A/D,出力設計,本プロンプト固有の実装判断
+RULE-PROMPT-004,プロンプト,AI推測と確認済み情報を区別する,NIST AI RMF 1.0,NIST AI 600-1,B,由来・成熟度,人間承認を代替しない
+RULE-PROMPT-005,プロンプト,実施できない検証やZIP作成を偽らない,OpenAI prompt guidance,NIST AI RMF 1.0,B,エラー処理,利用可能なツールを確認する

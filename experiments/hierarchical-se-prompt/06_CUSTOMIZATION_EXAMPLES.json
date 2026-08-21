@@ -1,0 +1,130 @@
+{
+  "description": "02_DEFAULT_PROFILE.jsonへマージする上書き例。使用する例だけをCUSTOMIZATION_OVERRIDEとして01_CORE_PROMPT.mdと一緒に渡す。",
+  "examples": {
+    "manufacturing_equipment_concept": {
+      "CUSTOMIZATION_OVERRIDE": {
+        "target_system_hint": "製造設備または搬送・検査システム",
+        "priority_concerns": [
+          "作業者安全",
+          "設備稼働率",
+          "製品品質",
+          "段取り替え",
+          "保全性",
+          "既存設備との接続",
+          "省エネルギー",
+          "廃棄物削減"
+        ],
+        "priority_stakeholder_categories": [
+          "operator_or_administrator",
+          "maintainer_or_service",
+          "manufacturer_installer_logistics",
+          "safety_quality_security_privacy_regulatory",
+          "external_system_owner_data_provider_consumer"
+        ],
+        "domain_emphasis": [
+          "mechanical",
+          "electrical",
+          "electronics",
+          "control",
+          "software",
+          "human",
+          "process"
+        ],
+        "maximum_system_requirements": 70,
+        "maximum_interfaces": 70,
+        "deep_level_policy": "implementation_pattern_when_evidence_is_weak",
+        "sysml_tool_target": "Cameo_or_CATIA_Magic_candidate"
+      }
+    },
+    "software_intensive_system": {
+      "CUSTOMIZATION_OVERRIDE": {
+        "target_system_hint": "ソフトウェア集約型システム",
+        "priority_concerns": [
+          "利用者価値",
+          "可用性",
+          "性能",
+          "セキュリティ",
+          "個人情報",
+          "監査可能性",
+          "運用保守性",
+          "外部API互換性",
+          "データ品質"
+        ],
+        "domain_emphasis": [
+          "software",
+          "data",
+          "human",
+          "process",
+          "facility"
+        ],
+        "interface_flow_kinds": [
+          "information",
+          "control",
+          "human_interaction",
+          "responsibility"
+        ],
+        "maximum_system_requirements": 80,
+        "maximum_interfaces": 80,
+        "deep_level_policy": "module_and_service_pattern_without_source_code",
+        "sysml_tool_target": "tool_independent"
+      }
+    },
+    "safety_related_concept": {
+      "CUSTOMIZATION_OVERRIDE": {
+        "target_system_hint": "安全関連システムの概念検討",
+        "priority_concerns": [
+          "人身安全",
+          "環境影響",
+          "安全側状態",
+          "異常検出",
+          "故障封じ込め",
+          "復旧",
+          "独立性",
+          "検証証拠"
+        ],
+        "inference_numeric_policy": "do_not_select_high_risk_numeric_values_without_source; create_ranges_and_confirmation_plan",
+        "require_hazard_candidates": true,
+        "require_abnormal_and_recovery_scenarios": true,
+        "maximum_key_decisions": 4,
+        "human_confirmation_required_for": [
+          "safety_classification",
+          "risk_acceptance",
+          "regulatory_applicability",
+          "safety_performance_values",
+          "verification_credit"
+        ],
+        "deep_level_policy": "conservative_pattern_only"
+      }
+    },
+    "fast_small_bundle": {
+      "CUSTOMIZATION_OVERRIDE": {
+        "target_maturity": "30_of_100_fast_concept_candidate",
+        "maximum_stakeholders": 12,
+        "maximum_needs": 20,
+        "maximum_system_requirements": 35,
+        "maximum_total_requirements": 60,
+        "maximum_structures": 30,
+        "maximum_interfaces": 30,
+        "maximum_key_decisions": 3,
+        "deep_level_policy": "L6_L7_pattern_summary_only",
+        "compress_markdown_tables": true
+      }
+    },
+    "detailed_60_point_followup": {
+      "CUSTOMIZATION_OVERRIDE": {
+        "target_maturity": "60_of_100_preliminary_design_candidate",
+        "ask_user_questions": false,
+        "maximum_stakeholders": 24,
+        "maximum_needs": 50,
+        "maximum_system_requirements": 100,
+        "maximum_total_requirements": 220,
+        "maximum_structures": 120,
+        "maximum_interfaces": 120,
+        "maximum_key_decisions": 8,
+        "require_budget_allocations": true,
+        "require_change_impact_matrix": true,
+        "deep_level_policy": "detailed_when_supported_else_pattern"
+      }
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "fixture_id": "FIX-ASSURANCE-INCONCLUSIVE-001",
+  "fixture_notice": "SYNTHETIC - NOT PRODUCT EVIDENCE",
+  "evidence_requirement": {
+    "id": "EVR-SYN-THERMAL-001",
+    "name": "温度上昇評価証拠候補",
+    "target_refs": [
+      "OBL-SYN-THERMAL-001"
+    ],
+    "evidence_type": "test_report",
+    "required_properties": [
+      "対象構成",
+      "適用判定基準",
+      "測定器校正状態",
+      "試験結果"
+    ],
+    "provenance_required": true,
+    "configuration_required": true,
+    "independence_required": "independent_internal",
+    "retention_requirement": null,
+    "status": "planned",
+    "origin": "ai_context_inference",
+    "confidence": "medium",
+    "human_confirmation_required": true
+  },
+  "assessment_activity": {
+    "id": "AST-SYN-THERMAL-001",
+    "activity_type": "test_report_review",
+    "scheme_ref": null,
+    "target_obligation_refs": [
+      "OBL-SYN-THERMAL-001"
+    ],
+    "verification_case_ref": null,
+    "assessment_subject_ref": "CFG-SYN-A",
+    "configuration_refs": [
+      "CFG-SYN-A"
+    ],
+    "method": "document_review",
+    "responsible_party_ref": "ROLE-SYN-INDEPENDENT-REVIEWER",
+    "independence": "independent_internal",
+    "planned_evidence_requirement_refs": [
+      "EVR-SYN-THERMAL-001"
+    ],
+    "status": "completed",
+    "origin": "ai_context_inference",
+    "confidence": "medium",
+    "human_confirmation_required": true
+  },
+  "before_change": {
+    "evidence_item": {
+      "id": "EVI-SYN-THERMAL-001",
+      "evidence_requirement_refs": [
+        "EVR-SYN-THERMAL-001"
+      ],
+      "evidence_type": "test_report",
+      "artifact_locator": "evidence/synthetic_thermal_test_report.json",
+      "version": "1.0",
+      "configuration_ref": "CFG-SYN-A",
+      "produced_by_activity_ref": "AST-SYN-THERMAL-001",
+      "produced_at": "2026-08-22T15:00:00+09:00",
+      "integrity_hash": "sha256:5a9abd130f9f4741180fdf7fcb48ef1df3247c21b2109107f734674874349964",
+      "review_state": "reviewed",
+      "validity_state": "active",
+      "verification_status": "artifact_verified",
+      "verified_by_ref": "ROLE-SYN-INDEPENDENT-REVIEWER",
+      "verified_at": "2026-08-22T15:30:00+09:00",
+      "property_assessments": []
+    },
+    "assessment_result": {
+      "id": "ASR-SYN-THERMAL-001",
+      "assessment_activity_ref": "AST-SYN-THERMAL-001",
+      "assessed_obligation_refs": [
+        "OBL-SYN-THERMAL-001"
+      ],
+      "evidence_item_refs": [
+        "EVI-SYN-THERMAL-001"
+      ],
+      "outcome": "inconclusive",
+      "finding_refs": [
+        "FND-SYN-MISSING-CRITERIA",
+        "FND-SYN-MISSING-CALIBRATION"
+      ],
+      "assessed_at": "2026-08-22T16:00:00+09:00",
+      "assessor_ref": "ROLE-SYN-INDEPENDENT-REVIEWER",
+      "human_confirmation_state": "pending",
+      "configuration_ref": "CFG-SYN-A",
+      "validity_state": "active",
+      "valid_from": "2026-08-22T16:00:00+09:00",
+      "valid_to": null,
+      "invalidation_reason": null,
+      "rationale": "合成報告には適用判定基準と測定器校正記録がないため、適合・不適合を判定できない。"
+    }
+  },
+  "change_event": {
+    "event_id": "CHG-SYN-CONFIG-001",
+    "previous_configuration_ref": "CFG-SYN-A",
+    "new_configuration_ref": "CFG-SYN-B",
+    "affected_evidence_item_refs": [
+      "EVI-SYN-THERMAL-001"
+    ],
+    "required_transition": "active_to_stale_and_reassessment_required"
+  },
+  "after_change": {
+    "evidence_item": {
+      "id": "EVI-SYN-THERMAL-001",
+      "evidence_requirement_refs": [
+        "EVR-SYN-THERMAL-001"
+      ],
+      "evidence_type": "test_report",
+      "artifact_locator": "evidence/synthetic_thermal_test_report.json",
+      "version": "1.0",
+      "configuration_ref": "CFG-SYN-A",
+      "produced_by_activity_ref": "AST-SYN-THERMAL-001",
+      "produced_at": "2026-08-22T15:00:00+09:00",
+      "integrity_hash": "sha256:5a9abd130f9f4741180fdf7fcb48ef1df3247c21b2109107f734674874349964",
+      "review_state": "reviewed",
+      "validity_state": "stale",
+      "verification_status": "artifact_verified",
+      "verified_by_ref": "ROLE-SYN-INDEPENDENT-REVIEWER",
+      "verified_at": "2026-08-22T15:30:00+09:00",
+      "property_assessments": []
+    },
+    "assessment_result": {
+      "id": "ASR-SYN-THERMAL-001",
+      "assessment_activity_ref": "AST-SYN-THERMAL-001",
+      "assessed_obligation_refs": [
+        "OBL-SYN-THERMAL-001"
+      ],
+      "evidence_item_refs": [
+        "EVI-SYN-THERMAL-001"
+      ],
+      "outcome": "inconclusive",
+      "finding_refs": [
+        "FND-SYN-CONFIG-CHANGED"
+      ],
+      "assessed_at": "2026-08-22T17:00:00+09:00",
+      "assessor_ref": "ROLE-SYN-INDEPENDENT-REVIEWER",
+      "human_confirmation_state": "pending",
+      "configuration_ref": "CFG-SYN-A",
+      "validity_state": "stale",
+      "valid_from": "2026-08-22T16:00:00+09:00",
+      "valid_to": "2026-08-22T17:00:00+09:00",
+      "invalidation_reason": "対象構成がCFG-SYN-Bへ変更されたため。",
+      "rationale": "構成がCFG-SYN-AからCFG-SYN-Bへ変更されたため、旧構成の証拠はstaleであり再評価が必要である。"
+    }
+  }
+}

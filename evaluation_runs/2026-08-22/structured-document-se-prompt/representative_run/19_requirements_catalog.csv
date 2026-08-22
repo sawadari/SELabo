@@ -1,0 +1,2 @@
+要求ID,カテゴリ,要求文,画面/API/データ/検証/受入条件ID,状態
+REQ-0001,functional,有効な保全依頼を受信したとき、保全依頼管理システムは、受付結果を画面に表示する。,SCR-0001; API-0001; DATA-0001; VER-0001; ACC-0001,"origin=ai_context_inference; claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=medium"

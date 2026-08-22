@@ -1,0 +1,14 @@
+{
+  "fixture_notice": "SYNTHETIC TEST DATA - NOT PRODUCT EVIDENCE",
+  "report_id": "SYN-THERMAL-001",
+  "version": "1.0",
+  "configuration_ref": "CFG-SYN-A",
+  "test_item": "架空の電池内蔵機器",
+  "method": "温度上昇試験の手順候補",
+  "observations": [
+    "試験手順の実行記録は存在する。",
+    "適用すべき判定基準値と測定器校正記録がfixtureに含まれていない。"
+  ],
+  "declared_outcome": "inconclusive",
+  "prohibited_use": "適合、認証、製品安全または市場投入可否の証拠として使用してはならない。"
+}

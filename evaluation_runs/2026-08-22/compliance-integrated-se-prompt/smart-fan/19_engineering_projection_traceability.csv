@@ -1,0 +1,16 @@
+﻿projection_id,obligation_id,projection_kind,target_level,target_id,derivation_basis,status,confidence,human_confirmation_required
+EPR-SF-001,OBL-SF-001,process_requirement,cross_level,PROC-SF-PSE-TECH-CHECK,法第8条候補は対象製品の挙動ではなく、届出事業者の技術基準適合確認活動へ投影する,candidate,low,true
+EPR-SF-002,OBL-SF-001,evidence_requirement,cross_level,EVR-SF-008,技術基準への適合確認結果を追跡可能にする,candidate,low,true
+EPR-SF-003,OBL-SF-002,constraint_requirement,L2,REQ_SF-0007,通常使用状態の転倒防止を対象システムの機械制約へ変換する,candidate,low,true
+EPR-SF-004,OBL-SF-002,evidence_requirement,cross_level,EVR-SF-007,転倒防止候補を対象構成付き試験報告で確認できるようにする,candidate,low,true
+EPR-SF-005,OBL-SF-004,supplier_requirement,cross_level,SUPREQ-SF-RADIO-CONFORMITY,工事設計認証経路を採用する場合に認証識別情報および表示条件を供給者から取得する候補,candidate,low,true
+EPR-SF-005,OBL-SF-005,supplier_requirement,cross_level,SUPREQ-SF-RADIO-CONFORMITY,工事設計認証経路を採用する場合に認証識別情報および表示条件を供給者から取得する候補,candidate,low,true
+EPR-SF-005,OBL-SF-006,supplier_requirement,cross_level,SUPREQ-SF-RADIO-CONFORMITY,工事設計認証経路を採用する場合に認証識別情報および表示条件を供給者から取得する候補,candidate,low,true
+EPR-SF-006,OBL-SF-003,process_requirement,cross_level,PROC-SF-RADIO-ROUTE-CHECK,Supplier資料取得後も、対象構成に対する免許要否と制度経路は製品責任者が確認する。,candidate,low,true
+EPR-SF-006,OBL-SF-004,process_requirement,cross_level,PROC-SF-RADIO-ROUTE-CHECK,Supplier資料取得後も、対象構成に対する免許要否と制度経路は製品責任者が確認する。,candidate,low,true
+EPR-SF-006,OBL-SF-005,process_requirement,cross_level,PROC-SF-RADIO-ROUTE-CHECK,Supplier資料取得後も、対象構成に対する免許要否と制度経路は製品責任者が確認する。,candidate,low,true
+EPR-SF-006,OBL-SF-006,process_requirement,cross_level,PROC-SF-RADIO-ROUTE-CHECK,Supplier資料取得後も、対象構成に対する免許要否と制度経路は製品責任者が確認する。,candidate,low,true
+EPR-SF-007,OBL-SF-003,evidence_requirement,cross_level,EVR-SF-009,免許要否、適合経路および表示情報の確認記録を要求する,candidate,low,true
+EPR-SF-007,OBL-SF-004,evidence_requirement,cross_level,EVR-SF-009,免許要否、適合経路および表示情報の確認記録を要求する,candidate,low,true
+EPR-SF-007,OBL-SF-005,evidence_requirement,cross_level,EVR-SF-009,免許要否、適合経路および表示情報の確認記録を要求する,candidate,low,true
+EPR-SF-007,OBL-SF-006,evidence_requirement,cross_level,EVR-SF-009,免許要否、適合経路および表示情報の確認記録を要求する,candidate,low,true

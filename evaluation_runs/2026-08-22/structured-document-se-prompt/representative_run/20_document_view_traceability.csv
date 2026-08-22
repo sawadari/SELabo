@@ -1,0 +1,12 @@
+document view,section,order,element ID,element kind,source of truth,status
+VIEW-0001,PLAN-01,1,OBJ-0001,objective,10_se_model.json,"claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=medium"
+VIEW-0001,PLAN-01,1,NEED-0001,need,10_se_model.json,"claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=medium"
+VIEW-0001,PLAN-02,2,REQ-0001,requirement,10_se_model.json,"claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=medium"
+VIEW-0001,,,KPI-0001,measure,10_se_model.json,"view.element_refsには含まれるがsection_order.element_refsには未記載; claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=low"
+VIEW-0002,REQ-01,1,REQ-0001,requirement,10_se_model.json,"claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=medium"
+VIEW-0002,REQ-01,1,SCR-0001,screen,10_se_model.json,"claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=medium"
+VIEW-0002,REQ-01,1,API-0001,api_contract,10_se_model.json,"claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=low; contract_status=candidate"
+VIEW-0002,REQ-01,1,DATA-0001,data_model,10_se_model.json,"claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=low"
+VIEW-0002,REQ-02,2,VER-0001,verification_case,10_se_model.json,"claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=medium"
+VIEW-0002,REQ-02,2,ACC-0001,acceptance_criterion,10_se_model.json,"claim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=medium"
+VIEW-0002,,,RPT-0001,report,10_se_model.json,"document_views.element_refsに未記載; reportのclaim_state=inferred; decision_state=proposed; validity_state=active; baseline_state=outside_baseline; confidence=low"

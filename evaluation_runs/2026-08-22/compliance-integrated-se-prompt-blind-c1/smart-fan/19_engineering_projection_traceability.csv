@@ -1,0 +1,13 @@
+﻿projection_id,obligation_id,projection_kind,target_level,target_id,derivation_basis,status,confidence,human_confirmation_required
+EPR-SF-AGING-DOC,OBL-SF-AGING,documentation_requirement,cross_level,PT-SF-AGING-DOC,表示内容を文書要求へ投影する,candidate,low,true
+EPR-SF-AGING-EVIDENCE,OBL-SF-AGING,evidence_requirement,cross_level,EVR-SF-AGING,表示確認記録を要求する,candidate,low,true
+EPR-SF-INSPECTION-DOC,OBL-SF-INSPECTION,documentation_requirement,cross_level,PT-SF-INSPECTION-DOC,検査記録を文書要求へ投影する,candidate,low,true
+EPR-SF-INSPECTION-EVIDENCE,OBL-SF-INSPECTION,evidence_requirement,cross_level,EVR-SF-INSPECTION,実施済み検査記録を将来証拠として要求する,candidate,low,true
+EPR-SF-INSPECTION-PROCESS,OBL-SF-INSPECTION,process_requirement,cross_level,PT-SF-INSPECTION-PROCESS,検査実施を製造輸入プロセスへ投影する,candidate,low,true
+EPR-SF-PSE-EVIDENCE,OBL-SF-PSE,evidence_requirement,cross_level,EVR-SF-PSE,適合確認の計画と結果を追跡する,candidate,low,true
+EPR-SF-PSE-PROCESS,OBL-SF-PSE,process_requirement,cross_level,PT-SF-PSE-PROCESS,届出事業者の適合確認活動へ投影する,candidate,low,true
+EPR-SF-RADIO-ASSURANCE,OBL-SF-RADIO,assurance_requirement,cross_level,PT-SF-RADIO-ASSURANCE,無線法規経路を保証レビューへ投影する,candidate,low,true
+EPR-SF-RADIO-EVIDENCE,OBL-SF-RADIO,evidence_requirement,cross_level,EVR-SF-RADIO,免許要否と適合表示の確認記録を要求する,candidate,low,true
+EPR-SF-RADIO-SUPPLIER,OBL-SF-RADIO,supplier_requirement,cross_level,PT-SF-RADIO-SUPPLIER,無線モジュール情報を供給者要求へ投影する,candidate,low,true
+EPR-SF-STABILITY-EVIDENCE,OBL-SF-STABILITY,evidence_requirement,cross_level,EVR-SF-STABILITY,転倒防止試験報告を要求する,candidate,low,true
+EPR-SF-STABILITY-PRODUCT,OBL-SF-STABILITY,constraint_requirement,L2,REQ_SF-0007,転倒防止候補を製品制約へ変換する,candidate,low,true

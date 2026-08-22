@@ -1,0 +1,19 @@
+﻿projection_id,obligation_id,projection_kind,target_level,target_id,derivation_basis,status,confidence,human_confirmation_required
+EPR-MB-001,OBL-MB-001,assurance_requirement,cross_level,ASSURE-MB-TECH-CRITERIA-SELECTION,一般義務は適用技術基準の選定と導出根拠管理へ投影し、具体的保護要求は安全Need由来のまま保持する。,candidate,low,true
+EPR-MB-002,OBL-MB-001,evidence_requirement,cross_level,EVR-MB-003,製品安全要求と適用技術基準への適合を確認する試験証拠を要求する,candidate,low,true
+EPR-MB-003,OBL-MB-002,process_requirement,cross_level,PROC-MB-PSE-INSPECTION,自主検査は対象システムの挙動ではなく製造・輸入プロセスへ投影する,candidate,low,true
+EPR-MB-004,OBL-MB-002,evidence_requirement,cross_level,EVR-MB-004,検査記録の存在・構成・保存性を証拠要求へ投影する,candidate,low,true
+EPR-MB-005,OBL-MB-003,documentation_requirement,cross_level,DOC-MB-PSE-MARKING,届出事業者情報・表示方式の確認を製品外の表示仕様文書へ投影する,candidate,low,true
+EPR-MB-006,OBL-MB-003,constraint_requirement,L2,MBREQ-0008,人が適用と表示仕様を確認した場合に限り製品表示領域へ投影する,candidate,low,true
+EPR-MB-007,OBL-MB-003,evidence_requirement,cross_level,EVR-MB-005,承認済み表示仕様と対象構成の一致記録を要求する,candidate,low,true
+EPR-MB-008A,OBL-MB-004,documentation_requirement,cross_level,DOC-MB-AIR-QUANTITY-CAPACITY,航空利用候補の個別義務を独立した文書項目へ投影する。,candidate,low,true
+EPR-MB-008B,OBL-MB-005,documentation_requirement,cross_level,DOC-MB-AIR-CHARGING-PROHIBITION,航空利用候補の個別義務を独立した文書項目へ投影する。,candidate,low,true
+EPR-MB-008C,OBL-MB-006,documentation_requirement,cross_level,DOC-MB-AIR-POWERING-AVOIDANCE,航空利用候補の個別義務を独立した文書項目へ投影する。,candidate,low,true
+EPR-MB-009,OBL-MB-004,evidence_requirement,cross_level,EVR-MB-006,航空利用を範囲に含める場合の取扱情報レビュー記録を要求する,candidate,low,true
+EPR-MB-009,OBL-MB-005,evidence_requirement,cross_level,EVR-MB-006,航空利用を範囲に含める場合の取扱情報レビュー記録を要求する,candidate,low,true
+EPR-MB-009,OBL-MB-006,evidence_requirement,cross_level,EVR-MB-006,航空利用を範囲に含める場合の取扱情報レビュー記録を要求する,candidate,low,true
+EPR-MB-009A,OBL-MB-004,operational_requirement,cross_level,MBREQ-0009,航空旅客の個数・容量行動をOperational Requirementへ投影する。,candidate,low,true
+EPR-MB-009B,OBL-MB-005,operational_requirement,cross_level,MBREQ-0010,航空旅客の機内充電禁止行動をOperational Requirementへ投影する。,candidate,low,true
+EPR-MB-009C,OBL-MB-006,operational_requirement,cross_level,MBREQ-0011,APP-MB-004を組織が採用した場合の航空旅客向け機内給電回避推奨を、法的禁止と区別してOperational Requirementへ投影する。,candidate,low,true
+EPR-MB-010,OBL-MB-007,supplier_requirement,cross_level,SUP-MB-UN38-TEST-SUMMARY,セル・電池供給者から対象型式と構成に対応する試験要約を入手可能にする責任候補へ投影する,candidate,low,true
+EPR-MB-011,OBL-MB-007,evidence_requirement,cross_level,EVR-MB-007,輸送対象型式に対応する試験要約の必要性をEvidence Requirementとして表す,candidate,low,true

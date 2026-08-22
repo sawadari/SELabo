@@ -1,0 +1,179 @@
+{
+  "profile_name": "compliance_integrated_hierarchical_se_40",
+  "profile_version": "0.3.1",
+  "extends": "../hierarchical-se-prompt/02_DEFAULT_PROFILE.json",
+  "compliance_layer": {
+    "enabled": true,
+    "axis": "cross_level",
+    "canonical_container": "10_se_model.json#/compliance",
+    "workflow": [
+      "authority_source_provision",
+      "normative_statement",
+      "applicability_assessment",
+      "obligation",
+      "engineering_projection",
+      "assessment_and_evidence",
+      "conformity_and_attestation"
+    ],
+    "external_source_of_truth": true,
+    "selabo_source_of_truth_role": "candidate_project_semantic_model",
+    "allow_unverified_source_metadata_as_fact": false,
+    "allow_invented_locator_or_excerpt": false,
+    "full_text_storage_default": "excerpt_only",
+    "human_confirmation_required_for": [
+      "legal_interpretation",
+      "applicability",
+      "binding_basis",
+      "conformity_decision",
+      "attestation"
+    ]
+  },
+  "applicability": {
+    "decisions": [
+      "applicable",
+      "partially_applicable",
+      "not_applicable",
+      "uncertain"
+    ],
+    "default_when_evidence_is_insufficient": "uncertain",
+    "required_context": [
+      "jurisdiction",
+      "market",
+      "product_classification",
+      "intended_use",
+      "configuration_ref",
+      "lifecycle_stage",
+      "assessed_as_of"
+    ],
+    "binding_bases": [
+      "direct_regulation",
+      "incorporated_by_reference",
+      "acceptable_means_of_compliance",
+      "certification_scheme_rule",
+      "contractual",
+      "internal_policy",
+      "voluntary_adoption",
+      "unknown"
+    ],
+    "review_triggers_required": true,
+    "human_confirmation_state_required": true,
+    "confirmed_by_and_at_required_for_confirmed_state": true
+  },
+  "engineering_projection": {
+    "first_class_object": true,
+    "projection_kinds": [
+      "product_requirement",
+      "interface_requirement",
+      "constraint_requirement",
+      "operational_requirement",
+      "process_requirement",
+      "assurance_requirement",
+      "organizational_requirement",
+      "documentation_requirement",
+      "supplier_requirement",
+      "evidence_requirement",
+      "no_projection"
+    ],
+    "sysml_projection_allowed_for": [
+      "product_requirement",
+      "interface_requirement",
+      "constraint_requirement",
+      "operational_requirement"
+    ],
+    "no_projection_reason_required": true,
+    "non_product_target_container": "projection_targets",
+    "non_product_target_kinds": [
+      "process_requirement",
+      "assurance_requirement",
+      "organizational_requirement",
+      "documentation_requirement",
+      "supplier_requirement"
+    ],
+    "target_kind_must_match_projection_kind": true
+  },
+  "requirements_extension": {
+    "deprecated_requirement_types": [
+      "regulatory_candidate"
+    ],
+    "derivation_sources_required": true,
+    "compliance_source_kind": "compliance_obligation",
+    "projection_reference_required_for_compliance_source": true
+  },
+  "evidence_policy": {
+    "separate_requirement_and_item": true,
+    "create_evidence_item_only_for_existing_artifact": true,
+    "allow_fabricated_artifact_locator": false,
+    "verification_required_evidence_uses_ids": true,
+    "allowed_initial_assessment_outcomes": [
+      "inconclusive",
+      "not_performed"
+    ],
+    "configuration_registry": "configurations",
+    "party_and_role_registry": "parties_or_roles",
+    "performed_outcome_requires_completed_activity": true,
+    "definitive_outcome_requires_reviewed_active_verified_evidence": true,
+    "definitive_outcome_requires_baselined_verified_configuration": true,
+    "definitive_outcome_requires_confirmed_authorized_assessor": true,
+    "definitive_outcome_requires_confirmed_applicability_and_source_version": true,
+    "confirmed_applicability_requires_confirmed_authorized_human_confirmer": true,
+    "definitive_source_requires_verified_provenance_and_version_identity": true,
+    "definitive_source_and_provision_require_authorized_verifier_and_timestamp": true,
+    "definitive_result_requires_nonempty_obligation_scope": true,
+    "consumed_evidence_requirements_must_equal_activity_plan": true,
+    "conforming_summary_requires_resolved_applicability_and_full_scope_coverage": true,
+    "issued_attestation_requires_active_conforming_results": true,
+    "issued_attestation_requires_scheme_coverage_authorized_issuer_and_current_validity": true,
+    "issued_attestation_object_must_match_scheme_object": true,
+    "date_and_datetime_format_validation_required": true,
+    "assessment_and_attestation_chronology_validation_required": true,
+    "source_and_evidence_invalidation_must_propagate": true
+  },
+  "review_gate_policy": {
+    "separate_model_quality_and_assurance_outcome": true,
+    "not_a_compliance_approval_flag_required": true,
+    "independent_gates": [
+      "generator",
+      "compliance",
+      "se",
+      "assurance",
+      "meta_judge"
+    ],
+    "meta_judge_requires_independent_review": true,
+    "need_validation_or_success_measure_required": true,
+    "validation_case_requires_scenario_or_success_measure": true
+  },
+  "regulatory_discovery_policy": {
+    "log_required": true,
+    "canonical_container": "compliance.regulatory_discovery_log",
+    "record_queries_and_official_registers": true,
+    "query_log_state_required": true,
+    "record_adopt_exclude_hold_reason": true,
+    "completeness_claim_requires_human_inventory_confirmation": true
+  },
+  "traceability_policy": {
+    "canonical_relationship_source": "typed_direct_references",
+    "relations_array_role": "supplemental_relationships_not_representable_by_typed_fields",
+    "duplicate_direct_relation_in_relations_forbidden": true,
+    "trace_csv_generation": "derive_from_typed_direct_references_then_merge_supplemental_relations",
+    "semantic_reference_validation_required": true,
+    "rules_file": "09_TRACEABILITY_CANONICAL_RULES.md",
+    "validator": "scripts/validate_candidate.py"
+  },
+  "adapter_policy": {
+    "canonical_model": "SELabo JSON",
+    "targets": [
+      "SysML",
+      "ReqIF",
+      "OSCAL",
+      "SACM",
+      "LegalRuleML",
+      "Akoma_Ntoso"
+    ],
+    "claim_conformance_without_adapter_validation": false
+  },
+  "limits": {
+    "item_count_policy": "unbounded",
+    "compression_policy": "disabled",
+    "platform_constraints_policy": "report_and_split_without_silent_omission"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "profile_name": "structured_planning_requirements_projection_v1",
+  "profile_version": "0.1.0",
+  "based_on": "hierarchical-se-prompt@1.1.0",
+  "output_language": "ja",
+  "target_maturity": {
+    "label": "40_of_100_planning_requirements_candidate",
+    "purpose": "企画と要件定義の議論を開始できる意味モデルと文書ビューを作る",
+    "not_intended_for": [
+      "business_approval",
+      "requirements_baseline",
+      "api_contract_approval",
+      "acceptance_completion",
+      "production_release"
+    ]
+  },
+  "canonical_model": {
+    "file": "10_se_model.json",
+    "role": "candidate_semantic_source_of_truth",
+    "documents_are_projections": true,
+    "document_view_field": "document_views"
+  },
+  "added_namespaces": [
+    "planning",
+    "screens",
+    "reports",
+    "api_contracts",
+    "data_models",
+    "operations_maintenance",
+    "security",
+    "acceptance_criteria",
+    "document_views"
+  ],
+  "planning": {
+    "required_topics": [
+      "business_context",
+      "objectives",
+      "target_users",
+      "market_analysis",
+      "cost_estimate",
+      "schedule",
+      "governance"
+    ],
+    "unknown_value_policy": "preserve_null_or_tbd",
+    "do_not_invent_numeric_targets": true
+  },
+  "requirements": {
+    "categories": [
+      "business",
+      "functional",
+      "non_functional",
+      "operational",
+      "security",
+      "data",
+      "interface",
+      "migration",
+      "support",
+      "other"
+    ],
+    "required_cross_references": [
+      "screen_refs",
+      "report_refs",
+      "api_contract_refs",
+      "data_model_refs",
+      "acceptance_criteria_refs",
+      "document_view_refs"
+    ],
+    "one_primary_obligation_per_statement": true,
+    "verification_and_acceptance_are_distinct": true
+  },
+  "contracts": {
+    "http_api": "reference_openapi_native_specification",
+    "event_api": "reference_asyncapi_native_specification",
+    "api_detail_in_semantic_model": "only_identity_and_traceability_metadata"
+  },
+  "document_views": {
+    "required_view_kinds": [
+      "planning_document",
+      "requirements_document"
+    ],
+    "allowed_render_formats": [
+      "markdown",
+      "html",
+      "docx",
+      "pdf",
+      "csv"
+    ],
+    "must_resolve_element_refs": true
+  },
+  "human_authority": {
+    "ai_candidates_require_review": true,
+    "ai_must_not_claim_approval": true,
+    "ai_must_not_claim_acceptance_completed": true,
+    "ai_must_not_claim_external_contract_verified": true
+  }
+}

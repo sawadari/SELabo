@@ -1,0 +1,38 @@
+{
+  "experiment_id": "structured-document-se-prompt",
+  "package": "structured_document_se_prompt",
+  "version": "0.1.0",
+  "release_kind": "new_experimental_extension",
+  "published_at": "2026-08-22",
+  "based_on": {
+    "experiment_id": "hierarchical-se-prompt",
+    "version": "1.1.0"
+  },
+  "language_profile": "ja_se_technical_writing_v1",
+  "entry_points": {
+    "experiment_readme": "README.md",
+    "core_prompt_extension": "01_CORE_PROMPT.md",
+    "profile_extension": "02_PLANNING_REQUIREMENTS_PROFILE.json",
+    "output_contract_extension": "03_PLANNING_REQUIREMENTS_OUTPUT_EXTENSION.json",
+    "quality_rules_extension": "04_PLANNING_REQUIREMENTS_QUALITY_RULES.md",
+    "experiment_plan": "05_EXPERIMENT_PLAN.md",
+    "schema": "schemas/planning_requirements_se_model.schema.json",
+    "representative_fixture": "examples/representative_model.json",
+    "validator": "scripts/validate_candidate.py"
+  },
+  "hash_algorithm": "SHA-256",
+  "manifest_self_excluded": true,
+  "files": [
+    { "path": "01_CORE_PROMPT.md", "size_bytes": 4676, "sha256": "2144e41d414fd0c42ff6b06fec6ecd4de3e764da6bffb8b5bad7e768eef7019d" },
+    { "path": "02_PLANNING_REQUIREMENTS_PROFILE.json", "size_bytes": 2491, "sha256": "e709fab5f4b8a3a872a8355377d219dd8fb374e4fed8d4a3ce7ea7006d50a68f" },
+    { "path": "03_PLANNING_REQUIREMENTS_OUTPUT_EXTENSION.json", "size_bytes": 2788, "sha256": "4640e5c030cbd190f962fa558fbb986967d0fc558f953756f3335e198855931c" },
+    { "path": "04_PLANNING_REQUIREMENTS_QUALITY_RULES.md", "size_bytes": 4353, "sha256": "ba39b156f480655d1b073398f1605c286ededc5358ed8ee7a6a8a08210195eb2" },
+    { "path": "05_EXPERIMENT_PLAN.md", "size_bytes": 1835, "sha256": "9e04c1f7e82da67e16dda653825ce2b8e5727ca15fecba01cea4d490fe443042" },
+    { "path": "06_REFERENCES.md", "size_bytes": 1026, "sha256": "805be368d6a20dc45c931340fa00f0310ccf3c40771b410f4d017d66b389d1a2" },
+    { "path": "07_VALIDATION_REPORT.md", "size_bytes": 1127, "sha256": "6e054689ac33cff7e1bce5a101aacb71017e602b241faad8720673e4fd72e1ea" },
+    { "path": "README.md", "size_bytes": 4682, "sha256": "46a6f95f7d467d0613c330fd7332dead92795a5961edc648f26aa5987f9df957" },
+    { "path": "schemas/planning_requirements_se_model.schema.json", "size_bytes": 21027, "sha256": "69bff6993781f62a3b8e41769d004928470c46ee199dafec5b2d291fad6faf22" },
+    { "path": "examples/representative_model.json", "size_bytes": 21318, "sha256": "9d860621fa89b32e1fa9828e9311836f7c495c51c080a1dc80b8250f99faf062" },
+    { "path": "scripts/validate_candidate.py", "size_bytes": 5954, "sha256": "262c3d85b6258ace620265cfd63763aefb976b68ca8748bb02d4819f4b2cbb5a" }
+  ]
+}

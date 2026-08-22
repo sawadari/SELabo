@@ -11,6 +11,8 @@ SEとは、複雑な製品やサービスを「誰のために、何を実現し
 | 実験 | 何を試すか | 状態 |
 |---|---|---|
 | [階層型SE初稿生成プロンプト](experiments/hierarchical-se-prompt/README.md) | 少ない情報から、SEの議論を始めるための初稿をAIで作る | 1.1.0・実験中 |
+| [法規・規格・認証統合SE初稿生成プロンプト](experiments/compliance-integrated-se-prompt/README.md) | 原典、適用性、義務、工学要求、証拠を分離したCompliance Layer付き初稿をAIで作る | 0.3.1・実験中 |
+| [企画・要件定義構造化SE初稿生成プロンプト](experiments/structured-document-se-prompt/README.md) | 実験1のSE意味モデルから企画書・要件定義書を投影する | 0.1.0・実験中 |
 
 ## 読み始める場所
 
@@ -21,7 +23,7 @@ SEとは、複雑な製品やサービスを「誰のために、何を実現し
 
 実験の共通ルールは、[experiments/README.md](experiments/README.md)にまとめています。
 
-3製品でのQ&A評価実行は、[evaluation_runs/2026-08-21](evaluation_runs/2026-08-21/README.md)に記録しています。
+3製品でのQ&A評価実行は、[evaluation_runs/2026-08-21](evaluation_runs/2026-08-21/README.md)に記録しています。同じ3製品を使ったCompliance LayerのC1-remediated評価は、[evaluation_runs/2026-08-22/compliance-integrated-se-prompt](evaluation_runs/2026-08-22/compliance-integrated-se-prompt/README.md)、履歴を隔離したstrict C1-blindは[別枠run](evaluation_runs/2026-08-22/compliance-integrated-se-prompt-blind-c1-strict/README.md)にあります。
 第三者向けの説明は、[3製品で見るプロンプトの使い方（HTML）](evaluation_runs/2026-08-21/third_party_story.html)で読めます。
 
 ## 大切にすること

@@ -1,0 +1,137 @@
+{
+  "contract_name": "compliance_integrated_se_candidate_bundle_extension",
+  "contract_version": "0.3.1",
+  "extends": "../hierarchical-se-prompt/03_OUTPUT_CONTRACT.json",
+  "source_of_truth_extension": {
+    "file": "10_se_model.json",
+    "required_section": "compliance",
+    "role": "candidate_project_semantic_model",
+    "external_authoritative_sources_remain_external": true,
+    "schema": "schemas/compliance_se_model.schema.json"
+  },
+  "traceability_override": {
+    "canonical_relationship_source": "typed_direct_references_in_10_se_model.json",
+    "relations_array_role": "supplemental_only",
+    "trace_csv": "09_traceability.csv",
+    "generation_rules": "09_TRACEABILITY_CANONICAL_RULES.md",
+    "validator": "scripts/validate_candidate.py",
+    "do_not_export_empty_relations_array_as_complete_traceability": true
+  },
+  "required_files": [
+    {
+      "path": "17_compliance_source_register.md",
+      "format": "markdown",
+      "purpose": "Authority、Source、Provision、版、有効期間、取得状態、原典位置のレビュー用投影。",
+      "required_sections": [
+        "対象範囲",
+        "Authority",
+        "Source",
+        "Provision",
+        "版・発効日・失効日",
+        "原典取得状況",
+        "著作物の保存方針",
+        "未確認事項"
+      ]
+    },
+    {
+      "path": "18_applicability_obligation_register.md",
+      "format": "markdown",
+      "purpose": "規範文、適用性候補、拘束根拠、Obligationと人の確認事項。",
+      "required_sections": [
+        "Normative Statement",
+        "適用性評価コンテキスト",
+        "適用性判断候補",
+        "拘束根拠",
+        "Obligation",
+        "再評価トリガー",
+        "人の確認バックログ"
+      ]
+    },
+    {
+      "path": "19_engineering_projection_traceability.csv",
+      "format": "csv",
+      "purpose": "Obligationから工学成果物へのN:M投影。",
+      "required_columns": [
+        "projection_id",
+        "obligation_id",
+        "projection_kind",
+        "target_level",
+        "target_id",
+        "derivation_basis",
+        "status",
+        "confidence",
+        "human_confirmation_required"
+      ]
+    },
+    {
+      "path": "20_conformity_evidence_plan.md",
+      "format": "markdown",
+      "purpose": "Conformity Scheme、評価活動、Evidence Requirement、Evidence Item、評価状態。",
+      "required_sections": [
+        "適合性評価スキーム候補",
+        "評価活動候補",
+        "必要な証拠",
+        "存在を確認した証拠",
+        "Assessment Result",
+        "Findingと是正",
+        "Attestation",
+        "未実施事項"
+      ]
+    },
+    {
+      "path": "21_regulatory_discovery_log.md",
+      "format": "markdown",
+      "purpose": "製品構成、公式探索先、query、候補Sourceの採用・除外・保留理由とinventory確認状態。",
+      "required_sections": [
+        "対象構成と市場",
+        "探索した公式台帳",
+        "探索queryと実行時点",
+        "採用候補Source",
+        "除外候補と理由",
+        "保留候補と理由",
+        "網羅性の限界",
+        "人によるinventory確認"
+      ]
+    }
+  ],
+  "validation_extension": {
+    "composed_schema_validation_required_when_tooling_available": true,
+    "compliance_reference_integrity_check": true,
+    "applicability_context_check": true,
+    "applicability_human_confirmation_check": true,
+    "obligation_projection_completeness_check": true,
+    "product_projection_target_check": true,
+    "non_product_projection_target_check": true,
+    "projection_kind_target_kind_match_check": true,
+    "typed_reference_trace_csv_check": true,
+    "evidence_requirement_coverage_check": true,
+    "evidence_item_provenance_check": true,
+    "source_and_provision_authorized_verification_check": true,
+    "definitive_result_nonempty_scope_check": true,
+    "planned_and_consumed_evidence_requirement_set_equality_check": true,
+    "conforming_summary_full_scope_coverage_check": true,
+    "need_validation_or_success_measure_check": true,
+    "validation_scenario_and_inverse_reference_check": true,
+    "behavior_performer_and_structure_owner_consistency_check": true,
+    "configuration_and_role_reference_check": true,
+    "assessment_activity_evidence_result_state_check": true,
+    "issued_attestation_precondition_check": true,
+    "attestation_scheme_object_match_check": true,
+    "date_and_datetime_format_check": true,
+    "assessment_and_attestation_chronology_check": true,
+    "conformity_scheme_reference_check": true,
+    "independent_reviewer_gate_check": true,
+    "regulatory_discovery_log_check": true,
+    "source_change_impact_check": true,
+    "no_false_conformity_or_certification_claim": true
+  },
+  "final_chat_response_extension": {
+    "include": [
+      "source_verification_limitations",
+      "top_uncertain_applicability_items",
+      "obligations_without_projection",
+      "mandatory_obligations_without_evidence_requirement",
+      "not_performed_assessments"
+    ]
+  }
+}

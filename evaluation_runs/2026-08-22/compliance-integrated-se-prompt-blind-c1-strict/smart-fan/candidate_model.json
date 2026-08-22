@@ -1,0 +1,285 @@
+{
+  "meta": {
+    "artifact_type": "hierarchical_se_model_candidate",
+    "schema_version": "1.0.0",
+    "target_system": "家庭用スマート扇風機候補",
+    "target_maturity": "40_of_100_concept_candidate",
+    "sysml_version_target": "1.7",
+    "source_of_truth_status": "candidate_semantic_source_of_truth",
+    "generated_at": "2026-08-22T00:00:00+09:00",
+    "language": "ja",
+    "experiment_id": "compliance-integrated-se-prompt",
+    "compliance_schema_version": "0.3.1",
+    "external_authoritative_sources_remain_external": true
+  },
+  "source_fragments": [],
+  "scope": {
+    "target_system": "家庭用スマート扇風機候補",
+    "purpose": "寝室又は居室で必要な時間だけ静かに送風する",
+    "problem_or_opportunity": "羽根への接触防止と通信断時の基本操作を保ちながら家庭内の暑さを和らげる",
+    "included": ["家庭内送風", "本体操作", "Wi-Fi搭載可能性", "日本市場向け概念設計"],
+    "excluded": ["正式な法令適用判定", "適合性評価", "認証取得", "量産設計"],
+    "external_systems": ["家庭用交流電源候補", "家庭用Wi-Fiネットワーク候補", "利用者"],
+    "operational_environment": ["屋内の寝室及び居室", "夜間", "ほこりが存在する環境", "Wi-Fiが一時的に利用できない状態"],
+    "lifecycle_scope": ["concept", "development", "utilization"],
+    "success_measure_refs": ["MOE-0001", "MOE-0002", "MOE-0003"],
+    "assumption_refs": [],
+    "scope_alternatives": []
+  },
+  "glossary": [],
+  "stakeholders": [
+    {
+      "id": "STK-0001", "name": "一般家庭の成人利用者", "level": "L1", "origin": "user_explicit",
+      "claim_state": "stated", "decision_state": "not_decided", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "high", "evidence_refs": [],
+      "rationale": "入力Q2で主な利用者として示された。", "category": "end_user",
+      "applicability": "applicable", "applicability_rationale": "家庭内で本体を操作する。",
+      "concern_refs": [], "need_refs": ["NEED-0001", "NEED-0002", "NEED-0003"], "responsibilities": []
+    }
+  ],
+  "concerns": [],
+  "needs": [
+    {
+      "id": "NEED-0001", "name": "静かな送風", "level": "L1", "origin": "user_explicit",
+      "claim_state": "stated", "decision_state": "not_decided", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "high", "evidence_refs": [],
+      "rationale": "入力Q1及びQ4に基づく。",
+      "statement": "一般家庭の成人利用者は、寝室又は居室で暑さを和らげるために、必要な時間だけ静かに送風したい。",
+      "stakeholder_refs": ["STK-0001"], "concern_refs": [], "expected_value": "夜間を含む家庭内で送風を利用できる。",
+      "undesired_outcomes": ["運転音により睡眠又は会話が妨げられる"], "success_measure_refs": ["MOE-0001"], "validation_case_refs": []
+    },
+    {
+      "id": "NEED-0002", "name": "回転部接触の回避", "level": "L1", "origin": "user_explicit",
+      "claim_state": "stated", "decision_state": "not_decided", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "high", "evidence_refs": [],
+      "rationale": "入力Q2及びQ4に基づく。",
+      "statement": "一般家庭の成人利用者は、子どもが近くにいる状況でけがを防ぐために、回転する羽根へ接触しないで使用したい。",
+      "stakeholder_refs": ["STK-0001"], "concern_refs": [], "expected_value": "通常使用時に回転羽根へ接触しない。",
+      "undesired_outcomes": ["回転羽根への接触によるけが"], "success_measure_refs": ["MOE-0002"], "validation_case_refs": []
+    },
+    {
+      "id": "NEED-0003", "name": "通信断時の基本操作", "level": "L1", "origin": "user_explicit",
+      "claim_state": "stated", "decision_state": "not_decided", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "high", "evidence_refs": [],
+      "rationale": "入力Q5に基づく。",
+      "statement": "一般家庭の成人利用者は、Wi-Fiが利用できないときも送風を制御するために、本体で停止及び再開を操作したい。",
+      "stakeholder_refs": ["STK-0001"], "concern_refs": [], "expected_value": "通信状態に依存せず基本操作を完了できる。",
+      "undesired_outcomes": ["通信断により送風を停止できない"], "success_measure_refs": ["MOE-0003"], "validation_case_refs": []
+    }
+  ],
+  "measures": [
+    {
+      "id": "MOE-0001", "name": "運転音受容度候補", "level": "L1", "origin": "ai_context_inference",
+      "claim_state": "inferred", "decision_state": "proposed", "validity_state": "active", "baseline_state": "outside_baseline",
+      "confidence": "low", "evidence_refs": [], "rationale": "運転音の尺度及び目標値は未決定である。",
+      "measure_type": "effectiveness", "observable": "代表利用者が夜間運転音を受容できるか", "unit": null,
+      "target_or_range": null, "measurement_context": "代表寝室での候補妥当性確認"
+    },
+    {
+      "id": "MOE-0002", "name": "羽根接触可否候補", "level": "L1", "origin": "ai_context_inference",
+      "claim_state": "inferred", "decision_state": "proposed", "validity_state": "active", "baseline_state": "outside_baseline",
+      "confidence": "medium", "evidence_refs": [], "rationale": "接触プローブ及び受入れ基準は技術基準選定後に確定する。",
+      "measure_type": "effectiveness", "observable": "通常使用状態で回転羽根へ接触できるか", "unit": null,
+      "target_or_range": "接触不可候補", "measurement_context": "適用技術基準に定める試験条件候補"
+    },
+    {
+      "id": "MOE-0003", "name": "通信断時操作成功率候補", "level": "L1", "origin": "ai_context_inference",
+      "claim_state": "inferred", "decision_state": "proposed", "validity_state": "active", "baseline_state": "outside_baseline",
+      "confidence": "medium", "evidence_refs": [], "rationale": "入力で通信断時の停止及び再開が要求された。",
+      "measure_type": "effectiveness", "observable": "Wi-Fi遮断中に本体操作で停止及び再開できる試行の割合", "unit": "%",
+      "target_or_range": "100候補", "measurement_context": "Wi-Fi接続を意図的に遮断した代表構成"
+    }
+  ],
+  "use_cases": [],
+  "scenarios": [],
+  "requirements": [
+    {
+      "id": "REQ-0001", "display_id": "REQ-0001", "name": "電安法技術基準適合設計候補", "level": "L2",
+      "product_layer": "system", "abstraction": "black_box", "lifecycle_stage": "development", "domain": "mixed",
+      "origin": "ai_context_inference", "claim_state": "inferred", "decision_state": "proposed", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "low", "evidence_refs": ["SRC-0001", "SRC-0002", "SRC-0003"],
+      "rationale": "定格消費電力300 W以下の家庭用扇風機等に該当する場合の工学投影候補であり、分類と適用技術基準は人の確認を要する。",
+      "tags": ["compliance-derived", "applicability-uncertain"],
+      "statement": "家庭用スマート扇風機候補が電気用品安全法施行令別表第二の扇風機又はサーキュレーターに該当する場合、家庭用スマート扇風機候補は、選定した技術基準体系の適用項目を満たす。",
+      "requirement_type": "constraint_requirement", "normative_level": "mandatory", "subject": "家庭用スマート扇風機候補",
+      "condition": "電気用品安全法施行令別表第二の扇風機又はサーキュレーターに該当する場合", "trigger": null,
+      "required_response_or_property": "選定した技術基準体系の適用項目を満たす", "object": "家庭用スマート扇風機候補",
+      "performance_or_limit": null, "unit": null, "tolerance": null, "source_need_refs": ["NEED-0002"],
+      "parent_requirement_refs": [], "derivation_basis": "OBL-0001から製品設計へ投影した候補",
+      "allocation_candidate_refs": ["STR-0001"], "verification_method_candidate": "test", "verification_case_refs": [],
+      "acceptance_criteria_candidate": "人が確定した製品分類及び単一の技術基準体系について、適用項目ごとの試験結果が合格である。",
+      "derivation_sources": [{"source_ref": "OBL-0001", "source_kind": "compliance_obligation", "derivation_kind": "projected", "projection_ref": "EPR-0001", "rationale": "届出事業者の技術基準適合義務を製品特性へ変換する。"}]
+    },
+    {
+      "id": "REQ-0002", "display_id": "REQ-0002", "name": "長期使用注意表示候補", "level": "L2",
+      "product_layer": "system", "abstraction": "black_box", "lifecycle_stage": "production", "domain": "human",
+      "origin": "ai_context_inference", "claim_state": "inferred", "decision_state": "proposed", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "medium", "evidence_refs": ["SRC-0004"],
+      "rationale": "産業用を除く扇風機が長期使用製品安全表示制度の対象とされているため。",
+      "tags": ["compliance-derived", "applicability-uncertain"],
+      "statement": "家庭用スマート扇風機候補が電気用品の技術上の基準を定める省令第20条の扇風機に該当する場合、家庭用スマート扇風機候補は、製造年、設計上の標準使用期間及び経年劣化事故のおそれに関する注意を本体へ表示する。",
+      "requirement_type": "constraint_requirement", "normative_level": "mandatory", "subject": "家庭用スマート扇風機候補",
+      "condition": "省令第20条の産業用を除く扇風機に該当する場合", "trigger": null,
+      "required_response_or_property": "製造年、設計上の標準使用期間及び経年劣化事故のおそれに関する注意を本体へ表示する",
+      "object": "本体表示", "performance_or_limit": null, "unit": null, "tolerance": null, "source_need_refs": ["NEED-0002"],
+      "parent_requirement_refs": [], "derivation_basis": "OBL-0002から表示要求へ投影した候補",
+      "allocation_candidate_refs": ["STR-0001"], "verification_method_candidate": "inspection", "verification_case_refs": [],
+      "acceptance_criteria_candidate": "対象構成の本体表示に省令第20条で求められる3事項が識別可能である。",
+      "derivation_sources": [{"source_ref": "OBL-0002", "source_kind": "compliance_obligation", "derivation_kind": "projected", "projection_ref": "EPR-0003", "rationale": "長期使用時の表示義務を製品表示へ変換する。"}]
+    },
+    {
+      "id": "REQ-0003", "display_id": "REQ-0003", "name": "無線設備表示確認候補", "level": "L2",
+      "product_layer": "system", "abstraction": "black_box", "lifecycle_stage": "development", "domain": "electronics",
+      "origin": "ai_context_inference", "claim_state": "inferred", "decision_state": "proposed", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "low", "evidence_refs": ["SRC-0005"],
+      "rationale": "Wi-Fi搭載の有無、周波数、空中線電力及び無線モジュール認証は未確定である。",
+      "tags": ["compliance-derived", "conditional-wifi", "applicability-uncertain"],
+      "statement": "家庭用スマート扇風機候補が日本国内で免許を要しないWi-Fi無線局を開設する構成を含む場合、家庭用スマート扇風機候補は、対象無線設備に必要な電波法上の表示を確認できる構成とする。",
+      "requirement_type": "constraint_requirement", "normative_level": "mandatory", "subject": "家庭用スマート扇風機候補",
+      "condition": "日本国内で免許を要しないWi-Fi無線局を開設する構成を含む場合", "trigger": null,
+      "required_response_or_property": "対象無線設備に必要な電波法上の表示を確認できる構成とする", "object": "Wi-Fi無線設備候補",
+      "performance_or_limit": null, "unit": null, "tolerance": null, "source_need_refs": ["NEED-0003"],
+      "parent_requirement_refs": [], "derivation_basis": "OBL-0003から条件付き製品構成要求へ投影した候補",
+      "allocation_candidate_refs": ["STR-0001"], "verification_method_candidate": "inspection", "verification_case_refs": [],
+      "acceptance_criteria_candidate": "Wi-Fi搭載構成について、使用する無線設備と対応する電波法上の表示を構成記録及び現品で照合できる。",
+      "derivation_sources": [{"source_ref": "OBL-0003", "source_kind": "compliance_obligation", "derivation_kind": "projected", "projection_ref": "EPR-0005", "rationale": "無線局開設条件を製品構成の確認可能性へ変換する。"}]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "BEH-0001", "name": "空気を送る", "level": "L2", "origin": "user_explicit", "claim_state": "stated",
+      "decision_state": "not_decided", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "high",
+      "evidence_refs": [], "rationale": "主目的を実現するブラックボックス機能である。", "behavior_type": "function",
+      "input_refs": [], "output_refs": [], "preconditions": ["利用者が運転を開始している"], "postconditions": ["室内へ気流を出力している"],
+      "performer_candidate_refs": ["STR-0001"], "requirement_refs": ["REQ-0001"]
+    },
+    {
+      "id": "BEH-0002", "name": "回転部への接触を防ぐ", "level": "L2", "origin": "ai_context_inference", "claim_state": "inferred",
+      "decision_state": "proposed", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "medium",
+      "evidence_refs": [], "rationale": "羽根への接触防止ニーズを実現する候補である。", "behavior_type": "function",
+      "input_refs": [], "output_refs": [], "preconditions": ["羽根が回転している"], "postconditions": ["通常使用状態で利用者が回転羽根へ接触しない"],
+      "performer_candidate_refs": ["STR-0001"], "requirement_refs": ["REQ-0001"]
+    },
+    {
+      "id": "BEH-0003", "name": "本体操作を受け付ける", "level": "L2", "origin": "user_explicit", "claim_state": "stated",
+      "decision_state": "not_decided", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "high",
+      "evidence_refs": [], "rationale": "通信断時も停止及び再開を可能にする。", "behavior_type": "interaction",
+      "input_refs": [], "output_refs": [], "preconditions": ["本体へ電力が供給されている"], "postconditions": ["停止又は再開の指示が反映される"],
+      "performer_candidate_refs": ["STR-0001"], "requirement_refs": ["REQ-0003"]
+    }
+  ],
+  "structures": [
+    {
+      "id": "STR-0001", "name": "家庭用スマート扇風機候補", "level": "L2", "product_layer": "system",
+      "origin": "ai_context_inference", "claim_state": "inferred", "decision_state": "proposed", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "medium", "evidence_refs": [],
+      "rationale": "最小ブラックボックス構造候補であり、内部部品構成は未決定である。",
+      "structure_kind": "system", "logical_or_physical": "mixed", "system_element_kind": "hardware_software_system",
+      "owner_ref": null, "part_refs": [], "requirement_refs": ["REQ-0001", "REQ-0002", "REQ-0003"],
+      "behavior_refs": ["BEH-0001", "BEH-0002", "BEH-0003"], "interface_refs": []
+    }
+  ],
+  "interfaces": [],
+  "constraints": [],
+  "allocations": [],
+  "verification_cases": [],
+  "validation_cases": [],
+  "risks": [],
+  "hazards": [],
+  "failure_modes": [],
+  "assumptions": [],
+  "alternatives": [],
+  "decisions": [],
+  "relations": [],
+  "findings": [],
+  "quality_summary": {"overall_result": "not_performed", "checks": [], "not_performed": ["独立レビュー", "試験", "正式な法令適用判定"]},
+  "language_quality": {"profile_id": "ja_se_technical_writing_v1", "profile_version": "1.0.0", "requirement_modal_style": "controlled_declarative", "checked": true, "finding_refs": []},
+  "projection_targets": [],
+  "compliance": {
+    "scope": {
+      "jurisdictions": ["日本"], "markets": ["日本国内の一般家庭向け市場"],
+      "product_classifications": ["家庭用扇風機候補", "特定電気用品以外の電気用品候補", "Wi-Fi無線設備搭載候補"],
+      "intended_uses": ["寝室又は居室での家庭用送風"], "configuration_refs": ["CFG-0001"],
+      "lifecycle_stages": ["concept", "development", "production", "utilization"], "assessed_as_of": "2026-08-22",
+      "assumption_refs": [],
+      "scope_limitations": ["電源方式、定格消費電力、Wi-Fi搭載有無、無線仕様、販売主体及び製造輸入主体が未確定である。", "公式情報の候補抽出であり、法務又は規制専門家による適用判定を実施していない。"]
+    },
+    "authorities": [
+      {"id": "AUTH-0001", "name": "国会", "authority_type": "legislature", "jurisdictions": ["日本"], "official_locator": "https://www.shugiin.go.jp/", "verification_status": "retrieved_from_official_source", "notes": "法律の制定主体として記録する。"},
+      {"id": "AUTH-0002", "name": "経済産業省", "authority_type": "regulator", "jurisdictions": ["日本"], "official_locator": "https://www.meti.go.jp/policy/consumer/seian/denan/", "verification_status": "retrieved_from_official_source", "notes": "電気用品安全法を所管する。"},
+      {"id": "AUTH-0003", "name": "総務省", "authority_type": "regulator", "jurisdictions": ["日本"], "official_locator": "https://www.tele.soumu.go.jp/", "verification_status": "retrieved_from_official_source", "notes": "電波法を所管する。"}
+    ],
+    "sources": [
+      {"id": "SRC-0001", "title": "電気用品安全法", "identifier": "昭和36年法律第234号", "source_type": "law", "authority_refs": ["AUTH-0001", "AUTH-0002"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://laws.e-gov.go.jp/law/336AC0000000234", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "e-Gov法令検索及び経済産業省公式案内を2026-08-22に検索した。"},
+      {"id": "SRC-0002", "title": "電気用品安全法施行令", "identifier": "昭和37年政令第324号", "source_type": "regulation", "authority_refs": ["AUTH-0002"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://laws.e-gov.go.jp/law/337CO0000000324/", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "e-Gov法令検索を2026-08-22に検索した。"},
+      {"id": "SRC-0003", "title": "特定電気用品以外の電気用品（341品目）一覧", "identifier": null, "source_type": "guideline", "authority_refs": ["AUTH-0002"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://www.meti.go.jp/policy/consumer/seian/denan/non_specified_electrical.html", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "経済産業省公式品目一覧を2026-08-22に検索した。"},
+      {"id": "SRC-0004", "title": "電気用品の技術上の基準を定める省令", "identifier": "平成25年経済産業省令第34号", "source_type": "mandatory_technical_rule", "authority_refs": ["AUTH-0002"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://laws.e-gov.go.jp/law/425M60000400034", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "e-Gov法令検索及び経済産業省公式制度案内を2026-08-22に検索した。"},
+      {"id": "SRC-0005", "title": "電波法", "identifier": "昭和25年法律第131号", "source_type": "law", "authority_refs": ["AUTH-0001", "AUTH-0003"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://laws.e-gov.go.jp/document?lawid=325AC0000000131_20240401_504AC0100000052", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "e-Gov法令検索を2026-08-22に検索した。Wi-Fi仕様未確定のため候補保留とする。"},
+      {"id": "SRC-0006", "title": "消費生活用製品安全法の概要ページ", "identifier": null, "source_type": "guideline", "authority_refs": ["AUTH-0002"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "not_applicable", "official_locator": "https://www.meti.go.jp/policy/consumer/seian/shouan/act_outline.html", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "metadata_only", "provenance": "長期使用表示の探索で確認したが、本候補義務の直接根拠には採用しない。"}
+    ],
+    "provisions": [
+      {"id": "PRV-0001", "source_ref": "SRC-0001", "locator": {"canonical": "第8条第1項", "article": "第8条", "section": null, "paragraph": "第1項", "table": null, "annex": null}, "heading": "基準適合義務等", "source_fragment_refs": [], "excerpt": "届出事業者は、届出に係る電気用品を技術上の基準に適合させなければならない。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"},
+      {"id": "PRV-0002", "source_ref": "SRC-0002", "locator": {"canonical": "別表第二第8号(41)", "article": null, "section": null, "paragraph": null, "table": "別表第二", "annex": null}, "heading": "交流用電気機械器具", "source_fragment_refs": [], "excerpt": "扇風機及びサーキュレーターは定格消費電力300ワット以下のものに限る。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"},
+      {"id": "PRV-0003", "source_ref": "SRC-0003", "locator": {"canonical": "品目223及び224", "article": null, "section": null, "paragraph": null, "table": "特定電気用品以外の電気用品一覧", "annex": null}, "heading": "扇風機及びサーキュレーター", "source_fragment_refs": [], "excerpt": "扇風機及びサーキュレーターは定格消費電力300W以下のものに限る。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"},
+      {"id": "PRV-0004", "source_ref": "SRC-0004", "locator": {"canonical": "第20条第1号", "article": "第20条", "section": null, "paragraph": "第1号", "table": null, "annex": null}, "heading": "長期使用製品安全表示", "source_fragment_refs": [], "excerpt": "産業用を除く扇風機は製造年、設計上の標準使用期間及び注意を表示する。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"},
+      {"id": "PRV-0005", "source_ref": "SRC-0005", "locator": {"canonical": "第4条", "article": "第4条", "section": null, "paragraph": null, "table": null, "annex": null}, "heading": "無線局の開設", "source_fragment_refs": [], "excerpt": "無線局の開設は免許を要するが、同条各号の無線局は例外となる。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"},
+      {"id": "PRV-0006", "source_ref": "SRC-0005", "locator": {"canonical": "第38条の7第1項", "article": "第38条の7", "section": null, "paragraph": "第1項", "table": null, "annex": null}, "heading": "表示", "source_fragment_refs": [], "excerpt": "技術基準適合証明を受けた特定無線設備には総務省令で定める表示を付すことができる。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"}
+    ],
+    "normative_statements": [
+      {"id": "NRM-0001", "provision_refs": ["PRV-0001", "PRV-0002", "PRV-0003"], "statement_kind": "normative", "modality": "obligation", "bearer": "届出事業者", "condition": "対象製品が電気用品安全法施行令別表第二の扇風機又はサーキュレーターに該当する場合", "action_or_property": "届出に係る電気用品を技術上の基準に適合させる", "object": "家庭用スマート扇風機候補", "limit": "定格消費電力300 W以下という分類閾値を含む", "deadline": null, "exceptions": [], "interpretation_status": "ai_candidate", "interpretation_basis": "法第8条第1項と施行令別表第二及び経済産業省品目一覧を組み合わせた候補解釈。", "alternative_interpretation_refs": [], "origin": "external_candidate", "confidence": "low", "human_confirmation_required": true},
+      {"id": "NRM-0002", "provision_refs": ["PRV-0004"], "statement_kind": "normative", "modality": "obligation", "bearer": "製造又は輸入を行う届出事業者", "condition": "対象製品が産業用を除く省令第20条の扇風機に該当する場合", "action_or_property": "製造年、設計上の標準使用期間及び期間超過時の経年劣化事故のおそれに関する注意を表示する", "object": "家庭用スマート扇風機候補", "limit": null, "deadline": null, "exceptions": ["産業用のもの"], "interpretation_status": "ai_candidate", "interpretation_basis": "省令第20条及び経済産業省公式制度案内の候補解釈。", "alternative_interpretation_refs": [], "origin": "external_candidate", "confidence": "medium", "human_confirmation_required": true},
+      {"id": "NRM-0003", "provision_refs": ["PRV-0005", "PRV-0006"], "statement_kind": "normative", "modality": "obligation", "bearer": "無線局を開設する者", "condition": "日本国内で免許を要しないWi-Fi無線局を開設する場合", "action_or_property": "免許不要条件に対応する表示が付された対象無線設備を使用する", "object": "Wi-Fi無線設備候補", "limit": null, "deadline": null, "exceptions": ["Wi-Fi無線設備を搭載又は使用しない構成"], "interpretation_status": "ai_candidate", "interpretation_basis": "電波法第4条と第38条の7の関係を製品構成へ投影する候補解釈であり、周波数及び設備区分の確認が必要。", "alternative_interpretation_refs": [], "origin": "external_candidate", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "applicability_assessments": [
+      {"id": "APP-0001", "normative_statement_refs": ["NRM-0001"], "assessment_context": {"jurisdiction": "日本", "market": "日本国内の一般家庭向け市場", "product_classification": "家庭用扇風機候補", "intended_use": "寝室又は居室での家庭用送風", "configuration_ref": "CFG-0001", "lifecycle_stage": "development"}, "decision": "uncertain", "binding_basis": "direct_regulation", "basis": "電源方式及び定格消費電力が未確定であり、別表第二への分類を確定できない。", "assumption_refs": [], "interpretation_refs": [], "assessed_as_of": "2026-08-22", "review_triggers": ["電源方式又は定格消費電力を決定した場合", "販売及び製造輸入主体を決定した場合", "適用する技術基準体系を選定した場合"], "human_confirmation_state": "pending", "confirmed_by_ref": null, "confirmed_at": null, "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "APP-0002", "normative_statement_refs": ["NRM-0002"], "assessment_context": {"jurisdiction": "日本", "market": "日本国内の一般家庭向け市場", "product_classification": "家庭用扇風機候補", "intended_use": "寝室又は居室での家庭用送風", "configuration_ref": "CFG-0001", "lifecycle_stage": "production"}, "decision": "uncertain", "binding_basis": "direct_regulation", "basis": "入力は一般家庭用途を示すが、法令上の扇風機分類と製造又は輸入構成が未確定である。", "assumption_refs": [], "interpretation_refs": [], "assessed_as_of": "2026-08-22", "review_triggers": ["製品分類又は用途区分を確定した場合", "設計上の標準使用期間を決定した場合", "表示版下を作成した場合"], "human_confirmation_state": "pending", "confirmed_by_ref": null, "confirmed_at": null, "origin": "ai_context_inference", "confidence": "medium", "human_confirmation_required": true},
+      {"id": "APP-0003", "normative_statement_refs": ["NRM-0003"], "assessment_context": {"jurisdiction": "日本", "market": "日本国内の一般家庭向け市場", "product_classification": "Wi-Fi無線設備搭載候補", "intended_use": "寝室又は居室での家庭用送風", "configuration_ref": "CFG-0001", "lifecycle_stage": "development"}, "decision": "uncertain", "binding_basis": "direct_regulation", "basis": "Wi-Fi搭載自体、周波数、空中線電力、無線モジュール及び表示方法が未決定である。", "assumption_refs": [], "interpretation_refs": [], "assessed_as_of": "2026-08-22", "review_triggers": ["Wi-Fi搭載有無を決定した場合", "無線モジュール又はアンテナを選定した場合", "無線仕様又はファームウェアを変更した場合"], "human_confirmation_state": "pending", "confirmed_by_ref": null, "confirmed_at": null, "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "obligations": [
+      {"id": "OBL-0001", "name": "電安法技術基準適合義務候補", "normative_statement_refs": ["NRM-0001"], "applicability_refs": ["APP-0001"], "obligated_party": "届出事業者候補", "object_of_conformity": "家庭用スマート扇風機候補", "target_kind": "system", "obligation_kind": "mandatory", "condition": "施行令別表第二の対象電気用品に該当する場合", "required_outcome": "人が選定した技術基準体系の適用項目へ適合する", "compliance_status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "OBL-0002", "name": "長期使用注意表示義務候補", "normative_statement_refs": ["NRM-0002"], "applicability_refs": ["APP-0002"], "obligated_party": "製造又は輸入を行う届出事業者候補", "object_of_conformity": "家庭用スマート扇風機候補", "target_kind": "system", "obligation_kind": "mandatory", "condition": "産業用を除く省令第20条の扇風機に該当する場合", "required_outcome": "本体に製造年、設計上の標準使用期間及び経年劣化事故のおそれに関する注意が表示される", "compliance_status": "candidate", "origin": "ai_context_inference", "confidence": "medium", "human_confirmation_required": true},
+      {"id": "OBL-0003", "name": "Wi-Fi無線設備表示使用義務候補", "normative_statement_refs": ["NRM-0003"], "applicability_refs": ["APP-0003"], "obligated_party": "無線局を開設する者候補", "object_of_conformity": "Wi-Fi無線設備候補", "target_kind": "system_element", "obligation_kind": "mandatory", "condition": "日本国内で免許を要しないWi-Fi無線局を開設する構成の場合", "required_outcome": "免許不要条件に対応する表示が付された対象無線設備が使用される", "compliance_status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "engineering_projections": [
+      {"id": "EPR-0001", "obligation_refs": ["OBL-0001"], "projection_kind": "product_requirement", "target_level": "L2", "target_refs": ["REQ-0001"], "derivation_basis": "届出事業者の義務を製品の技術基準適合設計候補へ投影する。", "status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "EPR-0002", "obligation_refs": ["OBL-0001"], "projection_kind": "evidence_requirement", "target_level": "cross_level", "target_refs": ["EVR-0001"], "derivation_basis": "技術基準適合を評価する試験記録を計画する。", "status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "EPR-0003", "obligation_refs": ["OBL-0002"], "projection_kind": "product_requirement", "target_level": "L2", "target_refs": ["REQ-0002"], "derivation_basis": "表示義務を本体表示要求候補へ投影する。", "status": "candidate", "origin": "ai_context_inference", "confidence": "medium", "human_confirmation_required": true},
+      {"id": "EPR-0004", "obligation_refs": ["OBL-0002"], "projection_kind": "evidence_requirement", "target_level": "cross_level", "target_refs": ["EVR-0002"], "derivation_basis": "本体表示の検査記録を計画する。", "status": "candidate", "origin": "ai_context_inference", "confidence": "medium", "human_confirmation_required": true},
+      {"id": "EPR-0005", "obligation_refs": ["OBL-0003"], "projection_kind": "product_requirement", "target_level": "L2", "target_refs": ["REQ-0003"], "derivation_basis": "Wi-Fi無線局の条件を無線設備表示の確認可能性へ投影する。", "status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "EPR-0006", "obligation_refs": ["OBL-0003"], "projection_kind": "evidence_requirement", "target_level": "cross_level", "target_refs": ["EVR-0003"], "derivation_basis": "無線設備と表示の照合記録を計画する。", "status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "evidence_requirements": [
+      {"id": "EVR-0001", "name": "電安法技術基準試験記録要求候補", "target_refs": ["OBL-0001", "REQ-0001"], "evidence_type": "test_report", "required_properties": ["対象構成と製品分類を識別できる", "選定した単一の技術基準体系と適用項目を識別できる", "試験条件、結果及び合否を記録する"], "provenance_required": true, "configuration_required": true, "independence_required": "unknown", "retention_requirement": "法令上の保存期間は人が確認する", "status": "planned", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "EVR-0002", "name": "長期使用表示検査記録要求候補", "target_refs": ["OBL-0002", "REQ-0002"], "evidence_type": "inspection_record", "required_properties": ["対象構成を識別できる", "製造年を確認できる", "設計上の標準使用期間を確認できる", "経年劣化事故のおそれに関する注意を確認できる"], "provenance_required": true, "configuration_required": true, "independence_required": "unknown", "retention_requirement": null, "status": "planned", "origin": "ai_context_inference", "confidence": "medium", "human_confirmation_required": true},
+      {"id": "EVR-0003", "name": "Wi-Fi無線設備表示照合記録要求候補", "target_refs": ["OBL-0003", "REQ-0003"], "evidence_type": "inspection_record", "required_properties": ["無線設備の型式及び構成を識別できる", "対象となる技術基準適合証明又は工事設計認証の情報を識別できる", "現品又は取扱説明書で表示を確認できる"], "provenance_required": true, "configuration_required": true, "independence_required": "unknown", "retention_requirement": null, "status": "planned", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "evidence_items": [],
+    "conformity_schemes": [],
+    "assessment_activities": [
+      {"id": "AST-0001", "activity_type": "candidate_compliance_assessment", "scheme_ref": null, "target_obligation_refs": ["OBL-0001", "OBL-0002", "OBL-0003"], "verification_case_ref": null, "assessment_subject_ref": "CFG-0001", "configuration_refs": ["CFG-0001"], "method": "document_review", "responsible_party_ref": null, "independence": "unknown", "planned_evidence_requirement_refs": ["EVR-0001", "EVR-0002", "EVR-0003"], "status": "planned", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "assessment_results": [
+      {"id": "ASR-0001", "assessment_activity_ref": "AST-0001", "assessed_obligation_refs": ["OBL-0001", "OBL-0002", "OBL-0003"], "evidence_item_refs": [], "outcome": "not_performed", "finding_refs": [], "assessed_at": null, "assessor_ref": null, "human_confirmation_state": "pending", "configuration_ref": "CFG-0001", "validity_state": "active", "valid_from": null, "valid_to": null, "invalidation_reason": null, "rationale": "EvidenceItemがなく、適合性評価を実施していない。"}
+    ],
+    "attestations": [],
+    "mappings": [],
+    "regulatory_discovery_log": [
+      {"id": "RDL-0001", "market": "日本国内の一般家庭向け市場", "configuration_ref": "CFG-0001", "official_registers_checked": ["https://laws.e-gov.go.jp/law/336AC0000000234", "https://laws.e-gov.go.jp/law/337CO0000000324/", "https://www.meti.go.jp/policy/consumer/seian/denan/non_specified_electrical.html", "https://www.meti.go.jp/policy/consumer/seian/denan/procedure_04.html"], "queries": ["site:elaws.e-gov.go.jp 電気用品安全法施行令 別表第二 扇風機", "site:laws.e-gov.go.jp 電気用品安全法 第8条 第10条 表示 販売 扇風機", "site:laws.e-gov.go.jp 電気用品安全法施行令 別表第二 扇風機 300W", "site:meti.go.jp/policy/consumer/seian/denan 電気用品安全法 届出事業者 義務 技術基準 適合検査 表示"], "candidate_source_refs": ["SRC-0001", "SRC-0002", "SRC-0003"], "query_log_state": "complete", "disposition": "adopted_candidate", "disposition_reason": "電安法第8条の技術基準適合義務と、施行令及び経済産業省一覧の扇風機分類を候補チェーンに採用した。定格消費電力等が未確定のため適用判定は保留する。", "searched_at": "2026-08-22T00:00:00+09:00", "human_inventory_confirmation_state": "pending", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "RDL-0002", "market": "日本国内の一般家庭向け市場", "configuration_ref": "CFG-0001", "official_registers_checked": ["https://laws.e-gov.go.jp/law/425M60000400034", "https://www.meti.go.jp/policy/consumer/seian/denan/choki/choki02.pdf", "https://www.meti.go.jp/product_safety/producer/shouan/07_tyouki.html"], "queries": ["site:meti.go.jp 扇風機 電気用品安全法 長期使用製品安全表示制度", "site:laws.e-gov.go.jp 電気用品の技術上の基準を定める省令 第20条 扇風機"], "candidate_source_refs": ["SRC-0004"], "query_log_state": "complete", "disposition": "adopted_candidate", "disposition_reason": "省令第20条と経済産業省公式制度案内が家庭用扇風機を長期使用表示の対象として示すため候補チェーンに採用した。", "searched_at": "2026-08-22T00:00:00+09:00", "human_inventory_confirmation_state": "pending", "origin": "ai_context_inference", "confidence": "medium", "human_confirmation_required": true},
+      {"id": "RDL-0003", "market": "日本国内の一般家庭向け市場", "configuration_ref": "CFG-0001", "official_registers_checked": ["https://laws.e-gov.go.jp/document?lawid=325AC0000000131_20240401_504AC0100000052", "https://api-catalog.e-gov.go.jp/info/ja/apicatalog/view/47"], "queries": ["site:tele.soumu.go.jp Wi-Fi 技術基準適合証明 電波法 無線設備", "site:soumu.go.jp Wi-Fi 技適 電波法 2.4GHz 無線LAN", "site:tele.soumu.go.jp/j/sys/equ/tech/ 技術基準適合証明 無線LAN", "site:soumu.go.jp 電波法 無線LAN 技術基準適合証明 免許不要", "site:elaws.e-gov.go.jp 電波法 第4条 無線局 免許を要しない 技術基準適合証明", "site:tele.soumu.go.jp 技適マーク Wi-Fi 日本 国内 使用", "総務省 電波利用ホームページ 技適マーク 無線LAN", "総務省 Wi-Fi 技適マーク 電波法", "e-Gov 電波法 第4条 無線局 免許を要しない", "e-Gov 電波法 第38条の7 技術基準適合証明"], "candidate_source_refs": ["SRC-0005"], "query_log_state": "complete", "disposition": "on_hold", "disposition_reason": "電波法第4条及び第38条の7を候補Sourceとして保持するが、Wi-Fi搭載有無と無線仕様が未決定のため適用候補を保留する。", "searched_at": "2026-08-22T00:00:00+09:00", "human_inventory_confirmation_state": "pending", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "RDL-0004", "market": "日本国内の一般家庭向け市場", "configuration_ref": "CFG-0001", "official_registers_checked": ["https://www.meti.go.jp/policy/consumer/seian/shouan/act_outline.html"], "queries": ["site:meti.go.jp 扇風機 電気用品安全法 長期使用製品安全表示制度"], "candidate_source_refs": ["SRC-0006"], "query_log_state": "complete", "disposition": "excluded", "disposition_reason": "長期使用製品安全表示制度の概要確認には有用だが、本モデルでは表示義務の直接根拠を電気用品の技術上の基準を定める省令第20条としたため、規範チェーンから除外した。", "searched_at": "2026-08-22T00:00:00+09:00", "human_inventory_confirmation_state": "pending", "origin": "ai_context_inference", "confidence": "medium", "human_confirmation_required": true}
+    ],
+    "summary": {
+      "model_quality_result": "not_performed", "assurance_outcome": "not_performed", "not_a_compliance_approval": true,
+      "reviewer_gates": {"generator": "not_performed", "compliance": "not_performed", "se": "not_performed", "assurance": "not_performed", "meta_judge": "not_performed"},
+      "checks": [],
+      "source_limitations": ["公式一次情報の候補探索のみであり、法令改正履歴、適用除外、通達及び全関連省令の網羅性を人が確認していない。", "定格消費電力、電源方式、Wi-Fi仕様、製造輸入事業者及び市場投入構成が未確定である。", "検索結果からの短い抜粋は原典全文の代替ではない。"],
+      "uncertain_applicability_refs": ["APP-0001", "APP-0002", "APP-0003"],
+      "obligation_without_projection_refs": [], "mandatory_without_evidence_requirement_refs": [], "not_performed_assessment_refs": ["ASR-0001"]
+    }
+  },
+  "configurations": [
+    {"id": "CFG-0001", "name": "家庭用スマート扇風機概念構成候補", "version": null, "baseline_state": "outside_baseline", "scope_description": "入力Q&Aから仮定した日本の一般家庭向け概念構成。電源、定格消費電力、Wi-Fi搭載、無線モジュール、ソフトウェア版、BOM及び製造版は未確認。", "artifact_locator": null, "integrity_hash": null, "validity_state": "active", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+  ],
+  "parties_or_roles": []
+}

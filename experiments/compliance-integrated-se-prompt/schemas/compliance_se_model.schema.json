@@ -1,0 +1,2605 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/selabo/compliance-integrated-se-model.schema.json",
+  "title": "SELabo Compliance-integrated hierarchical SE candidate model",
+  "description": "hierarchical-se-promptのSEモデルへ、法規・規格・契約・認証の意味層を追加する合成Schema。",
+  "allOf": [
+    {
+      "$ref": "https://example.invalid/schemas/se_model.schema.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "compliance",
+        "projection_targets",
+        "configurations",
+        "parties_or_roles"
+      ],
+      "properties": {
+        "meta": {
+          "type": "object",
+          "required": [
+            "experiment_id"
+          ],
+          "properties": {
+            "experiment_id": {
+              "const": "compliance-integrated-se-prompt"
+            },
+            "compliance_schema_version": {
+              "const": "0.3.1"
+            },
+            "external_authoritative_sources_remain_external": {
+              "const": true
+            }
+          }
+        },
+        "requirements": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "https://example.invalid/schemas/se_model.schema.json#/$defs/requirement"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "derivation_sources"
+                ],
+                "properties": {
+                  "requirement_type": {
+                    "type": "string",
+                    "enum": [
+                      "system_requirement",
+                      "element_requirement",
+                      "interface_requirement",
+                      "constraint_requirement",
+                      "quality_requirement",
+                      "operational_requirement",
+                      "support_requirement",
+                      "verification_requirement"
+                    ]
+                  },
+                  "derivation_sources": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "$ref": "#/$defs/derivationSource"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "compliance": {
+          "$ref": "#/$defs/compliance"
+        },
+        "projection_targets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/projectionTarget"
+          }
+        },
+        "configurations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/configuration"
+          }
+        },
+        "parties_or_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/partyOrRole"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*-[A-Z0-9][A-Z0-9._-]*$"
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "confidence": {
+      "$ref": "https://example.invalid/schemas/se_model.schema.json#/$defs/confidence"
+    },
+    "origin": {
+      "$ref": "https://example.invalid/schemas/se_model.schema.json#/$defs/origin"
+    },
+    "validityState": {
+      "$ref": "https://example.invalid/schemas/se_model.schema.json#/$defs/validityState"
+    },
+    "checkResult": {
+      "$ref": "https://example.invalid/schemas/se_model.schema.json#/$defs/checkResult"
+    },
+    "derivationSource": {
+      "type": "object",
+      "required": [
+        "source_ref",
+        "source_kind",
+        "derivation_kind"
+      ],
+      "properties": {
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_kind": {
+          "type": "string",
+          "enum": [
+            "need",
+            "requirement",
+            "hazard",
+            "risk",
+            "decision",
+            "compliance_obligation",
+            "other"
+          ]
+        },
+        "derivation_kind": {
+          "type": "string",
+          "enum": [
+            "derived",
+            "refined",
+            "allocated",
+            "projected",
+            "conservative_strengthening",
+            "risk_reduction",
+            "other"
+          ]
+        },
+        "projection_ref": {
+          "type": "string",
+          "pattern": "^EPR-"
+        },
+        "rationale": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source_kind": {
+                "const": "compliance_obligation"
+              }
+            },
+            "required": [
+              "source_kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "projection_ref"
+            ],
+            "properties": {
+              "source_ref": {
+                "pattern": "^OBL-"
+              },
+              "derivation_kind": {
+                "enum": [
+                  "projected",
+                  "conservative_strengthening"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "projectionTarget": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "target_kind",
+            "statement",
+            "lifecycle_stage",
+            "responsible_role_ref",
+            "status",
+            "rationale"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/id"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "target_kind": {
+              "type": "string",
+              "enum": [
+                "process_requirement",
+                "assurance_requirement",
+                "organizational_requirement",
+                "documentation_requirement",
+                "supplier_requirement"
+              ]
+            },
+            "statement": {
+              "type": "string",
+              "minLength": 1
+            },
+            "lifecycle_stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "responsible_role_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "candidate",
+                "proposed",
+                "human_confirmed",
+                "rejected"
+              ]
+            },
+            "rationale": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "configuration": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "version",
+            "baseline_state",
+            "scope_description",
+            "artifact_locator",
+            "integrity_hash",
+            "validity_state"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^CFG-"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "baseline_state": {
+              "$ref": "https://example.invalid/schemas/se_model.schema.json#/$defs/baselineState"
+            },
+            "scope_description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "artifact_locator": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "integrity_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^sha256:[0-9a-fA-F]{64}$"
+            },
+            "verified_by_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "verified_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "validity_state": {
+              "$ref": "#/$defs/validityState"
+            }
+          }
+        }
+      ]
+    },
+    "partyOrRole": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "kind",
+            "organization",
+            "authority_scope",
+            "verification_status",
+            "status"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^(ROLE|PARTY)-"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "role",
+                "person",
+                "organization",
+                "authority"
+              ]
+            },
+            "organization": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "authority_scope": {
+              "type": "string"
+            },
+            "verification_status": {
+              "$ref": "#/$defs/verificationStatus"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "candidate",
+                "confirmed",
+                "inactive"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "compliance": {
+      "type": "object",
+      "required": [
+        "scope",
+        "authorities",
+        "sources",
+        "provisions",
+        "normative_statements",
+        "applicability_assessments",
+        "obligations",
+        "engineering_projections",
+        "evidence_requirements",
+        "evidence_items",
+        "conformity_schemes",
+        "assessment_activities",
+        "assessment_results",
+        "attestations",
+        "mappings",
+        "regulatory_discovery_log",
+        "summary"
+      ],
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/complianceScope"
+        },
+        "authorities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/authority"
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "provisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/provision"
+          }
+        },
+        "normative_statements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/normativeStatement"
+          }
+        },
+        "applicability_assessments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/applicabilityAssessment"
+          }
+        },
+        "obligations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/obligation"
+          }
+        },
+        "engineering_projections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/engineeringProjection"
+          }
+        },
+        "evidence_requirements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidenceRequirement"
+          }
+        },
+        "evidence_items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidenceItem"
+          }
+        },
+        "conformity_schemes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/conformityScheme"
+          }
+        },
+        "assessment_activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assessmentActivity"
+          }
+        },
+        "assessment_results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assessmentResult"
+          }
+        },
+        "attestations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/attestation"
+          }
+        },
+        "mappings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mapping"
+          }
+        },
+        "regulatory_discovery_log": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/regulatoryDiscoveryRecord"
+          }
+        },
+        "summary": {
+          "$ref": "#/$defs/complianceSummary"
+        }
+      }
+    },
+    "complianceScope": {
+      "type": "object",
+      "required": [
+        "jurisdictions",
+        "markets",
+        "product_classifications",
+        "intended_uses",
+        "configuration_refs",
+        "lifecycle_stages",
+        "assessed_as_of",
+        "assumption_refs"
+      ],
+      "properties": {
+        "jurisdictions": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "markets": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "product_classifications": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "intended_uses": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "configuration_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "lifecycle_stages": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "assessed_as_of": {
+          "type": "string",
+          "format": "date"
+        },
+        "assumption_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "scope_limitations": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "authority_type",
+        "jurisdictions",
+        "official_locator",
+        "verification_status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^AUTH-"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority_type": {
+          "type": "string",
+          "enum": [
+            "legislature",
+            "regulator",
+            "standards_body",
+            "certification_body",
+            "accreditation_body",
+            "scheme_owner",
+            "contractual_party",
+            "internal_governance",
+            "other"
+          ]
+        },
+        "jurisdictions": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "official_locator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verification_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "verificationStatus": {
+      "type": "string",
+      "enum": [
+        "provided_by_user",
+        "retrieved_from_official_source",
+        "referenced_not_retrieved",
+        "ai_candidate",
+        "unknown"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "identifier",
+        "source_type",
+        "authority_refs",
+        "edition",
+        "publication_date",
+        "effective_from",
+        "effective_to",
+        "status",
+        "applicability_version_state",
+        "official_locator",
+        "language",
+        "supersedes_ref",
+        "verification_status",
+        "text_storage_policy"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^SRC-"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identifier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "law",
+            "regulation",
+            "mandatory_technical_rule",
+            "standard",
+            "industry_standard",
+            "certification_criterion",
+            "contract",
+            "internal_standard",
+            "guideline",
+            "acceptable_means_of_compliance",
+            "recommendation",
+            "other"
+          ]
+        },
+        "authority_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "edition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "publication_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "effective_from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "effective_to": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "active",
+            "withdrawn",
+            "superseded",
+            "unknown"
+          ]
+        },
+        "applicability_version_state": {
+          "type": "string",
+          "enum": [
+            "confirmed",
+            "unconfirmed",
+            "not_applicable"
+          ]
+        },
+        "official_locator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "language": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "supersedes_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verification_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "verified_by_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verified_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "text_storage_policy": {
+          "type": "string",
+          "enum": [
+            "metadata_only",
+            "excerpt_only",
+            "licensed_full_text",
+            "public_full_text"
+          ]
+        },
+        "provenance": {
+          "type": "string"
+        }
+      }
+    },
+    "provision": {
+      "type": "object",
+      "required": [
+        "id",
+        "source_ref",
+        "locator",
+        "heading",
+        "source_fragment_refs",
+        "excerpt",
+        "text_storage_policy",
+        "valid_from",
+        "valid_to",
+        "verification_status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^PRV-"
+        },
+        "source_ref": {
+          "type": "string",
+          "pattern": "^SRC-"
+        },
+        "locator": {
+          "type": "object",
+          "required": [
+            "canonical"
+          ],
+          "properties": {
+            "canonical": {
+              "type": "string",
+              "minLength": 1
+            },
+            "article": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "section": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "paragraph": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "table": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "annex": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "heading": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_fragment_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "excerpt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "text_storage_policy": {
+          "type": "string",
+          "enum": [
+            "metadata_only",
+            "excerpt_only",
+            "licensed_full_text",
+            "public_full_text"
+          ]
+        },
+        "valid_from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "valid_to": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "verification_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "verified_by_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verified_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "candidateMetadata": {
+      "type": "object",
+      "required": [
+        "origin",
+        "confidence",
+        "human_confirmation_required"
+      ],
+      "properties": {
+        "origin": {
+          "$ref": "#/$defs/origin"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "human_confirmation_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "normativeStatement": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "provision_refs",
+            "statement_kind",
+            "modality",
+            "bearer",
+            "condition",
+            "action_or_property",
+            "object",
+            "exceptions",
+            "interpretation_status",
+            "interpretation_basis"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^NRM-"
+            },
+            "provision_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "statement_kind": {
+              "type": "string",
+              "enum": [
+                "normative",
+                "definition",
+                "declaration",
+                "descriptive"
+              ]
+            },
+            "modality": {
+              "type": "string",
+              "enum": [
+                "obligation",
+                "prohibition",
+                "permission",
+                "recommendation",
+                "definition",
+                "declaration",
+                "descriptive"
+              ]
+            },
+            "bearer": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "condition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "action_or_property": {
+              "type": "string",
+              "minLength": 1
+            },
+            "object": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "limit": {
+              "type": [
+                "string",
+                "number",
+                "null"
+              ]
+            },
+            "deadline": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "exceptions": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "interpretation_status": {
+              "type": "string",
+              "enum": [
+                "ai_candidate",
+                "expert_reviewed",
+                "authority_confirmed",
+                "disputed",
+                "unknown"
+              ]
+            },
+            "interpretation_basis": {
+              "type": "string"
+            },
+            "alternative_interpretation_refs": {
+              "$ref": "#/$defs/stringArray"
+            }
+          }
+        }
+      ]
+    },
+    "applicabilityAssessment": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "normative_statement_refs",
+            "assessment_context",
+            "decision",
+            "binding_basis",
+            "basis",
+            "assumption_refs",
+            "interpretation_refs",
+            "assessed_as_of",
+            "review_triggers",
+            "human_confirmation_state",
+            "confirmed_by_ref",
+            "confirmed_at"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^APP-"
+            },
+            "normative_statement_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "assessment_context": {
+              "type": "object",
+              "required": [
+                "jurisdiction",
+                "market",
+                "product_classification",
+                "intended_use",
+                "configuration_ref",
+                "lifecycle_stage"
+              ],
+              "properties": {
+                "jurisdiction": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "market": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "product_classification": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "intended_use": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "configuration_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "lifecycle_stage": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "decision": {
+              "type": "string",
+              "enum": [
+                "applicable",
+                "partially_applicable",
+                "not_applicable",
+                "uncertain"
+              ]
+            },
+            "binding_basis": {
+              "type": "string",
+              "enum": [
+                "direct_regulation",
+                "incorporated_by_reference",
+                "acceptable_means_of_compliance",
+                "certification_scheme_rule",
+                "contractual",
+                "internal_policy",
+                "voluntary_adoption",
+                "unknown"
+              ]
+            },
+            "basis": {
+              "type": "string"
+            },
+            "assumption_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "interpretation_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "assessed_as_of": {
+              "type": "string",
+              "format": "date"
+            },
+            "review_triggers": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "human_confirmation_required": {
+              "const": true
+            },
+            "human_confirmation_state": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "confirmed",
+                "rejected"
+              ]
+            },
+            "confirmed_by_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "confirmed_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "human_confirmation_state": {
+                    "const": "confirmed"
+                  }
+                },
+                "required": [
+                  "human_confirmation_state"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "confirmed_by_ref": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "confirmed_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "human_confirmation_state": {
+                    "enum": [
+                      "pending",
+                      "rejected"
+                    ]
+                  }
+                },
+                "required": [
+                  "human_confirmation_state"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "confirmed_by_ref": {
+                    "type": "null"
+                  },
+                  "confirmed_at": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "obligation": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "normative_statement_refs",
+            "applicability_refs",
+            "obligated_party",
+            "object_of_conformity",
+            "target_kind",
+            "obligation_kind",
+            "condition",
+            "required_outcome",
+            "compliance_status"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^OBL-"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "normative_statement_refs": {
+              "$ref": "#/$defs/stringArray",
+              "minItems": 1
+            },
+            "applicability_refs": {
+              "$ref": "#/$defs/stringArray",
+              "minItems": 1
+            },
+            "obligated_party": {
+              "type": "string",
+              "minLength": 1
+            },
+            "object_of_conformity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "target_kind": {
+              "type": "string",
+              "enum": [
+                "system",
+                "system_element",
+                "interface",
+                "development_process",
+                "manufacturing_process",
+                "operation_process",
+                "organization",
+                "person_role",
+                "supplier",
+                "documentation",
+                "evidence",
+                "mixed",
+                "other"
+              ]
+            },
+            "obligation_kind": {
+              "type": "string",
+              "enum": [
+                "mandatory",
+                "prohibition",
+                "recommendation",
+                "permission",
+                "descriptive"
+              ]
+            },
+            "condition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "required_outcome": {
+              "type": "string",
+              "minLength": 1
+            },
+            "compliance_status": {
+              "type": "string",
+              "enum": [
+                "candidate",
+                "planned",
+                "implemented",
+                "assessed",
+                "not_applicable",
+                "deferred",
+                "unknown"
+              ]
+            },
+            "confirmed_by_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "confirmed_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "compliance_status": {
+                    "const": "assessed"
+                  }
+                },
+                "required": [
+                  "compliance_status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "confirmed_by_ref",
+                  "confirmed_at"
+                ],
+                "properties": {
+                  "confirmed_by_ref": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "confirmed_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "engineeringProjection": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "obligation_refs",
+            "projection_kind",
+            "target_level",
+            "target_refs",
+            "derivation_basis",
+            "status"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^EPR-"
+            },
+            "obligation_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "projection_kind": {
+              "type": "string",
+              "enum": [
+                "product_requirement",
+                "interface_requirement",
+                "constraint_requirement",
+                "operational_requirement",
+                "process_requirement",
+                "assurance_requirement",
+                "organizational_requirement",
+                "documentation_requirement",
+                "supplier_requirement",
+                "evidence_requirement",
+                "no_projection"
+              ]
+            },
+            "target_level": {
+              "type": "string",
+              "enum": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "cross_level",
+                "not_applicable"
+              ]
+            },
+            "target_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "derivation_basis": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "candidate",
+                "proposed",
+                "human_confirmed",
+                "rejected"
+              ]
+            },
+            "no_projection_reason": {
+              "type": "string"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "projection_kind": {
+                    "const": "no_projection"
+                  }
+                },
+                "required": [
+                  "projection_kind"
+                ]
+              },
+              "then": {
+                "required": [
+                  "no_projection_reason"
+                ],
+                "properties": {
+                  "target_refs": {
+                    "maxItems": 0
+                  },
+                  "no_projection_reason": {
+                    "minLength": 1
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "target_refs": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "evidenceRequirement": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "target_refs",
+            "evidence_type",
+            "required_properties",
+            "provenance_required",
+            "configuration_required",
+            "independence_required",
+            "retention_requirement",
+            "status"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^EVR-"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "target_refs": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "evidence_type": {
+              "$ref": "#/$defs/evidenceType"
+            },
+            "required_properties": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "provenance_required": {
+              "type": "boolean"
+            },
+            "configuration_required": {
+              "type": "boolean"
+            },
+            "independence_required": {
+              "type": "string",
+              "enum": [
+                "none",
+                "first_party",
+                "second_party",
+                "third_party",
+                "independent_internal",
+                "unknown"
+              ]
+            },
+            "retention_requirement": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "planned",
+                "confirmed",
+                "waived"
+              ]
+            },
+            "confirmed_by_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "confirmed_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "waiver_reason": {
+              "type": "string"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "waived"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "waiver_reason"
+                ],
+                "properties": {
+                  "waiver_reason": {
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "confirmed"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "confirmed_by_ref",
+                  "confirmed_at"
+                ],
+                "properties": {
+                  "confirmed_by_ref": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "confirmed_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "evidenceType": {
+      "type": "string",
+      "enum": [
+        "test_report",
+        "analysis_report",
+        "inspection_record",
+        "review_record",
+        "simulation_result",
+        "model",
+        "audit_record",
+        "certificate",
+        "supplier_declaration",
+        "configuration_record",
+        "traceability_report",
+        "other"
+      ]
+    },
+    "evidenceItem": {
+      "type": "object",
+      "required": [
+        "id",
+        "evidence_requirement_refs",
+        "evidence_type",
+        "artifact_locator",
+        "version",
+        "configuration_ref",
+        "produced_by_activity_ref",
+        "produced_at",
+        "integrity_hash",
+        "review_state",
+        "validity_state",
+        "verification_status",
+        "verified_by_ref",
+        "verified_at",
+        "property_assessments"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^EVI-"
+        },
+        "evidence_requirement_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^EVR-"
+          },
+          "uniqueItems": true
+        },
+        "evidence_type": {
+          "$ref": "#/$defs/evidenceType"
+        },
+        "artifact_locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "configuration_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "produced_by_activity_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "produced_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "integrity_hash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-fA-F]{64}$"
+        },
+        "review_state": {
+          "type": "string",
+          "enum": [
+            "not_reviewed",
+            "under_review",
+            "reviewed",
+            "rejected"
+          ]
+        },
+        "validity_state": {
+          "$ref": "#/$defs/validityState"
+        },
+        "verification_status": {
+          "type": "string",
+          "enum": [
+            "provided_by_user",
+            "artifact_verified",
+            "reference_only"
+          ]
+        },
+        "verified_by_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verified_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "property_assessments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "required_property",
+              "outcome",
+              "rationale",
+              "verified_by_ref",
+              "verified_at"
+            ],
+            "properties": {
+              "required_property": {
+                "type": "string",
+                "minLength": 1
+              },
+              "outcome": {
+                "type": "string",
+                "enum": [
+                  "satisfied",
+                  "not_satisfied",
+                  "not_assessed"
+                ]
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verified_by_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "conformityScheme": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "scheme_type",
+            "scheme_owner_ref",
+            "decision_authority_ref",
+            "object_of_conformity",
+            "applicability_condition",
+            "obligation_refs",
+            "assessment_methods",
+            "required_evidence_requirement_refs",
+            "independence",
+            "review_required",
+            "decision_required",
+            "output_kind",
+            "surveillance",
+            "renewal"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^SCH-"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scheme_type": {
+              "type": "string",
+              "enum": [
+                "declaration",
+                "product_certification",
+                "process_certification",
+                "management_system_certification",
+                "type_approval",
+                "regulatory_approval",
+                "audit_program",
+                "other"
+              ]
+            },
+            "scheme_owner_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "decision_authority_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "object_of_conformity": {
+              "type": "object",
+              "required": [
+                "kind",
+                "target_ref"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "target_ref": {
+                  "type": "string"
+                }
+              }
+            },
+            "applicability_condition": {
+              "type": "string"
+            },
+            "obligation_refs": {
+              "$ref": "#/$defs/stringArray",
+              "minItems": 1
+            },
+            "assessment_methods": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/assessmentMethod"
+              },
+              "uniqueItems": true
+            },
+            "required_evidence_requirement_refs": {
+              "$ref": "#/$defs/stringArray",
+              "minItems": 1
+            },
+            "independence": {
+              "type": "string",
+              "enum": [
+                "first_party",
+                "second_party",
+                "third_party",
+                "mixed",
+                "unknown"
+              ]
+            },
+            "review_required": {
+              "type": "boolean"
+            },
+            "decision_required": {
+              "type": "boolean"
+            },
+            "output_kind": {
+              "type": "string",
+              "enum": [
+                "declaration",
+                "certificate",
+                "approval",
+                "report",
+                "mark",
+                "none",
+                "other"
+              ]
+            },
+            "surveillance": {
+              "$ref": "#/$defs/recurringControl"
+            },
+            "renewal": {
+              "$ref": "#/$defs/recurringControl"
+            },
+            "confirmed_by_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "confirmed_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            }
+          }
+        }
+      ]
+    },
+    "recurringControl": {
+      "type": "object",
+      "required": [
+        "required",
+        "description"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "assessmentMethod": {
+      "type": "string",
+      "enum": [
+        "test",
+        "analysis",
+        "inspection",
+        "demonstration",
+        "document_review",
+        "process_audit",
+        "qms_audit",
+        "supplier_audit",
+        "regulatory_inspection",
+        "type_examination",
+        "verification",
+        "validation",
+        "certification_review",
+        "other"
+      ]
+    },
+    "assessmentActivity": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "activity_type",
+            "scheme_ref",
+            "target_obligation_refs",
+            "verification_case_ref",
+            "assessment_subject_ref",
+            "configuration_refs",
+            "method",
+            "responsible_party_ref",
+            "independence",
+            "planned_evidence_requirement_refs",
+            "status"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^AST-"
+            },
+            "activity_type": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scheme_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "target_obligation_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "verification_case_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "assessment_subject_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "configuration_refs": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^CFG-"
+              },
+              "uniqueItems": true
+            },
+            "method": {
+              "$ref": "#/$defs/assessmentMethod"
+            },
+            "responsible_party_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "independence": {
+              "type": "string",
+              "enum": [
+                "first_party",
+                "second_party",
+                "third_party",
+                "independent_internal",
+                "unknown"
+              ]
+            },
+            "planned_evidence_requirement_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "candidate",
+                "planned",
+                "in_progress",
+                "completed",
+                "cancelled"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "assessmentResult": {
+      "type": "object",
+      "required": [
+        "id",
+        "assessment_activity_ref",
+        "assessed_obligation_refs",
+        "evidence_item_refs",
+        "outcome",
+        "finding_refs",
+        "assessed_at",
+        "assessor_ref",
+        "human_confirmation_state",
+        "configuration_ref",
+        "validity_state",
+        "valid_from",
+        "valid_to",
+        "invalidation_reason",
+        "rationale"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ASR-"
+        },
+        "assessment_activity_ref": {
+          "type": "string",
+          "pattern": "^AST-"
+        },
+        "assessed_obligation_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "evidence_item_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "conforming",
+            "nonconforming",
+            "inconclusive",
+            "not_performed"
+          ]
+        },
+        "finding_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "assessed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "assessor_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "human_confirmation_state": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "confirmed",
+            "rejected"
+          ]
+        },
+        "configuration_ref": {
+          "type": "string",
+          "pattern": "^CFG-"
+        },
+        "validity_state": {
+          "$ref": "#/$defs/validityState"
+        },
+        "valid_from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "valid_to": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "invalidation_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rationale": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "enum": [
+                  "conforming",
+                  "nonconforming"
+                ]
+              }
+            },
+            "required": [
+              "outcome"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_item_refs": {
+                "minItems": 1
+              },
+              "assessed_obligation_refs": {
+                "minItems": 1
+              },
+              "assessed_at": {
+                "type": "string"
+              },
+              "assessor_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "human_confirmation_state": {
+                "const": "confirmed"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "not_performed"
+              }
+            },
+            "required": [
+              "outcome"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_item_refs": {
+                "maxItems": 0
+              },
+              "assessed_at": {
+                "type": "null"
+              },
+              "assessor_ref": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "attestation": {
+      "type": "object",
+      "required": [
+        "id",
+        "scheme_ref",
+        "assessment_result_refs",
+        "output_kind",
+        "issuer_ref",
+        "object_ref",
+        "artifact_locator",
+        "configuration_ref",
+        "issued_at",
+        "valid_from",
+        "valid_to",
+        "validity_state",
+        "invalidation_reason",
+        "status",
+        "human_confirmation_state"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ATT-"
+        },
+        "scheme_ref": {
+          "type": "string",
+          "pattern": "^SCH-"
+        },
+        "assessment_result_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "output_kind": {
+          "type": "string",
+          "enum": [
+            "declaration",
+            "certificate",
+            "approval",
+            "mark",
+            "report",
+            "other"
+          ]
+        },
+        "issuer_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "object_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_locator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "integrity_hash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[0-9a-fA-F]{64}$"
+        },
+        "verified_by_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verified_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "configuration_ref": {
+          "type": "string",
+          "pattern": "^CFG-"
+        },
+        "issued_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "valid_from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "valid_to": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "validity_state": {
+          "$ref": "#/$defs/validityState"
+        },
+        "invalidation_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "issued",
+            "suspended",
+            "withdrawn",
+            "expired"
+          ]
+        },
+        "human_confirmation_state": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "confirmed",
+            "rejected"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "issued"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "assessment_result_refs": {
+                "minItems": 1
+              },
+              "issuer_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "artifact_locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "integrity_hash": {
+                "type": "string"
+              },
+              "verified_by_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verified_at": {
+                "type": "string"
+              },
+              "issued_at": {
+                "type": "string"
+              },
+              "valid_from": {
+                "type": "string"
+              },
+              "validity_state": {
+                "const": "active"
+              },
+              "human_confirmation_state": {
+                "const": "confirmed"
+              }
+            },
+            "required": [
+              "version",
+              "integrity_hash",
+              "verified_by_ref",
+              "verified_at"
+            ]
+          }
+        }
+      ]
+    },
+    "mapping": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "source_ref",
+            "target_ref",
+            "mapping_type",
+            "basis",
+            "validity_state"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^MAP-"
+            },
+            "source_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "target_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "mapping_type": {
+              "type": "string",
+              "enum": [
+                "equivalent",
+                "subset",
+                "superset",
+                "intersection",
+                "related",
+                "conflict",
+                "unknown"
+              ]
+            },
+            "basis": {
+              "type": "string"
+            },
+            "validity_state": {
+              "$ref": "#/$defs/validityState"
+            }
+          }
+        }
+      ]
+    },
+    "regulatoryDiscoveryRecord": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateMetadata"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "market",
+            "configuration_ref",
+            "official_registers_checked",
+            "queries",
+            "candidate_source_refs",
+            "query_log_state",
+            "disposition",
+            "disposition_reason",
+            "searched_at",
+            "human_inventory_confirmation_state"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^RDL-"
+            },
+            "market": {
+              "type": "string",
+              "minLength": 1
+            },
+            "configuration_ref": {
+              "type": "string",
+              "pattern": "^CFG-"
+            },
+            "official_registers_checked": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "queries": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "candidate_source_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "query_log_state": {
+              "type": "string",
+              "enum": [
+                "complete",
+                "unavailable_legacy_run"
+              ]
+            },
+            "disposition": {
+              "type": "string",
+              "enum": [
+                "adopted_candidate",
+                "excluded",
+                "on_hold"
+              ]
+            },
+            "disposition_reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "searched_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "human_inventory_confirmation_state": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "confirmed",
+                "rejected"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "complianceSummary": {
+      "type": "object",
+      "required": [
+        "model_quality_result",
+        "assurance_outcome",
+        "not_a_compliance_approval",
+        "reviewer_gates",
+        "checks",
+        "source_limitations",
+        "uncertain_applicability_refs",
+        "obligation_without_projection_refs",
+        "mandatory_without_evidence_requirement_refs",
+        "not_performed_assessment_refs"
+      ],
+      "properties": {
+        "model_quality_result": {
+          "$ref": "#/$defs/checkResult"
+        },
+        "assurance_outcome": {
+          "type": "string",
+          "enum": [
+            "not_performed",
+            "inconclusive",
+            "conforming",
+            "nonconforming",
+            "mixed"
+          ]
+        },
+        "not_a_compliance_approval": {
+          "const": true
+        },
+        "reviewer_gates": {
+          "type": "object",
+          "required": [
+            "generator",
+            "compliance",
+            "se",
+            "assurance",
+            "meta_judge"
+          ],
+          "properties": {
+            "generator": {
+              "$ref": "#/$defs/reviewerGate"
+            },
+            "compliance": {
+              "$ref": "#/$defs/reviewerGate"
+            },
+            "se": {
+              "$ref": "#/$defs/reviewerGate"
+            },
+            "assurance": {
+              "$ref": "#/$defs/reviewerGate"
+            },
+            "meta_judge": {
+              "$ref": "#/$defs/reviewerGate"
+            }
+          }
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "https://example.invalid/schemas/se_model.schema.json#/$defs/qualityCheck"
+          }
+        },
+        "source_limitations": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "uncertain_applicability_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "obligation_without_projection_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "mandatory_without_evidence_requirement_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "not_performed_assessment_refs": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "reviewerGate": {
+      "type": "string",
+      "enum": [
+        "not_performed",
+        "review_pending",
+        "pass",
+        "revise",
+        "reject"
+      ]
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "experiment_id": "compliance-integrated-se-prompt",
+  "package": "compliance_integrated_se_prompt",
+  "version": "0.3.1",
+  "release_kind": "experimental_extension_iteration",
+  "published_at": "2026-08-22",
+  "base_experiment": {
+    "experiment_id": "hierarchical-se-prompt",
+    "required_version": "1.1.0",
+    "path": "../hierarchical-se-prompt"
+  },
+  "sysml_target": "SysML 1.x (reference version 1.7) after EngineeringProjection",
+  "canonical_model": "SELabo JSON",
+  "entry_points": {
+    "experiment_readme": "README.md",
+    "core_prompt_extension": "01_CORE_PROMPT.md",
+    "profile_extension": "02_COMPLIANCE_PROFILE.json",
+    "output_contract_extension": "03_COMPLIANCE_OUTPUT_EXTENSION.json",
+    "quality_rules_extension": "04_COMPLIANCE_QUALITY_RULES.md",
+    "experiment_plan": "05_EXPERIMENT_PLAN.md",
+    "validation_report": "07_VALIDATION_REPORT.md",
+    "traceability_rules": "09_TRACEABILITY_CANONICAL_RULES.md",
+    "prompt_only_regression": "10_CHATGPT_PROMPT_ONLY_REGRESSION.md",
+    "schema": "schemas/compliance_se_model.schema.json",
+    "representative_fixture": "examples/representative_model.json",
+    "assurance_fixture": "examples/assurance_inconclusive_fixture.json",
+    "validator": "scripts/validate_candidate.py"
+  },
+  "schema_dependencies": [
+    {
+      "id": "https://example.invalid/schemas/se_model.schema.json",
+      "path": "../hierarchical-se-prompt/schemas/se_model.schema.json"
+    }
+  ],
+  "hash_algorithm": "SHA-256",
+  "manifest_self_excluded": true,
+  "excluded_paths": [
+    "package_manifest.json",
+    "scripts/__pycache__/"
+  ],
+  "files": [
+    {
+      "path": "01_CORE_PROMPT.md",
+      "size_bytes": 11754,
+      "sha256": "6fe44414ae10abe243325d09e89dee9f95d871f4933f181e34cd3537f53148fc"
+    },
+    {
+      "path": "02_COMPLIANCE_PROFILE.json",
+      "size_bytes": 6392,
+      "sha256": "f23162e75814aef7feb29d4a42f1f47dbf92f6c7ad44bcc27e300a53691bba14"
+    },
+    {
+      "path": "03_COMPLIANCE_OUTPUT_EXTENSION.json",
+      "size_bytes": 5091,
+      "sha256": "0d86e12965f4d46eb1660ae7d06a882a2729047bbbda82b13fa7155eb599be7c"
+    },
+    {
+      "path": "04_COMPLIANCE_QUALITY_RULES.md",
+      "size_bytes": 12902,
+      "sha256": "ac7e6185c108d52ae31b16641e3e07b4aa22fba60604823acda82c8b2e07052a"
+    },
+    {
+      "path": "05_EXPERIMENT_PLAN.md",
+      "size_bytes": 6659,
+      "sha256": "e6b123fcdae99b9e1af8f0061fb67603d7862aa85abd5c9013f2581d791293ae"
+    },
+    {
+      "path": "06_EXAMPLE_INPUT.md",
+      "size_bytes": 1356,
+      "sha256": "8da39bf015b156426ea6c79003023ecc6df75678f8c64f8b60507c1aac4937f5"
+    },
+    {
+      "path": "07_VALIDATION_REPORT.md",
+      "size_bytes": 5727,
+      "sha256": "4686bbccc392dc408f6e6f0d1202c74137d4b6911d8e5e107d96205448c853fc"
+    },
+    {
+      "path": "08_REFERENCES.md",
+      "size_bytes": 1837,
+      "sha256": "ecdd953dde66041a2dd89d527e0bf99bda3ae3175809ec78187babf4381dda94"
+    },
+    {
+      "path": "09_TRACEABILITY_CANONICAL_RULES.md",
+      "size_bytes": 3470,
+      "sha256": "c275aad04d74ebafae4c4a8e9c21282951a888def50768d7eda9bf2ed15aeefe"
+    },
+    {
+      "path": "10_CHATGPT_PROMPT_ONLY_REGRESSION.md",
+      "size_bytes": 9652,
+      "sha256": "94e07bdb38a41c435fd210c57a4c68586a2e8144c1535fa44570ae23d3633906"
+    },
+    {
+      "path": "examples/assurance_inconclusive_fixture.json",
+      "size_bytes": 5125,
+      "sha256": "300d8ae8ebbc3ef4668a00c0b0bd16d5f890d598a0a702a4af90329e6bd51f4f"
+    },
+    {
+      "path": "examples/evidence/synthetic_thermal_test_report.json",
+      "size_bytes": 597,
+      "sha256": "5a9abd130f9f4741180fdf7fcb48ef1df3247c21b2109107f734674874349964"
+    },
+    {
+      "path": "examples/representative_model.json",
+      "size_bytes": 13887,
+      "sha256": "4c652a3e1b95701e3538fc822cad1c94a8ba2cbf53776b2ac1628a1415c181d5"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 8831,
+      "sha256": "a7d1fd655c2dc6d7374e71a68c7495f8b984ef331747720d498c9bed4555292e"
+    },
+    {
+      "path": "schemas/assurance_fixture.schema.json",
+      "size_bytes": 2421,
+      "sha256": "01f290faa84a9bc7ded761f765e3312f50edb9764c8f73404793c91383948e6f"
+    },
+    {
+      "path": "schemas/compliance_se_model.schema.json",
+      "size_bytes": 64212,
+      "sha256": "38c1c14230a9e0532f80cb45c500f561b10cb659b9761d51eeb4fec295aead32"
+    },
+    {
+      "path": "scripts/export_compliance_views.py",
+      "size_bytes": 12876,
+      "sha256": "1148b73b68d50d1dbdca0bdb477749d1d5e2303bc4da5f33610efd99e08829a8"
+    },
+    {
+      "path": "scripts/test_assurance_semantics.py",
+      "size_bytes": 28445,
+      "sha256": "4a1c23548812d54812b1aeed5482639a82ebad086e57e6dc1a91ebf6f0f54bc6"
+    },
+    {
+      "path": "scripts/validate_assurance_fixture.py",
+      "size_bytes": 4778,
+      "sha256": "f11f6b5655a616887c51b16a4f5eaafe06ff3c1ff6020a5912d88d671be1dee6"
+    },
+    {
+      "path": "scripts/validate_candidate.py",
+      "size_bytes": 65205,
+      "sha256": "ab976f22633682d7ea700b2670e568e8b1c350735898cd8eabd63f0aed40056c"
+    }
+  ]
+}

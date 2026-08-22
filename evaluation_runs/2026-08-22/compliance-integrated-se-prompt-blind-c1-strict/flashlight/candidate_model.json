@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "artifact_type": "hierarchical_se_model_candidate",
+    "schema_version": "1.0.0",
+    "target_system": "家庭用懐中電灯候補",
+    "target_maturity": "40_of_100_concept_candidate",
+    "sysml_version_target": "1.7",
+    "source_of_truth_status": "candidate_semantic_source_of_truth",
+    "generated_at": "2026-08-22T00:00:00+09:00",
+    "language": "ja",
+    "experiment_id": "compliance-integrated-se-prompt",
+    "compliance_schema_version": "0.3.1",
+    "external_authoritative_sources_remain_external": true
+  },
+  "source_fragments": [],
+  "scope": {
+    "target_system": "家庭用懐中電灯候補",
+    "purpose": "停電時、夜間又は屋外で必要な場所を照らす",
+    "problem_or_opportunity": "片手操作、低電池時の予告及び安全な発熱を保ちながら暗所で照明を提供する",
+    "included": ["携帯照明", "片手操作", "低電池通知", "日本市場候補の概念設計"],
+    "excluded": ["正式な法令適用判定", "適合性評価", "認証取得", "輸送条件の確定", "量産設計"],
+    "external_systems": ["利用者", "交換式又は充電式電池候補", "充電電源候補"],
+    "operational_environment": ["屋内外の暗所", "停電時", "夜間", "短時間の雨又はほこりへの暴露", "片手操作"],
+    "lifecycle_scope": ["concept", "development", "utilization", "support"],
+    "success_measure_refs": ["MOE-0001", "MOE-0002", "MOE-0003"],
+    "assumption_refs": [],
+    "scope_alternatives": []
+  },
+  "glossary": [],
+  "stakeholders": [
+    {
+      "id": "STK-0001", "name": "家庭の成人利用者", "level": "L1", "origin": "user_explicit",
+      "claim_state": "stated", "decision_state": "not_decided", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "high", "evidence_refs": [],
+      "rationale": "入力Q2で主な利用者として示された。", "category": "end_user",
+      "applicability": "applicable", "applicability_rationale": "暗所で携帯照明を操作する。",
+      "concern_refs": [], "need_refs": ["NEED-0001", "NEED-0002", "NEED-0003"], "responsibilities": []
+    }
+  ],
+  "concerns": [],
+  "needs": [
+    {
+      "id": "NEED-0001", "name": "暗所照明", "level": "L1", "origin": "user_explicit", "claim_state": "stated",
+      "decision_state": "not_decided", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "high",
+      "evidence_refs": [], "rationale": "入力Q1に基づく。",
+      "statement": "家庭の成人利用者は、停電時、夜間又は屋外で安全に行動するために、必要な場所を照らしたい。",
+      "stakeholder_refs": ["STK-0001"], "concern_refs": [], "expected_value": "暗所で対象場所を視認できる。",
+      "undesired_outcomes": ["必要な場所を視認できない"], "success_measure_refs": ["MOE-0001"], "validation_case_refs": []
+    },
+    {
+      "id": "NEED-0002", "name": "片手確実操作", "level": "L1", "origin": "user_explicit", "claim_state": "stated",
+      "decision_state": "not_decided", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "high",
+      "evidence_refs": [], "rationale": "入力Q3からQ5に基づく。",
+      "statement": "家庭の成人利用者は、片手がふさがっている状況で誤操作を避けるために、片手で照明モードを変更したい。",
+      "stakeholder_refs": ["STK-0001"], "concern_refs": [], "expected_value": "片手で意図したモードへ変更できる。",
+      "undesired_outcomes": ["意図しない消灯又はモード変更"], "success_measure_refs": ["MOE-0002"], "validation_case_refs": []
+    },
+    {
+      "id": "NEED-0003", "name": "低電池予告", "level": "L1", "origin": "user_explicit", "claim_state": "stated",
+      "decision_state": "not_decided", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "high",
+      "evidence_refs": [], "rationale": "入力Q5に基づく。",
+      "statement": "家庭の成人利用者は、低電池時に突然暗闇になることを避けるために、消灯前に電池状態を知りたい。",
+      "stakeholder_refs": ["STK-0001"], "concern_refs": [], "expected_value": "消灯前に電池交換又は充電を判断できる。",
+      "undesired_outcomes": ["予告のない突然の消灯"], "success_measure_refs": ["MOE-0003"], "validation_case_refs": []
+    }
+  ],
+  "measures": [
+    {
+      "id": "MOE-0001", "name": "照明有効性候補", "level": "L1", "origin": "ai_context_inference", "claim_state": "inferred",
+      "decision_state": "proposed", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "low",
+      "evidence_refs": [], "rationale": "照度、範囲及び距離は未決定である。", "measure_type": "effectiveness",
+      "observable": "代表暗所で利用者が対象を視認できるか", "unit": null, "target_or_range": null, "measurement_context": "停電時及び屋外暗所の代表シナリオ候補"
+    },
+    {
+      "id": "MOE-0002", "name": "片手操作成功率候補", "level": "L1", "origin": "ai_context_inference", "claim_state": "inferred",
+      "decision_state": "proposed", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "medium",
+      "evidence_refs": [], "rationale": "片手でモード変更できるという入力制約を測定可能にする。", "measure_type": "effectiveness",
+      "observable": "代表利用者が片手で意図したモードへ変更できる試行の割合", "unit": "%", "target_or_range": "100候補", "measurement_context": "代表利用者及び代表姿勢による候補妥当性確認"
+    },
+    {
+      "id": "MOE-0003", "name": "低電池予告余裕候補", "level": "L1", "origin": "ai_context_inference", "claim_state": "inferred",
+      "decision_state": "proposed", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "low",
+      "evidence_refs": [], "rationale": "予告から消灯までの時間は未決定である。", "measure_type": "performance",
+      "observable": "低電池通知から照明維持限界までの時間", "unit": "min", "target_or_range": null, "measurement_context": "選定電池及び代表照明モード"
+    }
+  ],
+  "use_cases": [],
+  "scenarios": [],
+  "requirements": [
+    {
+      "id": "REQ-0001", "display_id": "REQ-0001", "name": "充電式携帯電灯技術基準候補", "level": "L2",
+      "product_layer": "system", "abstraction": "black_box", "lifecycle_stage": "development", "domain": "mixed",
+      "origin": "ai_context_inference", "claim_state": "inferred", "decision_state": "proposed", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "low", "evidence_refs": ["SRC-0001", "SRC-0002", "SRC-0003"],
+      "rationale": "充電方式が未決定であり、施行令の充電式携帯電灯又は他の電気用品への分類は人の確認を要する。",
+      "tags": ["compliance-derived", "applicability-uncertain"],
+      "statement": "家庭用懐中電灯候補が電気用品安全法施行令別表第二の充電式携帯電灯に該当する場合、家庭用懐中電灯候補は、人が選定した技術基準体系の適用項目を満たす。",
+      "requirement_type": "constraint_requirement", "normative_level": "mandatory", "subject": "家庭用懐中電灯候補",
+      "condition": "電気用品安全法施行令別表第二の充電式携帯電灯に該当する場合", "trigger": null,
+      "required_response_or_property": "人が選定した技術基準体系の適用項目を満たす", "object": "家庭用懐中電灯候補",
+      "performance_or_limit": null, "unit": null, "tolerance": null, "source_need_refs": ["NEED-0001"], "parent_requirement_refs": [],
+      "derivation_basis": "OBL-0001から製品設計へ投影した候補", "allocation_candidate_refs": ["STR-0001"],
+      "verification_method_candidate": "test", "verification_case_refs": [],
+      "acceptance_criteria_candidate": "人が確定した製品分類及び単一の技術基準体系について、適用項目ごとの試験結果が合格である。",
+      "derivation_sources": [{"source_ref": "OBL-0001", "source_kind": "compliance_obligation", "derivation_kind": "projected", "projection_ref": "EPR-0001", "rationale": "届出事業者の技術基準適合義務を製品要求へ変換する。"}]
+    },
+    {
+      "id": "REQ-0002", "display_id": "REQ-0002", "name": "片手モード変更", "level": "L2",
+      "product_layer": "system", "abstraction": "black_box", "lifecycle_stage": "development", "domain": "human",
+      "origin": "user_explicit", "claim_state": "stated", "decision_state": "not_decided", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "high", "evidence_refs": [], "rationale": "入力Q5に基づく。",
+      "statement": "家庭用懐中電灯候補は、利用者が片手で照明モードを変更できる操作手段を提供する。",
+      "requirement_type": "system_requirement", "normative_level": "mandatory", "subject": "家庭用懐中電灯候補",
+      "condition": "利用者が片手で保持している場合", "trigger": "利用者がモード変更を指示したとき",
+      "required_response_or_property": "照明モードを変更できる操作手段を提供する", "object": "照明モード",
+      "performance_or_limit": null, "unit": null, "tolerance": null, "source_need_refs": ["NEED-0002"], "parent_requirement_refs": [],
+      "derivation_basis": "入力で確認された制約をブラックボックス要求へ変換する。", "allocation_candidate_refs": ["STR-0001"],
+      "verification_method_candidate": "demonstration", "verification_case_refs": [], "acceptance_criteria_candidate": "代表利用者が補助具を用いず片手で各候補モードへ変更できる。", "derivation_sources": [{"source_ref": "NEED-0002", "source_kind": "need", "derivation_kind": "derived", "rationale": "片手操作ニーズから導出した。"}]
+    },
+    {
+      "id": "REQ-0003", "display_id": "REQ-0003", "name": "低電池事前通知", "level": "L2",
+      "product_layer": "system", "abstraction": "black_box", "lifecycle_stage": "development", "domain": "control",
+      "origin": "user_explicit", "claim_state": "stated", "decision_state": "not_decided", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "high", "evidence_refs": [], "rationale": "入力Q5に基づくが、通知方式及び余裕時間は未決定である。",
+      "statement": "電池状態が低電池判定閾値へ達したとき、家庭用懐中電灯候補は、照明維持限界へ達する前に低電池状態を利用者へ通知する。",
+      "requirement_type": "system_requirement", "normative_level": "mandatory", "subject": "家庭用懐中電灯候補",
+      "condition": "電池状態が低電池判定閾値へ達した場合", "trigger": "低電池判定閾値へ達したとき",
+      "required_response_or_property": "照明維持限界へ達する前に低電池状態を利用者へ通知する", "object": "低電池状態",
+      "performance_or_limit": null, "unit": null, "tolerance": null, "source_need_refs": ["NEED-0003"], "parent_requirement_refs": [],
+      "derivation_basis": "入力で確認された制約をブラックボックス要求へ変換する。", "allocation_candidate_refs": ["STR-0001"],
+      "verification_method_candidate": "test", "verification_case_refs": [], "acceptance_criteria_candidate": "選定電池及び各照明モードで、照明維持限界より前に低電池通知を観測できる。", "derivation_sources": [{"source_ref": "NEED-0003", "source_kind": "need", "derivation_kind": "derived", "rationale": "低電池予告ニーズから導出した。"}]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "BEH-0001", "name": "対象場所を照らす", "level": "L2", "origin": "user_explicit", "claim_state": "stated",
+      "decision_state": "not_decided", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "high",
+      "evidence_refs": [], "rationale": "主目的を実現する。", "behavior_type": "function", "input_refs": [], "output_refs": [],
+      "preconditions": ["電池から電力を供給できる"], "postconditions": ["対象場所へ光を出力している"],
+      "performer_candidate_refs": ["STR-0001"], "requirement_refs": ["REQ-0001"]
+    },
+    {
+      "id": "BEH-0002", "name": "照明モードを変更する", "level": "L2", "origin": "user_explicit", "claim_state": "stated",
+      "decision_state": "not_decided", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "high",
+      "evidence_refs": [], "rationale": "片手操作制約を実現する。", "behavior_type": "interaction", "input_refs": [], "output_refs": [],
+      "preconditions": ["利用者が本体を保持している"], "postconditions": ["利用者が選択した照明モードが有効である"],
+      "performer_candidate_refs": ["STR-0001"], "requirement_refs": ["REQ-0002"]
+    },
+    {
+      "id": "BEH-0003", "name": "電池状態を通知する", "level": "L2", "origin": "user_explicit", "claim_state": "stated",
+      "decision_state": "not_decided", "validity_state": "active", "baseline_state": "outside_baseline", "confidence": "high",
+      "evidence_refs": [], "rationale": "突然の消灯を避ける。", "behavior_type": "function", "input_refs": [], "output_refs": [],
+      "preconditions": ["電池状態を判定できる"], "postconditions": ["低電池状態を利用者が知覚できる"],
+      "performer_candidate_refs": ["STR-0001"], "requirement_refs": ["REQ-0003"]
+    }
+  ],
+  "structures": [
+    {
+      "id": "STR-0001", "name": "家庭用懐中電灯候補", "level": "L2", "product_layer": "system",
+      "origin": "ai_context_inference", "claim_state": "inferred", "decision_state": "proposed", "validity_state": "active",
+      "baseline_state": "outside_baseline", "confidence": "medium", "evidence_refs": [],
+      "rationale": "内部部品、電池及び充電方式を未決定のまま扱う最小ブラックボックス構造である。",
+      "structure_kind": "system", "logical_or_physical": "mixed", "system_element_kind": "hardware_system", "owner_ref": null,
+      "part_refs": [], "requirement_refs": ["REQ-0001", "REQ-0002", "REQ-0003"],
+      "behavior_refs": ["BEH-0001", "BEH-0002", "BEH-0003"], "interface_refs": []
+    }
+  ],
+  "interfaces": [], "constraints": [], "allocations": [], "verification_cases": [], "validation_cases": [],
+  "risks": [], "hazards": [], "failure_modes": [], "assumptions": [], "alternatives": [], "decisions": [], "relations": [], "findings": [],
+  "quality_summary": {"overall_result": "not_performed", "checks": [], "not_performed": ["独立レビュー", "試験", "正式な法令適用判定"]},
+  "language_quality": {"profile_id": "ja_se_technical_writing_v1", "profile_version": "1.0.0", "requirement_modal_style": "controlled_declarative", "checked": true, "finding_refs": []},
+  "projection_targets": [
+    {
+      "id": "PTR-0001", "name": "重大製品事故報告プロセス候補", "target_kind": "process_requirement",
+      "statement": "家庭用懐中電灯候補の製造又は輸入事業者候補は、報告対象となる重大製品事故を知った日から10日以内に、必要事項を記載した報告書を消費者庁長官へ提出する。",
+      "lifecycle_stage": "support", "responsible_role_ref": null, "status": "candidate",
+      "rationale": "製品特性ではなく事業者の事故報告プロセスへ投影する。",
+      "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true
+    }
+  ],
+  "compliance": {
+    "scope": {
+      "jurisdictions": ["日本"], "markets": ["日本国内の一般家庭向け市場候補"],
+      "product_classifications": ["家庭用懐中電灯候補", "充電式携帯電灯候補", "消費生活用製品候補"],
+      "intended_uses": ["停電時、夜間又は屋外での携帯照明"], "configuration_refs": ["CFG-0001"],
+      "lifecycle_stages": ["concept", "development", "production", "utilization", "support"], "assessed_as_of": "2026-08-22",
+      "assumption_refs": [],
+      "scope_limitations": ["対象市場、電池方式、充電方式、交流電源への接続方法、定格、製造輸入主体及び販売構成が未確定である。", "航空及び輸送条件は本候補の対象外である。", "法務又は規制専門家による適用判定を実施していない。"]
+    },
+    "authorities": [
+      {"id": "AUTH-0001", "name": "国会", "authority_type": "legislature", "jurisdictions": ["日本"], "official_locator": "https://www.shugiin.go.jp/", "verification_status": "retrieved_from_official_source", "notes": "法律の制定主体として記録する。"},
+      {"id": "AUTH-0002", "name": "経済産業省", "authority_type": "regulator", "jurisdictions": ["日本"], "official_locator": "https://www.meti.go.jp/policy/consumer/seian/denan/", "verification_status": "retrieved_from_official_source", "notes": "電気用品安全法及び製品安全行政を所管する。"},
+      {"id": "AUTH-0003", "name": "消費者庁", "authority_type": "regulator", "jurisdictions": ["日本"], "official_locator": "https://www.caa.go.jp/", "verification_status": "retrieved_from_official_source", "notes": "重大製品事故報告の提出先である。"},
+      {"id": "AUTH-0004", "name": "日本産業標準調査会", "authority_type": "standards_body", "jurisdictions": ["日本"], "official_locator": "https://www.jisc.go.jp/", "verification_status": "retrieved_from_official_source", "notes": "公式JIS検索カタログを提供する。"}
+    ],
+    "sources": [
+      {"id": "SRC-0001", "title": "電気用品安全法", "identifier": "昭和36年法律第234号", "source_type": "law", "authority_refs": ["AUTH-0001", "AUTH-0002"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://laws.e-gov.go.jp/law/336AC0000000234", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "e-Gov法令検索を2026-08-22に確認した。"},
+      {"id": "SRC-0002", "title": "電気用品安全法施行令", "identifier": "昭和37年政令第324号", "source_type": "regulation", "authority_refs": ["AUTH-0002"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://laws.e-gov.go.jp/law/337CO0000000324/", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "e-Gov法令検索を2026-08-22に確認した。"},
+      {"id": "SRC-0003", "title": "電気用品の範囲等の解釈について", "identifier": null, "source_type": "guideline", "authority_refs": ["AUTH-0002"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://www.meti.go.jp/policy/consumer/seian/denan/kaishaku/hani/haninokaishaku_150122.pdf", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "経済産業省の行政解釈資料。法令Sourceとは分離して記録する。"},
+      {"id": "SRC-0004", "title": "消費生活用製品安全法", "identifier": "昭和48年法律第31号", "source_type": "law", "authority_refs": ["AUTH-0001", "AUTH-0002", "AUTH-0003"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://laws.e-gov.go.jp/law/348AC0000000031", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "e-Gov法令検索を2026-08-22に確認した。"},
+      {"id": "SRC-0005", "title": "消費生活用製品安全法の規定に基づく重大事故報告等に関する内閣府令", "identifier": "平成21年内閣府令第47号", "source_type": "regulation", "authority_refs": ["AUTH-0003"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://laws.e-gov.go.jp/law/421M60000002047/", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "e-Gov法令検索を2026-08-22に確認した。"},
+      {"id": "SRC-0006", "title": "製品事故の報告", "identifier": null, "source_type": "guideline", "authority_refs": ["AUTH-0002", "AUTH-0003"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://www.meti.go.jp/product_safety/producer/guideline/index.html", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "excerpt_only", "provenance": "経済産業省の行政解説。消費生活用製品安全法及び内閣府令とは別Sourceとして記録する。"},
+      {"id": "SRC-0007", "title": "JIS検索", "identifier": null, "source_type": "other", "authority_refs": ["AUTH-0004"], "edition": null, "publication_date": null, "effective_from": null, "effective_to": null, "status": "active", "applicability_version_state": "unconfirmed", "official_locator": "https://www.jisc.go.jp/app/jis/general/GnrJISSearch.html", "language": "ja", "supersedes_ref": null, "verification_status": "retrieved_from_official_source", "text_storage_policy": "metadata_only", "provenance": "JISC公式規格カタログ。具体的な規格番号、版及び採用根拠を確定できないため保留する。"}
+    ],
+    "provisions": [
+      {"id": "PRV-0001", "source_ref": "SRC-0001", "locator": {"canonical": "第8条第1項", "article": "第8条", "section": null, "paragraph": "第1項", "table": null, "annex": null}, "heading": "基準適合義務等", "source_fragment_refs": [], "excerpt": "届出事業者は、届出に係る電気用品を技術上の基準に適合させなければならない。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"},
+      {"id": "PRV-0002", "source_ref": "SRC-0002", "locator": {"canonical": "別表第二第8号(86)(17)", "article": null, "section": null, "paragraph": null, "table": "別表第二", "annex": null}, "heading": "充電式携帯電灯", "source_fragment_refs": [], "excerpt": "光源及び光源応用機械器具として充電式携帯電灯を掲げる。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"},
+      {"id": "PRV-0003", "source_ref": "SRC-0003", "locator": {"canonical": "電気用品の範囲等の解釈", "article": null, "section": "光源及び光源応用機械器具", "paragraph": null, "table": null, "annex": null}, "heading": "充電式携帯電灯の解釈", "source_fragment_refs": [], "excerpt": "蓄電池を有し電源に接続しない状態で使用できるものを充電式携帯電灯として扱う。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"},
+      {"id": "PRV-0004", "source_ref": "SRC-0004", "locator": {"canonical": "第35条第1項及び第2項", "article": "第35条", "section": null, "paragraph": "第1項及び第2項", "table": null, "annex": null}, "heading": "内閣総理大臣への報告等", "source_fragment_refs": [], "excerpt": "製造又は輸入事業者は重大製品事故を知ったとき所定事項を報告する。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"},
+      {"id": "PRV-0005", "source_ref": "SRC-0005", "locator": {"canonical": "第3条", "article": "第3条", "section": null, "paragraph": "第1項及び第2項", "table": null, "annex": null}, "heading": "報告の期限及び様式", "source_fragment_refs": [], "excerpt": "重大製品事故を知った日から10日以内に日本語の報告書を提出する。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"},
+      {"id": "PRV-0006", "source_ref": "SRC-0006", "locator": {"canonical": "重大製品事故の報告", "article": null, "section": "重大製品事故の報告", "paragraph": null, "table": null, "annex": null}, "heading": "行政解説", "source_fragment_refs": [], "excerpt": "製造又は輸入事業者は重大製品事故を知ったときから10日以内に報告する。", "text_storage_policy": "excerpt_only", "valid_from": null, "valid_to": null, "verification_status": "retrieved_from_official_source"}
+    ],
+    "normative_statements": [
+      {"id": "NRM-0001", "provision_refs": ["PRV-0001", "PRV-0002", "PRV-0003"], "statement_kind": "normative", "modality": "obligation", "bearer": "届出事業者", "condition": "家庭用懐中電灯候補が施行令別表第二の充電式携帯電灯に該当する場合", "action_or_property": "届出に係る電気用品を技術上の基準に適合させる", "object": "家庭用懐中電灯候補", "limit": null, "deadline": null, "exceptions": [], "interpretation_status": "ai_candidate", "interpretation_basis": "法第8条、施行令別表第二及び経済産業省の範囲解釈を組み合わせた候補解釈。", "alternative_interpretation_refs": [], "origin": "external_candidate", "confidence": "low", "human_confirmation_required": true},
+      {"id": "NRM-0002", "provision_refs": ["PRV-0004", "PRV-0005"], "statement_kind": "normative", "modality": "obligation", "bearer": "消費生活用製品の製造又は輸入事業者", "condition": "その製造又は輸入に係る家庭用懐中電灯候補について報告対象となる重大製品事故が生じたことを知った場合", "action_or_property": "必要事項を日本語で記載した報告書を消費者庁長官へ提出する", "object": "重大製品事故報告", "limit": null, "deadline": "重大製品事故を知った日から起算して10日以内", "exceptions": [], "interpretation_status": "ai_candidate", "interpretation_basis": "消費生活用製品安全法第35条と重大事故報告等に関する内閣府令第3条を原子化した候補。行政解説SRC-0006は理解補助であり法令Sourceではない。", "alternative_interpretation_refs": [], "origin": "external_candidate", "confidence": "medium", "human_confirmation_required": true}
+    ],
+    "applicability_assessments": [
+      {"id": "APP-0001", "normative_statement_refs": ["NRM-0001"], "assessment_context": {"jurisdiction": "日本", "market": "日本国内の一般家庭向け市場候補", "product_classification": "充電式携帯電灯候補", "intended_use": "停電時、夜間又は屋外での携帯照明", "configuration_ref": "CFG-0001", "lifecycle_stage": "development"}, "decision": "uncertain", "binding_basis": "direct_regulation", "basis": "電池方式、充電方式、交流電源への接続方法及び定格が未決定であり、充電式携帯電灯への分類を確定できない。", "assumption_refs": [], "interpretation_refs": [], "assessed_as_of": "2026-08-22", "review_triggers": ["電池方式又は充電方式を決定した場合", "交流電源への接続方法を決定した場合", "製造又は輸入構成を決定した場合", "適用技術基準体系を選定した場合"], "human_confirmation_state": "pending", "confirmed_by_ref": null, "confirmed_at": null, "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "APP-0002", "normative_statement_refs": ["NRM-0002"], "assessment_context": {"jurisdiction": "日本", "market": "日本国内の一般家庭向け市場候補", "product_classification": "消費生活用製品候補", "intended_use": "停電時、夜間又は屋外での携帯照明", "configuration_ref": "CFG-0001", "lifecycle_stage": "support"}, "decision": "uncertain", "binding_basis": "direct_regulation", "basis": "一般家庭用途は示されているが、対象市場、製造又は輸入事業者及び事故報告体制が未決定である。", "assumption_refs": [], "interpretation_refs": [], "assessed_as_of": "2026-08-22", "review_triggers": ["日本市場投入を決定した場合", "製造又は輸入事業者を決定した場合", "事故情報管理及び報告プロセスを策定した場合"], "human_confirmation_state": "pending", "confirmed_by_ref": null, "confirmed_at": null, "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "obligations": [
+      {"id": "OBL-0001", "name": "充電式携帯電灯技術基準適合義務候補", "normative_statement_refs": ["NRM-0001"], "applicability_refs": ["APP-0001"], "obligated_party": "届出事業者候補", "object_of_conformity": "家庭用懐中電灯候補", "target_kind": "system", "obligation_kind": "mandatory", "condition": "施行令別表第二の充電式携帯電灯に該当する場合", "required_outcome": "人が選定した技術基準体系の適用項目へ適合する", "compliance_status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "OBL-0002", "name": "重大製品事故報告義務候補", "normative_statement_refs": ["NRM-0002"], "applicability_refs": ["APP-0002"], "obligated_party": "製造又は輸入事業者候補", "object_of_conformity": "重大製品事故報告プロセス候補", "target_kind": "operation_process", "obligation_kind": "mandatory", "condition": "報告対象となる重大製品事故を知った場合", "required_outcome": "必要事項を記載した日本語の報告書が10日以内に消費者庁長官へ提出される", "compliance_status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "engineering_projections": [
+      {"id": "EPR-0001", "obligation_refs": ["OBL-0001"], "projection_kind": "product_requirement", "target_level": "L2", "target_refs": ["REQ-0001"], "derivation_basis": "届出事業者の技術基準適合義務を製品要求候補へ投影する。", "status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "EPR-0002", "obligation_refs": ["OBL-0001"], "projection_kind": "evidence_requirement", "target_level": "cross_level", "target_refs": ["EVR-0001"], "derivation_basis": "技術基準適合を評価する試験記録を計画する。", "status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "EPR-0003", "obligation_refs": ["OBL-0002"], "projection_kind": "process_requirement", "target_level": "cross_level", "target_refs": ["PTR-0001"], "derivation_basis": "法定報告義務を事業者の支援プロセス要求へ投影する。", "status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "EPR-0004", "obligation_refs": ["OBL-0002"], "projection_kind": "evidence_requirement", "target_level": "cross_level", "target_refs": ["EVR-0002"], "derivation_basis": "期限、内容及び提出先を確認できる報告記録を計画する。", "status": "candidate", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "evidence_requirements": [
+      {"id": "EVR-0001", "name": "充電式携帯電灯技術基準試験記録要求候補", "target_refs": ["OBL-0001", "REQ-0001"], "evidence_type": "test_report", "required_properties": ["対象構成と製品分類を識別できる", "選定した単一の技術基準体系と適用項目を識別できる", "試験条件、結果及び合否を記録する"], "provenance_required": true, "configuration_required": true, "independence_required": "unknown", "retention_requirement": "法令上の保存期間は人が確認する", "status": "planned", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "EVR-0002", "name": "重大製品事故報告記録要求候補", "target_refs": ["OBL-0002", "PTR-0001"], "evidence_type": "other", "required_properties": ["対象製品の名称及び型式を識別できる", "重大製品事故の内容を記録する", "製造、輸入及び販売数量を記録する", "事故を知った日と提出日を識別できる", "消費者庁長官への提出を確認できる"], "provenance_required": true, "configuration_required": true, "independence_required": "unknown", "retention_requirement": null, "status": "planned", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "evidence_items": [], "conformity_schemes": [],
+    "assessment_activities": [
+      {"id": "AST-0001", "activity_type": "candidate_compliance_assessment", "scheme_ref": null, "target_obligation_refs": ["OBL-0001", "OBL-0002"], "verification_case_ref": null, "assessment_subject_ref": "CFG-0001", "configuration_refs": ["CFG-0001"], "method": "document_review", "responsible_party_ref": null, "independence": "unknown", "planned_evidence_requirement_refs": ["EVR-0001", "EVR-0002"], "status": "planned", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "assessment_results": [
+      {"id": "ASR-0001", "assessment_activity_ref": "AST-0001", "assessed_obligation_refs": ["OBL-0001", "OBL-0002"], "evidence_item_refs": [], "outcome": "not_performed", "finding_refs": [], "assessed_at": null, "assessor_ref": null, "human_confirmation_state": "pending", "configuration_ref": "CFG-0001", "validity_state": "active", "valid_from": null, "valid_to": null, "invalidation_reason": null, "rationale": "EvidenceItemがなく、適合性評価を実施していない。"}
+    ],
+    "attestations": [], "mappings": [],
+    "regulatory_discovery_log": [
+      {"id": "RDL-0001", "market": "日本国内の一般家庭向け市場候補", "configuration_ref": "CFG-0001", "official_registers_checked": ["https://laws.e-gov.go.jp/law/336AC0000000234", "https://laws.e-gov.go.jp/law/337CO0000000324/", "https://www.meti.go.jp/policy/consumer/seian/denan/subject01.html", "https://www.meti.go.jp/policy/consumer/seian/denan/kaishaku/hani/haninokaishaku_150122.pdf"], "queries": ["site:meti.go.jp/policy/consumer/seian/denan 懐中電灯 電気用品安全法 対象", "site:laws.e-gov.go.jp 電気用品安全法施行令 携帯用電灯 懐中電灯", "site:meti.go.jp/policy/consumer/seian/denan リチウムイオン蓄電池 対象 内蔵 機器", "site:meti.go.jp/policy/consumer/seian/denan 特定電気用品以外 直流電源装置 リチウムイオン蓄電池", "site:meti.go.jp/policy/consumer/seian/denan \"充電式携帯電灯\"", "site:laws.e-gov.go.jp/law/337CO0000000324 \"充電式携帯電灯\"", "site:meti.go.jp/policy/consumer/seian/denan/non_specified_electrical.html \"充電式携帯電灯\""], "candidate_source_refs": ["SRC-0001", "SRC-0002", "SRC-0003"], "query_log_state": "complete", "disposition": "adopted_candidate", "disposition_reason": "法第8条と施行令別表第二の充電式携帯電灯を候補チェーンに採用した。経済産業省の範囲解釈は行政解説として分離した。充電方式未確定のため適用判定は保留する。", "searched_at": "2026-08-22T00:00:00+09:00", "human_inventory_confirmation_state": "pending", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "RDL-0002", "market": "日本国内の一般家庭向け市場候補", "configuration_ref": "CFG-0001", "official_registers_checked": ["https://laws.e-gov.go.jp/law/348AC0000000031", "https://laws.e-gov.go.jp/law/421M60000002047/", "https://www.meti.go.jp/product_safety/producer/guideline/index.html"], "queries": ["site:laws.e-gov.go.jp 消費生活用製品安全法 第35条 重大製品事故 10日", "site:meti.go.jp/product_safety 重大製品事故 報告義務 10日 製造 輸入", "site:meti.go.jp/policy/consumer/seian/shouan 重大製品事故 報告 法第35条", "site:laws.e-gov.go.jp 消費生活用製品安全法施行規則 重大製品事故 報告 10日"], "candidate_source_refs": ["SRC-0004", "SRC-0005", "SRC-0006"], "query_log_state": "complete", "disposition": "adopted_candidate", "disposition_reason": "消費生活用製品安全法第35条と内閣府令第3条を規範チェーンに採用した。経済産業省の事故報告ページは行政解説として別Sourceに保持した。市場及び事業者未確定のため適用判定は保留する。", "searched_at": "2026-08-22T00:00:00+09:00", "human_inventory_confirmation_state": "pending", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true},
+      {"id": "RDL-0003", "market": "日本国内の一般家庭向け市場候補", "configuration_ref": "CFG-0001", "official_registers_checked": ["https://www.jisc.go.jp/app/jis/general/GnrJISSearch.html"], "queries": ["site:jisc.go.jp 懐中電灯 JIS 規格"], "candidate_source_refs": ["SRC-0007"], "query_log_state": "complete", "disposition": "on_hold", "disposition_reason": "JISC公式カタログは確認したが、製品構成、電池方式及び試験目的が未確定で、採用すべき規格番号と版を一次情報から確定できないため保留する。", "searched_at": "2026-08-22T00:00:00+09:00", "human_inventory_confirmation_state": "pending", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+    ],
+    "summary": {
+      "model_quality_result": "not_performed", "assurance_outcome": "not_performed", "not_a_compliance_approval": true,
+      "reviewer_gates": {"generator": "not_performed", "compliance": "not_performed", "se": "not_performed", "assurance": "not_performed", "meta_judge": "not_performed"},
+      "checks": [],
+      "source_limitations": ["公式一次情報の候補探索のみであり、改正履歴、適用除外、通達及び技術基準解釈の全項目を人が確認していない。", "対象市場、電池方式、充電方式、定格、製造輸入事業者及び市場投入構成が未確定である。", "JISCカタログから具体的な採用規格及び版を確定していない。"],
+      "uncertain_applicability_refs": ["APP-0001", "APP-0002"], "obligation_without_projection_refs": [],
+      "mandatory_without_evidence_requirement_refs": [], "not_performed_assessment_refs": ["ASR-0001"]
+    }
+  },
+  "configurations": [
+    {"id": "CFG-0001", "name": "家庭用懐中電灯概念構成候補", "version": null, "baseline_state": "outside_baseline", "scope_description": "入力Q&Aから仮定した携帯照明概念構成。対象市場、電池方式、充電方式、定格、光源、ソフトウェア版、BOM及び製造版は未確認。", "artifact_locator": null, "integrity_hash": null, "validity_state": "active", "origin": "ai_context_inference", "confidence": "low", "human_confirmation_required": true}
+  ],
+  "parties_or_roles": []
+}

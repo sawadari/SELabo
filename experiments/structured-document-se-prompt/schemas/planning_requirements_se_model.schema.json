@@ -1,0 +1,844 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/selabo/planning-requirements-se-model.schema.json",
+  "title": "SELabo structured planning and requirements candidate model",
+  "description": "実験1の階層型SE候補モデルへ、企画・情報システム要件・文書ビューの意味要素を追加する合成Schema。",
+  "allOf": [
+    {
+      "$ref": "https://example.invalid/schemas/se_model.schema.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "planning",
+        "screens",
+        "reports",
+        "api_contracts",
+        "data_models",
+        "operations_maintenance",
+        "security",
+        "acceptance_criteria",
+        "document_views"
+      ],
+      "properties": {
+        "meta": {
+          "type": "object",
+          "required": [
+            "experiment_id",
+            "planning_requirements_schema_version",
+            "documents_are_projections"
+          ],
+          "properties": {
+            "experiment_id": {
+              "const": "structured-document-se-prompt"
+            },
+            "planning_requirements_schema_version": {
+              "const": "0.1.0"
+            },
+            "documents_are_projections": {
+              "const": true
+            }
+          }
+        },
+        "planning": {
+          "$ref": "#/$defs/planning"
+        },
+        "requirements": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "https://example.invalid/schemas/se_model.schema.json#/$defs/requirement"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "requirement_category",
+                  "screen_refs",
+                  "report_refs",
+                  "api_contract_refs",
+                  "data_model_refs",
+                  "acceptance_criteria_refs",
+                  "document_view_refs"
+                ],
+                "properties": {
+                  "requirement_category": {
+                    "type": "string",
+                    "enum": [
+                      "business",
+                      "functional",
+                      "non_functional",
+                      "operational",
+                      "security",
+                      "data",
+                      "interface",
+                      "migration",
+                      "support",
+                      "other"
+                    ]
+                  },
+                  "screen_refs": {
+                    "$ref": "#/$defs/stringArray"
+                  },
+                  "report_refs": {
+                    "$ref": "#/$defs/stringArray"
+                  },
+                  "api_contract_refs": {
+                    "$ref": "#/$defs/stringArray"
+                  },
+                  "data_model_refs": {
+                    "$ref": "#/$defs/stringArray"
+                  },
+                  "acceptance_criteria_refs": {
+                    "$ref": "#/$defs/stringArray"
+                  },
+                  "document_view_refs": {
+                    "$ref": "#/$defs/stringArray"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "screens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/screen"
+          }
+        },
+        "reports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/report"
+          }
+        },
+        "api_contracts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/apiContract"
+          }
+        },
+        "data_models": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/dataModel"
+          }
+        },
+        "operations_maintenance": {
+          "$ref": "#/$defs/operationsMaintenance"
+        },
+        "security": {
+          "$ref": "#/$defs/security"
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/acceptanceCriterion"
+          }
+        },
+        "document_views": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/documentView"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "candidateElement": {
+      "allOf": [
+        {
+          "$ref": "https://example.invalid/schemas/se_model.schema.json#/$defs/baseElement"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "planning": {
+      "type": "object",
+      "required": [
+        "business_context",
+        "objectives",
+        "target_user_refs",
+        "market_analysis",
+        "cost_estimate",
+        "schedule",
+        "governance"
+      ],
+      "properties": {
+        "business_context": {
+          "type": "object",
+          "required": [
+            "background",
+            "problem_or_opportunity",
+            "target_service_or_business"
+          ],
+          "properties": {
+            "background": {
+              "type": "string"
+            },
+            "problem_or_opportunity": {
+              "type": "string"
+            },
+            "target_service_or_business": {
+              "type": "string"
+            },
+            "value_proposition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "objectives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/objective"
+          }
+        },
+        "target_user_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "market_analysis": {
+          "type": "object",
+          "required": [
+            "analysis_state",
+            "alternatives",
+            "evidence_refs"
+          ],
+          "properties": {
+            "analysis_state": {
+              "type": "string",
+              "enum": [
+                "known",
+                "partial",
+                "tbd",
+                "not_performed"
+              ]
+            },
+            "alternatives": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "evidence_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "notes": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "cost_estimate": {
+          "$ref": "#/$defs/estimate"
+        },
+        "schedule": {
+          "type": "object",
+          "required": [
+            "value_state",
+            "milestones"
+          ],
+          "properties": {
+            "value_state": {
+              "$ref": "#/$defs/valueState"
+            },
+            "milestones": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "date_or_period",
+                  "value_state"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "date_or_period": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "value_state": {
+                    "$ref": "#/$defs/valueState"
+                  }
+                },
+                "additionalProperties": true
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "governance": {
+          "type": "object",
+          "required": [
+            "sponsor_ref",
+            "decision_process",
+            "approval_state"
+          ],
+          "properties": {
+            "sponsor_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "decision_process": {
+              "type": "string"
+            },
+            "approval_state": {
+              "type": "string",
+              "enum": [
+                "not_started",
+                "proposed",
+                "under_review",
+                "approved",
+                "rejected"
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "objective": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateElement"
+        },
+        {
+          "type": "object",
+          "required": [
+            "statement",
+            "kpi_refs",
+            "stakeholder_refs",
+            "requirement_refs"
+          ],
+          "properties": {
+            "statement": {
+              "type": "string"
+            },
+            "kpi_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "stakeholder_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "requirement_refs": {
+              "$ref": "#/$defs/stringArray"
+            }
+          }
+        }
+      ]
+    },
+    "estimate": {
+      "type": "object",
+      "required": [
+        "currency",
+        "low",
+        "base",
+        "high",
+        "value_state",
+        "estimation_basis"
+      ],
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "low": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "base": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "high": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "value_state": {
+          "$ref": "#/$defs/valueState"
+        },
+        "estimation_basis": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "screen": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateElement"
+        },
+        {
+          "type": "object",
+          "required": [
+            "screen_type",
+            "purpose",
+            "actor_refs",
+            "requirement_refs",
+            "field_candidates",
+            "transition_refs"
+          ],
+          "properties": {
+            "screen_type": {
+              "type": "string"
+            },
+            "purpose": {
+              "type": "string"
+            },
+            "actor_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "requirement_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "field_candidates": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/fieldCandidate"
+              }
+            },
+            "transition_refs": {
+              "$ref": "#/$defs/stringArray"
+            }
+          }
+        }
+      ]
+    },
+    "fieldCandidate": {
+      "type": "object",
+      "required": [
+        "name",
+        "value_type",
+        "required_state"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value_type": {
+          "type": "string"
+        },
+        "required_state": {
+          "type": "string",
+          "enum": [
+            "required",
+            "optional",
+            "unknown"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "report": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateElement"
+        },
+        {
+          "type": "object",
+          "required": [
+            "report_type",
+            "purpose",
+            "audience_refs",
+            "data_refs",
+            "requirement_refs"
+          ],
+          "properties": {
+            "report_type": {
+              "type": "string"
+            },
+            "purpose": {
+              "type": "string"
+            },
+            "audience_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "data_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "requirement_refs": {
+              "$ref": "#/$defs/stringArray"
+            }
+          }
+        }
+      ]
+    },
+    "apiContract": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateElement"
+        },
+        {
+          "type": "object",
+          "required": [
+            "style",
+            "spec_version",
+            "spec_ref",
+            "operation_refs",
+            "requirement_refs",
+            "contract_status"
+          ],
+          "properties": {
+            "style": {
+              "type": "string",
+              "enum": [
+                "openapi",
+                "asyncapi",
+                "other",
+                "unknown"
+              ]
+            },
+            "spec_version": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "spec_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "operation_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "requirement_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "contract_status": {
+              "type": "string",
+              "enum": [
+                "candidate",
+                "provided_unverified",
+                "reviewed",
+                "approved",
+                "not_applicable"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "dataModel": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateElement"
+        },
+        {
+          "type": "object",
+          "required": [
+            "model_kind",
+            "entity_candidates",
+            "relationship_candidates",
+            "requirement_refs"
+          ],
+          "properties": {
+            "model_kind": {
+              "type": "string",
+              "enum": [
+                "conceptual",
+                "logical",
+                "physical",
+                "unknown"
+              ]
+            },
+            "entity_candidates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "attributes"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "attributes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "relationship_candidates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "source",
+                  "target",
+                  "cardinality"
+                ],
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  },
+                  "target": {
+                    "type": "string"
+                  },
+                  "cardinality": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "requirement_refs": {
+              "$ref": "#/$defs/stringArray"
+            }
+          }
+        }
+      ]
+    },
+    "operationsMaintenance": {
+      "type": "object",
+      "required": [
+        "operational_requirement_refs",
+        "maintenance_requirement_refs",
+        "migration_requirement_refs",
+        "training_requirement_refs",
+        "service_level_candidates",
+        "status"
+      ],
+      "properties": {
+        "operational_requirement_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "maintenance_requirement_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "migration_requirement_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "training_requirement_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "service_level_candidates": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "partial",
+            "reviewed",
+            "not_applicable"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "security": {
+      "type": "object",
+      "required": [
+        "security_requirements_refs",
+        "threat_candidates",
+        "control_candidates",
+        "verification_refs",
+        "human_review_state"
+      ],
+      "properties": {
+        "security_requirements_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "threat_candidates": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "control_candidates": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "verification_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "human_review_state": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "in_review",
+            "confirmed",
+            "rejected"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "acceptanceCriterion": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateElement"
+        },
+        {
+          "type": "object",
+          "required": [
+            "requirement_refs",
+            "preconditions",
+            "event",
+            "expected_outcome",
+            "pass_rule",
+            "verification_refs"
+          ],
+          "properties": {
+            "requirement_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "preconditions": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "event": {
+              "type": "string"
+            },
+            "expected_outcome": {
+              "type": "string"
+            },
+            "pass_rule": {
+              "type": "string"
+            },
+            "verification_refs": {
+              "$ref": "#/$defs/stringArray"
+            }
+          }
+        }
+      ]
+    },
+    "documentView": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/candidateElement"
+        },
+        {
+          "type": "object",
+          "required": [
+            "view_kind",
+            "title",
+            "audience",
+            "section_order",
+            "element_refs",
+            "render_formats",
+            "source_of_truth_ref"
+          ],
+          "properties": {
+            "view_kind": {
+              "type": "string",
+              "enum": [
+                "planning_document",
+                "requirements_document",
+                "traceability_matrix",
+                "other"
+              ]
+            },
+            "title": {
+              "type": "string"
+            },
+            "audience": {
+              "type": "string"
+            },
+            "section_order": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "section_id",
+                  "title",
+                  "order",
+                  "element_refs"
+                ],
+                "properties": {
+                  "section_id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "order": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "element_refs": {
+                    "$ref": "#/$defs/stringArray"
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "element_refs": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "render_formats": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "markdown",
+                  "html",
+                  "docx",
+                  "pdf",
+                  "csv"
+                ]
+              },
+              "uniqueItems": true
+            },
+            "source_of_truth_ref": {
+              "const": "10_se_model.json"
+            }
+          }
+        }
+      ]
+    },
+    "valueState": {
+      "type": "string",
+      "enum": [
+        "known",
+        "unknown",
+        "tbd",
+        "not_applicable"
+      ]
+    }
+  }
+}

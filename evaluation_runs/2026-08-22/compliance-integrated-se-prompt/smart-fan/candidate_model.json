@@ -1,0 +1,2754 @@
+{
+  "meta": {
+    "artifact_type": "hierarchical_se_model_candidate",
+    "schema_version": "1.0.0",
+    "target_system": "スマート扇風機",
+    "target_maturity": "40_of_100_concept_candidate",
+    "sysml_version_target": "1.7",
+    "source_of_truth_status": "candidate_semantic_source_of_truth",
+    "generated_at": null,
+    "language": "ja",
+    "experiment_id": "compliance-integrated-se-prompt",
+    "compliance_schema_version": "0.3.1",
+    "external_authoritative_sources_remain_external": true
+  },
+  "source_fragments": [],
+  "scope": {
+    "target_system": "スマート扇風機",
+    "purpose": "一般家庭の寝室または居室で利用者へ送風を提供する",
+    "problem_or_opportunity": "安全性、静音性、ローカル操作性および法規候補を分離してレビューできる初稿を作る",
+    "included": [
+      "送風",
+      "本体操作",
+      "通信経由の設定候補",
+      "安全停止",
+      "清掃および保守",
+      "日本市場の法規候補"
+    ],
+    "excluded": [
+      "住宅全体の空調制御",
+      "医療目的の温熱管理",
+      "正式な法的適用判断",
+      "適合判定および認証取得"
+    ],
+    "external_systems": [
+      "利用者",
+      "家庭用電源候補",
+      "通信相手候補"
+    ],
+    "operational_environment": [
+      "日本国内の一般家庭の屋内",
+      "寝室または居室",
+      "通信が一時的に利用できない状態"
+    ],
+    "lifecycle_scope": [
+      "concept",
+      "development"
+    ],
+    "success_measure_refs": [],
+    "assumption_refs": [
+      "ASM_SF-0001",
+      "ASM_SF-0002",
+      "ASM_SF-0003",
+      "ASM_SF-0004"
+    ],
+    "scope_alternatives": []
+  },
+  "glossary": [],
+  "stakeholders": [
+    {
+      "id": "STK_SF-0001",
+      "name": "家庭の利用者",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "実験1の合成Q&Aに基づく候補",
+      "category": "end_user",
+      "applicability": "uncertain",
+      "applicability_rationale": "実利用者への確認を実施していない",
+      "concern_refs": [],
+      "need_refs": [
+        "NEED_SF-0001",
+        "NEED_SF-0003",
+        "NEED_SF-0004"
+      ],
+      "responsibilities": []
+    },
+    {
+      "id": "STK_SF-0002",
+      "name": "子どもの保護者",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "実験1で子どもの接近可能性を仮定した候補",
+      "category": "indirectly_affected_party",
+      "applicability": "uncertain",
+      "applicability_rationale": "利用者構成を確認していない",
+      "concern_refs": [],
+      "need_refs": [
+        "NEED_SF-0002"
+      ],
+      "responsibilities": []
+    },
+    {
+      "id": "STK_SF-0003",
+      "name": "保守担当者",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "清掃および点検のライフサイクル観点から補った候補",
+      "category": "maintainer_or_service",
+      "applicability": "uncertain",
+      "applicability_rationale": "保守責任の分担を確認していない",
+      "concern_refs": [],
+      "need_refs": [
+        "NEED_SF-0005"
+      ],
+      "responsibilities": []
+    }
+  ],
+  "concerns": [],
+  "needs": [
+    {
+      "id": "NEED_SF-0001",
+      "name": "理解しやすい送風操作",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "実験1のSF-STK-01行をID付きNeedへ修復した",
+      "statement": "家庭の利用者は、居室で暑さを和らげるために、理解しやすい操作で必要な送風を得たい。",
+      "stakeholder_refs": [
+        "STK_SF-0001"
+      ],
+      "concern_refs": [],
+      "expected_value": "利用者が選択した運転モードを確認できる",
+      "undesired_outcomes": [],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_SF-0001"
+      ]
+    },
+    {
+      "id": "NEED_SF-0002",
+      "name": "回転部の接触危険低減",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "実験1のSF-STK-02行をID付きNeedへ修復した",
+      "statement": "子どもの保護者は、子どもが近くにいる状況で、回転部への接触による危険を抑えたい。",
+      "stakeholder_refs": [
+        "STK_SF-0002"
+      ],
+      "concern_refs": [],
+      "expected_value": "定義した危険状態で回転部が安全側へ移行する",
+      "undesired_outcomes": [
+        "回転部への接触による傷害"
+      ],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_SF-0002"
+      ]
+    },
+    {
+      "id": "NEED_SF-0003",
+      "name": "就寝時の静音送風",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "実験1のSF-STK-03行をID付きNeedへ修復した",
+      "statement": "家庭の利用者は、就寝中に使うために、受け入れ可能な運転音で送風を継続したい。",
+      "stakeholder_refs": [
+        "STK_SF-0001"
+      ],
+      "concern_refs": [],
+      "expected_value": "合意した音圧および風量条件を満たす",
+      "undesired_outcomes": [],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_SF-0003"
+      ]
+    },
+    {
+      "id": "NEED_SF-0004",
+      "name": "通信断時のローカル操作",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "実験1のSF-STK-04行をID付きNeedへ修復した",
+      "statement": "家庭の利用者は、通信が不安定な環境でも、必要なときに本体で送風を停止または再開したい。",
+      "stakeholder_refs": [
+        "STK_SF-0001"
+      ],
+      "concern_refs": [],
+      "expected_value": "通信断時に停止操作と再開操作を個別に実行できる",
+      "undesired_outcomes": [],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_SF-0004"
+      ]
+    },
+    {
+      "id": "NEED_SF-0005",
+      "name": "安全な清掃および点検",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "実験1のSF-STK-05行をID付きNeedへ修復した",
+      "statement": "保守担当者は、清掃および点検のために、回転部が起動しない保守状態で作業したい。",
+      "stakeholder_refs": [
+        "STK_SF-0003"
+      ],
+      "concern_refs": [],
+      "expected_value": "保守状態で起動要求を拒否できる",
+      "undesired_outcomes": [
+        "保守中の意図しない回転"
+      ],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_SF-0005"
+      ]
+    }
+  ],
+  "measures": [],
+  "use_cases": [],
+  "scenarios": [
+    {
+      "id": "SCN_SF-0001",
+      "display_id": "SCN-SF-01",
+      "name": "家庭内の代表運転シナリオ",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system_context",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "operational",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "操作性、風量および音のStakeholder ValidationをRequirement Verificationから分離する代表候補。",
+      "tags": ["validation-candidate", "human-confirmation-required"],
+      "scenario_type": "normal",
+      "actor_refs": ["STK_SF-0001"],
+      "preconditions": ["成人利用者が寝室または居室で候補構成を使用する", "保護カバーが装着され保守状態ではない"],
+      "trigger": "利用者が本体または無線操作で運転を開始する",
+      "main_flow": ["利用者が運転モードを選ぶ", "扇風機が選択状態を表示して送風する", "利用者が風量と音を生活場面で評価する", "利用者が停止する"],
+      "alternative_flows": [["無線操作を使わず本体操作だけで同じ目的を達成する"]],
+      "abnormal_flows": [],
+      "recovery": ["利用者が停止操作を行える"],
+      "postconditions": ["運転状態または停止状態を利用者が識別できる"],
+      "observable_results": ["選択モード表示", "送風の有無", "利用位置での主観評価と候補測定値"]
+    },
+    {
+      "id": "SCN_SF-0002",
+      "display_id": "SCN-SF-02",
+      "name": "異常・保守時の安全側移行シナリオ",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system_context",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "safety",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "危険状態、通信断および保守状態に対する利用者価値を代表状況で評価する候補。",
+      "tags": ["validation-candidate", "safety", "human-confirmation-required"],
+      "scenario_type": "abnormal",
+      "actor_refs": ["STK_SF-0001", "STK_SF-0002", "STK_SF-0003"],
+      "preconditions": ["候補構成が家庭内に設置されている", "異常・通信断・保守状態の安全な模擬条件が承認されている"],
+      "trigger": "危険状態、通信断または保守状態のいずれかを安全に模擬する",
+      "main_flow": ["担当者が承認済み条件を一つずつ付与する", "利用者が停止または起動拒否を観察する", "状態表示と再開条件を確認する"],
+      "alternative_flows": [],
+      "abnormal_flows": [["期待した安全側移行が起きない場合は試験を中止して電源を隔離する"]],
+      "recovery": ["原因除去後に、承認された手順でのみ再開する"],
+      "postconditions": ["回転部が安全状態にあり、再開条件が説明可能である"],
+      "observable_results": ["停止時間候補", "起動拒否", "状態表示", "利用者が危険回避を判断できたか"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ_SF-0001",
+      "name": "運転モード表示要求",
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "利用者が選択結果を確認するため",
+      "statement": "利用者が手動送風モード、自動送風モードまたは静音モードを選択したとき、スマート扇風機は、選択された運転モードを表示する。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "スマート扇風機",
+      "condition": null,
+      "trigger": "利用者が定義済み運転モードを選択したとき",
+      "required_response_or_property": "選択された運転モードを表示する",
+      "object": "運転モード",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "NEED_SF-0001"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "NEED-SF-001を表示可能な応答へ変換した候補",
+      "allocation_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "verification_method_candidate": "demonstration",
+      "verification_case_refs": [
+        "VER_SF-0001"
+      ],
+      "acceptance_criteria_candidate": "選択した3つの候補モードごとに表示が一致する",
+      "derivation_sources": [
+        {
+          "source_ref": "NEED_SF-0001",
+          "source_kind": "need",
+          "derivation_kind": "derived",
+          "rationale": "利用者操作結果を観測可能にする"
+        }
+      ]
+    },
+    {
+      "id": "REQ_SF-0002",
+      "name": "危険検出時回転停止要求",
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "回転部への接触危険を低減する候補であり、適用安全規格および停止性能は未確認",
+      "statement": "定義済みの回転部危険状態を検出したとき、スマート扇風機は、羽根の回転を停止する。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "スマート扇風機",
+      "condition": null,
+      "trigger": "定義済みの回転部危険状態を検出したとき",
+      "required_response_or_property": "羽根の回転を停止する",
+      "object": "羽根",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "NEED_SF-0002"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "NEED-SF-002からの安全応答候補",
+      "allocation_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "VER_SF-0002"
+      ],
+      "acceptance_criteria_candidate": "人が定義した危険状態および停止時間閾値に対して回転停止を確認できる",
+      "human_confirmation_required": true,
+      "derivation_sources": [
+        {
+          "source_ref": "NEED_SF-0002",
+          "source_kind": "need",
+          "derivation_kind": "risk_reduction",
+          "rationale": "接触危険を安全側応答へ変換する"
+        }
+      ]
+    },
+    {
+      "id": "REQ_SF-0003",
+      "name": "静音送風維持要求",
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "静音時の音圧、風量および測定条件は利用者確認が必要",
+      "statement": "静音モードの間、スマート扇風機は、合意済みの静音送風条件を維持する。",
+      "requirement_type": "quality_requirement",
+      "normative_level": "mandatory",
+      "subject": "スマート扇風機",
+      "condition": "静音モードの間",
+      "trigger": null,
+      "required_response_or_property": "合意済みの静音送風条件を維持する",
+      "object": "送風条件",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "NEED_SF-0003"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "NEED-SF-003を測定可能な品質要求へ変換する途中の候補",
+      "allocation_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "VER_SF-0003"
+      ],
+      "acceptance_criteria_candidate": "音圧、風量、測定位置および環境条件を人が合意した後に設定する",
+      "human_confirmation_required": true,
+      "derivation_sources": [
+        {
+          "source_ref": "NEED_SF-0003",
+          "source_kind": "need",
+          "derivation_kind": "derived",
+          "rationale": "就寝時の価値を品質特性へ変換する"
+        }
+      ]
+    },
+    {
+      "id": "REQ_SF-0004",
+      "name": "通信断時停止操作要求",
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "実験1で束ねられていた停止義務と再開義務を分離した",
+      "statement": "通信接続が失われている間、スマート扇風機は、本体の停止操作を受け付ける。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "スマート扇風機",
+      "condition": "通信接続が失われている間",
+      "trigger": null,
+      "required_response_or_property": "本体の停止操作を受け付ける",
+      "object": "停止操作",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "NEED_SF-0004"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "NEED-SF-004の停止目的を単一義務へ変換した",
+      "allocation_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "VER_SF-0004"
+      ],
+      "acceptance_criteria_candidate": "通信を切断した状態で本体停止操作により送風が停止する",
+      "derivation_sources": [
+        {
+          "source_ref": "NEED_SF-0004",
+          "source_kind": "need",
+          "derivation_kind": "derived",
+          "rationale": "通信断時の停止価値を単一義務化する"
+        }
+      ]
+    },
+    {
+      "id": "REQ_SF-0005",
+      "name": "通信断時再開操作要求",
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "実験1で束ねられていた停止義務と再開義務を分離した",
+      "statement": "通信接続が失われている間、スマート扇風機は、本体の再開操作を受け付ける。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "スマート扇風機",
+      "condition": "通信接続が失われている間",
+      "trigger": null,
+      "required_response_or_property": "本体の再開操作を受け付ける",
+      "object": "再開操作",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "NEED_SF-0004"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "NEED-SF-004の再開目的を単一義務へ変換した",
+      "allocation_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "VER_SF-0005"
+      ],
+      "acceptance_criteria_candidate": "通信を切断した状態で本体再開操作により送風が再開する",
+      "derivation_sources": [
+        {
+          "source_ref": "NEED_SF-0004",
+          "source_kind": "need",
+          "derivation_kind": "derived",
+          "rationale": "通信断時の再開価値を単一義務化する"
+        }
+      ]
+    },
+    {
+      "id": "REQ_SF-0006",
+      "name": "保守中回転禁止要求",
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "support",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "保守中の意図しない回転を防止する候補",
+      "statement": "保守状態の間、スマート扇風機は、羽根の回転を開始してはならない。",
+      "requirement_type": "support_requirement",
+      "normative_level": "prohibition",
+      "subject": "スマート扇風機",
+      "condition": "保守状態の間",
+      "trigger": null,
+      "required_response_or_property": "羽根の回転を開始しない",
+      "object": "羽根",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "NEED_SF-0002",
+        "NEED_SF-0005"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "NEED-SF-002およびNEED-SF-005からの安全側制約候補",
+      "allocation_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "VER_SF-0006"
+      ],
+      "acceptance_criteria_candidate": "保守状態で起動操作を行っても羽根の回転が開始しない",
+      "derivation_sources": [
+        {
+          "source_ref": "NEED_SF-0005",
+          "source_kind": "need",
+          "derivation_kind": "risk_reduction",
+          "rationale": "安全な保守状態を禁止要求へ変換する"
+        }
+      ]
+    },
+    {
+      "id": "REQ_SF-0007",
+      "name": "通常使用時転倒防止要求",
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "mechanical",
+      "origin": "external_candidate",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "METI技術基準省令解釈の扇風機候補を、適用性未確定のまま工学要求へ投影した",
+      "statement": "高さ調節機能を最大位置にした通常使用状態で任意の方向へ10°傾けたとき、スマート扇風機は、転倒しない。",
+      "requirement_type": "constraint_requirement",
+      "normative_level": "mandatory",
+      "subject": "スマート扇風機",
+      "condition": "高さ調節機能を最大位置にした通常使用状態で任意の方向へ10°傾けた場合",
+      "trigger": null,
+      "required_response_or_property": "転倒しない",
+      "object": "スマート扇風機",
+      "performance_or_limit": 10,
+      "unit": "deg",
+      "tolerance": null,
+      "source_need_refs": [
+        "NEED_SF-0002"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "OBL-SF-002の転倒防止候補を機械制約へ投影した",
+      "allocation_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "VER_SF-0007"
+      ],
+      "acceptance_criteria_candidate": "対象構成を通常使用状態に置き、任意方向へ10°傾けても転倒しない",
+      "human_confirmation_required": true,
+      "derivation_sources": [
+        {
+          "source_ref": "NEED_SF-0002",
+          "source_kind": "need",
+          "derivation_kind": "risk_reduction",
+          "rationale": "転倒による接触および物理危険を低減する"
+        },
+        {
+          "source_ref": "OBL-SF-002",
+          "source_kind": "compliance_obligation",
+          "derivation_kind": "conservative_strengthening",
+          "projection_ref": "EPR-SF-003",
+          "rationale": "原典候補の「容易に転倒しない」を工学上の保守的強化として「転倒しない」へ投影。採用可否と判定方法は人が承認する。"
+        }
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "BEH_SF-0001",
+      "name": "運転モードを表示する",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "REQ-SF-001の観測可能な応答候補",
+      "behavior_type": "function",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "手動送風モード、自動送風モードまたは静音モードが選択される"
+      ],
+      "postconditions": [
+        "選択されたモードが表示される"
+      ],
+      "performer_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "requirement_refs": [
+        "REQ_SF-0001"
+      ]
+    },
+    {
+      "id": "BEH_SF-0002",
+      "name": "羽根の回転を停止する",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "危険状態の定義および停止時間は未確定",
+      "behavior_type": "state_transition",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "定義済みの回転部危険状態を検出する"
+      ],
+      "postconditions": [
+        "安全停止中へ移行する"
+      ],
+      "performer_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "requirement_refs": [
+        "REQ_SF-0002"
+      ]
+    },
+    {
+      "id": "BEH_SF-0003",
+      "name": "静音送風条件を維持する",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "音圧および風量の尺度は人の確認待ち",
+      "behavior_type": "function",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "静音モードが選択されている"
+      ],
+      "postconditions": [
+        "合意済みの静音送風条件が維持される"
+      ],
+      "performer_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "requirement_refs": [
+        "REQ_SF-0003"
+      ]
+    },
+    {
+      "id": "BEH_SF-0004",
+      "name": "本体停止操作を受け付ける",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "通信断時の停止操作経路候補",
+      "behavior_type": "interaction",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "通信接続が失われている"
+      ],
+      "postconditions": [
+        "送風が停止する"
+      ],
+      "performer_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "requirement_refs": [
+        "REQ_SF-0004"
+      ]
+    },
+    {
+      "id": "BEH_SF-0005",
+      "name": "本体再開操作を受け付ける",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "通信断時の再開操作経路候補",
+      "behavior_type": "interaction",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "通信接続が失われている",
+        "安全停止条件が成立していない"
+      ],
+      "postconditions": [
+        "送風が再開する"
+      ],
+      "performer_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "requirement_refs": [
+        "REQ_SF-0005"
+      ]
+    },
+    {
+      "id": "BEH_SF-0006",
+      "name": "保守中の起動を拒否する",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "REQ-SF-006の安全側応答候補",
+      "behavior_type": "state_transition",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "保守状態で起動操作を受ける"
+      ],
+      "postconditions": [
+        "羽根が停止状態を維持する"
+      ],
+      "performer_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "requirement_refs": [
+        "REQ_SF-0006"
+      ]
+    },
+    {
+      "id": "BEH_SF-0007",
+      "name": "通常使用姿勢を維持する",
+      "level": "L2",
+      "origin": "external_candidate",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "適用性未確定の転倒防止要求のブラックボックス表現",
+      "behavior_type": "other",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "通常使用状態で任意方向へ10°傾けられる"
+      ],
+      "postconditions": [
+        "転倒しない"
+      ],
+      "performer_candidate_refs": [
+        "STR_SF-0001"
+      ],
+      "requirement_refs": [
+        "REQ_SF-0007"
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "id": "STR_SF-0001",
+      "name": "スマート扇風機システム",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "40点初稿では内部部品を固定せずシステム境界だけを表す",
+      "structure_kind": "system",
+      "logical_or_physical": "mixed",
+      "system_element_kind": "hardware_software_system",
+      "owner_ref": null,
+      "part_refs": [],
+      "requirement_refs": [
+        "REQ_SF-0001",
+        "REQ_SF-0002",
+        "REQ_SF-0003",
+        "REQ_SF-0004",
+        "REQ_SF-0005",
+        "REQ_SF-0006",
+        "REQ_SF-0007"
+      ],
+      "behavior_refs": [
+        "BEH_SF-0001",
+        "BEH_SF-0002",
+        "BEH_SF-0003",
+        "BEH_SF-0004",
+        "BEH_SF-0005",
+        "BEH_SF-0006",
+        "BEH_SF-0007"
+      ],
+      "interface_refs": []
+    }
+  ],
+  "interfaces": [],
+  "constraints": [],
+  "allocations": [],
+  "verification_cases": [
+    {
+      "id": "VER_SF-0001",
+      "name": "運転モード表示デモンストレーション",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "REQ-SF-001のV&V候補",
+      "target_requirement_refs": [
+        "REQ_SF-0001"
+      ],
+      "objective": "選択したモードと表示の一致を確認する",
+      "method": "demonstration",
+      "item_under_verification": "スマート扇風機候補構成",
+      "configuration": "CFG-SF-001",
+      "preconditions": [],
+      "environment": [
+        "屋内試験環境"
+      ],
+      "stimulus_or_input": [
+        "3つの候補モードを個別に選択する"
+      ],
+      "observable": "運転モード表示",
+      "measurement_method": "目視による表示一致確認",
+      "acceptance_criteria_candidate": "3つの候補モードの表示が各選択と一致する",
+      "required_evidence": [
+        "EVR-SF-001"
+      ],
+      "responsible_role_ref": "ROLE-SF-TEST",
+      "lifecycle_stage": "development",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "VER_SF-0002",
+      "name": "危険検出時回転停止試験",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "危険状態および停止時間は人の確認待ち",
+      "target_requirement_refs": [
+        "REQ_SF-0002"
+      ],
+      "objective": "定義済み危険状態で羽根が停止することを確認する",
+      "method": "test",
+      "item_under_verification": "スマート扇風機候補構成",
+      "configuration": "CFG-SF-001",
+      "preconditions": [
+        "危険状態と停止時間閾値が承認されている"
+      ],
+      "environment": [
+        "安全対策済み試験環境"
+      ],
+      "stimulus_or_input": [
+        "承認済み危険状態を発生させる"
+      ],
+      "observable": "羽根の回転状態",
+      "measurement_method": "回転状態および停止時間の測定",
+      "acceptance_criteria_candidate": "承認済み停止時間閾値以内に羽根が停止する",
+      "required_evidence": [
+        "EVR-SF-002"
+      ],
+      "responsible_role_ref": "ROLE-SF-SAFETY-TEST",
+      "lifecycle_stage": "development",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "VER_SF-0003",
+      "name": "静音送風条件試験",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "音圧、風量および測定条件は人の確認待ち",
+      "target_requirement_refs": [
+        "REQ_SF-0003"
+      ],
+      "objective": "静音モードの音圧および風量を確認する",
+      "method": "test",
+      "item_under_verification": "スマート扇風機候補構成",
+      "configuration": "CFG-SF-001",
+      "preconditions": [
+        "静音送風条件が合意されている"
+      ],
+      "environment": [
+        "合意済み音響および送風測定環境"
+      ],
+      "stimulus_or_input": [
+        "静音モードを選択する"
+      ],
+      "observable": "音圧および風量",
+      "measurement_method": "合意済み測定位置で音圧および風量を測定する",
+      "acceptance_criteria_candidate": "合意済み音圧範囲および風量範囲を満たす",
+      "required_evidence": [
+        "EVR-SF-003"
+      ],
+      "responsible_role_ref": "ROLE-SF-PERFORMANCE-TEST",
+      "lifecycle_stage": "development",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "VER_SF-0004",
+      "name": "通信断時停止操作試験",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "REQ-SF-004のV&V候補",
+      "target_requirement_refs": [
+        "REQ_SF-0004"
+      ],
+      "objective": "通信断時に本体停止操作を受け付けることを確認する",
+      "method": "test",
+      "item_under_verification": "スマート扇風機候補構成",
+      "configuration": "CFG-SF-001",
+      "preconditions": [
+        "送風中である"
+      ],
+      "environment": [
+        "通信切断可能な屋内試験環境"
+      ],
+      "stimulus_or_input": [
+        "通信を切断し、本体停止操作を入力する"
+      ],
+      "observable": "羽根の回転状態",
+      "measurement_method": "操作後の回転状態を観測する",
+      "acceptance_criteria_candidate": "本体停止操作後に送風が停止する",
+      "required_evidence": [
+        "EVR-SF-004"
+      ],
+      "responsible_role_ref": "ROLE-SF-FUNCTIONAL-TEST",
+      "lifecycle_stage": "development",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "VER_SF-0005",
+      "name": "通信断時再開操作試験",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "REQ-SF-005のV&V候補",
+      "target_requirement_refs": [
+        "REQ_SF-0005"
+      ],
+      "objective": "通信断時に本体再開操作を受け付けることを確認する",
+      "method": "test",
+      "item_under_verification": "スマート扇風機候補構成",
+      "configuration": "CFG-SF-001",
+      "preconditions": [
+        "停止中であり安全停止条件が成立していない"
+      ],
+      "environment": [
+        "通信切断可能な屋内試験環境"
+      ],
+      "stimulus_or_input": [
+        "通信を切断し、本体再開操作を入力する"
+      ],
+      "observable": "羽根の回転状態",
+      "measurement_method": "操作後の回転状態を観測する",
+      "acceptance_criteria_candidate": "本体再開操作後に送風が再開する",
+      "required_evidence": [
+        "EVR-SF-005"
+      ],
+      "responsible_role_ref": "ROLE-SF-FUNCTIONAL-TEST",
+      "lifecycle_stage": "development",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "VER_SF-0006",
+      "name": "保守中回転禁止試験",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "REQ-SF-006のV&V候補",
+      "target_requirement_refs": [
+        "REQ_SF-0006"
+      ],
+      "objective": "保守状態で羽根が起動しないことを確認する",
+      "method": "test",
+      "item_under_verification": "スマート扇風機候補構成",
+      "configuration": "CFG-SF-001",
+      "preconditions": [
+        "保守状態へ移行している"
+      ],
+      "environment": [
+        "安全対策済み保守試験環境"
+      ],
+      "stimulus_or_input": [
+        "起動操作を入力する"
+      ],
+      "observable": "羽根の回転状態",
+      "measurement_method": "目視または回転検出で起動有無を確認する",
+      "acceptance_criteria_candidate": "起動操作後も羽根が停止状態を維持する",
+      "required_evidence": [
+        "EVR-SF-006"
+      ],
+      "responsible_role_ref": "ROLE-SF-SAFETY-TEST",
+      "lifecycle_stage": "development",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "VER_SF-0007",
+      "name": "通常使用時転倒防止試験",
+      "level": "L2",
+      "origin": "external_candidate",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "技術基準省令解釈の採用および対象分類を人が確認する必要がある",
+      "target_requirement_refs": [
+        "REQ_SF-0007"
+      ],
+      "objective": "通常使用状態の転倒防止候補を確認する",
+      "method": "test",
+      "item_under_verification": "スマート扇風機候補構成",
+      "configuration": "CFG-SF-001",
+      "preconditions": [
+        "高さ調節機能を最大位置にする",
+        "対象構成を通常使用状態にする"
+      ],
+      "environment": [
+        "試験面および傾斜方法を人が承認した試験環境"
+      ],
+      "stimulus_or_input": [
+        "対象構成を任意方向へ10°傾ける"
+      ],
+      "observable": "対象構成の転倒有無",
+      "measurement_method": "傾斜角を測定し、転倒有無を観測する",
+      "acceptance_criteria_candidate": "任意方向への10°傾斜で転倒しない",
+      "required_evidence": [
+        "EVR-SF-007"
+      ],
+      "responsible_role_ref": "ROLE-SF-SAFETY-TEST",
+      "lifecycle_stage": "development",
+      "lower_level_evidence_refs": []
+    }
+  ],
+  "validation_cases": [
+    {
+      "id": "VAL_SF-0001",
+      "display_id": "VAL_SF-0001",
+      "name": "理解しやすい送風操作の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "NEED_SF-0001"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "STK_SF-0001"
+      ],
+      "operational_context": "代表利用・運用状況で「利用者が選択した運転モードを確認できる」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_SF-0001"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「利用者が選択した運転モードを確認できる」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    },
+    {
+      "id": "VAL_SF-0002",
+      "display_id": "VAL_SF-0002",
+      "name": "回転部の接触危険低減の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "NEED_SF-0002"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "STK_SF-0002"
+      ],
+      "operational_context": "代表利用・運用状況で「定義した危険状態で回転部が安全側へ移行する」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_SF-0002"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「定義した危険状態で回転部が安全側へ移行する」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    },
+    {
+      "id": "VAL_SF-0003",
+      "display_id": "VAL_SF-0003",
+      "name": "就寝時の静音送風の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "NEED_SF-0003"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "STK_SF-0001"
+      ],
+      "operational_context": "代表利用・運用状況で「合意した音圧および風量条件を満たす」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_SF-0001"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「合意した音圧および風量条件を満たす」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    },
+    {
+      "id": "VAL_SF-0004",
+      "display_id": "VAL_SF-0004",
+      "name": "通信断時のローカル操作の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "NEED_SF-0004"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "STK_SF-0001"
+      ],
+      "operational_context": "代表利用・運用状況で「通信断時に停止操作と再開操作を個別に実行できる」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_SF-0002"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「通信断時に停止操作と再開操作を個別に実行できる」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    },
+    {
+      "id": "VAL_SF-0005",
+      "display_id": "VAL_SF-0005",
+      "name": "安全な清掃および点検の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "NEED_SF-0005"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "STK_SF-0003"
+      ],
+      "operational_context": "代表利用・運用状況で「保守状態で起動要求を拒否できる」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_SF-0002"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「保守状態で起動要求を拒否できる」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    }
+  ],
+  "risks": [],
+  "hazards": [],
+  "failure_modes": [],
+  "assumptions": [
+    {
+      "id": "ASM_SF-0001",
+      "name": "日本市場候補",
+      "level": "L0",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "実験評価の法域を設定するため",
+      "statement": "仮定：スマート扇風機を日本国内で販売および使用する。",
+      "reason_needed": "法規候補を絞るため",
+      "alternatives": [],
+      "affected_refs": [
+        "APP-SF-001",
+        "APP-SF-002",
+        "APP-SF-003"
+      ],
+      "validation_method": "対象市場を製品企画および法規担当者へ確認する",
+      "revision_condition": "対象市場を変更したとき",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ASM_SF-0002",
+      "name": "屋内家庭使用候補",
+      "level": "L0",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "実験1の合成Q&Aに基づく",
+      "statement": "仮定：一般家庭の寝室または居室で屋内使用する。",
+      "reason_needed": "運用環境および製品分類を仮置きするため",
+      "alternatives": [],
+      "affected_refs": [
+        "REQ_SF-0001",
+        "REQ_SF-0003"
+      ],
+      "validation_method": "意図する使用を製品企画へ確認する",
+      "revision_condition": "屋外使用または業務用途を含めるとき",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ASM_SF-0003",
+      "name": "電源方式未決定",
+      "level": "L0",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "not_decided",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "high",
+      "evidence_refs": [],
+      "rationale": "実験1が商用電源または充電済み電源の候補を残している",
+      "statement": "仮定：商用電源直結、外部ACアダプターまたは内蔵蓄電池のいずれを採用するか決定していない。",
+      "reason_needed": "電気用品安全法上の対象範囲および構成を判断するため",
+      "alternatives": [
+        "商用電源直結",
+        "外部ACアダプター",
+        "内蔵蓄電池"
+      ],
+      "affected_refs": [
+        "APP-SF-001",
+        "APP-SF-002"
+      ],
+      "validation_method": "定格、給電方式および同梱品を設計責任者へ確認する",
+      "revision_condition": "給電方式または定格を決定したとき",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ASM_SF-0004",
+      "name": "無線通信方式未決定",
+      "level": "L0",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "not_decided",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "high",
+      "evidence_refs": [],
+      "rationale": "実験1はWi-Fiを運用環境に挙げるが通信規格を決定していない",
+      "statement": "仮定：無線機能の有無、周波数、送信出力および無線モジュールを決定していない。",
+      "reason_needed": "電波法上の無線局および特定無線設備の該当性を判断するため",
+      "alternatives": [
+        "無線機能なし",
+        "適合表示済み無線モジュールを組み込む",
+        "独自無線設計を採用する"
+      ],
+      "affected_refs": [
+        "APP-SF-003"
+      ],
+      "validation_method": "無線仕様およびモジュール証明情報を通信設計者へ確認する",
+      "revision_condition": "無線方式、モジュールまたは対象市場を決定したとき",
+      "human_confirmation_required": true
+    }
+  ],
+  "alternatives": [],
+  "decisions": [],
+  "relations": [],
+  "findings": [],
+  "quality_summary": {
+    "overall_result": "pass_with_provisional_assumption",
+    "checks": [
+      {
+        "check_id": "GATE-TRACE",
+        "name": "主要Trace",
+        "result": "pass",
+        "evidence": "5 NeedすべてにRequirement参照があり、7 RequirementすべてにBehavior、StructureおよびVerificationCase参照がある",
+        "affected_refs": [
+          "NEED_SF-0001",
+          "NEED_SF-0002",
+          "NEED_SF-0003",
+          "NEED_SF-0004",
+          "NEED_SF-0005"
+        ]
+      },
+      {
+        "check_id": "GATE-PROVENANCE",
+        "name": "主要要素の由来と状態",
+        "result": "pass",
+        "evidence": "Stakeholder、Need、Requirement、Behavior、StructureおよびVerificationCaseの全32要素にorigin、claim_state、decision_stateを付与した",
+        "affected_refs": []
+      },
+      {
+        "check_id": "GATE-SEMANTIC",
+        "name": "意味妥当性",
+        "result": "pass_with_provisional_assumption",
+        "evidence": "静音条件、安全停止性能、電源方式および法規適用性は人の確認待ち",
+        "affected_refs": [
+          "REQ_SF-0002",
+          "REQ_SF-0003",
+          "APP-SF-001",
+          "APP-SF-002",
+          "APP-SF-003"
+        ]
+      }
+    ],
+    "not_performed": [
+      "実利用者による妥当性確認",
+      "法務または認証専門家による適用性確認",
+      "実機試験"
+    ],
+    "gate_state": "reviewable_40_candidate",
+    "hard_blocker": false
+  },
+  "language_quality": {
+    "profile_id": "ja_se_technical_writing_v1",
+    "profile_version": "1.0.0",
+    "requirement_modal_style": "controlled_declarative",
+    "checked": true,
+    "finding_refs": []
+  },
+  "projection_targets": [
+    {
+      "id": "PROC-SF-PSE-TECH-CHECK",
+      "name": "電安法技術基準適合確認プロセス候補",
+      "target_kind": "process_requirement",
+      "statement": "法規担当者は、対象構成について適用される技術基準への適合確認を実施する。",
+      "lifecycle_stage": "development",
+      "responsible_role_ref": "ROLE-SF-COMPLIANCE",
+      "status": "candidate",
+      "rationale": "届出事業者の確認活動を製品挙動要求から分離して保持する候補である。",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "SUPREQ-SF-RADIO-CONFORMITY",
+      "name": "無線モジュール適合情報入手要求候補",
+      "target_kind": "supplier_requirement",
+      "statement": "調達担当者は、採用する無線モジュールについて、技術基準適合証明または工事設計認証の識別子と管理版、モジュール個体識別、対象HW・SW・アンテナ構成、表示情報および認証構成変更時の通知条件を供給者から入手する。",
+      "lifecycle_stage": "development",
+      "responsible_role_ref": "ROLE-SF-PROCUREMENT-COMPLIANCE",
+      "status": "candidate",
+      "rationale": "無線部の法規情報を供給者への要求として製品要求から分離する候補である。",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "PROC-SF-RADIO-ROUTE-CHECK",
+      "name": "無線制度経路確認プロセス候補",
+      "target_kind": "process_requirement",
+      "statement": "法規担当者は、対象構成の無線方式、周波数、空中線電力、表示および組込み条件を基に免許要否と適合経路を確認し、認証工事設計の識別子・管理版とCFG-SF-001のHW・SW・アンテナ構成を照合して同一性を記録し、構成変更時は差分影響と再評価要否を変更管理する。",
+      "lifecycle_stage": "development",
+      "responsible_role_ref": "ROLE-SF-COMPLIANCE",
+      "status": "candidate",
+      "rationale": "Supplier情報の入手と、製品責任者による制度判断を分離する。",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    }
+  ],
+  "compliance": {
+    "scope": {
+      "jurisdictions": [
+        "日本"
+      ],
+      "markets": [
+        "日本国内販売候補"
+      ],
+      "product_classifications": [
+        "扇風機候補（電源方式および定格未確認）",
+        "無線設備組込み製品候補（無線仕様未確認）"
+      ],
+      "intended_uses": [
+        "一般家庭の寝室または居室で成人が屋内使用する候補"
+      ],
+      "configuration_refs": [
+        "CFG-SF-001"
+      ],
+      "lifecycle_stages": [
+        "concept",
+        "development"
+      ],
+      "assessed_as_of": "2026-08-22",
+      "assumption_refs": [
+        "ASM_SF-0001",
+        "ASM_SF-0002",
+        "ASM_SF-0003",
+        "ASM_SF-0004"
+      ],
+      "scope_limitations": [
+        "製品仕様書、定格、回路、無線方式および事業者区分が提供されていない",
+        "法的助言、正式な適用判断、適合判定および認証判定を行わない",
+        "規格本文は使用せず、政府が公開する法令および技術基準省令解釈だけを参照した"
+      ]
+    },
+    "authorities": [
+      {
+        "id": "AUTH-JP-LEG",
+        "name": "日本国",
+        "authority_type": "legislature",
+        "jurisdictions": [
+          "日本"
+        ],
+        "official_locator": "https://laws.e-gov.go.jp/",
+        "verification_status": "retrieved_from_official_source",
+        "notes": "e-Gov法令検索で法令メタデータおよび対象条文を確認した"
+      },
+      {
+        "id": "AUTH-JP-METI",
+        "name": "経済産業省",
+        "authority_type": "regulator",
+        "jurisdictions": [
+          "日本"
+        ],
+        "official_locator": "https://www.meti.go.jp/policy/consumer/seian/denan/",
+        "verification_status": "retrieved_from_official_source",
+        "notes": "電気用品安全法の所管官庁公式ページを確認した"
+      }
+    ],
+    "sources": [
+      {
+        "id": "SRC-SF-001",
+        "title": "電気用品安全法",
+        "identifier": "昭和三十六年法律第二百三十四号 / Law ID 336AC0000000234",
+        "source_type": "law",
+        "authority_refs": [
+          "AUTH-JP-LEG"
+        ],
+        "edition": "Revision ID 336AC0000000234_20251225_506AC0000000067",
+        "publication_date": "1961-11-16",
+        "effective_from": "2025-12-25",
+        "effective_to": null,
+        "status": "active",
+        "official_locator": "https://laws.e-gov.go.jp/law/336AC0000000234?occasion_date=20260611",
+        "language": "ja",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+        "provenance": "e-Gov法令検索および経済産業省の届出・手続ページを2026-08-22に確認",
+        "applicability_version_state": "unconfirmed"
+      },
+      {
+        "id": "SRC-SF-002",
+        "title": "電気用品の技術上の基準を定める省令の解釈 別表第八",
+        "identifier": "経済産業省掲載・令和8年6月1日改正版",
+        "source_type": "acceptable_means_of_compliance",
+        "authority_refs": [
+          "AUTH-JP-METI"
+        ],
+        "edition": "2026-06-01",
+        "publication_date": "2026-06-01",
+        "effective_from": "2026-06-01",
+        "effective_to": null,
+        "status": "active",
+        "official_locator": "https://www.meti.go.jp/policy/consumer/seian/denan/kaishaku/gijutsukijunkaishaku/beppyoudai8_260601.pdf",
+        "language": "ja",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+        "provenance": "経済産業省の現行電気用品安全法ページから取得し、扇風機個別事項の位置を2026-08-22に確認",
+        "applicability_version_state": "unconfirmed"
+      },
+      {
+        "id": "SRC-SF-003",
+        "title": "電波法",
+        "identifier": "昭和二十五年法律第百三十一号 / Law ID 325AC0000000131",
+        "source_type": "law",
+        "authority_refs": [
+          "AUTH-JP-LEG"
+        ],
+        "edition": null,
+        "publication_date": "1950-05-02",
+        "effective_from": null,
+        "effective_to": null,
+        "status": "unknown",
+        "official_locator": "https://laws.e-gov.go.jp/law/325AC0000000131",
+        "language": "ja",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+        "provenance": "e-Gov法令検索で法令名、Law ID、第四条および第三章の二を確認したが、本評価時点のRevision IDは確定していない",
+        "applicability_version_state": "unconfirmed"
+      }
+    ],
+    "provisions": [
+      {
+        "id": "PRV-SF-001",
+        "source_ref": "SRC-SF-001",
+        "locator": {
+          "canonical": "第8条第1項",
+          "article": "第8条",
+          "section": "第3章",
+          "paragraph": "第1項",
+          "table": null,
+          "annex": null
+        },
+        "heading": "基準適合義務等",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": "2025-12-25",
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+        "id": "PRV-SF-002",
+        "source_ref": "SRC-SF-002",
+        "locator": {
+          "canonical": "別表第八 2 個別事項 (41) イ (イ)",
+          "article": null,
+          "section": "別表第八 2 個別事項",
+          "paragraph": "(41) イ (イ)",
+          "table": null,
+          "annex": "別表第八"
+        },
+        "heading": "扇風機、換気扇、サーキュレーター及び送風機―構造",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": "2026-06-01",
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+        "id": "PRV-SF-003",
+        "source_ref": "SRC-SF-003",
+        "locator": {
+          "canonical": "第4条",
+          "article": "第4条",
+          "section": "第2章第1節",
+          "paragraph": null,
+          "table": null,
+          "annex": null
+        },
+        "heading": "無線局の開設",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": null,
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+        "id": "PRV-SF-004",
+        "source_ref": "SRC-SF-003",
+        "locator": {
+          "canonical": "第38条の24",
+          "article": "第38条の24",
+          "section": "第3章の2",
+          "paragraph": null,
+          "table": null,
+          "annex": null
+        },
+        "heading": "工事設計認証",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": null,
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+        "id": "PRV-SF-005",
+        "source_ref": "SRC-SF-003",
+        "locator": {
+          "canonical": "第38条の25",
+          "article": "第38条の25",
+          "section": "第3章の2",
+          "paragraph": null,
+          "table": null,
+          "annex": null
+        },
+        "heading": "認証工事設計に基づく特定無線設備の取扱い",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": null,
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+        "id": "PRV-SF-006",
+        "source_ref": "SRC-SF-003",
+        "locator": {
+          "canonical": "第38条の26",
+          "article": "第38条の26",
+          "section": "第3章の2",
+          "paragraph": null,
+          "table": null,
+          "annex": null
+        },
+        "heading": "工事設計認証に基づく表示",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": null,
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      }
+    ],
+    "normative_statements": [
+      {
+        "id": "NRM-SF-001",
+        "provision_refs": [
+          "PRV-SF-001"
+        ],
+        "statement_kind": "normative",
+        "modality": "obligation",
+        "bearer": "届出事業者",
+        "condition": "届出に係る電気用品を製造または輸入する場合",
+        "action_or_property": "対象電気用品を技術基準へ適合させる",
+        "object": "届出に係る電気用品",
+        "limit": null,
+        "deadline": null,
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "経済産業省の基準適合確認ページが法第8条第1項の義務を説明していることに基づく原子化候補",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-SF-002",
+        "provision_refs": [
+          "PRV-SF-002"
+        ],
+        "statement_kind": "normative",
+        "modality": "obligation",
+        "bearer": "技術基準省令解釈を適合経路として採用する届出事業者",
+        "condition": "対象製品が当該個別事項の扇風機に該当する場合",
+        "action_or_property": "通常使用状態で所定の傾斜を与えても転倒しない構造とする",
+        "object": "扇風機候補構成",
+        "limit": "任意方向10°",
+        "deadline": null,
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "経済産業省公開PDFの別表第八 2(41)イ(イ)を工学的に要約した候補。対象分類と適合経路は未確認",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-SF-003",
+        "provision_refs": [
+          "PRV-SF-003"
+        ],
+        "statement_kind": "normative",
+        "modality": "obligation",
+        "bearer": "無線局を開設する者",
+        "condition": "無線局を開設し、法定の例外を利用できない場合",
+        "action_or_property": "総務大臣の免許を受ける",
+        "object": "無線局",
+        "limit": null,
+        "deadline": null,
+        "exceptions": [
+          "第4条ただし書に定める無線局候補"
+        ],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "e-Gov掲載の第4条を、無線仕様未決定の製品へ適用する前段の候補として原子化した",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-SF-004",
+        "provision_refs": [
+          "PRV-SF-004"
+        ],
+        "statement_kind": "normative",
+        "modality": "permission",
+        "bearer": "特定無線設備の取扱業者候補",
+        "condition": "対象設備が特定無線設備に該当し、工事設計認証経路を採用する場合",
+        "action_or_property": "登録証明機関に対し工事設計について認証を求めることができる",
+        "object": "特定無線設備の工事設計候補",
+        "limit": null,
+        "deadline": null,
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "e-Gov掲載の第38条の24を、免許要否とは別の選択可能な認証経路候補として原子化した",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-SF-005",
+        "provision_refs": [
+          "PRV-SF-005"
+        ],
+        "statement_kind": "normative",
+        "modality": "obligation",
+        "bearer": "認証取扱業者候補",
+        "condition": "認証工事設計に基づく特定無線設備を取り扱う場合",
+        "action_or_property": "特定無線設備を認証工事設計に基づくものとする",
+        "object": "認証工事設計に基づく特定無線設備候補",
+        "limit": "第38条の25および関係省令が定める条件の範囲内",
+        "deadline": null,
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "e-Gov掲載の第38条の25を、認証取得後の設計同一性に関する義務候補として原子化した",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-SF-006",
+        "provision_refs": [
+          "PRV-SF-006"
+        ],
+        "statement_kind": "normative",
+        "modality": "permission",
+        "bearer": "認証取扱業者候補",
+        "condition": "認証工事設計に基づく特定無線設備について法定の適合義務を履行した場合",
+        "action_or_property": "総務省令で定める表示を付することができる",
+        "object": "認証工事設計に基づく特定無線設備候補",
+        "limit": "第38条の26および関係省令が定める条件の範囲内",
+        "deadline": null,
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "e-Gov掲載の第38条の26を、認証取得そのものとは別の条件付き表示権限として原子化した",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ],
+    "applicability_assessments": [
+      {
+        "id": "APP-SF-001",
+        "normative_statement_refs": [
+          "NRM-SF-001"
+        ],
+        "assessment_context": {
+          "jurisdiction": "日本",
+          "market": "日本国内販売候補",
+          "product_classification": "扇風機候補（電源方式および定格未確認）",
+          "intended_use": "一般家庭の屋内送風",
+          "configuration_ref": "CFG-SF-001",
+          "lifecycle_stage": "development"
+        },
+      "decision": "uncertain",
+      "human_confirmation_state": "pending",
+      "confirmed_by_ref": null,
+      "confirmed_at": null,
+        "binding_basis": "direct_regulation",
+        "basis": "経済産業省一覧は定格消費電力300W以下の扇風機を対象候補として示すが、対象構成の給電方式、定格、製造輸入主体および同梱品を確認できない",
+        "assumption_refs": [
+          "ASM_SF-0001",
+          "ASM_SF-0003"
+        ],
+        "interpretation_refs": [],
+        "assessed_as_of": "2026-08-22",
+        "review_triggers": [
+          "給電方式、定格消費電力または同梱品を決定したとき",
+          "製造者、輸入者または販売者の役割を決定したとき",
+          "電気用品安全法または施行令を改正したとき"
+        ],
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "APP-SF-002",
+        "normative_statement_refs": [
+          "NRM-SF-002"
+        ],
+        "assessment_context": {
+          "jurisdiction": "日本",
+          "market": "日本国内販売候補",
+          "product_classification": "扇風機候補（電源方式および定格未確認）",
+          "intended_use": "一般家庭の屋内送風",
+          "configuration_ref": "CFG-SF-001",
+          "lifecycle_stage": "development"
+        },
+      "decision": "uncertain",
+      "human_confirmation_state": "pending",
+      "confirmed_by_ref": null,
+      "confirmed_at": null,
+        "binding_basis": "acceptable_means_of_compliance",
+        "basis": "経済産業省は技術基準省令解釈を性能規定を満足する基準の一つと説明するが、対象製品の分類および採用する適合経路を確認していない",
+        "assumption_refs": [
+          "ASM_SF-0001",
+          "ASM_SF-0003"
+        ],
+        "interpretation_refs": [],
+        "assessed_as_of": "2026-08-22",
+        "review_triggers": [
+          "製品分類、定格または高さ調節機能を決定したとき",
+          "採用する技術基準適合経路を決定したとき",
+          "技術基準省令解釈の版を変更したとき"
+        ],
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "APP-SF-003",
+        "normative_statement_refs": [
+          "NRM-SF-003",
+          "NRM-SF-004",
+          "NRM-SF-005",
+          "NRM-SF-006"
+        ],
+        "assessment_context": {
+          "jurisdiction": "日本",
+          "market": "日本国内販売候補",
+          "product_classification": "無線設備組込み製品候補（無線仕様未確認）",
+          "intended_use": "家庭内の通信経由操作候補",
+          "configuration_ref": "CFG-SF-001",
+          "lifecycle_stage": "development"
+        },
+      "decision": "uncertain",
+      "human_confirmation_state": "pending",
+      "confirmed_by_ref": null,
+      "confirmed_at": null,
+        "binding_basis": "direct_regulation",
+        "basis": "無線機能、周波数、空中線電力、モジュール、適合表示および免許不要条件を確認できない",
+        "assumption_refs": [
+          "ASM_SF-0001",
+          "ASM_SF-0004"
+        ],
+        "interpretation_refs": [],
+        "assessed_as_of": "2026-08-22",
+        "review_triggers": [
+          "無線方式、周波数、出力またはモジュールを決定したとき",
+          "適合表示または工事設計認証の情報を入手したとき",
+          "電波法または関連省令を改正したとき"
+        ],
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ],
+    "obligations": [
+      {
+        "id": "OBL-SF-001",
+        "name": "電気用品技術基準適合義務候補",
+        "normative_statement_refs": [
+          "NRM-SF-001"
+        ],
+        "applicability_refs": [
+          "APP-SF-001"
+        ],
+        "obligated_party": "届出事業者候補",
+        "object_of_conformity": "スマート扇風機候補構成",
+        "target_kind": "mixed",
+        "obligation_kind": "mandatory",
+        "condition": "対象構成が届出に係る電気用品である場合",
+        "required_outcome": "対象となる電気用品を、適用される技術基準へ適合させる",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "OBL-SF-002",
+        "name": "通常使用時転倒防止義務候補",
+        "normative_statement_refs": [
+          "NRM-SF-002"
+        ],
+        "applicability_refs": [
+          "APP-SF-002"
+        ],
+        "obligated_party": "届出事業者候補",
+        "object_of_conformity": "スマート扇風機候補構成",
+        "target_kind": "system",
+        "obligation_kind": "mandatory",
+        "condition": "対象構成を扇風機として分類し、当該技術基準省令解釈を適合経路として採用する場合",
+        "required_outcome": "通常使用状態で所定の傾斜を与えても転倒しない",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "OBL-SF-003",
+        "name": "無線局免許または免許不要条件確認義務候補",
+        "normative_statement_refs": [
+          "NRM-SF-003"
+        ],
+        "applicability_refs": [
+          "APP-SF-003"
+        ],
+        "obligated_party": "無線機能の設計および市場投入責任者候補",
+        "object_of_conformity": "スマート扇風機の無線通信機能候補",
+        "target_kind": "mixed",
+        "obligation_kind": "mandatory",
+        "condition": "日本で無線機能を搭載して使用可能にする場合",
+        "required_outcome": "採用する無線設備について免許要否および利用する法定例外を確認する",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "OBL-SF-004",
+        "name": "工事設計認証経路採用条件候補",
+        "normative_statement_refs": [
+          "NRM-SF-004"
+        ],
+        "applicability_refs": [
+          "APP-SF-003"
+        ],
+        "obligated_party": "無線機能の設計および市場投入責任者候補",
+        "object_of_conformity": "スマート扇風機の無線通信機能候補",
+        "target_kind": "development_process",
+        "obligation_kind": "permission",
+        "condition": "対象設備が特定無線設備に該当し、工事設計認証経路を選択する場合",
+        "required_outcome": "対象工事設計と登録証明機関を特定し、認証経路の成立条件を確認する",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "OBL-SF-005",
+        "name": "認証工事設計との同一性確保義務候補",
+        "normative_statement_refs": [
+          "NRM-SF-005"
+        ],
+        "applicability_refs": [
+          "APP-SF-003"
+        ],
+        "obligated_party": "認証取扱業者候補",
+        "object_of_conformity": "認証工事設計に基づく特定無線設備候補",
+        "target_kind": "mixed",
+        "obligation_kind": "mandatory",
+        "condition": "認証工事設計に基づく特定無線設備を取り扱う場合",
+        "required_outcome": "対象設備を認証工事設計に基づくものとする",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "OBL-SF-006",
+        "name": "工事設計認証に基づく表示条件候補",
+        "normative_statement_refs": [
+          "NRM-SF-006"
+        ],
+        "applicability_refs": [
+          "APP-SF-003"
+        ],
+        "obligated_party": "認証取扱業者候補",
+        "object_of_conformity": "認証工事設計に基づく特定無線設備候補",
+        "target_kind": "documentation",
+        "obligation_kind": "permission",
+        "condition": "工事設計認証に基づく表示を製品または無線設備へ付する場合",
+        "required_outcome": "認証工事設計との同一性および法定表示条件が成立する場合に限り表示を付する",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ],
+    "engineering_projections": [
+      {
+        "id": "EPR-SF-001",
+        "obligation_refs": [
+          "OBL-SF-001"
+        ],
+        "projection_kind": "process_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "PROC-SF-PSE-TECH-CHECK"
+        ],
+        "derivation_basis": "法第8条候補は対象製品の挙動ではなく、届出事業者の技術基準適合確認活動へ投影する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-SF-002",
+        "obligation_refs": [
+          "OBL-SF-001"
+        ],
+        "projection_kind": "evidence_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "EVR-SF-008"
+        ],
+        "derivation_basis": "技術基準への適合確認結果を追跡可能にする",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-SF-003",
+        "obligation_refs": [
+          "OBL-SF-002"
+        ],
+        "projection_kind": "constraint_requirement",
+        "target_level": "L2",
+        "target_refs": [
+          "REQ_SF-0007"
+        ],
+        "derivation_basis": "通常使用状態の転倒防止を対象システムの機械制約へ変換する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-SF-004",
+        "obligation_refs": [
+          "OBL-SF-002"
+        ],
+        "projection_kind": "evidence_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "EVR-SF-007"
+        ],
+        "derivation_basis": "転倒防止候補を対象構成付き試験報告で確認できるようにする",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-SF-005",
+        "obligation_refs": [
+          "OBL-SF-004",
+          "OBL-SF-005",
+          "OBL-SF-006"
+        ],
+        "projection_kind": "supplier_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "SUPREQ-SF-RADIO-CONFORMITY"
+        ],
+        "derivation_basis": "工事設計認証経路を採用する場合に認証識別情報および表示条件を供給者から取得する候補",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-SF-007",
+        "obligation_refs": [
+          "OBL-SF-003",
+          "OBL-SF-004",
+          "OBL-SF-005",
+          "OBL-SF-006"
+        ],
+        "projection_kind": "evidence_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "EVR-SF-009"
+        ],
+        "derivation_basis": "免許要否、適合経路および表示情報の確認記録を要求する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-SF-006",
+        "obligation_refs": [
+          "OBL-SF-003",
+          "OBL-SF-004",
+          "OBL-SF-005",
+          "OBL-SF-006"
+        ],
+        "projection_kind": "process_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "PROC-SF-RADIO-ROUTE-CHECK"
+        ],
+        "derivation_basis": "Supplier資料取得後も、対象構成に対する免許要否と制度経路は製品責任者が確認する。",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ],
+    "evidence_requirements": [
+      {
+        "id": "EVR-SF-001",
+        "name": "運転モード表示確認記録",
+        "target_refs": [
+          "REQ_SF-0001"
+        ],
+        "evidence_type": "inspection_record",
+        "required_properties": [
+          "対象構成",
+          "選択モード",
+          "表示結果"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "none",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-SF-002",
+        "name": "危険検出時回転停止試験報告",
+        "target_refs": [
+          "REQ_SF-0002"
+        ],
+        "evidence_type": "test_report",
+        "required_properties": [
+          "対象構成",
+          "危険状態定義",
+          "停止時間閾値",
+          "測定結果"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "unknown",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-SF-003",
+        "name": "静音送風条件試験報告",
+        "target_refs": [
+          "REQ_SF-0003"
+        ],
+        "evidence_type": "test_report",
+        "required_properties": [
+          "対象構成",
+          "音圧測定条件",
+          "風量測定条件",
+          "測定結果"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "none",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-SF-004",
+        "name": "通信断時停止操作試験報告",
+        "target_refs": [
+          "REQ_SF-0004"
+        ],
+        "evidence_type": "test_report",
+        "required_properties": [
+          "対象構成",
+          "通信切断条件",
+          "停止操作結果"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "none",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-SF-005",
+        "name": "通信断時再開操作試験報告",
+        "target_refs": [
+          "REQ_SF-0005"
+        ],
+        "evidence_type": "test_report",
+        "required_properties": [
+          "対象構成",
+          "通信切断条件",
+          "再開操作結果"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "none",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-SF-006",
+        "name": "保守中回転禁止試験報告",
+        "target_refs": [
+          "REQ_SF-0006"
+        ],
+        "evidence_type": "test_report",
+        "required_properties": [
+          "対象構成",
+          "保守状態定義",
+          "起動操作結果"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "none",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-SF-007",
+        "name": "通常使用時転倒防止試験報告",
+        "target_refs": [
+          "OBL-SF-002",
+          "REQ_SF-0007"
+        ],
+        "evidence_type": "test_report",
+        "required_properties": [
+          "対象構成",
+          "高さ設定",
+          "通常使用状態",
+          "傾斜方向および角度",
+          "転倒有無"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "unknown",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-SF-008",
+        "name": "電気用品技術基準適合確認記録",
+        "target_refs": [
+          "OBL-SF-001"
+        ],
+        "evidence_type": "traceability_report",
+        "required_properties": [
+          "対象電気用品分類",
+          "対象構成",
+          "採用した技術基準および版",
+          "評価活動および結果への参照",
+          "責任者および確認日"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "unknown",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-SF-009",
+        "name": "無線法規適合経路確認記録",
+        "target_refs": [
+          "OBL-SF-003",
+          "OBL-SF-004",
+          "OBL-SF-005",
+          "OBL-SF-006"
+        ],
+        "evidence_type": "traceability_report",
+        "required_properties": [
+          "無線方式および周波数",
+          "対象モジュール識別",
+          "免許要否の確認根拠",
+          "技術基準適合証明または工事設計認証の識別子および管理版",
+          "CFG-SF-001のHW・SW・アンテナ構成と認証工事設計の照合結果",
+          "構成差分の処置、再評価要否および変更管理記録",
+          "表示方法および表示権限の確認結果"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "unknown",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ],
+    "evidence_items": [],
+    "conformity_schemes": [],
+    "assessment_activities": [
+      {
+        "id": "AST-SF-001",
+        "activity_type": "electrical_product_compliance_review",
+        "scheme_ref": null,
+        "target_obligation_refs": [
+          "OBL-SF-001",
+          "OBL-SF-002"
+        ],
+        "verification_case_ref": "VER_SF-0007",
+        "assessment_subject_ref": "CFG-SF-001",
+        "method": "document_review",
+        "responsible_party_ref": "ROLE-SF-COMPLIANCE",
+        "independence": "unknown",
+        "planned_evidence_requirement_refs": [
+          "EVR-SF-007",
+          "EVR-SF-008"
+        ],
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "configuration_refs": [
+          "CFG-SF-001"
+        ]
+      },
+      {
+        "id": "AST-SF-002",
+        "activity_type": "radio_regulatory_route_review",
+        "scheme_ref": null,
+        "target_obligation_refs": [
+          "OBL-SF-003",
+          "OBL-SF-004",
+          "OBL-SF-005",
+          "OBL-SF-006"
+        ],
+        "verification_case_ref": null,
+        "assessment_subject_ref": "CFG-SF-001",
+        "method": "document_review",
+        "responsible_party_ref": "ROLE-SF-COMPLIANCE",
+        "independence": "unknown",
+        "planned_evidence_requirement_refs": [
+          "EVR-SF-009"
+        ],
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "configuration_refs": [
+          "CFG-SF-001"
+        ]
+      }
+    ],
+    "assessment_results": [
+      {
+        "id": "ASR-SF-001",
+        "assessment_activity_ref": "AST-SF-001",
+        "assessed_obligation_refs": [
+          "OBL-SF-001",
+          "OBL-SF-002"
+        ],
+        "evidence_item_refs": [],
+        "outcome": "not_performed",
+        "finding_refs": [],
+        "assessed_at": null,
+        "assessor_ref": null,
+        "human_confirmation_state": "pending",
+        "rationale": "製品構成および実在証拠が提供されていない",
+        "configuration_ref": "CFG-SF-001",
+        "validity_state": "active",
+        "valid_from": null,
+        "valid_to": null,
+        "invalidation_reason": null
+      },
+      {
+        "id": "ASR-SF-002",
+        "assessment_activity_ref": "AST-SF-002",
+        "assessed_obligation_refs": [
+          "OBL-SF-003",
+          "OBL-SF-004",
+          "OBL-SF-005",
+          "OBL-SF-006"
+        ],
+        "evidence_item_refs": [],
+        "outcome": "not_performed",
+        "finding_refs": [],
+        "assessed_at": null,
+        "assessor_ref": null,
+        "human_confirmation_state": "pending",
+        "rationale": "無線仕様、モジュール情報および実在証拠が提供されていない",
+        "configuration_ref": "CFG-SF-001",
+        "validity_state": "active",
+        "valid_from": null,
+        "valid_to": null,
+        "invalidation_reason": null
+      }
+    ],
+    "attestations": [],
+    "mappings": [],
+    "summary": {
+      "model_quality_result": "pass_with_provisional_assumption",
+      "assurance_outcome": "not_performed",
+      "not_a_compliance_approval": true,
+      "reviewer_gates": {
+        "generator": "pass",
+        "compliance": "revise",
+        "se": "revise",
+        "assurance": "revise",
+        "meta_judge": "revise"
+      },
+      "checks": [
+        {
+          "check_id": "C-TRACE-END-TO-END",
+          "name": "原典からEvidence Requirementまでの追跡",
+          "result": "pass_with_provisional_assumption",
+          "evidence": "3つのSourceについてProvision、NormativeStatement、ApplicabilityAssessment、Obligation、EngineeringProjectionおよびEvidenceRequirementまでIDで到達できる",
+          "affected_refs": [
+            "SRC-SF-001",
+            "SRC-SF-002",
+            "SRC-SF-003"
+          ]
+        },
+        {
+          "check_id": "C-NO-FALSE-CLAIM",
+          "name": "適用・適合・認証の誤主張防止",
+          "result": "pass",
+          "evidence": "全ApplicabilityAssessmentをuncertainとし、AssessmentResultをnot_performed、EvidenceItemとAttestationを空にした",
+          "affected_refs": [
+            "APP-SF-001",
+            "APP-SF-002",
+            "APP-SF-003"
+          ]
+        }
+      ],
+      "source_limitations": [
+        "電波法の評価時点に対応するRevision IDを確定していない",
+        "製品仕様、事業者区分、定格および無線情報がないため法的適用性を確定できない",
+        "正式な法務、規制または認証専門家レビューを実施していない"
+      ],
+      "uncertain_applicability_refs": [
+        "APP-SF-001",
+        "APP-SF-002",
+        "APP-SF-003"
+      ],
+      "obligation_without_projection_refs": [],
+      "mandatory_without_evidence_requirement_refs": [],
+      "not_performed_assessment_refs": [
+        "ASR-SF-001",
+        "ASR-SF-002"
+      ]
+    },
+    "regulatory_discovery_log": [
+      {
+        "id": "RDL-SF-0001",
+        "market": "日本国内販売候補",
+        "configuration_ref": "CFG-SF-001",
+        "official_registers_checked": [
+          "https://laws.e-gov.go.jp/law/325AC0000000131",
+          "https://laws.e-gov.go.jp/law/336AC0000000234?occasion_date=20260611",
+          "https://www.meti.go.jp/policy/consumer/seian/denan/kaishaku/gijutsukijunkaishaku/beppyoudai8_260601.pdf"
+        ],
+      "queries": [],
+      "query_log_state": "unavailable_legacy_run",
+        "candidate_source_refs": [
+          "SRC-SF-001",
+          "SRC-SF-002",
+          "SRC-SF-003"
+        ],
+        "disposition": "on_hold",
+        "disposition_reason": "初回run後に採用Source集合から再構成した記録であり、原始query logと除外候補が未保存のため網羅性は確認待ち。",
+        "searched_at": "2026-08-22T12:00:00+09:00",
+        "human_inventory_confirmation_state": "pending",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ]
+  },
+  "configurations": [
+    {
+      "id": "CFG-SF-001",
+      "name": "スマート扇風機対象構成候補",
+      "version": null,
+      "baseline_state": "outside_baseline",
+      "scope_description": "本実験のQ&Aから仮定した対象構成。BOM、ソフトウェア版および製造版は未確認。",
+      "artifact_locator": null,
+      "integrity_hash": null,
+      "validity_state": "active",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    }
+  ],
+  "parties_or_roles": [
+    {
+      "id": "ROLE-SF-COMPLIANCE",
+      "name": "法規適合確認担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "電安法候補および無線制度候補の内部確認",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ROLE-SF-PROCUREMENT-COMPLIANCE",
+      "name": "調達法規担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "無線モジュール供給者情報の取得",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ROLE-SF-SAFETY-TEST",
+      "name": "安全試験担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "安全停止および安定性の試験",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ROLE-SF-PERFORMANCE-TEST",
+      "name": "性能試験担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "音圧および風量の試験",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ROLE-SF-FUNCTIONAL-TEST",
+      "name": "機能試験担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "操作および通信断時機能の試験",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ROLE-SF-TEST",
+      "name": "試験担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "一般試験",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    }
+  ]
+}

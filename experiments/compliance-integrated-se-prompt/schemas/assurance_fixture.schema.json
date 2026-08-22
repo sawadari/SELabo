@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/selabo/assurance-fixture.schema.json",
+  "title": "SELabo synthetic assurance state-transition fixture",
+  "type": "object",
+  "required": [
+    "fixture_id",
+    "fixture_notice",
+    "evidence_requirement",
+    "assessment_activity",
+    "before_change",
+    "change_event",
+    "after_change"
+  ],
+  "properties": {
+    "fixture_id": {
+      "type": "string",
+      "pattern": "^FIX-"
+    },
+    "fixture_notice": {
+      "const": "SYNTHETIC - NOT PRODUCT EVIDENCE"
+    },
+    "evidence_requirement": {
+      "$ref": "https://example.invalid/selabo/compliance-integrated-se-model.schema.json#/$defs/evidenceRequirement"
+    },
+    "assessment_activity": {
+      "$ref": "https://example.invalid/selabo/compliance-integrated-se-model.schema.json#/$defs/assessmentActivity"
+    },
+    "before_change": {
+      "$ref": "#/$defs/assuranceSnapshot"
+    },
+    "change_event": {
+      "type": "object",
+      "required": [
+        "event_id",
+        "previous_configuration_ref",
+        "new_configuration_ref",
+        "affected_evidence_item_refs",
+        "required_transition"
+      ],
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "previous_configuration_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "new_configuration_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "affected_evidence_item_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^EVI-"
+          },
+          "uniqueItems": true
+        },
+        "required_transition": {
+          "const": "active_to_stale_and_reassessment_required"
+        }
+      }
+    },
+    "after_change": {
+      "$ref": "#/$defs/assuranceSnapshot"
+    }
+  },
+  "$defs": {
+    "assuranceSnapshot": {
+      "type": "object",
+      "required": [
+        "evidence_item",
+        "assessment_result"
+      ],
+      "properties": {
+        "evidence_item": {
+          "$ref": "https://example.invalid/selabo/compliance-integrated-se-model.schema.json#/$defs/evidenceItem"
+        },
+        "assessment_result": {
+          "$ref": "https://example.invalid/selabo/compliance-integrated-se-model.schema.json#/$defs/assessmentResult"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,458 @@
+{
+  "meta": {
+    "artifact_type": "hierarchical_se_model_candidate",
+    "schema_version": "1.0.0",
+    "target_system": "Schema検証用対象システム",
+    "target_maturity": "40_of_100_concept_candidate",
+    "sysml_version_target": "1.7",
+    "source_of_truth_status": "candidate_semantic_source_of_truth",
+    "generated_at": null,
+    "language": "ja",
+    "experiment_id": "compliance-integrated-se-prompt",
+    "compliance_schema_version": "0.3.1",
+    "external_authoritative_sources_remain_external": true
+  },
+  "source_fragments": [],
+  "scope": {
+    "target_system": "Schema検証用対象システム",
+    "purpose": "Compliance Layerの構造を検証する",
+    "problem_or_opportunity": "法規から工学要求までの意味境界を保つ",
+    "included": [
+      "概念設計"
+    ],
+    "excluded": [
+      "正式な適合判定"
+    ],
+    "external_systems": [],
+    "operational_environment": [
+      "検証環境"
+    ],
+    "lifecycle_scope": [
+      "concept",
+      "development"
+    ],
+    "success_measure_refs": [],
+    "assumption_refs": [],
+    "scope_alternatives": []
+  },
+  "glossary": [],
+  "stakeholders": [],
+  "concerns": [],
+  "needs": [],
+  "measures": [],
+  "use_cases": [],
+  "scenarios": [],
+  "requirements": [
+    {
+      "id": "REQ-0001",
+      "display_id": "REQ-0001",
+      "name": "安全状態移行要求",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "検証用Obligationを対象システムの工学要求へ投影する",
+      "tags": [
+        "compliance-derived"
+      ],
+      "statement": "危険状態を検出したとき、対象システムは、安全状態へ移行する。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "対象システム",
+      "condition": "危険状態を検出した場合",
+      "trigger": "危険状態を検出したとき",
+      "required_response_or_property": "安全状態へ移行する",
+      "object": "対象システム",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [],
+      "parent_requirement_refs": [],
+      "derivation_basis": "OBL-0001からの工学投影候補",
+      "allocation_candidate_refs": [],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [],
+      "acceptance_criteria_candidate": "定義した危険状態ごとに安全状態への移行を観測できる",
+      "derivation_sources": [
+        {
+          "source_ref": "OBL-0001",
+          "source_kind": "compliance_obligation",
+          "derivation_kind": "projected",
+          "projection_ref": "EPR-0001",
+          "rationale": "製品に実装する応答へ変換する"
+        }
+      ]
+    }
+  ],
+  "behaviors": [],
+  "structures": [],
+  "interfaces": [],
+  "constraints": [],
+  "allocations": [],
+  "verification_cases": [],
+  "validation_cases": [],
+  "risks": [],
+  "hazards": [],
+  "failure_modes": [],
+  "assumptions": [],
+  "alternatives": [],
+  "decisions": [],
+  "relations": [],
+  "findings": [],
+  "quality_summary": {
+    "overall_result": "not_performed",
+    "checks": [],
+    "not_performed": [
+      "実際のAI生成品質評価"
+    ]
+  },
+  "language_quality": {
+    "profile_id": "ja_se_technical_writing_v1",
+    "profile_version": "1.0.0",
+    "requirement_modal_style": "controlled_declarative",
+    "checked": false,
+    "finding_refs": []
+  },
+  "projection_targets": [],
+  "compliance": {
+    "scope": {
+      "jurisdictions": [
+        "EXAMPLE-JURISDICTION"
+      ],
+      "markets": [
+        "EXAMPLE-MARKET"
+      ],
+      "product_classifications": [
+        "EXAMPLE-CLASS"
+      ],
+      "intended_uses": [
+        "Schema検証"
+      ],
+      "configuration_refs": [
+        "CFG-0001"
+      ],
+      "lifecycle_stages": [
+        "development"
+      ],
+      "assessed_as_of": "2026-08-21",
+      "assumption_refs": [],
+      "scope_limitations": [
+        "架空の公開可能な検証用原典を使用する"
+      ]
+    },
+    "authorities": [
+      {
+        "id": "AUTH-0001",
+        "name": "検証用発行主体",
+        "authority_type": "standards_body",
+        "jurisdictions": [
+          "EXAMPLE-JURISDICTION"
+        ],
+        "official_locator": null,
+        "verification_status": "provided_by_user",
+        "notes": "実在する組織を表さない"
+      }
+    ],
+    "sources": [
+      {
+        "id": "SRC-0001",
+        "title": "検証用規範文書",
+        "identifier": "EXAMPLE-001",
+        "source_type": "standard",
+        "authority_refs": [
+          "AUTH-0001"
+        ],
+        "edition": "1",
+        "publication_date": "2026-01-01",
+        "effective_from": "2026-01-01",
+        "effective_to": null,
+        "status": "active",
+        "official_locator": null,
+        "language": "ja",
+        "supersedes_ref": null,
+        "verification_status": "provided_by_user",
+        "text_storage_policy": "excerpt_only",
+        "provenance": "Schema検証fixture",
+        "applicability_version_state": "unconfirmed"
+      }
+    ],
+    "provisions": [
+      {
+        "id": "PRV-0001",
+        "source_ref": "SRC-0001",
+        "locator": {
+          "canonical": "5.2",
+          "article": null,
+          "section": "5.2",
+          "paragraph": null,
+          "table": null,
+          "annex": null
+        },
+        "heading": "安全状態",
+        "source_fragment_refs": [],
+        "excerpt": "危険状態に関する検証用の短い例文",
+        "text_storage_policy": "excerpt_only",
+        "valid_from": "2026-01-01",
+        "valid_to": null,
+        "verification_status": "provided_by_user"
+      }
+    ],
+    "normative_statements": [
+      {
+        "id": "NRM-0001",
+        "provision_refs": [
+          "PRV-0001"
+        ],
+        "statement_kind": "normative",
+        "modality": "obligation",
+        "bearer": "製造者",
+        "condition": "危険状態が発生した場合",
+        "action_or_property": "対象システムを安全状態へ移行させる",
+        "object": "対象システム",
+        "limit": null,
+        "deadline": null,
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "検証用例文の原子化候補",
+        "alternative_interpretation_refs": [],
+        "origin": "user_explicit",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      }
+    ],
+    "applicability_assessments": [
+      {
+        "id": "APP-0001",
+        "normative_statement_refs": [
+          "NRM-0001"
+        ],
+        "assessment_context": {
+          "jurisdiction": "EXAMPLE-JURISDICTION",
+          "market": "EXAMPLE-MARKET",
+          "product_classification": "EXAMPLE-CLASS",
+          "intended_use": "Schema検証",
+          "configuration_ref": "CFG-0001",
+          "lifecycle_stage": "development"
+        },
+      "decision": "uncertain",
+      "human_confirmation_state": "pending",
+      "confirmed_by_ref": null,
+      "confirmed_at": null,
+        "binding_basis": "voluntary_adoption",
+        "basis": "検証用に自主採用を仮定した候補",
+        "assumption_refs": [],
+        "interpretation_refs": [],
+        "assessed_as_of": "2026-08-21",
+        "review_triggers": [
+          "対象市場または製品分類を変更した場合",
+          "原典版を変更した場合"
+        ],
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      }
+    ],
+    "obligations": [
+      {
+        "id": "OBL-0001",
+        "name": "危険状態時の安全状態移行義務",
+        "normative_statement_refs": [
+          "NRM-0001"
+        ],
+        "applicability_refs": [
+          "APP-0001"
+        ],
+        "obligated_party": "製造者",
+        "object_of_conformity": "対象システム",
+        "target_kind": "system",
+        "obligation_kind": "mandatory",
+        "condition": "危険状態が発生した場合",
+        "required_outcome": "対象システムが安全状態へ移行する",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      }
+    ],
+    "engineering_projections": [
+      {
+        "id": "EPR-0001",
+        "obligation_refs": [
+          "OBL-0001"
+        ],
+        "projection_kind": "product_requirement",
+        "target_level": "L2",
+        "target_refs": [
+          "REQ-0001"
+        ],
+        "derivation_basis": "対象システムへ必要な応答を課す",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-0002",
+        "obligation_refs": [
+          "OBL-0001"
+        ],
+        "projection_kind": "evidence_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "EVR-0001"
+        ],
+        "derivation_basis": "安全状態移行を評価可能にする",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      }
+    ],
+    "evidence_requirements": [
+      {
+        "id": "EVR-0001",
+        "name": "安全状態移行の試験証拠要求",
+        "target_refs": [
+          "OBL-0001",
+          "REQ-0001"
+        ],
+        "evidence_type": "test_report",
+        "required_properties": [
+          "試験対象構成を識別できる",
+          "合否基準と結果を記録する"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "unknown",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      }
+    ],
+    "evidence_items": [],
+    "conformity_schemes": [],
+    "assessment_activities": [
+      {
+        "id": "AST-0001",
+        "activity_type": "product_test",
+        "scheme_ref": null,
+        "target_obligation_refs": [
+          "OBL-0001"
+        ],
+        "verification_case_ref": null,
+        "assessment_subject_ref": "CFG-0001",
+        "method": "test",
+        "responsible_party_ref": null,
+        "independence": "unknown",
+        "planned_evidence_requirement_refs": [
+          "EVR-0001"
+        ],
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true,
+        "configuration_refs": [
+          "CFG-0001"
+        ]
+      }
+    ],
+    "assessment_results": [
+      {
+        "id": "ASR-0001",
+        "assessment_activity_ref": "AST-0001",
+        "assessed_obligation_refs": [
+          "OBL-0001"
+        ],
+        "evidence_item_refs": [],
+        "outcome": "not_performed",
+        "finding_refs": [],
+        "assessed_at": null,
+        "assessor_ref": null,
+        "human_confirmation_state": "pending",
+        "rationale": "Schema検証fixtureでは評価を実施しない",
+        "configuration_ref": "CFG-0001",
+        "validity_state": "active",
+        "valid_from": null,
+        "valid_to": null,
+        "invalidation_reason": null
+      }
+    ],
+    "attestations": [],
+    "mappings": [],
+    "summary": {
+      "model_quality_result": "not_performed",
+      "assurance_outcome": "not_performed",
+      "not_a_compliance_approval": true,
+      "reviewer_gates": {
+        "generator": "not_performed",
+        "compliance": "not_performed",
+        "se": "not_performed",
+        "assurance": "not_performed",
+        "meta_judge": "not_performed"
+      },
+      "checks": [],
+      "source_limitations": [
+        "実在原典を使用していない"
+      ],
+      "uncertain_applicability_refs": [
+        "APP-0001"
+      ],
+      "obligation_without_projection_refs": [],
+      "mandatory_without_evidence_requirement_refs": [],
+      "not_performed_assessment_refs": [
+        "ASR-0001"
+      ]
+    },
+    "regulatory_discovery_log": [
+      {
+        "id": "RDL-0001",
+        "market": "EXAMPLE-MARKET",
+        "configuration_ref": "CFG-0001",
+        "official_registers_checked": [
+          "https://example.invalid/official-register"
+        ],
+        "queries": [
+          "fixture applicable rule"
+        ],
+        "candidate_source_refs": [
+          "SRC-0001"
+        ],
+        "query_log_state": "complete",
+        "disposition": "adopted_candidate",
+        "disposition_reason": "Schemaと意味検査用の合成候補Sourceを採用した。",
+        "searched_at": "2026-08-21T12:00:00+09:00",
+        "human_inventory_confirmation_state": "pending",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      }
+    ]
+  },
+  "configurations": [
+    {
+      "id": "CFG-0001",
+      "name": "代表fixture対象構成候補",
+      "version": null,
+      "baseline_state": "outside_baseline",
+      "scope_description": "本実験のQ&Aから仮定した対象構成。BOM、ソフトウェア版および製造版は未確認。",
+      "artifact_locator": null,
+      "integrity_hash": null,
+      "validity_state": "active",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    }
+  ],
+  "parties_or_roles": []
+}

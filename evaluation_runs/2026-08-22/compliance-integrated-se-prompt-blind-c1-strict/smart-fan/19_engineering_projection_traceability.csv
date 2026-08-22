@@ -1,0 +1,7 @@
+﻿projection_id,obligation_id,projection_kind,target_level,target_id,derivation_basis,status,confidence,human_confirmation_required
+EPR-0001,OBL-0001,product_requirement,L2,REQ-0001,届出事業者の義務を製品の技術基準適合設計候補へ投影する。,candidate,low,true
+EPR-0002,OBL-0001,evidence_requirement,cross_level,EVR-0001,技術基準適合を評価する試験記録を計画する。,candidate,low,true
+EPR-0003,OBL-0002,product_requirement,L2,REQ-0002,表示義務を本体表示要求候補へ投影する。,candidate,medium,true
+EPR-0004,OBL-0002,evidence_requirement,cross_level,EVR-0002,本体表示の検査記録を計画する。,candidate,medium,true
+EPR-0005,OBL-0003,product_requirement,L2,REQ-0003,Wi-Fi無線局の条件を無線設備表示の確認可能性へ投影する。,candidate,low,true
+EPR-0006,OBL-0003,evidence_requirement,cross_level,EVR-0003,無線設備と表示の照合記録を計画する。,candidate,low,true

@@ -1,0 +1,733 @@
+{
+  "meta": {
+    "artifact_type": "hierarchical_se_model_candidate",
+    "schema_version": "1.1.0",
+    "target_system": "保全依頼管理システム",
+    "target_maturity": "40_of_100_planning_requirements_candidate",
+    "sysml_version_target": "1.7",
+    "source_of_truth_status": "candidate_semantic_source_of_truth",
+    "experiment_id": "structured-document-se-prompt",
+    "planning_requirements_schema_version": "0.1.0",
+    "documents_are_projections": true,
+    "language": "ja-JP"
+  },
+  "source_fragments": [
+    {
+      "id": "SRC-0001",
+      "origin": "user_explicit",
+      "content_summary": "保全依頼の受付と進捗確認を一元化したい。",
+      "verbatim_excerpt": null,
+      "source_locator": "user_input",
+      "in_scope": true
+    }
+  ],
+  "scope": {
+    "target_system": "保全依頼管理システム",
+    "purpose": "保全依頼の受付と進捗確認を一元化する",
+    "problem_or_opportunity": "電話とメールに分散した依頼の状況を把握しにくい",
+    "included": [
+      "保全依頼登録",
+      "進捗確認",
+      "通知"
+    ],
+    "excluded": [
+      "設備の直接制御"
+    ],
+    "external_systems": [
+      "認証サービス"
+    ],
+    "operational_environment": [
+      "設備運用者と保全担当者が業務で利用する"
+    ],
+    "lifecycle_scope": [
+      "concept",
+      "utilization",
+      "support"
+    ],
+    "success_measure_refs": [
+      "KPI-0001"
+    ],
+    "assumption_refs": [
+      "ASM-0001"
+    ]
+  },
+  "glossary": [
+    {
+      "term": "保全依頼",
+      "definition": "設備の点検または修理を要求する業務情報",
+      "aliases": [
+        "修理依頼"
+      ],
+      "origin": "user_explicit"
+    }
+  ],
+  "stakeholders": [
+    {
+      "id": "STK-0001",
+      "name": "設備運用者",
+      "level": "L1",
+      "origin": "user_explicit",
+      "claim_state": "stated",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "high",
+      "evidence_refs": [
+        "SRC-0001"
+      ],
+      "rationale": "依頼を登録する利用者であるため",
+      "category": "end_user",
+      "applicability": "applicable",
+      "applicability_rationale": "対象業務の実施者として明示されている",
+      "concern_refs": [
+        "CON-0001"
+      ],
+      "need_refs": [
+        "NEED-0001"
+      ]
+    },
+    {
+      "id": "STK-0002",
+      "name": "保全担当者",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "依頼を処理し進捗を更新する役割候補であるため",
+      "category": "maintainer_or_service",
+      "applicability": "uncertain",
+      "applicability_rationale": "業務分担の確認が必要である",
+      "concern_refs": [
+        "CON-0001"
+      ],
+      "need_refs": [
+        "NEED-0001"
+      ]
+    }
+  ],
+  "concerns": [
+    {
+      "id": "CON-0001",
+      "name": "依頼状況の可視性",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "受付と進捗確認を一元化する目的から導出した"
+    }
+  ],
+  "needs": [
+    {
+      "id": "NEED-0001",
+      "name": "保全依頼の状況を把握する",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [
+        "SRC-0001"
+      ],
+      "rationale": "受付と進捗確認の一元化から導出した",
+      "statement": "設備運用者と保全担当者は、保全依頼の受付と処理状況を確認したい。",
+      "stakeholder_refs": [
+        "STK-0001",
+        "STK-0002"
+      ],
+      "concern_refs": [
+        "CON-0001"
+      ],
+      "expected_value": "依頼状況を共有できる",
+      "success_measure_refs": [
+        "KPI-0001"
+      ],
+      "validation_case_refs": [
+        "VAL-0001"
+      ]
+    }
+  ],
+  "measures": [
+    {
+      "id": "KPI-0001",
+      "name": "保全依頼受付所要時間",
+      "level": "L0",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "受付効率を確認する候補指標であるため",
+      "measure_type": "business_value",
+      "observable": "依頼登録から受付完了表示までの時間",
+      "unit": "min",
+      "target_or_range": null,
+      "measurement_context": "現状値と目標値は企画レビューで確認する"
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "UC-0001",
+      "name": "保全依頼を登録する",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "対象範囲に保全依頼登録を含むため"
+    }
+  ],
+  "scenarios": [],
+  "requirements": [
+    {
+      "id": "REQ-0001",
+      "name": "保全依頼受付",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [
+        "SRC-0001"
+      ],
+      "rationale": "設備運用者が受付完了を確認できるようにするため",
+      "statement": "有効な保全依頼を受信したとき、保全依頼管理システムは、受付結果を画面に表示する。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "保全依頼管理システム",
+      "condition": null,
+      "trigger": "有効な保全依頼を受信する",
+      "required_response_or_property": "受付結果を画面に表示する",
+      "object": "受付結果",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "NEED-0001"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "NEED-0001から導出した候補要求",
+      "allocation_candidate_refs": [],
+      "verification_method_candidate": "demonstration",
+      "verification_case_refs": [
+        "VER-0001"
+      ],
+      "acceptance_criteria_candidate": "受付結果が表示されること",
+      "requirement_category": "functional",
+      "screen_refs": [
+        "SCR-0001"
+      ],
+      "report_refs": [],
+      "api_contract_refs": [
+        "API-0001"
+      ],
+      "data_model_refs": [
+        "DATA-0001"
+      ],
+      "acceptance_criteria_refs": [
+        "ACC-0001"
+      ],
+      "document_view_refs": [
+        "VIEW-0002"
+      ]
+    }
+  ],
+  "behaviors": [],
+  "structures": [],
+  "interfaces": [],
+  "constraints": [],
+  "allocations": [],
+  "verification_cases": [
+    {
+      "id": "VER-0001",
+      "name": "保全依頼受付確認",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "REQ-0001の表示結果を確認するため",
+      "target_requirement_refs": [
+        "REQ-0001"
+      ],
+      "objective": "有効な依頼の受付結果を確認する",
+      "method": "demonstration",
+      "item_under_verification": "受付結果表示",
+      "configuration": null,
+      "preconditions": [
+        "利用者が保全依頼登録画面を利用できる"
+      ],
+      "environment": [
+        "試験用の保全依頼管理環境"
+      ],
+      "stimulus_or_input": [
+        "有効な保全依頼"
+      ],
+      "observable": "受付結果が画面に表示されること",
+      "measurement_method": "目視確認",
+      "acceptance_criteria_candidate": "受付結果が表示されること",
+      "required_evidence": [],
+      "responsible_role_ref": "STK-0002",
+      "lifecycle_stage": "development"
+    }
+  ],
+  "validation_cases": [
+    {
+      "id": "VAL-0001",
+      "name": "依頼状況共有の妥当性確認",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "NEED-0001の価値を利用場面で確認するため",
+      "target_need_refs": [
+        "NEED-0001"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [
+        "UC-0001"
+      ],
+      "representative_stakeholder_refs": [
+        "STK-0001",
+        "STK-0002"
+      ],
+      "operational_context": "設備運用者が依頼を登録し、保全担当者が処理状況を更新する",
+      "scenario_refs": [],
+      "success_measure_refs": [
+        "KPI-0001"
+      ],
+      "acceptance_criteria_candidate": null
+    }
+  ],
+  "risks": [],
+  "hazards": [],
+  "failure_modes": [],
+  "assumptions": [
+    {
+      "id": "ASM-0001",
+      "name": "利用者が認証できる",
+      "level": "L1",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "利用者識別が必要になる可能性があるため",
+      "statement": "設備運用者と保全担当者は認証サービスを利用できる。",
+      "reason_needed": "利用者別の依頼情報を扱う候補であるため",
+      "affected_refs": [
+        "SCR-0001",
+        "API-0001"
+      ],
+      "validation_method": "業務・セキュリティ担当者への確認",
+      "revision_condition": "認証方式または利用者区分が決定されたとき",
+      "human_confirmation_required": true
+    }
+  ],
+  "alternatives": [],
+  "decisions": [],
+  "relations": [
+    {
+      "id": "REL-0001",
+      "relation_type": "derives_from",
+      "source_id": "REQ-0001",
+      "target_id": "NEED-0001",
+      "direction_semantics": "要求はニーズから導出される",
+      "origin": "ai_context_inference",
+      "confidence": "medium",
+      "validity_state": "active",
+      "rationale": "REQ-0001の導出元を示す"
+    },
+    {
+      "id": "REL-0002",
+      "relation_type": "realizes",
+      "source_id": "REQ-0001",
+      "target_id": "SCR-0001",
+      "direction_semantics": "画面は要求の実現候補である",
+      "origin": "ai_context_inference",
+      "confidence": "medium",
+      "validity_state": "active",
+      "rationale": "REQ-0001の画面実現候補を示す"
+    },
+    {
+      "id": "REL-0003",
+      "relation_type": "verifies",
+      "source_id": "VER-0001",
+      "target_id": "REQ-0001",
+      "direction_semantics": "検証ケースは要求を検証する",
+      "origin": "ai_context_inference",
+      "confidence": "medium",
+      "validity_state": "active",
+      "rationale": "REQ-0001の検証候補を示す"
+    }
+  ],
+  "findings": [],
+  "quality_summary": {
+    "overall_result": "pass_with_provisional_assumption",
+    "checks": [
+      {
+        "check_id": "Q-PR-06",
+        "name": "document_views参照",
+        "result": "pass",
+        "evidence": "代表モデルのビュー参照は候補IDを使用している",
+        "affected_refs": [
+          "VIEW-0001",
+          "VIEW-0002"
+        ],
+        "finding_refs": []
+      }
+    ],
+    "not_performed": [
+      "OpenAPI仕様lint",
+      "Word/PDFレンダリング"
+    ]
+  },
+  "planning": {
+    "business_context": {
+      "background": "現行業務では保全依頼が電話とメールに分散している。",
+      "problem_or_opportunity": "依頼の受付状況と処理状況を一元的に把握しにくい。",
+      "target_service_or_business": "設備保全依頼業務",
+      "value_proposition": "依頼受付と進捗確認を一元化する。"
+    },
+    "objectives": [
+      {
+        "id": "OBJ-0001",
+        "name": "受付所要時間を短縮する",
+        "level": "L0",
+        "origin": "ai_context_inference",
+        "claim_state": "inferred",
+        "decision_state": "proposed",
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "confidence": "medium",
+        "evidence_refs": [
+          "SRC-0001"
+        ],
+        "rationale": "受付の一元化による事業目的候補であるため",
+        "statement": "保全依頼の受付所要時間を短縮する。",
+        "kpi_refs": [
+          "KPI-0001"
+        ],
+        "stakeholder_refs": [
+          "STK-0001"
+        ],
+        "requirement_refs": [
+          "REQ-0001"
+        ]
+      }
+    ],
+    "target_user_refs": [
+      "STK-0001",
+      "STK-0002"
+    ],
+    "market_analysis": {
+      "analysis_state": "not_performed",
+      "alternatives": [],
+      "evidence_refs": [],
+      "notes": "現行運用継続、既存サービス導入、個別開発の比較は未実施。"
+    },
+    "cost_estimate": {
+      "currency": "JPY",
+      "low": null,
+      "base": null,
+      "high": null,
+      "value_state": "tbd",
+      "estimation_basis": "費用見積条件が未指定"
+    },
+    "schedule": {
+      "value_state": "tbd",
+      "milestones": []
+    },
+    "governance": {
+      "sponsor_ref": null,
+      "decision_process": "企画レビューで確認する",
+      "approval_state": "proposed"
+    }
+  },
+  "screens": [
+    {
+      "id": "SCR-0001",
+      "name": "保全依頼登録画面",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "REQ-0001の画面実現候補であるため",
+      "kind": "screen",
+      "screen_type": "input",
+      "purpose": "保全依頼を登録する",
+      "actor_refs": [
+        "STK-0001"
+      ],
+      "requirement_refs": [
+        "REQ-0001"
+      ],
+      "field_candidates": [
+        {
+          "name": "依頼内容",
+          "value_type": "text",
+          "required_state": "required"
+        }
+      ],
+      "transition_refs": []
+    }
+  ],
+  "reports": [
+    {
+      "id": "RPT-0001",
+      "name": "保全依頼進捗一覧",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "進捗確認を支援する出力候補であるため",
+      "kind": "report",
+      "report_type": "list",
+      "purpose": "保全依頼の進捗を確認する",
+      "audience_refs": [
+        "STK-0002"
+      ],
+      "data_refs": [
+        "DATA-0001"
+      ],
+      "requirement_refs": []
+    }
+  ],
+  "api_contracts": [
+    {
+      "id": "API-0001",
+      "name": "保全依頼API",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "画面から依頼を登録する契約候補であるため",
+      "kind": "api_contract",
+      "style": "openapi",
+      "spec_version": null,
+      "spec_ref": null,
+      "operation_refs": [],
+      "requirement_refs": [
+        "REQ-0001"
+      ],
+      "contract_status": "candidate"
+    }
+  ],
+  "data_models": [
+    {
+      "id": "DATA-0001",
+      "name": "保全依頼論理データモデル",
+      "level": "L3",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "依頼情報を保持する構造候補であるため",
+      "kind": "data_model",
+      "model_kind": "logical",
+      "entity_candidates": [
+        {
+          "name": "保全依頼",
+          "attributes": [
+            {
+              "name": "依頼内容",
+              "value_type": "text"
+            }
+          ]
+        }
+      ],
+      "relationship_candidates": [],
+      "requirement_refs": [
+        "REQ-0001"
+      ]
+    }
+  ],
+  "operations_maintenance": {
+    "operational_requirement_refs": [],
+    "maintenance_requirement_refs": [],
+    "migration_requirement_refs": [],
+    "training_requirement_refs": [],
+    "service_level_candidates": [],
+    "status": "candidate"
+  },
+  "security": {
+    "security_requirements_refs": [],
+    "threat_candidates": [],
+    "control_candidates": [],
+    "verification_refs": [],
+    "human_review_state": "pending"
+  },
+  "acceptance_criteria": [
+    {
+      "id": "ACC-0001",
+      "name": "保全依頼受付の受入条件",
+      "level": "L2",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "REQ-0001の受入判定候補であるため",
+      "kind": "acceptance_criterion",
+      "requirement_refs": [
+        "REQ-0001"
+      ],
+      "preconditions": [
+        "利用者が保全依頼登録画面を利用できる"
+      ],
+      "event": "有効な保全依頼を送信する",
+      "expected_outcome": "受付結果が表示される",
+      "pass_rule": "VER-0001が合格すること",
+      "verification_refs": [
+        "VER-0001"
+      ]
+    }
+  ],
+  "document_views": [
+    {
+      "id": "VIEW-0001",
+      "name": "保全依頼管理企画書ビュー",
+      "level": "L0",
+      "origin": "user_explicit",
+      "claim_state": "stated",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "high",
+      "evidence_refs": [],
+      "rationale": "企画書を意味モデルから投影するため",
+      "kind": "document_view",
+      "view_kind": "planning_document",
+      "title": "保全依頼管理システム 企画書",
+      "audience": "企画レビュー参加者",
+      "section_order": [
+        {
+          "section_id": "PLAN-01",
+          "title": "事業背景と目的",
+          "order": 1,
+          "element_refs": [
+            "OBJ-0001",
+            "NEED-0001"
+          ]
+        },
+        {
+          "section_id": "PLAN-02",
+          "title": "対象範囲",
+          "order": 2,
+          "element_refs": [
+            "REQ-0001"
+          ]
+        }
+      ],
+      "element_refs": [
+        "OBJ-0001",
+        "KPI-0001",
+        "NEED-0001",
+        "REQ-0001"
+      ],
+      "render_formats": [
+        "markdown",
+        "html",
+        "docx",
+        "pdf"
+      ],
+      "source_of_truth_ref": "10_se_model.json"
+    },
+    {
+      "id": "VIEW-0002",
+      "name": "保全依頼管理要件定義書ビュー",
+      "level": "L2",
+      "origin": "user_explicit",
+      "claim_state": "stated",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "high",
+      "evidence_refs": [],
+      "rationale": "要件定義書を意味モデルから投影するため",
+      "kind": "document_view",
+      "view_kind": "requirements_document",
+      "title": "保全依頼管理システム 要件定義書",
+      "audience": "要求・設計レビュー参加者",
+      "section_order": [
+        {
+          "section_id": "REQ-01",
+          "title": "機能要件",
+          "order": 1,
+          "element_refs": [
+            "REQ-0001",
+            "SCR-0001",
+            "API-0001",
+            "DATA-0001"
+          ]
+        },
+        {
+          "section_id": "REQ-02",
+          "title": "検証と受入条件",
+          "order": 2,
+          "element_refs": [
+            "VER-0001",
+            "ACC-0001"
+          ]
+        }
+      ],
+      "element_refs": [
+        "REQ-0001",
+        "SCR-0001",
+        "API-0001",
+        "DATA-0001",
+        "VER-0001",
+        "ACC-0001"
+      ],
+      "render_formats": [
+        "markdown",
+        "html",
+        "docx",
+        "pdf"
+      ],
+      "source_of_truth_ref": "10_se_model.json"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "contract_name": "structured_planning_requirements_candidate_bundle_extension",
+  "contract_version": "0.1.0",
+  "extends": "../hierarchical-se-prompt/03_OUTPUT_CONTRACT.json",
+  "source_of_truth_extension": {
+    "file": "10_se_model.json",
+    "schema": "schemas/planning_requirements_se_model.schema.json",
+    "required_sections": [
+      "planning",
+      "screens",
+      "reports",
+      "api_contracts",
+      "data_models",
+      "operations_maintenance",
+      "security",
+      "acceptance_criteria",
+      "document_views"
+    ],
+    "external_api_specs_remain_external": true
+  },
+  "required_files": [
+    {
+      "path": "17_planning_document.md",
+      "format": "markdown",
+      "purpose": "planning and business view projected from 10_se_model.json",
+      "required_sections": [
+        "事業背景",
+        "目的とKPI",
+        "対象ユーザー",
+        "対象範囲",
+        "代替案・市場分析",
+        "費用とスケジュール",
+        "体制と未確定事項"
+      ]
+    },
+    {
+      "path": "18_requirements_document.md",
+      "format": "markdown",
+      "purpose": "information-system requirements view projected from 10_se_model.json",
+      "required_sections": [
+        "文書の正本性",
+        "業務要件",
+        "機能要件",
+        "非機能・セキュリティ要件",
+        "画面・帳票・API・データ",
+        "検証と受入条件",
+        "未確定事項"
+      ]
+    },
+    {
+      "path": "19_document_view_traceability.csv",
+      "format": "csv",
+      "purpose": "document view sections and referenced canonical element IDs",
+      "required_columns": [
+        "view_id",
+        "section_id",
+        "order",
+        "element_id",
+        "element_kind",
+        "source_of_truth",
+        "status"
+      ]
+    },
+    {
+      "path": "20_document_view_validation.md",
+      "format": "markdown",
+      "purpose": "projection checks for view references and value consistency",
+      "required_sections": [
+        "正本参照",
+        "ビュー参照整合性",
+        "未指定値の保持",
+        "重複事実の検査",
+        "未実施検査"
+      ]
+    }
+  ],
+  "validation_extension": {
+    "composed_schema_validation_required": true,
+    "unique_id_check_across_added_namespaces": true,
+    "requirement_cross_reference_check": true,
+    "document_view_reference_check": true,
+    "unknown_value_preservation_check": true,
+    "api_spec_external_reference_check": true,
+    "no_false_approval_claim": true
+  },
+  "final_chat_response_extension": {
+    "include": [
+      "planning_document_link",
+      "requirements_document_link",
+      "document_view_traceability_link",
+      "unresolved_planning_items",
+      "not_performed_rendering_checks"
+    ]
+  }
+}

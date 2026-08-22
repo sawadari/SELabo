@@ -1,0 +1,6 @@
+﻿projection_id,obligation_id,projection_kind,target_level,target_id,derivation_basis,status,confidence,human_confirmation_required
+EPR-CSPSA-0001,OBL-CSPSA-0001,process_requirement,cross_level,PTGT-0001,報告を事業者プロセスへ投影する,candidate,low,true
+EPR-CSPSA-0002,OBL-CSPSA-0001,documentation_requirement,cross_level,PTGT-0002,報告追跡記録へ投影する,candidate,low,true
+EPR-CSPSA-0003,OBL-CSPSA-0001,evidence_requirement,cross_level,EVR-CSPSA-0001,事故報告記録を証拠要求へ投影する,candidate,low,true
+EPR-DENAN-0001,OBL-DENAN-0001,constraint_requirement,L3,REQ-0004,適用確認後の製品制約候補,candidate,low,true
+EPR-DENAN-0002,OBL-DENAN-0001,evidence_requirement,cross_level,EVR-DENAN-0001,技術基準判定根拠を要求する,candidate,low,true

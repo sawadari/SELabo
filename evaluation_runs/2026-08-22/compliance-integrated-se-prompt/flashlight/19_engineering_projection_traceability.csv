@@ -1,0 +1,7 @@
+﻿projection_id,obligation_id,projection_kind,target_level,target_id,derivation_basis,status,confidence,human_confirmation_required
+EPR-FL-CSPSA-EVIDENCE-01,OBL-FL-CSPSA-01,evidence_requirement,cross_level,EVR-FL-CSPSA-REPORT-01,重大製品事故の識別、認知日、報告日および提出内容を追跡可能にする,candidate,medium,true
+EPR-FL-CSPSA-PROCESS-01,OBL-FL-CSPSA-01,process_requirement,cross_level,PROC-FL-CSPSA-REPORTING,事故報告は事業者プロセスおよび記録の義務で、懐中電灯の製品要求ではない,candidate,medium,true
+EPR-FL-DENAN-EVIDENCE-01,OBL-FL-DENAN-01,evidence_requirement,cross_level,EVR-FL-DENAN-TECH-01,対象技術基準の判定根拠をレビュー可能にする,candidate,low,true
+EPR-FL-DENAN-EVIDENCE-02,OBL-FL-DENAN-02,evidence_requirement,cross_level,EVR-FL-DENAN-INSPECT-01,自主検査記録に必要な属性を将来証拠要求として分離する,candidate,medium,true
+EPR-FL-DENAN-PROCESS-01,OBL-FL-DENAN-02,process_requirement,cross_level,PROC-FL-DENAN-INSPECTION,自主検査と記録保存は対象システムの挙動要求ではない,candidate,medium,true
+EPR-FL-DENAN-PRODUCT-01,OBL-FL-DENAN-01,assurance_requirement,cross_level,ASSURE-FL-DENAN-CONFORMITY,具体的技術基準が未確定のため、製品要求ではなく評価状態と証拠の管理要求へ投影する。,candidate,low,true

@@ -1,0 +1,5 @@
+﻿projection_id,obligation_id,projection_kind,target_level,target_id,derivation_basis,status,confidence,human_confirmation_required
+EPR-0001,OBL-0001,product_requirement,L2,REQ-0001,届出事業者の技術基準適合義務を製品要求候補へ投影する。,candidate,low,true
+EPR-0002,OBL-0001,evidence_requirement,cross_level,EVR-0001,技術基準適合を評価する試験記録を計画する。,candidate,low,true
+EPR-0003,OBL-0002,process_requirement,cross_level,PTR-0001,法定報告義務を事業者の支援プロセス要求へ投影する。,candidate,low,true
+EPR-0004,OBL-0002,evidence_requirement,cross_level,EVR-0002,期限、内容及び提出先を確認できる報告記録を計画する。,candidate,low,true

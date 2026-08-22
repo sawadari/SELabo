@@ -1,0 +1,4128 @@
+{
+  "meta": {
+    "artifact_type": "hierarchical_se_model_candidate",
+    "schema_version": "1.0.0",
+    "target_system": "モバイルバッテリー",
+    "target_maturity": "40_of_100_concept_candidate",
+    "sysml_version_target": "1.7",
+    "source_of_truth_status": "candidate_semantic_source_of_truth",
+    "generated_at": null,
+    "language": "ja",
+    "experiment_id": "compliance-integrated-se-prompt",
+    "compliance_schema_version": "0.3.1",
+    "external_authoritative_sources_remain_external": true
+  },
+  "source_fragments": [
+    {
+      "id": "MBSRCF-0001",
+      "origin": "assistant_prior_unconfirmed",
+      "content_summary": "2026-08-21のモバイルバッテリー合成Q&AとSE候補。容量、出力、電池化学系、航空輸送条件は未決定。",
+      "verbatim_excerpt": null,
+      "source_locator": "evaluation_runs/2026-08-21/mobile-battery/chat_and_candidate.md",
+      "in_scope": true
+    },
+    {
+      "id": "MBSRCF-0002",
+      "origin": "assistant_prior_unconfirmed",
+      "content_summary": "独立ReviewerがNeed ID欠落、充電側保護、損傷品、輸送・法規Traceの欠落をHard Blockerとして指摘した。",
+      "verbatim_excerpt": null,
+      "source_locator": "evaluation_runs/2026-08-21/mobile-battery/independent_review.md",
+      "in_scope": true
+    }
+  ],
+  "scope": {
+    "target_system": "モバイルバッテリー",
+    "purpose": "外出先または停電時に携帯機器へ電力を供給する",
+    "problem_or_opportunity": "電池安全、販売前の適合確認、輸送時の扱いをSE初稿へ追跡可能に統合する",
+    "included": [
+      "受電",
+      "蓄電",
+      "携帯機器への給電",
+      "状態表示",
+      "電池保護",
+      "表示・取扱情報の候補"
+    ],
+    "excluded": [
+      "接続機器内部の充電制御",
+      "正式な法的適用判断",
+      "規格適合または認証取得の主張",
+      "航空運送事業者の運航手順"
+    ],
+    "external_systems": [
+      "外部充電器",
+      "携帯機器",
+      "航空運送事業者",
+      "販売・輸入プロセス"
+    ],
+    "operational_environment": [
+      "日本市場候補",
+      "屋内外の携帯利用",
+      "航空旅客手荷物は候補シナリオ"
+    ],
+    "lifecycle_scope": [
+      "concept",
+      "development",
+      "production",
+      "utilization",
+      "retirement"
+    ],
+    "success_measure_refs": [],
+    "assumption_refs": [
+      "MBASM-0001",
+      "MBASM-0002",
+      "MBASM-0003"
+    ],
+    "scope_alternatives": []
+  },
+  "glossary": [
+    {
+      "term": "モバイルバッテリー",
+      "definition": "リチウムイオン蓄電池を内蔵し、他の携帯機器へ電力を供給する携帯用製品の候補。電安法上の分類は未確定。",
+      "aliases": [
+        "パワーバンク"
+      ],
+      "origin": "ai_context_inference"
+    }
+  ],
+  "stakeholders": [
+    {
+      "id": "MBSTK-0001",
+      "display_id": "MB-STK-01",
+      "name": "携帯利用者",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "utilization",
+      "domain": "human",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "B0の利用者候補を独立Needへ接続する",
+      "category": "end_user",
+      "applicability": "uncertain",
+      "applicability_rationale": "実利用者調査は未実施",
+      "concern_refs": [],
+      "need_refs": [
+        "MBNEED-0001",
+        "MBNEED-0002"
+      ],
+      "responsibilities": []
+    },
+    {
+      "id": "MBSTK-0002",
+      "display_id": "MB-STK-02",
+      "name": "安全・品質担当者",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "development",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "電池安全のレビュー責任候補を示す",
+      "category": "safety_quality_regulatory",
+      "applicability": "uncertain",
+      "applicability_rationale": "組織と責任者は未決定",
+      "concern_refs": [],
+      "need_refs": [
+        "MBNEED-0003",
+        "MBNEED-0004"
+      ],
+      "responsibilities": []
+    },
+    {
+      "id": "MBSTK-0003",
+      "display_id": "MB-STK-03",
+      "name": "保守・廃棄担当者",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "retirement",
+      "domain": "process",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "損傷品の再使用防止をレビュー対象にする",
+      "category": "maintainer_end_of_life",
+      "applicability": "uncertain",
+      "applicability_rationale": "回収・廃棄主体は未決定",
+      "concern_refs": [],
+      "need_refs": [
+        "MBNEED-0005"
+      ],
+      "responsibilities": []
+    },
+    {
+      "id": "MBSTK-0004",
+      "display_id": "MB-STK-04",
+      "name": "製造・輸入・販売責任者",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "production",
+      "domain": "process",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "電安法上の義務主体候補を製品要求から分離する",
+      "category": "manufacturer_importer_sales_regulatory",
+      "applicability": "uncertain",
+      "applicability_rationale": "製造、輸入、直接販売の事業形態が未決定",
+      "concern_refs": [],
+      "need_refs": [
+        "MBNEED-0006"
+      ],
+      "responsibilities": []
+    }
+  ],
+  "concerns": [],
+  "needs": [
+    {
+      "id": "MBNEED-0001",
+      "display_id": "MB-NEED-01",
+      "name": "予測可能な給電",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "utilization",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "B0の参照不能なMB-NEED-01を独立レコード化する",
+      "statement": "携帯利用者は、移動中または停電時に携帯機器を使用するために、互換性が確認された接続条件で給電を開始したい。",
+      "stakeholder_refs": [
+        "MBSTK-0001"
+      ],
+      "concern_refs": [],
+      "expected_value": "給電開始条件と停止理由を判断できる",
+      "undesired_outcomes": [
+        "給電開始不能",
+        "異常条件での給電継続"
+      ],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_MB-0001"
+      ]
+    },
+    {
+      "id": "MBNEED-0002",
+      "display_id": "MB-NEED-02",
+      "name": "供給状態の理解",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "utilization",
+      "domain": "human",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "接続状態と残量表示を給電開始要求から分離する",
+      "statement": "携帯利用者は、給電の継続可否を判断するために、接続状態と蓄電状態を理解したい。",
+      "stakeholder_refs": [
+        "MBSTK-0001"
+      ],
+      "concern_refs": [],
+      "expected_value": "利用者が状態表示を定義に沿って解釈できる",
+      "undesired_outcomes": [
+        "接続状態の誤認",
+        "残量状態の誤認"
+      ],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_MB-0002"
+      ]
+    },
+    {
+      "id": "MBNEED-0003",
+      "display_id": "MB-NEED-03",
+      "name": "充放電の安全停止",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "B0で欠落した充電側保護を独立Needとして追加する",
+      "statement": "安全・品質担当者は、電池事故の可能性を低減するために、受電、蓄電および給電の異常を検出して電力経路を安全側へ移したい。",
+      "stakeholder_refs": [
+        "MBSTK-0002"
+      ],
+      "concern_refs": [],
+      "expected_value": "承認済み境界条件に対する保護動作を試験できる",
+      "undesired_outcomes": [
+        "過充電",
+        "過放電",
+        "短絡時の給電継続"
+      ],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_MB-0003"
+      ]
+    },
+    {
+      "id": "MBNEED-0004",
+      "display_id": "MB-NEED-04",
+      "name": "異常温度の抑制",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "温度保護の対象と電力経路を明確にする",
+      "statement": "安全・品質担当者は、発熱による危害を低減するために、承認済み温度境界に達する前に受電経路または給電経路を停止したい。",
+      "stakeholder_refs": [
+        "MBSTK-0002"
+      ],
+      "concern_refs": [],
+      "expected_value": "温度履歴と停止経路を試験で確認できる",
+      "undesired_outcomes": [
+        "異常温度での電力供給継続"
+      ],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_MB-0004"
+      ]
+    },
+    {
+      "id": "MBNEED-0005",
+      "display_id": "MB-NEED-05",
+      "name": "損傷品の再使用防止",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "retirement",
+      "domain": "process",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "自動保護と人による隔離手順を分離する",
+      "statement": "保守・廃棄担当者は、損傷した電池の再使用を防ぐために、損傷品を識別して隔離したい。",
+      "stakeholder_refs": [
+        "MBSTK-0003"
+      ],
+      "concern_refs": [],
+      "expected_value": "損傷判定、隔離、引渡しの責任境界を確認できる",
+      "undesired_outcomes": [
+        "損傷品の再充電",
+        "損傷品からの再給電"
+      ],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_MB-0005"
+      ]
+    },
+    {
+      "id": "MBNEED-0006",
+      "display_id": "MB-NEED-06",
+      "name": "販売前義務の追跡",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "production",
+      "domain": "process",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "製品分類と事業者義務をSE要求から分離して追跡する",
+      "statement": "製造・輸入・販売責任者は、日本市場で販売判断を行うために、対象分類、技術基準、検査記録および表示の根拠を確認したい。",
+      "stakeholder_refs": [
+        "MBSTK-0004"
+      ],
+      "concern_refs": [],
+      "expected_value": "原典から要求および証拠要求までをIDで追跡できる",
+      "undesired_outcomes": [
+        "未確認の適合主張",
+        "PSE認証取得という誤表示"
+      ],
+      "success_measure_refs": [],
+      "validation_case_refs": [
+        "VAL_MB-0006"
+      ]
+    }
+  ],
+  "measures": [],
+  "use_cases": [],
+  "scenarios": [
+    {
+      "id": "SCN_MB-0001",
+      "display_id": "SCN-MB-01",
+      "name": "日常携帯給電シナリオ",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system_context",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "operational",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "給電開始・停止と状態理解を日常利用のStakeholder価値として確認する代表候補。",
+      "tags": ["validation-candidate", "human-confirmation-required"],
+      "scenario_type": "normal",
+      "actor_refs": ["MBSTK-0001"],
+      "preconditions": ["候補構成が携帯され、承認済み機器と接続できる", "残量表示を利用者が確認できる"],
+      "trigger": "利用者が外出先で機器への給電を必要とする",
+      "main_flow": ["利用者が機器を接続する", "給電開始と残量表示を確認する", "必要量を給電する", "停止理由または完了状態を確認して切り離す"],
+      "alternative_flows": [["給電を開始できない場合、表示から原因候補を判断する"]],
+      "abnormal_flows": [],
+      "recovery": ["安全に切り離し、承認された手順に従う"],
+      "postconditions": ["利用者が給電の終了と残量状態を識別できる"],
+      "observable_results": ["給電開始", "状態表示の解釈", "停止理由の理解"]
+    },
+    {
+      "id": "SCN_MB-0002",
+      "display_id": "SCN-MB-02",
+      "name": "保護作動・損傷品隔離シナリオ",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system_context",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "safety",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "保護作動の試験だけでなく、利用者と担当者が危害低減行動を取れるかを評価する候補。",
+      "tags": ["validation-candidate", "safety", "human-confirmation-required"],
+      "scenario_type": "abnormal",
+      "actor_refs": ["MBSTK-0001", "MBSTK-0002", "MBSTK-0003"],
+      "preconditions": ["承認された安全な異常模擬条件を使用する", "隔離場所と緊急停止手段がある"],
+      "trigger": "保護境界到達または膨張・破損・異常発熱の候補状態を安全に模擬する",
+      "main_flow": ["担当者が一つの異常条件を付与する", "関連する電力経路の遮断を観察する", "利用者または担当者が損傷候補品を隔離する", "再使用防止と引渡し責任を確認する"],
+      "alternative_flows": [],
+      "abnormal_flows": [["保護または隔離が成立しない場合は設備側で電源を遮断して試験を中止する"]],
+      "recovery": ["安全・品質担当者が原因と再使用可否を決定する"],
+      "postconditions": ["損傷候補品が充電・給電運用から隔離される"],
+      "observable_results": ["遮断された電力経路", "温度履歴", "隔離状態", "責任者への引渡し"]
+    },
+    {
+      "id": "SCN_MB-0003",
+      "display_id": "SCN-MB-03",
+      "name": "法規原典から証拠計画までのレビューシナリオ",
+      "description": null,
+      "level": "cross_level",
+      "product_layer": "assurance",
+      "abstraction": "operational",
+      "lifecycle_stage": "validation",
+      "domain": "compliance",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "製造・輸入・販売責任者が原典、適用性、義務、投影および証拠要求の説明可能性を確認する候補。",
+      "tags": ["validation-candidate", "assurance", "human-confirmation-required"],
+      "scenario_type": "other",
+      "actor_refs": ["MBSTK-0002", "MBSTK-0004"],
+      "preconditions": ["対象構成候補と市場候補が記録されている", "公式Source候補と未確定事項が表示される"],
+      "trigger": "設計または法規Sourceの変更レビューを開始する",
+      "main_flow": ["責任者がSourceとProvisionを確認する", "適用性判断と仮定を確認する", "各義務の工学投影と証拠要求を追跡する", "未確定事項を保留または担当者へ割り当てる"],
+      "alternative_flows": [["適用性を確定できない場合はAssurance結果をnot_performedまたはinconclusiveに維持する"]],
+      "abnormal_flows": [],
+      "recovery": ["不足Sourceまたは対象構成情報を入手して再レビューする"],
+      "postconditions": ["採用・除外・保留と人確認状態がIDで記録される"],
+      "observable_results": ["追跡切れ件数", "未確定適用性一覧", "証拠未計画義務一覧"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "MBREQ-0001",
+      "display_id": "MB-REQ-01",
+      "name": "給電開始要求",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "utilization",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "予測可能な給電を外部から判定可能にする",
+      "tags": [
+        "generic-se"
+      ],
+      "statement": "互換性集合に含まれる携帯機器が接続されて給電開始が要求されたとき、モバイルバッテリーは、承認済み出力条件で給電を開始する。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "モバイルバッテリー",
+      "condition": "携帯機器が承認済み互換性集合に含まれる",
+      "trigger": "携帯機器が接続されて給電開始が要求されたとき",
+      "required_response_or_property": "承認済み出力条件で給電を開始する",
+      "object": "接続された携帯機器",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "MBNEED-0001"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "MBNEED-0001を給電開始の観測可能な応答へ変換した",
+      "allocation_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "MBVER-0001"
+      ],
+      "acceptance_criteria_candidate": "承認済み互換性表の各代表条件で給電開始と出力条件を観測できる",
+      "derivation_sources": [
+        {
+          "source_ref": "MBNEED-0001",
+          "source_kind": "need",
+          "derivation_kind": "derived",
+          "rationale": "利用者Needをシステム応答へ変換する"
+        }
+      ]
+    },
+    {
+      "id": "MBREQ-0002",
+      "display_id": "MB-REQ-02",
+      "name": "状態表示要求",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "utilization",
+      "domain": "human",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "接続状態と残量状態のNeedを表示責任へ接続する",
+      "tags": [
+        "generic-se"
+      ],
+      "statement": "利用者が状態表示を要求したとき、モバイルバッテリーは、承認済み状態定義に従って給電状態および蓄電状態を表示する。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "モバイルバッテリー",
+      "condition": null,
+      "trigger": "利用者が状態表示を要求したとき",
+      "required_response_or_property": "承認済み状態定義に従って給電状態および蓄電状態を表示する",
+      "object": "給電状態および蓄電状態",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "MBNEED-0002"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "MBNEED-0002を利用者が観測できる表示へ変換した",
+      "allocation_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "MBVER-0002"
+      ],
+      "acceptance_criteria_candidate": "承認済み状態表の各状態について表示結果が状態定義と一致する",
+      "derivation_sources": [
+        {
+          "source_ref": "MBNEED-0002",
+          "source_kind": "need",
+          "derivation_kind": "derived",
+          "rationale": "利用者Needを状態表示へ変換する"
+        }
+      ]
+    },
+    {
+      "id": "MBREQ-0003",
+      "display_id": "MB-REQ-03",
+      "name": "過充電保護要求",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "B0で未分解だった充電側保護を独立要求にする",
+      "tags": [
+        "compliance-derived-candidate",
+        "safety"
+      ],
+      "statement": "受電中に電池セルの充電状態が承認済み上限境界へ達したとき、モバイルバッテリーは、電池セルへの充電電流を遮断する。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "モバイルバッテリー",
+      "condition": "受電中である",
+      "trigger": "電池セルの充電状態が承認済み上限境界へ達したとき",
+      "required_response_or_property": "電池セルへの充電電流を遮断する",
+      "object": "電池セルへの充電電流",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "MBNEED-0003"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "安全Needから保護応答へ投影した。上限値は電池仕様・現行基準の人確認後に設定する",
+      "allocation_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "MBVER-0003"
+      ],
+      "acceptance_criteria_candidate": "承認済み試験境界で充電経路が遮断され、境界を超える充電が継続しない",
+      "derivation_sources": [
+        {
+          "source_ref": "MBNEED-0003",
+          "source_kind": "need",
+          "derivation_kind": "risk_reduction",
+          "rationale": "過充電危険を低減する"
+        }
+      ]
+    },
+    {
+      "id": "MBREQ-0004",
+      "display_id": "MB-REQ-04",
+      "name": "過放電保護要求",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "B0で未分解だった過放電保護を独立要求にする",
+      "tags": [
+        "compliance-derived-candidate",
+        "safety"
+      ],
+      "statement": "給電中に電池セルの放電状態が承認済み下限境界へ達したとき、モバイルバッテリーは、電池セルからの放電電流を遮断する。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "モバイルバッテリー",
+      "condition": "給電中である",
+      "trigger": "電池セルの放電状態が承認済み下限境界へ達したとき",
+      "required_response_or_property": "電池セルからの放電電流を遮断する",
+      "object": "電池セルからの放電電流",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "MBNEED-0003"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "安全Needから保護応答へ投影した。下限値は電池仕様・現行基準の人確認後に設定する",
+      "allocation_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "MBVER-0004"
+      ],
+      "acceptance_criteria_candidate": "承認済み試験境界で放電経路が遮断され、境界を超える放電が継続しない",
+      "derivation_sources": [
+        {
+          "source_ref": "MBNEED-0003",
+          "source_kind": "need",
+          "derivation_kind": "risk_reduction",
+          "rationale": "過放電危険を低減する"
+        }
+      ]
+    },
+    {
+      "id": "MBREQ-0005",
+      "display_id": "MB-REQ-05",
+      "name": "出力異常遮断要求",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "短絡・過電流・異常電圧時の停止対象を出力経路へ限定する",
+      "tags": [
+        "compliance-derived-candidate",
+        "safety"
+      ],
+      "statement": "出力ポートで承認済み異常条件を検出したとき、モバイルバッテリーは、該当する出力ポートへの給電を遮断する。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "モバイルバッテリー",
+      "condition": null,
+      "trigger": "出力ポートで承認済み異常条件を検出したとき",
+      "required_response_or_property": "該当する出力ポートへの給電を遮断する",
+      "object": "該当する出力ポートへの給電",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "MBNEED-0003"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "短絡、過電流、異常電圧の境界値を創作せず、保護応答だけを候補化した",
+      "allocation_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "MBVER-0005"
+      ],
+      "acceptance_criteria_candidate": "承認済み異常条件ごとに該当出力が遮断され、非該当経路への影響が記録される",
+      "derivation_sources": [
+        {
+          "source_ref": "MBNEED-0003",
+          "source_kind": "need",
+          "derivation_kind": "risk_reduction",
+          "rationale": "出力異常の危険を低減する"
+        }
+      ]
+    },
+    {
+      "id": "MBREQ-0006",
+      "display_id": "MB-REQ-06",
+      "name": "温度保護要求",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "監視対象ごとの設計トレーサビリティにより、温度異常を検出した構成項目と遮断経路を一意に対応付ける",
+      "tags": [
+        "compliance-derived-candidate",
+        "safety"
+      ],
+      "statement": "監視対象の電池セルまたは電力変換部が、その構成項目に割り当てられた承認済み保護境界へ達したとき、モバイルバッテリーは、設計トレーサビリティで当該構成項目に対応付けられた受電経路および給電経路を遮断する。",
+      "requirement_type": "system_requirement",
+      "normative_level": "mandatory",
+      "subject": "モバイルバッテリー",
+      "condition": null,
+      "trigger": "監視対象の構成項目が、その項目に割り当てられた承認済み保護境界へ達したとき",
+      "required_response_or_property": "当該構成項目に対応付けられた受電経路および給電経路を遮断する",
+      "object": "監視対象ごとに対応付けられた受電・給電経路",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "MBNEED-0004"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "温度閾値を創作せず、監視対象と遮断対象の対応表を構成ベースラインで確定する候補とした",
+      "allocation_candidate_refs": [
+        "MBSTR-0002",
+        "MBSTR-0003",
+        "MBSTR-0004"
+      ],
+      "verification_method_candidate": "test",
+      "verification_case_refs": [
+        "MBVER-0006"
+      ],
+      "acceptance_criteria_candidate": "監視対象ごとの承認済み温度・負荷条件で、対応表に指定された受電経路と給電経路がともに遮断され、温度履歴・経路ID・復帰条件が記録される",
+      "derivation_sources": [
+        {
+          "source_ref": "MBNEED-0004",
+          "source_kind": "need",
+          "derivation_kind": "risk_reduction",
+          "rationale": "異常温度の危険を低減する"
+        }
+      ]
+    },
+    {
+      "id": "MBREQ-0007",
+      "display_id": "MB-REQ-07",
+      "name": "損傷品隔離要求",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "retirement",
+      "domain": "process",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "自動検出を仮定せず、人が確認した損傷品の運用を定める",
+      "tags": [
+        "generic-se",
+        "safety"
+      ],
+      "statement": "膨張、破損または異常発熱を人が確認した場合、損傷品取扱担当者は、当該モバイルバッテリーを充電および給電の運用から隔離する。",
+      "requirement_type": "operational_requirement",
+      "normative_level": "mandatory",
+      "subject": "損傷品取扱担当者",
+      "condition": "膨張、破損または異常発熱を人が確認した場合",
+      "trigger": null,
+      "required_response_or_property": "当該モバイルバッテリーを充電および給電の運用から隔離する",
+      "object": "損傷したモバイルバッテリー",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "MBNEED-0005"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "損傷検出主体と隔離主体を人へ割り当て、製品の自動機能と混同しない",
+      "allocation_candidate_refs": [
+        "MBSTR_OPS-0001"
+      ],
+      "verification_method_candidate": "inspection",
+      "verification_case_refs": [
+        "MBVER-0007"
+      ],
+      "acceptance_criteria_candidate": "承認済み損傷判定例ごとに隔離、再使用防止および引渡し責任を手順上で追跡できる",
+      "derivation_sources": [
+        {
+          "source_ref": "MBNEED-0005",
+          "source_kind": "need",
+          "derivation_kind": "derived",
+          "rationale": "損傷品の再使用防止Needを運用要求へ変換する"
+        }
+      ]
+    },
+    {
+      "id": "MBREQ-0008",
+      "display_id": "MB-REQ-08",
+      "name": "販売表示制約",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "production",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "電安法の対象分類と義務履行が人に確認された場合だけ表示候補を製品制約へ投影する",
+      "tags": [
+        "compliance-derived-candidate",
+        "marking"
+      ],
+      "statement": "電安法の対象分類および表示条件が人により確認された場合、モバイルバッテリーは、承認済み表示仕様に従った表示領域を備える。",
+      "requirement_type": "constraint_requirement",
+      "normative_level": "mandatory",
+      "subject": "モバイルバッテリー",
+      "condition": "電安法の対象分類および表示条件が人により確認された場合",
+      "trigger": null,
+      "required_response_or_property": "承認済み表示仕様に従った表示領域を備える",
+      "object": "表示領域",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [
+        "MBNEED-0006"
+      ],
+      "parent_requirement_refs": [],
+      "derivation_basis": "表示を認証取得と表現せず、適用確認後の製品制約候補とする",
+      "allocation_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "verification_method_candidate": "inspection",
+      "verification_case_refs": [
+        "MBVER-0008"
+      ],
+      "acceptance_criteria_candidate": "人が承認した表示仕様と量産対象構成の表示内容・位置・耐久方法が一致する",
+      "derivation_sources": [
+        {
+          "source_ref": "MBNEED-0006",
+          "source_kind": "need",
+          "derivation_kind": "derived",
+          "rationale": "販売前義務の追跡Needを製品制約へ変換する"
+        },
+        {
+          "source_ref": "OBL-MB-003",
+          "source_kind": "compliance_obligation",
+          "derivation_kind": "projected",
+          "projection_ref": "EPR-MB-006",
+          "rationale": "適用確認後の表示義務を製品表示領域へ投影する"
+        }
+      ]
+    },
+    {
+      "id": "MBREQ-0009",
+      "display_id": "MB-REQ-09",
+      "name": "航空機内持込み個数・容量運用要求候補",
+      "description": null,
+      "level": "cross_level",
+      "product_layer": "operational_context",
+      "abstraction": "operational",
+      "lifecycle_stage": "utilization",
+      "domain": "operations",
+      "origin": "external_candidate",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "航空旅客の運用行動を製品文書要求とは別に保持する候補。適用便と例外は人確認待ち。",
+      "tags": ["compliance-derived-candidate", "operational-boundary", "human-confirmation-required"],
+      "statement": "APP-MB-002が人により適用可能と確認された便へ搭乗する場合、航空旅客は、機内へ持ち込むモバイルバッテリーを2個以下かつ各160Wh以下とする。",
+      "requirement_type": "operational_requirement",
+      "normative_level": "mandatory",
+      "subject": "航空旅客",
+      "condition": "APP-MB-002が人により適用可能と確認された便へ搭乗する場合",
+      "trigger": null,
+      "required_response_or_property": "持込み個数を2個以下かつ各160Wh以下とする",
+      "object": "旅客が機内へ持ち込むモバイルバッテリー",
+      "performance_or_limit": "2個以下、各160Wh以下（公式候補Source。適用範囲は人確認待ち）",
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [],
+      "parent_requirement_refs": [],
+      "derivation_basis": "OBL-MB-004の義務主体を航空旅客としてOperational層へ投影する",
+      "allocation_candidate_refs": ["MBSTR_OPS-0002"],
+      "verification_method_candidate": "review_candidate",
+      "verification_case_refs": ["MBVER-0009"],
+      "acceptance_criteria_candidate": "対象便、例外、個数およびWh確認手順を人が承認し、代表旅程の机上確認で一意に判断できる",
+      "derivation_sources": [{"source_ref": "OBL-MB-004", "source_kind": "compliance_obligation", "derivation_kind": "projected", "projection_ref": "EPR-MB-009A", "rationale": "航空旅客の持込み行動へ投影する"}]
+    },
+    {
+      "id": "MBREQ-0010",
+      "display_id": "MB-REQ-10",
+      "name": "航空機内モバイルバッテリー充電禁止運用要求候補",
+      "description": null,
+      "level": "cross_level",
+      "product_layer": "operational_context",
+      "abstraction": "operational",
+      "lifecycle_stage": "utilization",
+      "domain": "operations",
+      "origin": "external_candidate",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "機内でモバイルバッテリー自体を充電しない旅客行動を独立して保持する候補。",
+      "tags": ["compliance-derived-candidate", "operational-boundary", "human-confirmation-required"],
+      "statement": "APP-MB-002が人により適用可能と確認された航空機内にいる間、航空旅客は、モバイルバッテリーへ充電しない。",
+      "requirement_type": "operational_requirement",
+      "normative_level": "mandatory",
+      "subject": "航空旅客",
+      "condition": "APP-MB-002が人により適用可能と確認された航空機内にいる間",
+      "trigger": null,
+      "required_response_or_property": "モバイルバッテリーへ充電しない",
+      "object": "機内へ持ち込むモバイルバッテリー",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [],
+      "parent_requirement_refs": [],
+      "derivation_basis": "OBL-MB-005の義務主体を航空旅客としてOperational層へ投影する",
+      "allocation_candidate_refs": ["MBSTR_OPS-0002"],
+      "verification_method_candidate": "review_candidate",
+      "verification_case_refs": ["MBVER-0010"],
+      "acceptance_criteria_candidate": "対象便と禁止行動を人が承認し、代表旅程の机上確認で充電行動を禁止として一意に判断できる",
+      "derivation_sources": [{"source_ref": "OBL-MB-005", "source_kind": "compliance_obligation", "derivation_kind": "projected", "projection_ref": "EPR-MB-009B", "rationale": "航空旅客の機内行動へ投影する"}]
+    },
+    {
+      "id": "MBREQ-0011",
+      "display_id": "MB-REQ-11",
+      "name": "航空機内モバイルバッテリー給電回避推奨運用要求候補",
+      "description": null,
+      "level": "cross_level",
+      "product_layer": "operational_context",
+      "abstraction": "operational",
+      "lifecycle_stage": "utilization",
+      "domain": "operations",
+      "origin": "external_candidate",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "機内でモバイルバッテリーから他機器へ給電しない旅客行動を独立して保持する候補。",
+      "tags": ["compliance-derived-candidate", "operational-boundary", "human-confirmation-required"],
+      "statement": "APP-MB-004の安全要請を組織が採用した航空機内にいる間、航空旅客は、モバイルバッテリーから他の電子機器へ給電しないことが推奨される。",
+      "requirement_type": "operational_requirement",
+      "normative_level": "recommendation",
+      "subject": "航空旅客",
+      "condition": "APP-MB-004の安全要請を組織が採用した航空機内にいる間",
+      "trigger": null,
+      "required_response_or_property": "モバイルバッテリーから他の電子機器へ給電しないことを推奨する",
+      "object": "機内へ持ち込むモバイルバッテリー",
+      "performance_or_limit": null,
+      "unit": null,
+      "tolerance": null,
+      "source_need_refs": [],
+      "parent_requirement_refs": [],
+      "derivation_basis": "OBL-MB-006の非法定安全要請を航空旅客のOperational層へ投影する",
+      "allocation_candidate_refs": ["MBSTR_OPS-0002"],
+      "verification_method_candidate": "review_candidate",
+      "verification_case_refs": ["MBVER-0011"],
+      "acceptance_criteria_candidate": "APP-MB-004を組織が採用した場合、代表旅程の机上確認で給電回避を推奨として一意に識別し、法的禁止と区別できる",
+      "derivation_sources": [{"source_ref": "OBL-MB-006", "source_kind": "compliance_obligation", "derivation_kind": "projected", "projection_ref": "EPR-MB-009C", "rationale": "航空旅客の機内行動へ投影する"}]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "MBBEH-0001",
+      "display_id": "MB-BEH-01",
+      "name": "接続機器へ給電する",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "utilization",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "給電開始要求を実現するブラックボックス振る舞い",
+      "behavior_type": "function",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "接続機器が互換性集合に含まれる"
+      ],
+      "postconditions": [
+        "給電中状態である"
+      ],
+      "performer_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "requirement_refs": [
+        "MBREQ-0001"
+      ]
+    },
+    {
+      "id": "MBBEH-0002",
+      "display_id": "MB-BEH-02",
+      "name": "供給状態を表示する",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "utilization",
+      "domain": "human",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "状態表示要求を実現する振る舞い",
+      "behavior_type": "function",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [],
+      "postconditions": [
+        "利用者が給電状態と蓄電状態を観測できる"
+      ],
+      "performer_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "requirement_refs": [
+        "MBREQ-0002"
+      ]
+    },
+    {
+      "id": "MBBEH-0003",
+      "display_id": "MB-BEH-03",
+      "name": "充電経路を遮断する",
+      "description": null,
+      "level": "L3",
+      "product_layer": "system",
+      "abstraction": "logical",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "過充電時の停止対象を充電経路へ限定する",
+      "behavior_type": "state_transition",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "受電中状態である"
+      ],
+      "postconditions": [
+        "充電経路が遮断されている"
+      ],
+      "performer_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "requirement_refs": [
+        "MBREQ-0003"
+      ]
+    },
+    {
+      "id": "MBBEH-0004",
+      "display_id": "MB-BEH-04",
+      "name": "放電経路を遮断する",
+      "description": null,
+      "level": "L3",
+      "product_layer": "system",
+      "abstraction": "logical",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "過放電と出力異常の遮断責任を示す",
+      "behavior_type": "state_transition",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "給電中状態である"
+      ],
+      "postconditions": [
+        "対象の放電経路が遮断されている"
+      ],
+      "performer_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "requirement_refs": [
+        "MBREQ-0004",
+        "MBREQ-0005"
+      ]
+    },
+    {
+      "id": "MBBEH-0005",
+      "display_id": "MB-BEH-05",
+      "name": "温度異常時に電力経路を遮断する",
+      "description": null,
+      "level": "L3",
+      "product_layer": "system",
+      "abstraction": "logical",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "温度異常と遮断対象を接続する",
+      "behavior_type": "state_transition",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [],
+      "postconditions": [
+        "温度異常に関係する電力経路が遮断されている"
+      ],
+      "performer_candidate_refs": [
+        "MBSTR-0001"
+      ],
+      "requirement_refs": [
+        "MBREQ-0006"
+      ]
+    },
+    {
+      "id": "MBBEH-0006",
+      "display_id": "MB-BEH-06",
+      "name": "損傷品を隔離する",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "retirement",
+      "domain": "process",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "人による損傷確認後の運用手順を示す",
+      "behavior_type": "procedure",
+      "input_refs": [],
+      "output_refs": [],
+      "preconditions": [
+        "人が膨張、破損または異常発熱を確認している"
+      ],
+      "postconditions": [
+        "損傷品が充電および給電の運用から隔離されている"
+      ],
+      "performer_candidate_refs": [
+        "MBSTK-0003"
+      ],
+      "requirement_refs": [
+        "MBREQ-0007"
+      ]
+    },
+    {
+      "id": "MBBEH-0009",
+      "display_id": "MB-BEH-09",
+      "name": "航空機内持込み運用ルールを遵守する",
+      "description": null,
+      "level": "cross_level",
+      "product_layer": "operational_context",
+      "abstraction": "operational",
+      "lifecycle_stage": "utilization",
+      "domain": "operations",
+      "origin": "external_candidate",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "製品挙動ではなく航空旅客の運用行動として責任境界を明示する。",
+      "tags": ["compliance-derived-candidate", "operational-boundary"],
+      "behavior_type": "procedure",
+      "input_refs": ["対象便", "持込み個数", "定格Wh", "機内利用状態"],
+      "output_refs": ["持込み可否判断", "機内充電の未実施"],
+      "preconditions": ["APP-MB-002の適用範囲と例外が人により確認されている"],
+      "postconditions": ["旅客が承認済み航空運用ルールに沿って行動する"],
+      "performer_candidate_refs": ["MBSTK-0001"],
+      "requirement_refs": ["MBREQ-0009", "MBREQ-0010"]
+    },
+    {
+      "id": "MBBEH-0011",
+      "display_id": "MB-BEH-11",
+      "name": "航空機内給電回避推奨を案内し選択する",
+      "description": null,
+      "level": "cross_level",
+      "product_layer": "operational_context",
+      "abstraction": "operational",
+      "lifecycle_stage": "utilization",
+      "domain": "operations",
+      "origin": "external_candidate",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "非法定の安全要請を法的禁止から分離し、組織が採用した場合の推奨行動として保持する。",
+      "tags": ["compliance-derived-candidate", "operational-boundary", "recommendation"],
+      "behavior_type": "procedure",
+      "input_refs": ["APP-MB-004の組織採用判断", "機内利用状態"],
+      "output_refs": ["給電回避推奨の案内", "旅客の選択結果"],
+      "preconditions": ["APP-MB-004の安全要請を組織が採用し、人により確認している"],
+      "postconditions": ["給電回避が推奨として案内され、法的禁止と区別されている"],
+      "performer_candidate_refs": ["MBSTK-0001"],
+      "requirement_refs": ["MBREQ-0011"]
+    }
+  ],
+  "structures": [
+    {
+      "id": "MBSTR-0001",
+      "display_id": "MB-STR-01",
+      "name": "モバイルバッテリー候補構造",
+      "description": "電池セル、電池管理、受電、給電、検出、表示、筐体および表示領域を含む概念構造。部品型番は未決定。",
+      "level": "L4",
+      "product_layer": "system",
+      "abstraction": "physical",
+      "lifecycle_stage": "development",
+      "domain": "mixed",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "要求と保護振る舞いをレビューできる最小の物理責任境界を示す",
+      "structure_kind": "system",
+      "logical_or_physical": "physical",
+      "system_element_kind": "mixed",
+      "owner_ref": null,
+      "part_refs": [
+        "MBSTR-0002",
+        "MBSTR-0003",
+        "MBSTR-0004"
+      ],
+      "requirement_refs": [
+        "MBREQ-0001",
+        "MBREQ-0002",
+        "MBREQ-0003",
+        "MBREQ-0004",
+        "MBREQ-0005",
+        "MBREQ-0006",
+        "MBREQ-0008"
+      ],
+      "behavior_refs": [
+        "MBBEH-0001",
+        "MBBEH-0002",
+        "MBBEH-0003",
+        "MBBEH-0004",
+        "MBBEH-0005"
+      ],
+      "interface_refs": []
+    },
+    {
+      "id": "MBSTR-0002",
+      "display_id": "MB-STR-THERMAL-MONITOR",
+      "name": "温度監視境界候補",
+      "description": "電池セルまたは電力変換部の監視点、割当済み保護境界および対象構成IDを対応付ける概念要素。",
+      "level": "L4",
+      "product_layer": "subsystem",
+      "abstraction": "logical",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "MBREQ-0006の監視対象と保護境界を正本IDで配分する。",
+      "structure_kind": "subsystem",
+      "logical_or_physical": "logical",
+      "system_element_kind": "monitoring_boundary",
+      "owner_ref": null,
+      "part_refs": [],
+      "requirement_refs": [
+        "MBREQ-0006"
+      ],
+      "behavior_refs": [],
+      "interface_refs": []
+    },
+    {
+      "id": "MBSTR-0003",
+      "display_id": "MB-STR-POWER-INGRESS",
+      "name": "受電遮断経路候補",
+      "description": "温度異常時に遮断する受電側電力経路を構成IDで識別する概念要素。",
+      "level": "L4",
+      "product_layer": "subsystem",
+      "abstraction": "logical",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "MBREQ-0006の受電遮断対象を正本IDで配分する。",
+      "structure_kind": "subsystem",
+      "logical_or_physical": "logical",
+      "system_element_kind": "power_path",
+      "owner_ref": null,
+      "part_refs": [],
+      "requirement_refs": [
+        "MBREQ-0006"
+      ],
+      "behavior_refs": [],
+      "interface_refs": []
+    },
+    {
+      "id": "MBSTR-0004",
+      "display_id": "MB-STR-POWER-EGRESS",
+      "name": "給電遮断経路候補",
+      "description": "温度異常時に遮断する給電側電力経路を構成IDで識別する概念要素。",
+      "level": "L4",
+      "product_layer": "subsystem",
+      "abstraction": "logical",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "MBREQ-0006の給電遮断対象を正本IDで配分する。",
+      "structure_kind": "subsystem",
+      "logical_or_physical": "logical",
+      "system_element_kind": "power_path",
+      "owner_ref": null,
+      "part_refs": [],
+      "requirement_refs": [
+        "MBREQ-0006"
+      ],
+      "behavior_refs": [],
+      "interface_refs": []
+    },
+    {
+      "id": "MBSTR_OPS-0001",
+      "display_id": "MB-STR-OPS-01",
+      "name": "損傷品隔離運用プロセス候補",
+      "description": "保守・廃棄担当者の損傷品隔離行動を製品物理構造および航空旅客運用から分離する運用責任境界。",
+      "level": "L4",
+      "product_layer": "operational_context",
+      "abstraction": "logical",
+      "lifecycle_stage": "support",
+      "domain": "operations",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "物理製品構造から保守・廃棄担当者の隔離行動を分離する。",
+      "structure_kind": "operational_process",
+      "logical_or_physical": "logical",
+      "system_element_kind": "human_operated_process",
+      "owner_ref": "MBSTK-0003",
+      "part_refs": [],
+      "requirement_refs": [
+        "MBREQ-0007"
+      ],
+      "behavior_refs": [
+        "MBBEH-0006"
+      ],
+      "interface_refs": []
+    },
+    {
+      "id": "MBSTR_OPS-0002",
+      "display_id": "MB-STR-OPS-02",
+      "name": "航空旅客運用プロセス候補",
+      "description": "航空旅客による持込み個数・容量確認、機内充電禁止および組織採用時の給電回避推奨を、保守・廃棄運用から分離する責任境界。",
+      "level": "L4",
+      "product_layer": "operational_context",
+      "abstraction": "logical",
+      "lifecycle_stage": "utilization",
+      "domain": "operations",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "航空旅客の運用責任を保守・廃棄担当者の隔離責任から分離する。",
+      "structure_kind": "operational_process",
+      "logical_or_physical": "logical",
+      "system_element_kind": "human_operated_process",
+      "owner_ref": "MBSTK-0001",
+      "part_refs": [],
+      "requirement_refs": [
+        "MBREQ-0009",
+        "MBREQ-0010",
+        "MBREQ-0011"
+      ],
+      "behavior_refs": [
+        "MBBEH-0009",
+        "MBBEH-0011"
+      ],
+      "interface_refs": []
+    }
+  ],
+  "interfaces": [],
+  "constraints": [],
+  "allocations": [],
+  "verification_cases": [
+    {
+      "id": "MBVER-0001",
+      "display_id": "MB-V-01",
+      "name": "給電開始試験",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "互換性集合と給電開始条件を確認する",
+      "target_requirement_refs": [
+        "MBREQ-0001"
+      ],
+      "objective": "代表接続条件で給電開始を確認する",
+      "method": "test",
+      "item_under_verification": "モバイルバッテリー候補構成",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": [
+        "互換性集合と出力条件が人により承認されている"
+      ],
+      "environment": [
+        "承認済み試験環境"
+      ],
+      "stimulus_or_input": [
+        "代表携帯機器を接続して給電開始を要求する"
+      ],
+      "observable": "給電開始と出力条件",
+      "measurement_method": "電圧・電流・状態表示を記録する",
+      "acceptance_criteria_candidate": "承認済み互換性表の各代表条件で給電開始と出力条件が一致する",
+      "required_evidence": [
+        "EVR-MB-001"
+      ],
+      "responsible_role_ref": "ROLE-TEST",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "MBVER-0002",
+      "display_id": "MB-V-02",
+      "name": "状態表示試験",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "human",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "medium",
+      "evidence_refs": [],
+      "rationale": "給電状態と蓄電状態を別々に確認する",
+      "target_requirement_refs": [
+        "MBREQ-0002"
+      ],
+      "objective": "承認済み状態表に対する表示一致を確認する",
+      "method": "test",
+      "item_under_verification": "表示部を含むモバイルバッテリー候補構成",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": [
+        "状態定義が人により承認されている"
+      ],
+      "environment": [
+        "承認済み試験環境"
+      ],
+      "stimulus_or_input": [
+        "各給電状態と蓄電状態を再現する"
+      ],
+      "observable": "状態表示",
+      "measurement_method": "内部参照状態と利用者表示を対比する",
+      "acceptance_criteria_candidate": "各状態の表示が承認済み状態定義と一致する",
+      "required_evidence": [
+        "EVR-MB-001"
+      ],
+      "responsible_role_ref": "ROLE-TEST",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "MBVER-0003",
+      "display_id": "MB-V-03",
+      "name": "過充電保護試験",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "充電側保護を独立に評価する",
+      "target_requirement_refs": [
+        "MBREQ-0003"
+      ],
+      "objective": "承認済み上限境界で充電遮断を確認する",
+      "method": "test",
+      "item_under_verification": "受電・電池管理部を含む候補構成",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": [
+        "電池仕様と安全な試験境界が人により承認されている"
+      ],
+      "environment": [
+        "安全担当が承認した試験設備"
+      ],
+      "stimulus_or_input": [
+        "承認済み上限境界へ至る充電条件を与える"
+      ],
+      "observable": "充電電流と遮断状態",
+      "measurement_method": "充電状態、電流、電圧、温度および遮断時刻を記録する",
+      "acceptance_criteria_candidate": "承認済み境界で充電経路が遮断される",
+      "required_evidence": [
+        "EVR-MB-003"
+      ],
+      "responsible_role_ref": "ROLE-BATTERY-SAFETY",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "MBVER-0004",
+      "display_id": "MB-V-04",
+      "name": "過放電保護試験",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "過放電保護を独立に評価する",
+      "target_requirement_refs": [
+        "MBREQ-0004"
+      ],
+      "objective": "承認済み下限境界で放電遮断を確認する",
+      "method": "test",
+      "item_under_verification": "給電・電池管理部を含む候補構成",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": [
+        "電池仕様と安全な試験境界が人により承認されている"
+      ],
+      "environment": [
+        "安全担当が承認した試験設備"
+      ],
+      "stimulus_or_input": [
+        "承認済み下限境界へ至る放電条件を与える"
+      ],
+      "observable": "放電電流と遮断状態",
+      "measurement_method": "放電状態、電流、電圧、温度および遮断時刻を記録する",
+      "acceptance_criteria_candidate": "承認済み境界で放電経路が遮断される",
+      "required_evidence": [
+        "EVR-MB-003"
+      ],
+      "responsible_role_ref": "ROLE-BATTERY-SAFETY",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "MBVER-0005",
+      "display_id": "MB-V-05",
+      "name": "出力異常遮断試験",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "短絡・過電流・異常電圧の各条件を安全に確認する",
+      "target_requirement_refs": [
+        "MBREQ-0005"
+      ],
+      "objective": "承認済み出力異常条件で給電遮断を確認する",
+      "method": "test",
+      "item_under_verification": "出力・保護部を含む候補構成",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": [
+        "異常条件と安全な試験方法が人により承認されている"
+      ],
+      "environment": [
+        "安全担当が承認した試験設備"
+      ],
+      "stimulus_or_input": [
+        "承認済み短絡、過電流または異常電圧条件を与える"
+      ],
+      "observable": "出力電流、出力電圧、遮断状態および復帰状態",
+      "measurement_method": "各異常条件の時系列を記録する",
+      "acceptance_criteria_candidate": "各承認済み異常条件で該当出力が遮断される",
+      "required_evidence": [
+        "EVR-MB-003"
+      ],
+      "responsible_role_ref": "ROLE-BATTERY-SAFETY",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "MBVER-0006",
+      "display_id": "MB-V-06",
+      "name": "温度保護試験",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "development",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "温度履歴、遮断経路、復帰条件を確認する",
+      "target_requirement_refs": [
+        "MBREQ-0006"
+      ],
+      "objective": "承認済み温度・負荷条件で電力経路の遮断を確認する",
+      "method": "test",
+      "item_under_verification": "温度検出・電池管理・電力変換部を含む候補構成",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": [
+        "温度境界と安全な試験方法が人により承認されている"
+      ],
+      "environment": [
+        "安全担当が承認した温度試験設備"
+      ],
+      "stimulus_or_input": [
+        "承認済み温度・負荷条件を与える"
+      ],
+      "observable": "検出温度、遮断した電力経路および復帰状態",
+      "measurement_method": "温度、電流、電圧および状態遷移を同期記録する",
+      "acceptance_criteria_candidate": "MBSTR-0002で承認済み境界を検出したとき、MBSTR-0003およびMBSTR-0004のうち承認済み安全分析で関係するとした経路が遮断され、構成IDと結果が記録される",
+      "required_evidence": [
+        "EVR-MB-003"
+      ],
+      "responsible_role_ref": "ROLE-BATTERY-SAFETY",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "MBVER-0007",
+      "display_id": "MB-V-07",
+      "name": "損傷品隔離手順検査",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "operational",
+      "lifecycle_stage": "retirement",
+      "domain": "process",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "自動検出の試験ではなく運用手順の検査とする",
+      "target_requirement_refs": [
+        "MBREQ-0007"
+      ],
+      "objective": "損傷判定から隔離・再使用防止までを確認する",
+      "method": "inspection",
+      "item_under_verification": "損傷品取扱手順候補",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": [
+        "損傷例と担当者が人により承認されている"
+      ],
+      "environment": [
+        "手順レビュー環境"
+      ],
+      "stimulus_or_input": [
+        "承認済み損傷例を用いた机上確認"
+      ],
+      "observable": "損傷判定、隔離、再使用防止および引渡し記録",
+      "measurement_method": "手順チェックリストで責任と記録項目を確認する",
+      "acceptance_criteria_candidate": "各損傷例で隔離から引渡しまでの責任者と記録が一意に定まる",
+      "required_evidence": [
+        "EVR-MB-002"
+      ],
+      "responsible_role_ref": "ROLE-SAFETY-REVIEW",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "MBVER-0008",
+      "display_id": "MB-V-08",
+      "name": "販売表示検査",
+      "description": null,
+      "level": "L2",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "production",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "PSE表示を認証取得とせず表示仕様への一致として検査する",
+      "target_requirement_refs": [
+        "MBREQ-0008"
+      ],
+      "objective": "量産対象構成の表示を承認済み表示仕様と比較する",
+      "method": "inspection",
+      "item_under_verification": "量産対象候補の表示領域",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": [
+        "対象分類、義務主体および表示仕様が人により確認されている"
+      ],
+      "environment": [
+        "製品検査環境"
+      ],
+      "stimulus_or_input": [
+        "表示仕様と対象構成を提示する"
+      ],
+      "observable": "表示内容、位置および耐久方法",
+      "measurement_method": "承認済み表示仕様との照合記録を作成する",
+      "acceptance_criteria_candidate": "表示内容、位置および耐久方法が承認済み表示仕様と一致する",
+      "required_evidence": [
+        "EVR-MB-005"
+      ],
+      "responsible_role_ref": "ROLE-COMPLIANCE",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "MBVER-0009",
+      "display_id": "MB-V-09",
+      "name": "航空持込み個数・容量運用レビュー",
+      "description": null,
+      "level": "cross_level",
+      "product_layer": "operational_context",
+      "abstraction": "operational",
+      "lifecycle_stage": "verification",
+      "domain": "operations",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "航空運用要求の適用範囲と判断手順を机上確認する候補。",
+      "tags": ["human-confirmation-required"],
+      "target_requirement_refs": ["MBREQ-0009"],
+      "objective": "代表旅程で持込み個数・容量判断が一意になることを確認する",
+      "method": "review_candidate",
+      "item_under_verification": "航空旅客向け運用手順候補",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": ["対象便、例外、個数および容量ルールが人により承認されている"],
+      "environment": ["手順レビュー環境"],
+      "stimulus_or_input": ["代表便と複数の持込み個数・Wh条件"],
+      "observable": "持込み可否判断と根拠",
+      "measurement_method": "判断表とSource locatorのレビュー記録を作成する",
+      "acceptance_criteria_candidate": "各代表条件で単一の判断と根拠Provisionが記録される",
+      "required_evidence": ["EVR-MB-006"],
+      "responsible_role_ref": "ROLE-LOGISTICS-COMPLIANCE",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "MBVER-0010",
+      "display_id": "MB-V-10",
+      "name": "航空機内充電禁止運用レビュー",
+      "description": null,
+      "level": "cross_level",
+      "product_layer": "operational_context",
+      "abstraction": "operational",
+      "lifecycle_stage": "verification",
+      "domain": "operations",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "モバイルバッテリー自体への充電禁止を独立して確認する候補。",
+      "tags": ["human-confirmation-required"],
+      "target_requirement_refs": ["MBREQ-0010"],
+      "objective": "代表旅程で機内充電を禁止として判断できることを確認する",
+      "method": "review_candidate",
+      "item_under_verification": "航空旅客向け運用手順候補",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": ["対象便と禁止行動が人により承認されている"],
+      "environment": ["手順レビュー環境"],
+      "stimulus_or_input": ["機内電源からモバイルバッテリーへ充電する事例"],
+      "observable": "禁止判断と利用者向け情報",
+      "measurement_method": "判断表と文書のレビュー記録を作成する",
+      "acceptance_criteria_candidate": "機内充電事例が禁止として一意に識別される",
+      "required_evidence": ["EVR-MB-006"],
+      "responsible_role_ref": "ROLE-LOGISTICS-COMPLIANCE",
+      "lower_level_evidence_refs": []
+    },
+    {
+      "id": "MBVER-0011",
+      "display_id": "MB-V-11",
+      "name": "航空機内給電回避推奨運用レビュー",
+      "description": null,
+      "level": "cross_level",
+      "product_layer": "operational_context",
+      "abstraction": "operational",
+      "lifecycle_stage": "verification",
+      "domain": "operations",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "非法定の給電回避推奨の採用・伝達を法的禁止から分離して確認する候補。",
+      "tags": ["human-confirmation-required"],
+      "target_requirement_refs": ["MBREQ-0011"],
+      "objective": "APP-MB-004を組織が採用した場合に、代表旅程で機内給電回避を推奨として案内し、法的禁止と区別できることを確認する",
+      "method": "review_candidate",
+      "item_under_verification": "航空旅客向け運用手順候補",
+      "configuration": "CFG-MB-CANDIDATE",
+      "preconditions": ["APP-MB-004の安全要請を組織が採用し、その採用判断が人により承認されている"],
+      "environment": ["手順レビュー環境"],
+      "stimulus_or_input": ["機内でモバイルバッテリーから携帯機器へ給電する事例"],
+      "observable": "給電回避推奨の案内、組織採用判断および法的禁止との区別",
+      "measurement_method": "判断表と文書のレビュー記録を作成する",
+      "acceptance_criteria_candidate": "機内給電事例について回避推奨が一意に案内され、法的禁止ではないこととAPP-MB-004の組織採用条件が記録される",
+      "required_evidence": ["EVR-MB-006"],
+      "responsible_role_ref": "ROLE-LOGISTICS-COMPLIANCE",
+      "lower_level_evidence_refs": []
+    }
+  ],
+  "validation_cases": [
+    {
+      "id": "VAL_MB-0001",
+      "display_id": "VAL_MB-0001",
+      "name": "予測可能な給電の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "MBNEED-0001"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "MBSTK-0001"
+      ],
+      "operational_context": "代表利用・運用状況で「給電開始条件と停止理由を判断できる」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_MB-0001"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「給電開始条件と停止理由を判断できる」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    },
+    {
+      "id": "VAL_MB-0002",
+      "display_id": "VAL_MB-0002",
+      "name": "供給状態の理解の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "MBNEED-0002"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "MBSTK-0001"
+      ],
+      "operational_context": "代表利用・運用状況で「利用者が状態表示を定義に沿って解釈できる」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_MB-0001"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「利用者が状態表示を定義に沿って解釈できる」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    },
+    {
+      "id": "VAL_MB-0003",
+      "display_id": "VAL_MB-0003",
+      "name": "充放電の安全停止の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "MBNEED-0003"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "MBSTK-0002"
+      ],
+      "operational_context": "代表利用・運用状況で「承認済み境界条件に対する保護動作を試験できる」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_MB-0002"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「承認済み境界条件に対する保護動作を試験できる」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    },
+    {
+      "id": "VAL_MB-0004",
+      "display_id": "VAL_MB-0004",
+      "name": "異常温度の抑制の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "MBNEED-0004"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "MBSTK-0002"
+      ],
+      "operational_context": "代表利用・運用状況で「温度履歴と停止経路を試験で確認できる」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_MB-0002"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「温度履歴と停止経路を試験で確認できる」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    },
+    {
+      "id": "VAL_MB-0005",
+      "display_id": "VAL_MB-0005",
+      "name": "損傷品の再使用防止の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "MBNEED-0005"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "MBSTK-0003"
+      ],
+      "operational_context": "代表利用・運用状況で「損傷判定、隔離、引渡しの責任境界を確認できる」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_MB-0002"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「損傷判定、隔離、引渡しの責任境界を確認できる」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    },
+    {
+      "id": "VAL_MB-0006",
+      "display_id": "VAL_MB-0006",
+      "name": "販売前義務の追跡の妥当性確認候補",
+      "description": null,
+      "level": "L1",
+      "product_layer": "system",
+      "abstraction": "black_box",
+      "lifecycle_stage": "validation",
+      "domain": "validation",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "Stakeholder価値の妥当性をRequirement Verificationと分離して確認する候補。成功基準は人が決定する。",
+      "tags": [
+        "validation-candidate",
+        "human-confirmation-required"
+      ],
+      "target_need_refs": [
+        "MBNEED-0006"
+      ],
+      "target_mission_refs": [],
+      "target_use_case_refs": [],
+      "representative_stakeholder_refs": [
+        "MBSTK-0004"
+      ],
+      "operational_context": "代表利用・運用状況で「原典から要求および証拠要求までをIDで追跡できる」をStakeholderが評価する。",
+      "scenario_refs": ["SCN_MB-0003"],
+      "success_measure_refs": [],
+      "acceptance_criteria_candidate": "代表Stakeholderが「原典から要求および証拠要求までをIDで追跡できる」の受入可否を判定できる。判定尺度と合格値は未決定。"
+    }
+  ],
+  "risks": [],
+  "hazards": [],
+  "failure_modes": [],
+  "assumptions": [
+    {
+      "id": "MBASM-0001",
+      "display_id": "MB-ASM-01",
+      "name": "日本市場候補",
+      "description": null,
+      "level": "L0",
+      "product_layer": "system",
+      "abstraction": "context",
+      "lifecycle_stage": "concept",
+      "domain": "system",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "C1比較のため法域候補を置く",
+      "statement": "仮定：対象市場は日本である。",
+      "reason_needed": "法規・輸送候補を調査するため",
+      "alternatives": [
+        "日本以外を含む"
+      ],
+      "affected_refs": [
+        "APP-MB-001",
+        "APP-MB-002",
+        "APP-MB-003",
+        "APP-MB-004"
+      ],
+      "validation_method": "販売計画と法域を製品企画・法規担当が確認する",
+      "revision_condition": "対象市場を変更した場合",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "MBASM-0002",
+      "display_id": "MB-ASM-02",
+      "name": "リチウムイオン電池構成候補",
+      "description": null,
+      "level": "L0",
+      "product_layer": "system",
+      "abstraction": "context",
+      "lifecycle_stage": "concept",
+      "domain": "electrical",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "モバイルバッテリーの一般的構成から推定するが仕様は未確認",
+      "statement": "仮定：対象構成はリチウムイオン蓄電池を内蔵する。",
+      "reason_needed": "電池安全と輸送候補を評価するため",
+      "alternatives": [
+        "他の二次電池化学系"
+      ],
+      "affected_refs": [
+        "APP-MB-001",
+        "APP-MB-003"
+      ],
+      "validation_method": "セル仕様書と製品構成表を確認する",
+      "revision_condition": "電池化学系またはセル構成を変更した場合",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "MBASM-0003",
+      "display_id": "MB-ASM-03",
+      "name": "航空旅客利用候補",
+      "description": null,
+      "level": "L0",
+      "product_layer": "system",
+      "abstraction": "context",
+      "lifecycle_stage": "utilization",
+      "domain": "process",
+      "origin": "ai_context_inference",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "evidence_refs": [],
+      "rationale": "B0が航空機内利用を未確定事項として挙げたため",
+      "statement": "仮定：利用者が対象製品を日本発着便の旅客手荷物として携行する可能性がある。",
+      "reason_needed": "航空機内ルールの運用投影を評価するため",
+      "alternatives": [
+        "航空旅客利用を対象外とする"
+      ],
+      "affected_refs": [
+        "APP-MB-002"
+      ],
+      "validation_method": "意図する使用と販売時の取扱情報範囲を確認する",
+      "revision_condition": "航空利用を対象外にした場合または航空ルールを変更した場合",
+      "human_confirmation_required": true
+    }
+  ],
+  "alternatives": [],
+  "decisions": [],
+  "relations": [],
+  "projection_targets": [
+    {
+      "id": "PROC-MB-PSE-INSPECTION",
+      "name": "電安法自主検査プロセス候補",
+      "target_kind": "process_requirement",
+      "statement": "対象事業者は、適用対象と確認された構成について必要な自主検査を実施し、その記録を保持する。",
+      "lifecycle_stage": "production",
+      "responsible_role_ref": "ROLE-COMPLIANCE",
+      "status": "candidate",
+      "rationale": "自主検査義務を製品挙動要求から分離して保持する候補である。",
+      "origin": "ai_context_inference",
+      "confidence": "medium",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "DOC-MB-PSE-MARKING",
+      "name": "電安法表示仕様候補",
+      "target_kind": "documentation_requirement",
+      "statement": "表示仕様書は、法規担当者が適用対象と確認した構成について必要な表示事項を定義する。",
+      "lifecycle_stage": "development",
+      "responsible_role_ref": "ROLE-COMPLIANCE",
+      "status": "candidate",
+      "rationale": "表示義務を製品機能要求から分離して保持する候補である。",
+      "origin": "ai_context_inference",
+      "confidence": "medium",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "SUP-MB-UN38-TEST-SUMMARY",
+      "name": "UN 38.3試験要約入手候補",
+      "target_kind": "supplier_requirement",
+      "statement": "調達担当者は、2003年6月30日後に製造された採用セルまたは電池について、機器または回路基板へ組み込まれたボタン電池の例外を確認し、適用される場合はUN 38.3試験要約を供給者から入手する。",
+      "lifecycle_stage": "development",
+      "responsible_role_ref": "ROLE-LOGISTICS-COMPLIANCE",
+      "status": "candidate",
+      "rationale": "輸送試験情報の入手を供給者への要求として保持する候補である。",
+      "origin": "ai_context_inference",
+      "confidence": "medium",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ASSURE-MB-TECH-CRITERIA-SELECTION",
+      "name": "適用技術基準選定要求候補",
+      "target_kind": "assurance_requirement",
+      "statement": "法規担当者は、対象区分と採用する技術基準体系を確定し、個別製品要求への導出根拠を記録する。",
+      "lifecycle_stage": "development",
+      "responsible_role_ref": "ROLE-COMPLIANCE",
+      "status": "candidate",
+      "rationale": "一般的な法第8条義務から具体的保護挙動へ直接投影しない。",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "DOC-MB-AIR-QUANTITY-CAPACITY",
+      "name": "航空携行個数・容量文書要求候補",
+      "target_kind": "documentation_requirement",
+      "statement": "取扱文書は、適用対象と確認された携行個数および容量制限を独立項目として示す。",
+      "lifecycle_stage": "utilization",
+      "responsible_role_ref": "ROLE-LOGISTICS-COMPLIANCE",
+      "status": "candidate",
+      "rationale": "個数・容量義務を他の禁止事項から分離する。",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "DOC-MB-AIR-CHARGING-PROHIBITION",
+      "name": "航空機内充電禁止文書要求候補",
+      "target_kind": "documentation_requirement",
+      "statement": "取扱文書は、適用対象と確認された航空機内でのモバイルバッテリー充電禁止を独立項目として示す。",
+      "lifecycle_stage": "utilization",
+      "responsible_role_ref": "ROLE-LOGISTICS-COMPLIANCE",
+      "status": "candidate",
+      "rationale": "充電禁止義務を個別追跡する。",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "DOC-MB-AIR-POWERING-AVOIDANCE",
+      "name": "航空機内給電回避推奨文書要求候補",
+      "target_kind": "documentation_requirement",
+      "statement": "取扱文書は、国土交通省の非法定安全要請に基づく航空機内での他機器への給電回避推奨を、法的禁止と区別して独立項目として示す。",
+      "lifecycle_stage": "utilization",
+      "responsible_role_ref": "ROLE-LOGISTICS-COMPLIANCE",
+      "status": "candidate",
+      "rationale": "非法定の給電回避要請を法的禁止と分離して個別追跡する。",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    }
+  ],
+  "findings": [],
+  "quality_summary": {
+    "overall_result": "pass_with_provisional_assumption",
+    "checks": [
+      {
+        "check_id": "FORTY-POINT-GATE",
+        "name": "40点Gate候補",
+        "result": "pass_with_provisional_assumption",
+        "evidence": "主要要求8件のNeed、BehaviorまたはStructure、V&V参照が解決し、根拠のない数値・適合・認証主張を行っていない。法的適用性と安全境界値は人確認待ち。",
+        "affected_refs": [
+          "MBREQ-0001",
+          "MBREQ-0002",
+          "MBREQ-0003",
+          "MBREQ-0004",
+          "MBREQ-0005",
+          "MBREQ-0006",
+          "MBREQ-0007",
+          "MBREQ-0008"
+        ],
+        "finding_refs": []
+      }
+    ],
+    "not_performed": [
+      "人による法規適用判断",
+      "実機試験",
+      "適合性評価",
+      "認証または承認"
+    ],
+    "gate_state": "reviewable_40_candidate"
+  },
+  "language_quality": {
+    "profile_id": "ja_se_technical_writing_v1",
+    "profile_version": "1.0.0",
+    "requirement_modal_style": "controlled_declarative",
+    "checked": true,
+    "finding_refs": []
+  },
+  "compliance": {
+    "scope": {
+      "jurisdictions": [
+        "日本"
+      ],
+      "markets": [
+        "日本国内一般消費者向け販売候補",
+        "日本発着便の旅客利用候補",
+        "日本向け製品の物流候補"
+      ],
+      "product_classifications": [
+        "リチウムイオン蓄電池を内蔵する携帯用充電器候補（電安法上の分類は未確定）"
+      ],
+      "intended_uses": [
+        "携帯機器への給電",
+        "航空旅客手荷物としての携行候補"
+      ],
+      "configuration_refs": [
+        "CFG-MB-CANDIDATE"
+      ],
+      "lifecycle_stages": [
+        "concept",
+        "development",
+        "production",
+        "utilization",
+        "retirement"
+      ],
+      "assessed_as_of": "2026-08-22",
+      "assumption_refs": [
+        "MBASM-0001",
+        "MBASM-0002",
+        "MBASM-0003"
+      ],
+      "scope_limitations": [
+        "セルの体積エネルギー密度、定格容量、Wh、化学系、セル・パック構成は未確認",
+        "製造・輸入・販売主体および販売経路は未確認",
+        "航空旅客利用、貨物輸送モードおよび運送事業者条件は未確認",
+        "規格本文のライセンス済み版を取得していない"
+      ]
+    },
+    "authorities": [
+      {
+        "id": "AUTH-MB-001",
+        "name": "経済産業省",
+        "authority_type": "regulator",
+        "jurisdictions": [
+          "日本"
+        ],
+        "official_locator": "https://www.meti.go.jp/policy/consumer/seian/denan/",
+        "verification_status": "retrieved_from_official_source",
+        "notes": "電気用品安全法の制度運用情報を確認"
+      },
+      {
+        "id": "AUTH-MB-002",
+        "name": "国土交通省航空局",
+        "authority_type": "regulator",
+        "jurisdictions": [
+          "日本"
+        ],
+        "official_locator": "https://www.mlit.go.jp/koku/",
+        "verification_status": "retrieved_from_official_source",
+        "notes": "2026年4月24日適用の航空機内持込みルールを確認"
+      },
+      {
+        "id": "AUTH-MB-003",
+        "name": "United Nations Economic Commission for Europe",
+        "authority_type": "standards_body",
+        "jurisdictions": [
+          "international"
+        ],
+        "official_locator": "https://unece.org/transport/dangerous-goods",
+        "verification_status": "retrieved_from_official_source",
+        "notes": "UN Manual of Tests and Criteriaの公式発行ページを確認"
+      }
+    ],
+    "sources": [
+      {
+        "id": "SRC-MB-001",
+        "title": "対象非対象解釈例一覧：リチウムイオン蓄電池",
+        "identifier": null,
+        "source_type": "guideline",
+        "authority_refs": [
+          "AUTH-MB-001"
+        ],
+        "edition": null,
+        "publication_date": null,
+        "effective_from": null,
+        "effective_to": null,
+        "status": "unknown",
+        "official_locator": "https://www.meti.go.jp/policy/consumer/seian/denan/subject01.html",
+        "language": "ja",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+        "provenance": "経済産業省公式ページ。最終更新日2026-03-03をWeb取得で確認",
+        "applicability_version_state": "unconfirmed"
+      },
+      {
+        "id": "SRC-MB-002",
+        "title": "電気用品安全法 法令業務実施ガイド",
+        "identifier": null,
+        "source_type": "guideline",
+        "authority_refs": [
+          "AUTH-MB-001"
+        ],
+        "edition": null,
+        "publication_date": null,
+        "effective_from": null,
+        "effective_to": null,
+        "status": "unknown",
+        "official_locator": "https://www.meti.go.jp/policy/consumer/seian/denan/tetsuduki_annai/guide/denan_guide.pdf",
+        "language": "ja",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+        "provenance": "経済産業省公式PDFの検索取得結果で法第8条、法第10条、法第27条に関する説明を確認。版表示は抽出できず未確認",
+        "applicability_version_state": "unconfirmed"
+      },
+      {
+        "id": "SRC-MB-003",
+        "title": "モバイルバッテリーの機内持込みの新たなルールについて",
+        "identifier": null,
+        "source_type": "guideline",
+        "authority_refs": [
+          "AUTH-MB-002"
+        ],
+        "edition": "2026-04-14 press release",
+        "publication_date": "2026-04-14",
+        "effective_from": "2026-04-24",
+        "effective_to": null,
+        "status": "unknown",
+        "official_locator": "https://www.mlit.go.jp/report/press/kouku10_hh_000310.html",
+        "language": "ja",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+        "provenance": "国土交通省公式発表を2026-08-22に取得",
+        "applicability_version_state": "unconfirmed"
+      },
+      {
+        "id": "SRC-MB-004",
+        "title": "UN Manual of Tests and Criteria, Revision 8 and Amendment 1",
+        "identifier": "ST/SG/AC.10/11/Rev.8 and ST/SG/AC.10/11/Rev.8/Amend.1",
+        "source_type": "standard",
+        "authority_refs": [
+          "AUTH-MB-003"
+        ],
+        "edition": "Revision 8 (2023) with Amendment 1 (2025)",
+        "publication_date": "2025-09-12",
+        "effective_from": null,
+        "effective_to": null,
+        "status": "unknown",
+        "official_locator": "https://unece.org/transport/dangerous-goods/rev8-files",
+        "language": "en",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+        "provenance": "UNECE公式発行ページでRev.8とAmendment 1、subsection 38.3の改正を確認。輸送時に採用すべき版は未確認",
+        "applicability_version_state": "unconfirmed"
+      },
+      {
+        "id": "SRC-MB-005",
+        "title": "航空機による爆発物等の輸送基準等を定める告示（令和8年4月24日適用版）",
+        "identifier": "昭和58年運輸省告示第572号",
+        "source_type": "regulation",
+        "authority_refs": [
+          "AUTH-MB-002"
+        ],
+        "edition": "2026-04-24適用候補",
+        "publication_date": null,
+        "effective_from": "2026-04-24",
+        "effective_to": null,
+        "status": "unknown",
+        "applicability_version_state": "unconfirmed",
+        "official_locator": "https://safetyp.cab.mlit.go.jp/wp-content/uploads/2026/04/01-%EF%BC%88%E7%88%86%E7%99%BA%E7%89%A9%E7%AD%89%E5%91%8A%E7%A4%BA%EF%BC%89%E5%91%8A%E7%A4%BA%E6%9C%AC%E6%96%87%EF%BC%88260424%EF%BC%89.pdf",
+        "language": "ja",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+        "provenance": "2026-08-22に国土交通省公式PDFで告示第27条が別表第18を参照することを確認。旅客向け詳細条件はSRC-MB-007に分離。"
+      },
+      {
+      "id": "SRC-MB-006",
+      "title": "UN Recommendations on the Transport of Dangerous Goods, Model Regulations, Revision 24, 2.9.4(g)",
+      "identifier": "ST/SG/AC.10/1/Rev.24",
+      "source_type": "recommendation",
+        "authority_refs": [
+          "AUTH-MB-003"
+        ],
+      "edition": "Revision 24 (2025)",
+        "publication_date": null,
+        "effective_from": null,
+        "effective_to": null,
+        "status": "unknown",
+        "applicability_version_state": "unconfirmed",
+      "official_locator": "https://unece.org/sites/default/files/2025-09/ST_SG_AC10_1_Rev24e_Vol%20I_1.pdf",
+        "language": "en",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+      "provenance": "2026-08-22にUNECE公式Revision 24 Volume Iの2.9.4(g)を確認。Model Regulationsは勧告であり、採用輸送モードと法域への取込みは人確認待ち。"
+      },
+      {
+        "id": "SRC-MB-007",
+        "title": "航空機による爆発物等の輸送基準等を定める告示 別表第18（令和8年4月24日適用版）",
+        "identifier": "昭和58年運輸省告示第572号・別表第18",
+        "source_type": "regulation",
+        "authority_refs": ["AUTH-MB-002"],
+        "edition": "令和8年4月24日適用版",
+        "publication_date": null,
+        "effective_from": "2026-04-24",
+        "effective_to": null,
+        "status": "unknown",
+        "applicability_version_state": "unconfirmed",
+        "official_locator": "https://www.mlit.go.jp/common/001388681.pdf",
+        "language": "ja",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+        "provenance": "2026-08-22に国土交通省公式別表第18でパワーバンク2個、160Wh以下および機内充電禁止の位置を確認。対象便・例外は人確認待ち。"
+      },
+      {
+        "id": "SRC-MB-008",
+        "title": "航空局からのお知らせ No.111：モバイルバッテリーの機内持込みルールの変更について",
+        "identifier": "No.111（令和8年4月23日配信情報）",
+        "source_type": "guideline",
+        "authority_refs": ["AUTH-MB-002"],
+        "edition": "2026-04-23",
+        "publication_date": "2026-04-23",
+        "effective_from": "2026-04-24",
+        "effective_to": null,
+        "status": "unknown",
+        "applicability_version_state": "unconfirmed",
+        "official_locator": "https://www.mlit.go.jp/koku/content/001998054.pdf",
+        "language": "ja",
+        "supersedes_ref": null,
+        "verification_status": "retrieved_from_official_source",
+        "text_storage_policy": "metadata_only",
+        "provenance": "2026-08-22に国土交通省公式資料を確認。他機器への給電禁止要請は法律に基づく禁止事項ではない旨が明記されている。"
+      }
+    ],
+    "provisions": [
+      {
+        "id": "PRV-MB-001",
+        "source_ref": "SRC-MB-001",
+        "locator": {
+          "canonical": "リチウムイオン蓄電池（特定以外）／政令規定",
+          "article": null,
+          "section": "リチウムイオン蓄電池（特定以外）",
+          "paragraph": null,
+          "table": "対象非対象解釈例一覧表",
+          "annex": null
+        },
+        "heading": "リチウムイオン蓄電池（特定以外）",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": null,
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+        "id": "PRV-MB-002",
+        "source_ref": "SRC-MB-002",
+        "locator": {
+          "canonical": "3.3 技術基準適合義務等／法第8条第1項",
+          "article": "電気用品安全法第8条第1項",
+          "section": "3.3",
+          "paragraph": null,
+          "table": null,
+          "annex": null
+        },
+        "heading": "技術基準適合義務等",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": null,
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+        "id": "PRV-MB-003",
+        "source_ref": "SRC-MB-002",
+        "locator": {
+          "canonical": "3.3 技術基準適合義務等／法第8条第2項・施行規則別表第三",
+          "article": "電気用品安全法第8条第2項",
+          "section": "3.3",
+          "paragraph": null,
+          "table": "電気用品安全法施行規則別表第三",
+          "annex": null
+        },
+        "heading": "検査実施および検査記録保存",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": null,
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+        "id": "PRV-MB-004",
+        "source_ref": "SRC-MB-002",
+        "locator": {
+          "canonical": "6 表示／法第10条・法第27条",
+          "article": "電気用品安全法第10条・第27条",
+          "section": "6",
+          "paragraph": null,
+          "table": null,
+          "annex": null
+        },
+        "heading": "表示",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": null,
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+      "id": "PRV-MB-005",
+      "source_ref": "SRC-MB-007",
+      "locator": {
+        "canonical": "告示第27条／別表第18「リチウム電池を内蔵した携帯型電子機器」備考2・「パワーバンク」行",
+        "article": "第27条",
+        "section": null,
+        "paragraph": null,
+        "table": "別表第18",
+          "annex": null
+        },
+        "heading": "機内持込みは2個かつ各160Wh以下",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": "2026-04-24",
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+      "id": "PRV-MB-006",
+      "source_ref": "SRC-MB-007",
+      "locator": {
+        "canonical": "告示第27条／別表第18「リチウム電池を内蔵した携帯型電子機器」備考7",
+        "article": "第27条",
+        "section": null,
+        "paragraph": "備考7",
+        "table": "別表第18",
+          "annex": null
+        },
+        "heading": "機内でモバイルバッテリーへ充電しない",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": "2026-04-24",
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+      "id": "PRV-MB-007",
+      "source_ref": "SRC-MB-008",
+      "locator": {
+        "canonical": "航空局からのお知らせNo.111『モバイルバッテリーの機内持込みルールの変更について』第3追加点および注記",
+        "article": null,
+        "section": "モバイルバッテリーの機内持込みルールの変更について",
+        "paragraph": "第3追加点および注記",
+          "table": null,
+          "annex": null
+        },
+      "heading": "機内で他の電子機器へ給電しないよう求める安全要請（非法定禁止）",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": "2026-04-24",
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+        "id": "PRV-MB-008",
+        "source_ref": "SRC-MB-004",
+        "locator": {
+          "canonical": "subsection 38.3, including 38.3.5 test summary",
+          "article": null,
+          "section": "38.3",
+          "paragraph": "38.3.5",
+          "table": null,
+          "annex": null
+        },
+        "heading": "Lithium metal and lithium ion batteries / test summary",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": null,
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      },
+      {
+        "id": "PRV-MB-009",
+        "source_ref": "SRC-MB-006",
+        "locator": {
+          "canonical": "2.9.4(g) candidate",
+          "article": null,
+          "section": "2.9.4",
+          "paragraph": "(g)",
+          "table": null,
+          "annex": null
+        },
+        "heading": "試験要約の提供主体候補",
+        "source_fragment_refs": [],
+        "excerpt": null,
+        "text_storage_policy": "metadata_only",
+        "valid_from": null,
+        "valid_to": null,
+        "verification_status": "retrieved_from_official_source"
+      }
+    ],
+    "normative_statements": [
+      {
+        "id": "NRM-MB-001",
+        "provision_refs": [
+          "PRV-MB-001"
+        ],
+        "statement_kind": "definition",
+        "modality": "definition",
+        "bearer": null,
+        "condition": "日本の電安法上の対象性を検討する場合",
+        "action_or_property": "単電池1個当たりの体積エネルギー密度と用途除外を用いてリチウムイオン蓄電池の対象範囲を判断する",
+        "object": "対象製品の電池構成",
+        "limit": "400 Wh/L以上という対象条件および公式ページ記載の用途除外",
+        "deadline": null,
+        "exceptions": [
+          "自動車用",
+          "原動機付自転車用",
+          "医療用機械器具用",
+          "産業用機械器具用"
+        ],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "経済産業省の対象非対象解釈例一覧の要約。対象製品の数値と用途は未確認",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-MB-002",
+        "provision_refs": [
+          "PRV-MB-002"
+        ],
+        "statement_kind": "normative",
+        "modality": "obligation",
+        "bearer": "届出事業者",
+        "condition": "届出に係る型式の電気用品を製造または輸入する場合",
+        "action_or_property": "当該電気用品を適用される技術上の基準に適合させる",
+        "object": "届出に係る型式の電気用品",
+        "limit": null,
+        "deadline": "製造または輸入の時点で有効な基準に従う候補",
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "経済産業省公式ガイドの法第8条第1項説明の要約。正式解釈は法務・法規担当が現行法令で確認する",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-MB-003",
+        "provision_refs": [
+          "PRV-MB-003"
+        ],
+        "statement_kind": "normative",
+        "modality": "obligation",
+        "bearer": "届出事業者",
+        "condition": "対象電気用品を製造または輸入する場合",
+        "action_or_property": "所定の検査を実施して検査記録を作成し保存する",
+        "object": "製造または輸入に係る電気用品",
+        "limit": null,
+        "deadline": null,
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "経済産業省公式ガイドの法第8条第2項・施行規則別表第三説明の要約。検査方式と保存期間は現行法令で再確認する",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-MB-004",
+        "provision_refs": [
+          "PRV-MB-004"
+        ],
+        "statement_kind": "normative",
+        "modality": "prohibition",
+        "bearer": "販売事業者または届出事業者",
+        "condition": "電安法対象製品を日本で販売または販売目的で陳列する場合",
+        "action_or_property": "所定の義務履行前の無表示製品を販売または陳列しない",
+        "object": "電安法対象製品",
+        "limit": null,
+        "deadline": "販売または陳列前",
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "経済産業省公式ガイドの法第10条・第27条説明の要約。PSEを認証取得とは扱わない",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-MB-005",
+        "provision_refs": [
+          "PRV-MB-005"
+        ],
+        "statement_kind": "normative",
+        "modality": "prohibition",
+        "bearer": "航空旅客",
+        "condition": "日本の航空機内へモバイルバッテリーを持ち込む場合",
+        "action_or_property": "2個を超えるモバイルバッテリーまたは160Whを超えるモバイルバッテリーを持ち込まない",
+        "object": "旅客が携行するモバイルバッテリー",
+        "limit": "2個まで、各160Wh以下",
+        "deadline": "搭乗時",
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "国土交通省公式の告示別表第18（令和8年4月24日適用版）にある個数・容量条件を原子化した候補",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-MB-006",
+        "provision_refs": [
+          "PRV-MB-006"
+        ],
+        "statement_kind": "normative",
+        "modality": "prohibition",
+        "bearer": "航空旅客",
+        "condition": "航空機内にいる間",
+        "action_or_property": "機内電源からモバイルバッテリーを充電しない",
+        "object": "モバイルバッテリー",
+        "limit": null,
+        "deadline": null,
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+        "interpretation_basis": "国土交通省公式の告示別表第18（令和8年4月24日適用版）にある機内充電禁止を原子化した候補",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+      "id": "NRM-MB-007",
+        "provision_refs": [
+          "PRV-MB-007"
+        ],
+        "statement_kind": "normative",
+      "modality": "recommendation",
+        "bearer": "航空旅客",
+        "condition": "航空機内にいる間",
+      "action_or_property": "モバイルバッテリーから他の電子機器へ給電しないよう求める",
+        "object": "携帯するモバイルバッテリー",
+        "limit": null,
+        "deadline": null,
+        "exceptions": [],
+        "interpretation_status": "ai_candidate",
+      "interpretation_basis": "国土交通省航空局No.111の安全要請を原子化した候補。公式注記に従い法律に基づく禁止事項として扱わない。",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "NRM-MB-008",
+        "provision_refs": [
+          "PRV-MB-008",
+          "PRV-MB-009"
+        ],
+        "statement_kind": "normative",
+        "modality": "obligation",
+      "bearer": "セルまたは電池の製造者および後続流通業者候補",
+        "condition": "2003年6月30日後に製造され、UN 38.3の輸送要件が対象セルまたは電池型式に適用される場合",
+        "action_or_property": "対象電池型式の試験要約を利用可能にする",
+        "object": "リチウム電池試験要約",
+        "limit": "2003年6月30日後に製造されたセルまたは電池",
+        "deadline": null,
+        "exceptions": [
+          "機器または回路基板へ組み込まれたボタン電池候補"
+        ],
+        "interpretation_status": "ai_candidate",
+      "interpretation_basis": "UNECE Model Regulations Revision 24の2.9.4(g)とManual 38.3.5を対応付けた候補。製品製造者一般へは拡張せず、採用輸送モードおよび法的取込みは未確認",
+        "alternative_interpretation_refs": [],
+        "origin": "external_candidate",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ],
+    "applicability_assessments": [
+      {
+        "id": "APP-MB-001",
+        "normative_statement_refs": [
+          "NRM-MB-001",
+          "NRM-MB-002",
+          "NRM-MB-003",
+          "NRM-MB-004"
+        ],
+        "assessment_context": {
+          "jurisdiction": "日本",
+          "market": "日本国内一般消費者向け販売候補",
+          "product_classification": "リチウムイオン蓄電池を内蔵する携帯用充電器候補",
+          "intended_use": "携帯機器への給電",
+          "configuration_ref": "CFG-MB-CANDIDATE",
+          "lifecycle_stage": "concept/development/production"
+        },
+      "decision": "uncertain",
+      "human_confirmation_state": "pending",
+      "confirmed_by_ref": null,
+      "confirmed_at": null,
+        "binding_basis": "direct_regulation",
+        "basis": "METI公式情報はモバイルバッテリーとリチウムイオン蓄電池を電安法対象候補として示すが、単電池の体積エネルギー密度、用途除外、事業者役割および販売経路が未確認",
+        "assumption_refs": [
+          "MBASM-0001",
+          "MBASM-0002"
+        ],
+        "interpretation_refs": [],
+        "assessed_as_of": "2026-08-22",
+        "review_triggers": [
+          "セルまたは電池パック仕様を決定した場合",
+          "体積エネルギー密度を確認した場合",
+          "用途分類または事業者役割を決定した場合",
+          "販売時点で有効な法令・技術基準を変更した場合"
+        ],
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "APP-MB-002",
+        "normative_statement_refs": [
+          "NRM-MB-005",
+          "NRM-MB-006"
+        ],
+        "assessment_context": {
+          "jurisdiction": "日本",
+          "market": "日本発着便の旅客利用候補",
+          "product_classification": "モバイルバッテリー候補",
+          "intended_use": "航空旅客手荷物として携行する可能性",
+          "configuration_ref": "CFG-MB-CANDIDATE",
+          "lifecycle_stage": "utilization"
+        },
+      "decision": "uncertain",
+      "human_confirmation_state": "pending",
+      "confirmed_by_ref": null,
+      "confirmed_at": null,
+        "binding_basis": "direct_regulation",
+        "basis": "国土交通省は2026-04-24適用ルールを公表しているが、航空旅客利用が製品の意図する使用に含まれるか、定格Whおよび航空会社追加条件が未確認",
+        "assumption_refs": [
+          "MBASM-0001",
+          "MBASM-0003"
+        ],
+        "interpretation_refs": [],
+        "assessed_as_of": "2026-08-22",
+        "review_triggers": [
+          "定格Whまたは航空旅客利用方針を決定した場合",
+          "航空法令、告示または航空会社条件を変更した場合",
+          "利用法域または運送事業者を変更した場合"
+        ],
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "APP-MB-003",
+        "normative_statement_refs": [
+          "NRM-MB-008"
+        ],
+        "assessment_context": {
+          "jurisdiction": "international/unknown",
+          "market": "日本向け製品の物流候補",
+          "product_classification": "リチウムイオン電池を内蔵する製品候補",
+          "intended_use": "製造・輸入・流通時の輸送",
+          "configuration_ref": "CFG-MB-CANDIDATE",
+          "lifecycle_stage": "production"
+        },
+      "decision": "uncertain",
+      "human_confirmation_state": "pending",
+      "confirmed_by_ref": null,
+      "confirmed_at": null,
+        "binding_basis": "unknown",
+        "basis": "UNECE公式版は確認したが、採用すべき版、輸送モード、セル・電池型式、法域ごとの取込みおよび供給者責任が未確認",
+        "assumption_refs": [
+          "MBASM-0002"
+        ],
+        "interpretation_refs": [],
+        "assessed_as_of": "2026-08-22",
+        "review_triggers": [
+          "輸送モード、法域または運送事業者を決定した場合",
+          "セル・電池・製品構成を変更した場合",
+          "UN Manualの採用版を変更した場合"
+        ],
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "APP-MB-004",
+        "normative_statement_refs": ["NRM-MB-007"],
+        "assessment_context": {
+          "jurisdiction": "日本",
+          "market": "日本発着便の旅客利用候補",
+          "product_classification": "モバイルバッテリー候補",
+          "intended_use": "航空旅客手荷物として携行する可能性",
+          "configuration_ref": "CFG-MB-CANDIDATE",
+          "lifecycle_stage": "utilization"
+        },
+        "decision": "uncertain",
+        "human_confirmation_state": "pending",
+        "confirmed_by_ref": null,
+        "confirmed_at": null,
+        "binding_basis": "unknown",
+        "basis": "国土交通省は他機器への給電を避けるよう要請しているが、公式資料は法律に基づく禁止事項ではないと明記する。組織の採用方針と対象便は未確認。",
+        "assumption_refs": ["MBASM-0001", "MBASM-0003"],
+        "interpretation_refs": [],
+        "assessed_as_of": "2026-08-22",
+        "review_triggers": ["航空旅客利用方針を決定した場合", "国土交通省の安全要請または航空会社条件を変更した場合", "利用法域または運送事業者を変更した場合"],
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ],
+    "obligations": [
+      {
+        "id": "OBL-MB-001",
+        "name": "適用技術基準への適合義務候補",
+        "normative_statement_refs": [
+          "NRM-MB-002"
+        ],
+        "applicability_refs": [
+          "APP-MB-001"
+        ],
+        "obligated_party": "届出事業者候補",
+        "object_of_conformity": "CFG-MB-CANDIDATE",
+        "target_kind": "mixed",
+        "obligation_kind": "mandatory",
+        "condition": "対象製品が電安法対象であり、届出事業者が製造または輸入する場合",
+        "required_outcome": "販売時点に適用される技術上の基準へ適合する",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "OBL-MB-002",
+        "name": "自主検査・記録保存義務候補",
+        "normative_statement_refs": [
+          "NRM-MB-003"
+        ],
+        "applicability_refs": [
+          "APP-MB-001"
+        ],
+        "obligated_party": "届出事業者候補",
+        "object_of_conformity": "製造または輸入に係る対象製品",
+        "target_kind": "mixed",
+        "obligation_kind": "mandatory",
+        "condition": "対象製品が電安法対象であり、届出事業者が製造または輸入する場合",
+        "required_outcome": "所定の検査を実施して検査記録を保存する",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "OBL-MB-003",
+        "name": "販売表示義務候補",
+        "normative_statement_refs": [
+          "NRM-MB-004"
+        ],
+        "applicability_refs": [
+          "APP-MB-001"
+        ],
+        "obligated_party": "届出事業者または販売事業者候補",
+        "object_of_conformity": "日本で販売する対象製品",
+        "target_kind": "mixed",
+        "obligation_kind": "prohibition",
+        "condition": "対象製品が電安法対象で日本で販売または陳列される場合",
+        "required_outcome": "所定義務を履行して表示条件を満たすまで販売または陳列しない",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "OBL-MB-004",
+        "name": "航空機内持込み個数・容量制限候補",
+        "normative_statement_refs": [
+          "NRM-MB-005"
+        ],
+        "applicability_refs": [
+          "APP-MB-002"
+        ],
+        "obligated_party": "航空旅客",
+        "object_of_conformity": "旅客が携行するモバイルバッテリー",
+        "target_kind": "operation_process",
+        "obligation_kind": "prohibition",
+        "condition": "日本の航空機内へ持ち込む場合",
+        "required_outcome": "持込み個数を2個まで、各定格を160Wh以下とする",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "OBL-MB-005",
+        "name": "航空機内充電禁止候補",
+        "normative_statement_refs": [
+          "NRM-MB-006"
+        ],
+        "applicability_refs": [
+          "APP-MB-002"
+        ],
+        "obligated_party": "航空旅客",
+        "object_of_conformity": "機内へ持ち込むモバイルバッテリー",
+        "target_kind": "operation_process",
+        "obligation_kind": "prohibition",
+        "condition": "航空機内にいる間",
+        "required_outcome": "モバイルバッテリーへ充電しない",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+      "id": "OBL-MB-006",
+        "name": "航空機内給電回避推奨候補",
+        "normative_statement_refs": [
+          "NRM-MB-007"
+        ],
+      "applicability_refs": [
+        "APP-MB-004"
+        ],
+        "obligated_party": "航空旅客",
+        "object_of_conformity": "機内へ持ち込むモバイルバッテリー",
+        "target_kind": "operation_process",
+      "obligation_kind": "recommendation",
+        "condition": "航空機内にいる間",
+      "required_outcome": "安全上、モバイルバッテリーから他の電子機器へ給電しない運用を推奨する",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "OBL-MB-007",
+        "name": "UN 38.3試験要約提供義務候補",
+        "normative_statement_refs": [
+          "NRM-MB-008"
+        ],
+        "applicability_refs": [
+          "APP-MB-003"
+        ],
+        "obligated_party": "製造者・流通関係者候補",
+        "object_of_conformity": "輸送するセルまたは電池型式",
+        "target_kind": "mixed",
+        "obligation_kind": "mandatory",
+        "condition": "選定した輸送制度がUN 38.3を取り込み、対象セルまたは電池が2003年6月30日後に製造され、組込みボタン電池の例外に該当せず、対象型式に適用される場合",
+        "required_outcome": "製造時点と組込みボタン電池例外の該当性を確認し、適用される対象型式に対応する試験要約を利用可能にする",
+        "compliance_status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ],
+    "engineering_projections": [
+      {
+        "id": "EPR-MB-001",
+        "obligation_refs": [
+          "OBL-MB-001"
+        ],
+        "projection_kind": "assurance_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "ASSURE-MB-TECH-CRITERIA-SELECTION"
+        ],
+        "derivation_basis": "一般義務は適用技術基準の選定と導出根拠管理へ投影し、具体的保護要求は安全Need由来のまま保持する。",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-002",
+        "obligation_refs": [
+          "OBL-MB-001"
+        ],
+        "projection_kind": "evidence_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "EVR-MB-003"
+        ],
+        "derivation_basis": "製品安全要求と適用技術基準への適合を確認する試験証拠を要求する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-003",
+        "obligation_refs": [
+          "OBL-MB-002"
+        ],
+        "projection_kind": "process_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "PROC-MB-PSE-INSPECTION"
+        ],
+        "derivation_basis": "自主検査は対象システムの挙動ではなく製造・輸入プロセスへ投影する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-004",
+        "obligation_refs": [
+          "OBL-MB-002"
+        ],
+        "projection_kind": "evidence_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "EVR-MB-004"
+        ],
+        "derivation_basis": "検査記録の存在・構成・保存性を証拠要求へ投影する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-005",
+        "obligation_refs": [
+          "OBL-MB-003"
+        ],
+        "projection_kind": "documentation_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "DOC-MB-PSE-MARKING"
+        ],
+        "derivation_basis": "届出事業者情報・表示方式の確認を製品外の表示仕様文書へ投影する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-006",
+        "obligation_refs": [
+          "OBL-MB-003"
+        ],
+        "projection_kind": "constraint_requirement",
+        "target_level": "L2",
+        "target_refs": [
+          "MBREQ-0008"
+        ],
+        "derivation_basis": "人が適用と表示仕様を確認した場合に限り製品表示領域へ投影する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-007",
+        "obligation_refs": [
+          "OBL-MB-003"
+        ],
+        "projection_kind": "evidence_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "EVR-MB-005"
+        ],
+        "derivation_basis": "承認済み表示仕様と対象構成の一致記録を要求する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-009",
+        "obligation_refs": [
+          "OBL-MB-004",
+          "OBL-MB-005",
+          "OBL-MB-006"
+        ],
+        "projection_kind": "evidence_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "EVR-MB-006"
+        ],
+        "derivation_basis": "航空利用を範囲に含める場合の取扱情報レビュー記録を要求する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-010",
+        "obligation_refs": [
+          "OBL-MB-007"
+        ],
+        "projection_kind": "supplier_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "SUP-MB-UN38-TEST-SUMMARY"
+        ],
+        "derivation_basis": "セル・電池供給者から対象型式と構成に対応する試験要約を入手可能にする責任候補へ投影する",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-011",
+        "obligation_refs": [
+          "OBL-MB-007"
+        ],
+        "projection_kind": "evidence_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "EVR-MB-007"
+        ],
+        "derivation_basis": "輸送対象型式に対応する試験要約の必要性をEvidence Requirementとして表す",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-008A",
+        "obligation_refs": [
+          "OBL-MB-004"
+        ],
+        "projection_kind": "documentation_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "DOC-MB-AIR-QUANTITY-CAPACITY"
+        ],
+        "derivation_basis": "航空利用候補の個別義務を独立した文書項目へ投影する。",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-008B",
+        "obligation_refs": [
+          "OBL-MB-005"
+        ],
+        "projection_kind": "documentation_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "DOC-MB-AIR-CHARGING-PROHIBITION"
+        ],
+        "derivation_basis": "航空利用候補の個別義務を独立した文書項目へ投影する。",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-008C",
+        "obligation_refs": [
+          "OBL-MB-006"
+        ],
+        "projection_kind": "documentation_requirement",
+        "target_level": "cross_level",
+        "target_refs": [
+          "DOC-MB-AIR-POWERING-AVOIDANCE"
+        ],
+        "derivation_basis": "航空利用候補の個別義務を独立した文書項目へ投影する。",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-009A",
+        "obligation_refs": ["OBL-MB-004"],
+        "projection_kind": "operational_requirement",
+        "target_level": "cross_level",
+        "target_refs": ["MBREQ-0009"],
+        "derivation_basis": "航空旅客の個数・容量行動をOperational Requirementへ投影する。",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-009B",
+        "obligation_refs": ["OBL-MB-005"],
+        "projection_kind": "operational_requirement",
+        "target_level": "cross_level",
+        "target_refs": ["MBREQ-0010"],
+        "derivation_basis": "航空旅客の機内充電禁止行動をOperational Requirementへ投影する。",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EPR-MB-009C",
+        "obligation_refs": ["OBL-MB-006"],
+        "projection_kind": "operational_requirement",
+        "target_level": "cross_level",
+        "target_refs": ["MBREQ-0011"],
+        "derivation_basis": "APP-MB-004を組織が採用した場合の航空旅客向け機内給電回避推奨を、法的禁止と区別してOperational Requirementへ投影する。",
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ],
+    "evidence_requirements": [
+      {
+        "id": "EVR-MB-001",
+        "name": "給電・表示機能試験報告要求",
+        "target_refs": [
+          "MBREQ-0001",
+          "MBREQ-0002"
+        ],
+        "evidence_type": "test_report",
+        "required_properties": [
+          "対象構成を識別できる",
+          "互換性集合と状態定義の版を識別できる",
+          "入力条件、観測値、合否候補を記録する"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "first_party",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "medium",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-MB-002",
+        "name": "損傷品隔離手順レビュー記録要求",
+        "target_refs": [
+          "MBREQ-0007"
+        ],
+        "evidence_type": "review_record",
+        "required_properties": [
+          "損傷判定例を識別できる",
+          "隔離、再使用防止、引渡し責任を記録する"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "independent_internal",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-MB-003",
+        "name": "電池安全・適用技術基準試験報告要求",
+        "target_refs": [
+          "OBL-MB-001",
+          "MBREQ-0003",
+          "MBREQ-0004",
+          "MBREQ-0005",
+          "MBREQ-0006"
+        ],
+        "evidence_type": "test_report",
+        "required_properties": [
+          "対象構成、セル・電池型式および適用基準版を識別できる",
+          "過充電、過放電、出力異常および温度条件の試験境界を記録する",
+          "測定値、合否基準、結果および異常を記録する",
+          "試験方法の由来を識別できる"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "unknown",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-MB-004",
+        "name": "電安法自主検査記録要求",
+        "target_refs": [
+          "OBL-MB-002",
+          "PROC-MB-PSE-INSPECTION"
+        ],
+        "evidence_type": "inspection_record",
+        "required_properties": [
+          "対象構成、検査日および検査実施者を識別できる",
+          "現行施行規則で確認した検査項目と結果を記録する",
+          "現行法令で確認した保存期間と保存責任を記録する"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "first_party",
+        "retention_requirement": "現行法令の人確認後に設定する",
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-MB-005",
+        "name": "電安法表示照合記録要求",
+        "target_refs": [
+          "OBL-MB-003",
+          "MBREQ-0008",
+          "DOC-MB-PSE-MARKING"
+        ],
+        "evidence_type": "inspection_record",
+        "required_properties": [
+          "対象分類と義務主体の確認記録を参照できる",
+          "承認済み表示仕様の版を識別できる",
+          "対象構成の表示内容、位置および耐久方法を記録する"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "independent_internal",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-MB-006",
+        "name": "航空利用取扱情報レビュー記録要求",
+        "target_refs": [
+          "OBL-MB-004",
+          "OBL-MB-005",
+          "OBL-MB-006",
+          "MBREQ-0009",
+          "MBREQ-0010",
+          "MBREQ-0011",
+          "DOC-MB-AIR-QUANTITY-CAPACITY",
+          "DOC-MB-AIR-CHARGING-PROHIBITION",
+          "DOC-MB-AIR-POWERING-AVOIDANCE"
+        ],
+        "evidence_type": "review_record",
+        "required_properties": [
+          "定格Whの根拠を参照できる",
+          "2026年4月24日適用ルールと航空会社追加条件の確認日を記録する",
+          "取扱情報の対象市場、版および承認者を識別できる",
+          "法定の機内充電禁止と非法定の給電回避推奨を区別し、APP-MB-004の組織採用判断を記録する"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "independent_internal",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      },
+      {
+        "id": "EVR-MB-007",
+        "name": "UN 38.3試験要約要求",
+        "target_refs": [
+          "OBL-MB-007",
+          "SUP-MB-UN38-TEST-SUMMARY"
+        ],
+        "evidence_type": "supplier_declaration",
+        "required_properties": [
+          "セルまたは電池型式と対象製品構成の対応を識別できる",
+          "製造時点が2003年6月30日後であること、または対象外となる根拠を識別できる",
+          "機器または回路基板へ組み込まれたボタン電池の例外該当性を識別できる",
+          "試験報告識別子、試験所、試験日、試験結果および参照したManual版を識別できる",
+          "署名者または発行責任者を識別できる"
+        ],
+        "provenance_required": true,
+        "configuration_required": true,
+        "independence_required": "unknown",
+        "retention_requirement": null,
+        "status": "planned",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ],
+    "evidence_items": [],
+    "conformity_schemes": [],
+    "assessment_activities": [
+      {
+        "id": "AST-MB-001",
+        "activity_type": "battery_safety_and_technical_standard_assessment",
+        "scheme_ref": null,
+        "target_obligation_refs": [
+          "OBL-MB-001"
+        ],
+        "verification_case_ref": "MBVER-0003",
+        "assessment_subject_ref": "CFG-MB-CANDIDATE",
+        "method": "test",
+        "responsible_party_ref": "ROLE-BATTERY-SAFETY",
+        "independence": "unknown",
+        "planned_evidence_requirement_refs": [
+          "EVR-MB-003"
+        ],
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "configuration_refs": [
+          "CFG-MB-CANDIDATE"
+        ]
+      },
+      {
+        "id": "AST-MB-002",
+        "activity_type": "statutory_self_inspection_and_record_review",
+        "scheme_ref": null,
+        "target_obligation_refs": [
+          "OBL-MB-002"
+        ],
+        "verification_case_ref": null,
+        "assessment_subject_ref": "PROC-MB-PSE-INSPECTION",
+        "method": "inspection",
+        "responsible_party_ref": "ROLE-COMPLIANCE",
+        "independence": "first_party",
+        "planned_evidence_requirement_refs": [
+          "EVR-MB-004"
+        ],
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "configuration_refs": [
+          "CFG-MB-CANDIDATE"
+        ]
+      },
+      {
+        "id": "AST-MB-003",
+        "activity_type": "marking_inspection",
+        "scheme_ref": null,
+        "target_obligation_refs": [
+          "OBL-MB-003"
+        ],
+        "verification_case_ref": "MBVER-0008",
+        "assessment_subject_ref": "CFG-MB-CANDIDATE",
+        "method": "inspection",
+        "responsible_party_ref": "ROLE-COMPLIANCE",
+        "independence": "independent_internal",
+        "planned_evidence_requirement_refs": [
+          "EVR-MB-005"
+        ],
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "configuration_refs": [
+          "CFG-MB-CANDIDATE"
+        ]
+      },
+      {
+        "id": "AST-MB-004",
+        "activity_type": "air_use_information_review",
+        "scheme_ref": null,
+        "target_obligation_refs": [
+          "OBL-MB-004",
+          "OBL-MB-005",
+          "OBL-MB-006"
+        ],
+        "verification_case_ref": null,
+        "assessment_subject_ref": "CFG-MB-CANDIDATE",
+        "method": "document_review",
+        "responsible_party_ref": "ROLE-COMPLIANCE",
+        "independence": "independent_internal",
+        "planned_evidence_requirement_refs": [
+          "EVR-MB-006"
+        ],
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "configuration_refs": [
+          "CFG-MB-CANDIDATE"
+        ]
+      },
+      {
+        "id": "AST-MB-005",
+        "activity_type": "un38_test_summary_review",
+        "scheme_ref": null,
+        "target_obligation_refs": [
+          "OBL-MB-007"
+        ],
+        "verification_case_ref": null,
+        "assessment_subject_ref": "CFG-MB-CANDIDATE",
+        "method": "document_review",
+        "responsible_party_ref": "ROLE-LOGISTICS-COMPLIANCE",
+        "independence": "unknown",
+        "planned_evidence_requirement_refs": [
+          "EVR-MB-007"
+        ],
+        "status": "candidate",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "configuration_refs": [
+          "CFG-MB-CANDIDATE"
+        ]
+      }
+    ],
+    "assessment_results": [
+      {
+        "id": "ASR-MB-001",
+        "assessment_activity_ref": "AST-MB-001",
+        "assessed_obligation_refs": [
+          "OBL-MB-001"
+        ],
+        "evidence_item_refs": [],
+        "outcome": "not_performed",
+        "finding_refs": [],
+        "assessed_at": null,
+        "assessor_ref": null,
+        "human_confirmation_state": "pending",
+        "rationale": "対象構成、適用技術基準および試験証拠が未確定",
+        "configuration_ref": "CFG-MB-CANDIDATE",
+        "validity_state": "active",
+        "valid_from": null,
+        "valid_to": null,
+        "invalidation_reason": null
+      },
+      {
+        "id": "ASR-MB-002",
+        "assessment_activity_ref": "AST-MB-002",
+        "assessed_obligation_refs": [
+          "OBL-MB-002"
+        ],
+        "evidence_item_refs": [],
+        "outcome": "not_performed",
+        "finding_refs": [],
+        "assessed_at": null,
+        "assessor_ref": null,
+        "human_confirmation_state": "pending",
+        "rationale": "製造・輸入プロセスおよび検査記録が存在しない",
+        "configuration_ref": "CFG-MB-CANDIDATE",
+        "validity_state": "active",
+        "valid_from": null,
+        "valid_to": null,
+        "invalidation_reason": null
+      },
+      {
+        "id": "ASR-MB-003",
+        "assessment_activity_ref": "AST-MB-003",
+        "assessed_obligation_refs": [
+          "OBL-MB-003"
+        ],
+        "evidence_item_refs": [],
+        "outcome": "not_performed",
+        "finding_refs": [],
+        "assessed_at": null,
+        "assessor_ref": null,
+        "human_confirmation_state": "pending",
+        "rationale": "対象分類、義務主体、表示仕様および量産対象構成が未確定",
+        "configuration_ref": "CFG-MB-CANDIDATE",
+        "validity_state": "active",
+        "valid_from": null,
+        "valid_to": null,
+        "invalidation_reason": null
+      },
+      {
+        "id": "ASR-MB-004",
+        "assessment_activity_ref": "AST-MB-004",
+        "assessed_obligation_refs": [
+          "OBL-MB-004",
+          "OBL-MB-005",
+          "OBL-MB-006"
+        ],
+        "evidence_item_refs": [],
+        "outcome": "not_performed",
+        "finding_refs": [],
+        "assessed_at": null,
+        "assessor_ref": null,
+        "human_confirmation_state": "pending",
+        "rationale": "定格Wh、航空利用方針、運送事業者条件および取扱情報が未確定",
+        "configuration_ref": "CFG-MB-CANDIDATE",
+        "validity_state": "active",
+        "valid_from": null,
+        "valid_to": null,
+        "invalidation_reason": null
+      },
+      {
+        "id": "ASR-MB-005",
+        "assessment_activity_ref": "AST-MB-005",
+        "assessed_obligation_refs": [
+          "OBL-MB-007"
+        ],
+        "evidence_item_refs": [],
+        "outcome": "not_performed",
+        "finding_refs": [],
+        "assessed_at": null,
+        "assessor_ref": null,
+        "human_confirmation_state": "pending",
+        "rationale": "輸送モード、適用版および実在する試験要約が未確認",
+        "configuration_ref": "CFG-MB-CANDIDATE",
+        "validity_state": "active",
+        "valid_from": null,
+        "valid_to": null,
+        "invalidation_reason": null
+      }
+    ],
+    "attestations": [],
+    "mappings": [],
+    "summary": {
+      "model_quality_result": "pass_with_provisional_assumption",
+      "assurance_outcome": "not_performed",
+      "not_a_compliance_approval": true,
+      "reviewer_gates": {
+        "generator": "pass",
+        "compliance": "revise",
+        "se": "revise",
+        "assurance": "revise",
+        "meta_judge": "revise"
+      },
+      "checks": [
+        {
+          "check_id": "C-SRC-01-03",
+          "name": "原典と意味の境界",
+          "result": "pass_with_provisional_assumption",
+          "evidence": "正式一次情報の発行主体・URL・位置を記録し、原典本文、規範文、適用性、Obligationを分離した。METIガイドの版表示は未確認。",
+          "affected_refs": [
+            "SRC-MB-001",
+            "SRC-MB-002",
+            "SRC-MB-003",
+            "SRC-MB-004"
+          ],
+          "finding_refs": []
+        },
+        {
+          "check_id": "C-APP-01-04",
+          "name": "適用性と人の権限",
+          "result": "pass_with_provisional_assumption",
+          "evidence": "3件の適用性評価は全件uncertainかつhuman_confirmation_required=trueで、再評価トリガーを持つ。",
+          "affected_refs": [
+            "APP-MB-001",
+            "APP-MB-002",
+            "APP-MB-003"
+          ],
+          "finding_refs": []
+        },
+        {
+          "check_id": "C-OBL-EPR",
+          "name": "ObligationとEngineeringProjection",
+          "result": "pass",
+          "evidence": "7件のObligationすべてに少なくとも1件のEngineeringProjectionがあり、製品・プロセス・文書・供給者・証拠を分離した。",
+          "affected_refs": [
+            "OBL-MB-001",
+            "OBL-MB-002",
+            "OBL-MB-003",
+            "OBL-MB-004",
+            "OBL-MB-005",
+            "OBL-MB-006",
+            "OBL-MB-007"
+          ],
+          "finding_refs": []
+        },
+        {
+          "check_id": "C-EVI-AST",
+          "name": "Evidenceと適合性評価",
+          "result": "pass",
+          "evidence": "mandatoryまたはprohibitionのObligationはEvidence Requirementへ到達し、EvidenceItemは0件、AssessmentResultは全件not_performedである。",
+          "affected_refs": [
+            "EVR-MB-003",
+            "EVR-MB-004",
+            "EVR-MB-005",
+            "EVR-MB-006",
+            "EVR-MB-007"
+          ],
+          "finding_refs": []
+        },
+        {
+          "check_id": "C-NO-FALSE-CLAIM",
+          "name": "誤った適合・認証主張の禁止",
+          "result": "pass",
+          "evidence": "ConformityScheme、EvidenceItem、Attestationは空で、適合・PSE認証取得・航空輸送可を主張していない。",
+          "affected_refs": [],
+          "finding_refs": []
+        }
+      ],
+      "source_limitations": [
+        "経済産業省の法令業務実施ガイドは公式PDFだが版表示を抽出できていない",
+        "適用する技術基準の版および規格本文を取得していない",
+        "UN Manual Rev.8 Amendment 1の公式発行ページは確認したが、輸送条件に応じた採用版と全文解釈は未確認",
+        "航空会社ごとの追加条件は調査対象外"
+      ],
+      "uncertain_applicability_refs": [
+        "APP-MB-001",
+        "APP-MB-002",
+        "APP-MB-003"
+      ],
+      "obligation_without_projection_refs": [],
+      "mandatory_without_evidence_requirement_refs": [],
+      "not_performed_assessment_refs": [
+        "ASR-MB-001",
+        "ASR-MB-002",
+        "ASR-MB-003",
+        "ASR-MB-004",
+        "ASR-MB-005"
+      ]
+    },
+    "regulatory_discovery_log": [
+      {
+        "id": "RDL-MB-0001",
+        "market": "日本国内一般消費者向け販売候補",
+        "configuration_ref": "CFG-MB-CANDIDATE",
+    "official_registers_checked": [
+      "https://safetyp.cab.mlit.go.jp/wp-content/uploads/2026/04/01-%EF%BC%88%E7%88%86%E7%99%BA%E7%89%A9%E7%AD%89%E5%91%8A%E7%A4%BA%EF%BC%89%E5%91%8A%E7%A4%BA%E6%9C%AC%E6%96%87%EF%BC%88260424%EF%BC%89.pdf",
+      "https://www.mlit.go.jp/common/001388681.pdf",
+      "https://www.mlit.go.jp/koku/content/001998054.pdf",
+    "https://unece.org/sites/default/files/2025-09/ST_SG_AC10_1_Rev24e_Vol%20I_1.pdf",
+          "https://unece.org/transport/dangerous-goods/rev8-files",
+          "https://www.meti.go.jp/policy/consumer/seian/denan/subject01.html",
+          "https://www.meti.go.jp/policy/consumer/seian/denan/tetsuduki_annai/guide/denan_guide.pdf",
+          "https://www.mlit.go.jp/report/press/kouku10_hh_000310.html"
+        ],
+      "queries": [],
+      "query_log_state": "unavailable_legacy_run",
+        "candidate_source_refs": [
+          "SRC-MB-001",
+          "SRC-MB-002",
+          "SRC-MB-003",
+          "SRC-MB-004",
+    "SRC-MB-005",
+    "SRC-MB-006",
+    "SRC-MB-007",
+    "SRC-MB-008"
+        ],
+        "disposition": "on_hold",
+        "disposition_reason": "初回run後に採用Source集合から再構成した記録であり、原始query logと除外候補が未保存のため網羅性は確認待ち。",
+        "searched_at": "2026-08-22T12:00:00+09:00",
+        "human_inventory_confirmation_state": "pending",
+        "origin": "ai_context_inference",
+        "confidence": "low",
+        "human_confirmation_required": true
+      }
+    ]
+  },
+  "configurations": [
+    {
+      "id": "CFG-MB-CANDIDATE",
+      "name": "モバイルバッテリー対象構成候補",
+      "version": null,
+      "baseline_state": "outside_baseline",
+      "scope_description": "本実験のQ&Aから仮定した対象構成。BOM、ソフトウェア版および製造版は未確認。",
+      "artifact_locator": null,
+      "integrity_hash": null,
+      "validity_state": "active",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    }
+  ],
+  "parties_or_roles": [
+    {
+      "id": "ROLE-BATTERY-SAFETY",
+      "name": "電池安全担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "電池安全要求と試験境界の確認",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ROLE-COMPLIANCE",
+      "name": "法規担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "DENANおよび表示・文書の確認",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ROLE-LOGISTICS-COMPLIANCE",
+      "name": "物流法規担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "航空・危険物輸送条件の確認",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ROLE-SAFETY-REVIEW",
+      "name": "安全レビュー担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "安全分析の独立レビュー",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    },
+    {
+      "id": "ROLE-TEST",
+      "name": "試験担当候補",
+      "kind": "role",
+      "organization": null,
+      "authority_scope": "機能および保護試験",
+      "verification_status": "ai_candidate",
+      "status": "candidate",
+      "origin": "ai_context_inference",
+      "confidence": "low",
+      "human_confirmation_required": true
+    }
+  ]
+}

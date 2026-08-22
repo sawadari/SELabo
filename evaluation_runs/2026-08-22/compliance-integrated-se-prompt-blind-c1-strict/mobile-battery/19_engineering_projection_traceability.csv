@@ -1,0 +1,7 @@
+﻿projection_id,obligation_id,projection_kind,target_level,target_id,derivation_basis,status,confidence,human_confirmation_required
+EPR-0001,OBL-0001,product_requirement,L2,REQ-0001,製品特性へ投影する,candidate,low,true
+EPR-0002,OBL-0001,evidence_requirement,cross_level,EVR-0001,技術基準試験記録を計画する,candidate,low,true
+EPR-0003,OBL-0002,product_requirement,L2,REQ-0002,試験要約の利用可能性へ投影する,candidate,low,true
+EPR-0004,OBL-0002,evidence_requirement,cross_level,EVR-0002,試験要約を証拠要求として計画する,candidate,low,true
+EPR-0005,OBL-0003,operational_requirement,L2,REQ-0003,旅客の容量判断を支援する保守的製品表示へ投影する,candidate,low,true
+EPR-0006,OBL-0003,evidence_requirement,cross_level,EVR-0003,表示検査記録を計画する,candidate,low,true

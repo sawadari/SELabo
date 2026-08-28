@@ -38,7 +38,7 @@
     { "path": "18_AI_EVALUATION_PROTOCOL.md", "size_bytes": 4622, "sha256": "37fc0e779c59b3d264a10ca2dc4ad6053c2c652b9e3c19e3de3cf8c25db78d00" },
     { "path": "19_EXPERIMENT_PLAN.md", "size_bytes": 3977, "sha256": "dcebcfae23b0a99a301ba807b4ec7203ff83796faadd8a82053ee1b93a616a39" },
     { "path": "20_SOURCE_TRUST_AND_HUMAN_AUTHORITY.md", "size_bytes": 3274, "sha256": "31a5ab2efdbf0e606dabe06beb4775b399e10edbd7db8e1e0068bafce2268f40" },
-    { "path": "README.md", "size_bytes": 9282, "sha256": "9039e00e25cf883cffd6351d2779717a694c7be81e05cb2271bcee8feb933969" },
+    { "path": "README.md", "size_bytes": 16654, "sha256": "fc8d51a1842ac914c3056cbf32920ecca077b068470e7d452dfa686f9da19706" },
     { "path": "schemas/japanese_writing_profile.schema.json", "size_bytes": 2279, "sha256": "a9dd0b85d4bb392e63e5d28310b639596db16996014d80f7fa453587efe1787f" },
     { "path": "schemas/se_model.schema.json", "size_bytes": 40165, "sha256": "935ffee4c2bde09ca4893b204bab9d8a6763c1c99f78acab094321124ac3d875" }
   ]

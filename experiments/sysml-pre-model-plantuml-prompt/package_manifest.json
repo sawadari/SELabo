@@ -1,0 +1,42 @@
+{
+  "experiment_id": "sysml-pre-model-plantuml-prompt",
+  "package": "sysml_pre_model_plantuml_prompt",
+  "version": "0.1.0",
+  "release_kind": "new_downstream_projection_experiment",
+  "published_at": "2026-08-31",
+  "based_on": {
+    "experiment_id": "hierarchical-se-prompt",
+    "version": "1.1.0",
+    "path": "../hierarchical-se-prompt"
+  },
+  "language": "ja-JP",
+  "sysml_target": "SysML 1.x (reference version 1.7)",
+  "canonical_model": "10_se_model.json",
+  "schema_dependencies": [
+    {
+      "id": "https://example.invalid/schemas/se_model.schema.json",
+      "path": "../hierarchical-se-prompt/schemas/se_model.schema.json"
+    }
+  ],
+  "entry_points": {
+    "readme": "README.md",
+    "core_prompt": "01_CORE_PROMPT.md",
+    "profile": "02_PLANTUML_PROFILE.json",
+    "output_contract": "03_OUTPUT_CONTRACT.json",
+    "quality_rules": "04_QUALITY_RULES.md",
+    "experiment_plan": "05_EXPERIMENT_PLAN.md",
+    "validator": "scripts/validate_projection.py"
+  },
+  "hash_algorithm": "SHA-256",
+  "manifest_self_excluded": true,
+  "files": [
+    "README.md",
+    "01_CORE_PROMPT.md",
+    "02_PLANTUML_PROFILE.json",
+    "03_OUTPUT_CONTRACT.json",
+    "04_QUALITY_RULES.md",
+    "05_EXPERIMENT_PLAN.md",
+    "scripts/validate_projection.py",
+    "package_manifest.json"
+  ]
+}

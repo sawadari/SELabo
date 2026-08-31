@@ -1,0 +1,68 @@
+@startuml
+' diagram_id: DIAG-SF-0001
+' diagram_type: requirement_diagram
+' title: スマート扇風機候補の要求レビュー
+' purpose: 入力正本に存在する候補要求のID、本文、検証候補をレビューする
+' question: どの候補要求が存在し、各要求をどの検証ケースが対象とするか？
+' source_of_truth: 10_se_model.json
+' semantic_mode: strict_projection
+' abstraction_level: L2
+' source_ids: REQ_SF-0001, REQ_SF-0002, REQ_SF-0003, REQ_SF-0004, REQ_SF-0005, REQ_SF-0006, REQ_SF-0007, VER_SF-0001, VER_SF-0002, VER_SF-0003, VER_SF-0004, VER_SF-0005, VER_SF-0006, VER_SF-0007
+' omitted_ids: NEED_SF-0001, NEED_SF-0002, NEED_SF-0003, NEED_SF-0004, NEED_SF-0005
+' limitation: source_need_refsは正本属性として保持されるが、relationsが空のため要求間のSysML関係矢印は表示しない
+!include 00_style.puml
+
+title スマート扇風機候補の要求レビュー
+
+rectangle "REQ_SF-0001\n運転モード表示要求" as REQ_SF_0001 <<requirement>>
+rectangle "REQ_SF-0002\n危険検出時回転停止要求" as REQ_SF_0002 <<requirement>>
+rectangle "REQ_SF-0003\n静音送風維持要求" as REQ_SF_0003 <<requirement>>
+rectangle "REQ_SF-0004\n通信断時停止操作要求" as REQ_SF_0004 <<requirement>>
+rectangle "REQ_SF-0005\n通信断時再開操作要求" as REQ_SF_0005 <<requirement>>
+rectangle "REQ_SF-0006\n保守中回転禁止要求" as REQ_SF_0006 <<requirement>>
+rectangle "REQ_SF-0007\n通常使用時転倒防止要求" as REQ_SF_0007 <<requirement>>
+
+note right of REQ_SF_0001
+  CANONICAL: REQ_SF-0001
+  運転モードを選択したとき、選択されたモードを表示する。
+  verification_case_refs: VER_SF-0001
+end note
+note right of REQ_SF_0002
+  CANONICAL: REQ_SF-0002
+  定義済み危険状態を検出したとき、羽根の回転を停止する。
+  verification_case_refs: VER_SF-0002
+  TBD: 危険状態と停止時間閾値
+end note
+note right of REQ_SF_0003
+  CANONICAL: REQ_SF-0003
+  静音モードの間、合意済みの静音送風条件を維持する。
+  verification_case_refs: VER_SF-0003
+  TBD: 音圧、風量、測定条件
+end note
+note right of REQ_SF_0004
+  CANONICAL: REQ_SF-0004
+  通信接続が失われている間、本体の停止操作を受け付ける。
+  verification_case_refs: VER_SF-0004
+end note
+note right of REQ_SF_0005
+  CANONICAL: REQ_SF-0005
+  通信接続が失われている間、本体の再開操作を受け付ける。
+  verification_case_refs: VER_SF-0005
+end note
+note right of REQ_SF_0006
+  CANONICAL: REQ_SF-0006
+  保守状態の間、羽根の回転を開始してはならない。
+  verification_case_refs: VER_SF-0006
+end note
+note right of REQ_SF_0007
+  CANONICAL: REQ_SF-0007
+  通常使用状態で10 deg傾けたとき、転倒しない。
+  verification_case_refs: VER_SF-0007
+  TBD: 適用性、対象構成、判定方法
+end note
+
+legend right
+  CANONICAL: 10_se_model.jsonに存在する要求
+  Requirement間の関係は正本relationsが空のため未表示
+endlegend
+@enduml

@@ -1,0 +1,52 @@
+{
+  "experiment_id": "sysml-pre-model-plantuml-prompt",
+  "version": "0.1.0",
+  "based_on": {
+    "experiment_id": "hierarchical-se-prompt",
+    "version": "1.1.0"
+  },
+  "target": {
+    "sysml_reference_version": "1.7",
+    "plantuml_role": "tool-independent_review_projection",
+    "formal_model_claim": false
+  },
+  "source_of_truth": {
+    "file": "10_se_model.json",
+    "schema": "../hierarchical-se-prompt/schemas/se_model.schema.json",
+    "projection_files_are_independent_truth": false
+  },
+  "semantic_modes": [
+    "strict_projection",
+    "projection_with_view_derived_elements",
+    "insufficient_data"
+  ],
+  "element_classes": ["CANONICAL", "VIEW_DERIVED", "UNRESOLVED"],
+  "alias_rule": "replace hyphen and dot with underscore; preserve a stable mapping from canonical ID",
+  "diagram_candidates": [
+    "system_context",
+    "package",
+    "requirement",
+    "use_case",
+    "activity",
+    "bdd",
+    "ibd",
+    "sequence",
+    "state_machine",
+    "parametric",
+    "verification_trace"
+  ],
+  "default_readability_guidance": {
+    "normal_major_elements": "8-18",
+    "split_review": "consider splitting above 20 major elements",
+    "sequence_lifelines": 7,
+    "sequence_messages": 15,
+    "state_count": 12
+  },
+  "unsupported_claims": [
+    "formal SysML model",
+    "XMI compatibility",
+    "Cameo or Enterprise Architect import success",
+    "completed verification or validation",
+    "regulatory or safety approval"
+  ]
+}

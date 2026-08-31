@@ -1,0 +1,33 @@
+@startuml
+' diagram_id: DIAG-SF-0003
+' diagram_type: activity_diagram
+' title: 異常・保守時の安全側移行シナリオ
+' purpose: 異常・通信断・保守の模擬手順を表示上の順序としてレビューする
+' question: 安全側移行シナリオで、担当者・利用者・システムはどの順番で何を確認するか？
+' source_of_truth: 10_se_model.json
+' semantic_mode: projection_with_view_derived_elements
+' abstraction_level: L1
+' source_ids: SCN_SF-0002, STK_SF-0001, STK_SF-0002, STK_SF-0003, STR_SF-0001, BEH_SF-0002, BEH_SF-0006
+' omitted_ids: BEH_SF-0001, BEH_SF-0003, BEH_SF-0004, BEH_SF-0005, BEH_SF-0007
+' limitation: safety stateやtransitionを新規生成せず、Scenario文章だけをVDとして表示
+!include 00_style.puml
+
+title 異常・保守時の安全側移行シナリオ
+start
+
+partition "担当者\nCANONICAL: STK_SF-0002 / STK_SF-0003" {
+  :VD_SCN_SF_0002_01\n担当者が承認済み条件を一つずつ付与する;
+}
+partition "家庭の利用者\nCANONICAL: STK_SF-0001" {
+  :VD_SCN_SF_0002_02\n利用者が停止または起動拒否を観察する;
+  :VD_SCN_SF_0002_03\n状態表示と再開条件を確認する;
+}
+
+note right
+  VIEW_DERIVED: VD_SCN_SF_0002_01～03
+  source: SCN_SF-0002.main_flow
+  abnormal_flowsに条件付き分岐の構造化情報がないため、alt/elseは使わない。
+  UNRESOLVED: 期待した安全側移行が起きない場合の詳細遷移
+end note
+stop
+@enduml

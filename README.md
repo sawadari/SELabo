@@ -13,6 +13,7 @@ SEとは、複雑な製品やサービスを「誰のために、何を実現し
 | [SEデータプロンプト（実験1）](experiments/hierarchical-se-prompt/README.md) | 会話からツール非依存のSEデータを作り、レビューや各種成果物へつなげる | 1.1.0・実験中 |
 | [法規・規格・認証統合SE初稿生成プロンプト](experiments/compliance-integrated-se-prompt/README.md) | 原典、適用性、義務、工学要求、証拠を分離したCompliance Layer付き初稿をAIで作る | 0.3.1・実験中 |
 | [企画・要件定義構造化SE初稿生成プロンプト](experiments/structured-document-se-prompt/README.md) | 実験1のSE意味モデルから企画書・要件定義書を投影する | 0.1.0・実験中 |
+| [SysMLモデリング前PlantUML生成プロンプト（実験5）](experiments/sysml-pre-model-plantuml-prompt/README.md) | 実験1のSEデータから、正本境界を保ったレビュー用PlantUMLを投影する | 0.1.0・実験中 |
 
 ## 読み始める場所
 

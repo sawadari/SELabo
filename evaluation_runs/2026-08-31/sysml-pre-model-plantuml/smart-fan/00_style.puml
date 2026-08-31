@@ -1,0 +1,11 @@
+' Local style snippet only. This file is not a standalone diagram.
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Meiryo
+skinparam roundcorner 8
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam ArrowColor #4A5568
+skinparam NoteBackgroundColor #FFF8DC
+skinparam NoteBorderColor #B7791F
+skinparam packageStyle rectangle

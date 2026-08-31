@@ -1,0 +1,106 @@
+@startuml
+' diagram_id: INDEX-SF-0001
+' diagram_type: generation_index
+' title: 実験5 PlantUML生成Index：スマート扇風機
+' purpose: 生成・未生成図、根拠、未解決情報、検証状態を一覧化する
+' question: この入力から何を生成し、何を生成しなかったか？
+' source_of_truth: 10_se_model.json
+' semantic_mode: strict_projection
+' abstraction_level: L0-L2
+' source_ids: STR_SF-0001, SCN_SF-0001, SCN_SF-0002, REQ_SF-0001, REQ_SF-0002, REQ_SF-0003, REQ_SF-0004, REQ_SF-0005, REQ_SF-0006, REQ_SF-0007, VER_SF-0001, VER_SF-0002, VER_SF-0003, VER_SF-0004, VER_SF-0005, VER_SF-0006, VER_SF-0007
+' omitted_ids: IF_SF-0001, IF_SF-0002, IF_SF-0003, IF_SF-0004
+' limitation: PlantUML実レンダラーと人による意味レビューは未実施
+!include 00_style.puml
+
+title 実験5 PlantUML生成Index：スマート扇風機
+
+rectangle "INDEX\n生成・未生成図一覧" as INDEX <<review_index>>
+
+note right of INDEX
+  生成した図
+  ====================
+  01_requirement_overview.puml
+    type: requirement_diagram
+    mode: strict_projection
+    question: 候補要求と検証候補は何か？
+    source: REQ_SF-0001～0007, VER_SF-0001～0007
+
+  02_activity_scn_SF_0001.puml
+    type: activity_diagram
+    mode: projection_with_view_derived_elements
+    question: 代表運転Scenarioの表示用順序は何か？
+    source: SCN_SF-0001
+
+  03_activity_scn_SF_0002.puml
+    type: activity_diagram
+    mode: projection_with_view_derived_elements
+    question: 安全側移行Scenarioの表示用順序は何か？
+    source: SCN_SF-0002
+
+  04_sequence_scn_SF_0001.puml
+  05_sequence_scn_SF_0002.puml
+    type: sequence_diagram
+    mode: projection_with_view_derived_elements
+    source: SCN_SF-0001, SCN_SF-0002
+    note: Interfaceがないため通信はCanonical Interfaceではない
+
+  06_system_bdd.puml
+    type: block_definition_diagram
+    mode: strict_projection
+    question: 正本に定義されたSystem Structureは何か？
+    source: STR_SF-0001
+
+  07_verification_trace.puml
+    type: requirement_verification_trace_view
+    mode: strict_projection
+    question: RequirementとVerification Caseはどう追跡できるか？
+    source: REQ_SF-0001～0007, VER_SF-0001～0007
+
+  00_style.puml
+    type: local style snippet; not a diagram
+
+  生成しなかった図
+  ====================
+  System Context View: insufficient_data
+    external_system名はあるが、外部Interfaceのsource/target/exchanged_itemがない。
+  Use Case Diagram: insufficient_data
+    use_casesが0件。
+  Internal Block Diagram: insufficient_data
+    interfacesが0件、structures.part_refsも空。
+  State Machine Diagram: insufficient_data
+    state、source state、target state、triggerの構造化情報がない。
+  Parametric Diagram: insufficient_data
+    constraintsが0件。equation/bindingを推測していない。
+  Package Diagram: insufficient_data
+    package_hierarchyを含む投影仕様が入力されていない。
+
+  Cross-Diagram確認
+  ====================
+  Requirement → Verification: resolved 7/7
+  Behavior → Structure: resolved through STR_SF-0001 performer/reference 7/7
+  IBD → Sequence: not_applicable; IBD未生成
+  State → Sequence: not_applicable; State Machine未生成
+  Canonical source IDs in generated metadata: resolved
+
+  検証状態
+  ====================
+  JSON parse: pass
+  se_model.schema.json: pass
+  duplicate ID check: pass
+  projection metadata source ID check: pass
+  PlantUML boundary/external-resource check: pass
+  PlantUML renderer syntax validation: pass
+  image rendering/layout review: pass (PNG生成と目視確認)
+  human SysML semantics review: not_performed
+
+  上位の人間確認事項
+  ====================
+  1. REQ_SF-0002：危険状態、停止時間閾値、適用安全規格
+  2. REQ_SF-0003：音圧、風量、測定位置、受入れ条件
+  3. REQ_SF-0007：適用性、対象構成、10 deg試験方法
+  4. 通信断・保守時のInterface、状態、再開条件
+  5. Logical / Physical構造、内部Part、Port、Connector
+
+  このIndexはSysMLモデルではない。生成物は候補SEデータのレビュー用投影である。
+end note
+@enduml

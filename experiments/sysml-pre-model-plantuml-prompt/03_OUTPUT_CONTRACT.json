@@ -1,0 +1,83 @@
+{
+  "contract_name": "sysml_pre_model_plantuml_bundle",
+  "contract_version": "0.1.0",
+  "archive": {
+    "required": true,
+    "name_template": "<project_slug>_sysml_pre_model_plantuml.zip",
+    "encoding": "UTF-8",
+    "must_not_claim_success_when_not_created": true
+  },
+  "source_of_truth": {
+    "file": "10_se_model.json",
+    "schema": "../hierarchical-se-prompt/schemas/se_model.schema.json",
+    "role": "candidate_semantic_source_of_truth"
+  },
+  "required_artifacts": [
+    {
+      "path": "99_generation_index.puml",
+      "purpose": "generated and not-generated diagram inventory"
+    }
+  ],
+  "optional_artifacts": [
+    {
+      "path": "00_style.puml",
+      "purpose": "local PlantUML style snippet"
+    },
+    {
+      "path": "README.md",
+      "purpose": "run metadata and interpretation boundary"
+    },
+    {
+      "path": "quality_report.md",
+      "purpose": "observable validation results and limitations"
+    }
+  ],
+  "diagram_file_rules": {
+    "encoding": "UTF-8",
+    "start_token": "@startuml",
+    "end_token": "@enduml",
+    "required_metadata": [
+      "diagram_id",
+      "diagram_type",
+      "title",
+      "purpose",
+      "question",
+      "source_of_truth",
+      "semantic_mode",
+      "abstraction_level",
+      "source_ids",
+      "omitted_ids",
+      "limitation"
+    ],
+    "external_network_resources": false,
+    "canonical_id_display_required": true
+  },
+  "validation": {
+    "json_parse_required": true,
+    "schema_validation_required_when_tooling_available": true,
+    "unique_id_check": true,
+    "metadata_source_id_check": true,
+    "plantuml_boundary_check": true,
+    "plantuml_syntax": "pass_only_if_actual_renderer_was_run",
+    "no_false_pass": true,
+    "allowed_results": [
+      "pass",
+      "pass_with_provisional_assumption",
+      "fail",
+      "not_applicable",
+      "not_performed"
+    ]
+  },
+  "final_response": {
+    "include": [
+      "archive_link",
+      "target_system",
+      "generated_diagram_count",
+      "semantic_mode_counts",
+      "major_not_generated_diagrams",
+      "top_human_confirmation_items",
+      "not_performed_validations"
+    ],
+    "exclude": ["full_plantuml_source"]
+  }
+}

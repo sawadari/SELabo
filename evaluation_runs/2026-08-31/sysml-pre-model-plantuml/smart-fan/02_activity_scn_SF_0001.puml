@@ -1,0 +1,37 @@
+@startuml
+' diagram_id: DIAG-SF-0002
+' diagram_type: activity_diagram
+' title: 家庭内の代表運転シナリオ
+' purpose: Scenarioのmain_flowに明示された表示用の順序をレビューする
+' question: 代表運転シナリオで、利用者とシステムはどの順番で何を行うか？
+' source_of_truth: 10_se_model.json
+' semantic_mode: projection_with_view_derived_elements
+' abstraction_level: L1
+' source_ids: SCN_SF-0001, STK_SF-0001, STR_SF-0001, BEH_SF-0001, BEH_SF-0003, BEH_SF-0004, BEH_SF-0005
+' omitted_ids: BEH_SF-0002, BEH_SF-0006, BEH_SF-0007
+' limitation: main_flowの文をVDとして表示。Behavior間の正式なcontrol flowは入力に存在しない
+!include 00_style.puml
+
+title 家庭内の代表運転シナリオ
+start
+
+partition "家庭の利用者\nCANONICAL: STK_SF-0001" {
+  :VD_SCN_SF_0001_01\n利用者が運転モードを選ぶ;
+}
+partition "スマート扇風機システム\nCANONICAL: STR_SF-0001" {
+  :VD_SCN_SF_0001_02\n扇風機が選択状態を表示して送風する;
+}
+partition "家庭の利用者\nCANONICAL: STK_SF-0001" {
+  :VD_SCN_SF_0001_03\n利用者が風量と音を生活場面で評価する;
+  :VD_SCN_SF_0001_04\n利用者が停止する;
+}
+
+note right
+  VIEW_DERIVED: VD_SCN_SF_0001_01～04
+  source: SCN_SF-0001.main_flow
+  BEH_SF-0001、BEH_SF-0003、BEH_SF-0004、BEH_SF-0005との対応候補は
+  文面上の表示対応であり、正式なcontrol flowではない。
+  TBD: 風量・音の受入れ尺度
+end note
+stop
+@enduml

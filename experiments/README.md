@@ -72,3 +72,9 @@ ChatGPTで回帰テストを行う場合は、[プロンプト専用回帰テス
 5. [実験計画](structured-document-se-prompt/05_EXPERIMENT_PLAN.md)
 
 代表モデルの検証は、[検証スクリプト](structured-document-se-prompt/scripts/validate_candidate.py)で実行できます。
+
+### SysMLモデリング前PlantUML生成プロンプト（実験5）
+
+実験1の`10_se_model.json`を意味上の正本として、SysML v1.xへ正式にモデリングする前のレビュー用PlantUMLを生成する実験です。正本にないInterface、State、Constraint、Relationshipを図の都合で創作せず、`CANONICAL`、`VIEW_DERIVED`、`UNRESOLVED`を分けて表示します。
+
+詳細は[実験5のREADME](sysml-pre-model-plantuml-prompt/README.md)を参照してください。実際のスマート扇風機試行は[2026-08-31の評価実行](../evaluation_runs/2026-08-31/sysml-pre-model-plantuml/smart-fan/README.md)にあります。

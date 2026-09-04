@@ -1,0 +1,5 @@
+node_modules/
+dist/
+yfiles/
+yFiles-for-HTML-Complete-3.1.0.2-Evaluation/
+src/license.json

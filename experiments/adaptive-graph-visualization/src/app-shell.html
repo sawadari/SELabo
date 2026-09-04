@@ -1,0 +1,111 @@
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">G</div>
+      <div>
+        <h1>グラフ可視化 実験4</h1>
+        <p>yFiles for HTML · ズームで見え方を切り替える実験</p>
+      </div>
+    </div>
+    <div class="topbar-meta">
+      <span class="topbar-label">Synthetic Graph</span>
+      <span id="scenario-summary" class="scenario-chip">全体像を見る</span>
+    </div>
+  </header>
+
+  <aside class="panel panel-left">
+    <section class="panel-section start-section">
+      <div class="section-kicker"><p class="eyebrow">まず試す</p><span class="section-index">01</span></div>
+      <h2>やりたいことを選ぶ</h2>
+      <p class="section-help">目的を選ぶと、データと表示設定が自動で整います。</p>
+      <div class="use-case-list">
+        <button id="usecase-overview" class="use-case-card is-active" type="button">
+          <span class="use-case-icon overview-icon">◎</span>
+          <span class="use-case-copy"><strong>全体像を見る</strong><small>クラスタ同士のつながりを確認</small></span>
+          <span class="use-case-arrow">→</span>
+        </button>
+        <button id="usecase-investigate" class="use-case-card" type="button">
+          <span class="use-case-icon investigate-icon">⌕</span>
+          <span class="use-case-copy"><strong>1つを掘り下げる</strong><small>選択したノードの周辺を確認</small></span>
+          <span class="use-case-arrow">→</span>
+        </button>
+        <button id="usecase-stress" class="use-case-card" type="button">
+          <span class="use-case-icon stress-icon">✦</span>
+          <span class="use-case-copy"><strong>大量データを試す</strong><small>レイアウトと可読性を確認</small></span>
+          <span class="use-case-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="panel-section current-section">
+      <div class="section-kicker"><p class="eyebrow">現在の状態</p><span class="section-index">02</span></div>
+      <div class="state-card">
+        <div class="state-card-top"><span class="state-label">表示レベル</span><div id="lod-badge" class="lod-badge">全体</div></div>
+        <strong id="selected-node" class="selected-name">未選択</strong>
+        <p id="status" class="summary">全体像を表示中</p>
+        <p id="graph-summary" class="summary summary-secondary">クラスタ 5 · グループ 20 · ノード 200</p>
+        <button id="focus-selection" class="state-action" type="button">選択したノードの周辺を見る</button>
+      </div>
+    </section>
+
+    <section class="panel-section howto-section">
+      <div class="section-kicker"><p class="eyebrow">基本操作</p><span class="section-index">03</span></div>
+      <ol class="quick-steps">
+        <li><span>1</span><div><strong>クリック</strong><small>ノードを選択</small></div></li>
+        <li><span>2</span><div><strong>ダブルクリック</strong><small>階層を展開・折りたたみ</small></div></li>
+        <li><span>3</span><div><strong>ホイール</strong><small>表示レベルを変更</small></div></li>
+      </ol>
+    </section>
+
+    <details class="advanced-controls panel-section">
+      <summary><span><span class="eyebrow">詳細設定</span><strong>表示を調整する</strong></span><span class="details-chevron">⌄</span></summary>
+      <div class="field"><label for="dataset-profile">データ量</label><select id="dataset-profile"><option value="XS">XS · 小さな確認用</option><option value="S" selected>S · 操作性の確認</option><option value="M">M · レイアウト負荷</option></select></div>
+      <div class="field"><label for="lod-mode">表示レベル</label><select id="lod-mode"><option value="auto" selected>自動 · ズームに合わせる</option><option value="macro">全体 · クラスタ</option><option value="group">関係 · グループ</option><option value="entity">詳細 · ノード</option><option value="focus">注目 · 選択周辺</option></select></div>
+      <div class="button-grid">
+        <button id="fit-graph" type="button">全体を表示</button>
+        <button id="collapse-all" type="button">折りたたむ</button>
+        <button id="refresh-seed" type="button">データを更新</button>
+      </div>
+    </details>
+
+    <details class="metrics-disclosure">
+      <summary><span>品質メトリクス</span><span class="details-chevron">⌄</span></summary>
+      <div id="metrics" class="metric-grid"></div>
+    </details>
+  </aside>
+
+  <main class="workspace">
+    <div class="workspace-toolbar">
+      <div class="status-pill"><span class="status-dot"></span><span>操作できます</span></div>
+      <div id="workspace-instruction" class="workspace-instruction">ノードをクリックすると、右側に詳細が表示されます</div>
+    </div>
+    <div id="graph-component" tabindex="0" aria-label="インタラクティブなグラフ"></div>
+    <div class="overview-label">全体図</div>
+    <div id="overview-component" aria-label="グラフ全体図"></div>
+    <div class="workspace-footer">
+      <div class="legend"><span class="legend-title">種類</span><span class="legend-item"><i class="legend-swatch cluster"></i>クラスタ</span><span class="legend-item"><i class="legend-swatch group"></i>グループ</span><span class="legend-item"><i class="legend-swatch leaf"></i>ノード</span></div>
+      <div class="zoom">ズーム <span id="zoom-value">1.00×</span></div>
+    </div>
+  </main>
+
+  <aside class="panel panel-right">
+    <section class="panel-section inspector-section">
+      <div class="section-kicker"><p class="eyebrow">選択中</p><span class="section-index">04</span></div>
+      <div id="inspector" class="inspector-card"></div>
+    </section>
+    <section class="panel-section guide-section">
+      <p class="eyebrow">表示レベルの見方</p>
+      <div class="lod-guide-list">
+        <div class="lod-guide-item"><span class="guide-dot macro-dot"></span><div><strong>全体</strong><small>クラスタの関係を見る</small></div></div>
+        <div class="lod-guide-item"><span class="guide-dot group-dot"></span><div><strong>関係</strong><small>グループ間のつながりを見る</small></div></div>
+        <div class="lod-guide-item"><span class="guide-dot entity-dot"></span><div><strong>詳細</strong><small>個々のノードを見る</small></div></div>
+        <div class="lod-guide-item"><span class="guide-dot focus-dot"></span><div><strong>注目</strong><small>選択周辺を詳しく見る</small></div></div>
+      </div>
+    </section>
+    <details class="panel-section policy-details">
+      <summary><span>この実験について</span><span class="details-chevron">⌄</span></summary>
+      <p>ズーム倍率と選択状態に応じて、見せる粒度・エッジ密度・Focus範囲を切り替えます。</p>
+      <p class="summary">遠方のノードと集約エッジは弱め、選択経路を強調します。</p>
+    </details>
+  </aside>
+</div>

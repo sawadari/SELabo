@@ -1,4 +1,4 @@
-# SE実験の一覧
+# SE実験の一覧（実験1〜6）
 
 このフォルダーには、SEに関する実験を置きます。実験ごとにフォルダーを分けているため、興味のある実験だけを読んだり、試したりできます。
 
@@ -25,7 +25,7 @@
 
 ## 現在の実験
 
-### 階層型SE初稿生成プロンプト
+### 実験1：SEデータプロンプト
 
 対象システムの情報が少ない段階で、SEの議論を始めるための初稿をAIに作らせる実験です。
 
@@ -44,7 +44,7 @@
 
 3製品（スマート扇風機、懐中電灯、モバイルバッテリー）の評価実行は、[evaluation_runs/2026-08-21](../evaluation_runs/2026-08-21/README.md)にあります。
 
-### 法規・規格・認証統合SE初稿生成プロンプト
+### 実験2：法規・規格・認証統合SE初稿生成プロンプト
 
 階層型SE初稿生成プロンプトを基礎に、法規・規格・契約・認証基準を通常のSE要求とは別のCompliance Layerとして扱う実験です。
 
@@ -59,7 +59,7 @@ ChatGPTで回帰テストを行う場合は、[プロンプト専用回帰テス
 
 スマート扇風機、懐中電灯、モバイルバッテリーを使ったC1-remediated評価は[2026-08-22の評価実行](../evaluation_runs/2026-08-22/compliance-integrated-se-prompt/README.md)、strict C1-blindは[別枠run](../evaluation_runs/2026-08-22/compliance-integrated-se-prompt-blind-c1-strict/README.md)にあります。
 
-### 企画・要件定義構造化SE初稿生成プロンプト
+### 実験3：企画・要件定義構造化SE初稿生成プロンプト
 
 階層型SE初稿生成プロンプトを基礎に、企画、要求、画面、帳票、API、データ、検証、受入条件を一つの候補意味モデルへまとめ、企画書・要件定義書を文書ビューとして生成できるかを試す実験です。
 
@@ -73,13 +73,19 @@ ChatGPTで回帰テストを行う場合は、[プロンプト専用回帰テス
 
 代表モデルの検証は、[検証スクリプト](structured-document-se-prompt/scripts/validate_candidate.py)で実行できます。
 
-### SysMLモデリング前PlantUML生成プロンプト（実験5）
+### 実験4：Adaptive Graph Visualization
+
+yFiles for HTMLを使い、Synthetic Graphに対するMacro / Group / Entity / FocusのLOD切替、階層展開、エッジ集約、可読性メトリクスを検証する実験です。
+
+実装と起動方法は、[実験4のREADME](adaptive-graph-visualization/README.md)を参照してください。
+
+### 実験5：SysMLモデリング前PlantUML生成プロンプト
 
 実験1の`10_se_model.json`を意味上の正本として、SysML v1.xへ正式にモデリングする前のレビュー用PlantUMLを生成する実験です。正本にないInterface、State、Constraint、Relationshipを図の都合で創作せず、`CANONICAL`、`VIEW_DERIVED`、`UNRESOLVED`を分けて表示します。
 
 詳細は[実験5のREADME](sysml-pre-model-plantuml-prompt/README.md)を参照してください。実際のスマート扇風機試行は[2026-08-31の評価実行](../evaluation_runs/2026-08-31/sysml-pre-model-plantuml/smart-fan/README.md)にあります。
 
-### Engineering Discovery Chat Bundle（実験6）
+### 実験6：Engineering Discovery Chat Bundle
 
 顧客の会話・議事録・既存資料から、Capability CellごとのEngineering Pain、Engineering Decision、因果仮説、AI適用性、AI導入後の次ボトルネックを整理し、ヒアリング・提案・PoCへ投影する実験です。Case Libraryは顧客事実ではなく、仮説生成と見落とし確認にだけ使います。
 

@@ -6,15 +6,16 @@ SEとは、複雑な製品やサービスを「誰のために、何を実現し
 
 このリポジトリでは、完成した標準や正解を公開するのではありません。試したい考え方、実行方法、結果の確認方法を、実験として公開します。
 
-## 公開中の実験
+## 公開中の実験（実験1〜6）
 
 | 実験 | 何を試すか | 状態 |
 |---|---|---|
-| [SEデータプロンプト（実験1）](experiments/hierarchical-se-prompt/README.md) | 会話からツール非依存のSEデータを作り、レビューや各種成果物へつなげる | 1.1.0・実験中 |
-| [法規・規格・認証統合SE初稿生成プロンプト](experiments/compliance-integrated-se-prompt/README.md) | 原典、適用性、義務、工学要求、証拠を分離したCompliance Layer付き初稿をAIで作る | 0.3.1・実験中 |
-| [企画・要件定義構造化SE初稿生成プロンプト](experiments/structured-document-se-prompt/README.md) | 実験1のSE意味モデルから企画書・要件定義書を投影する | 0.1.0・実験中 |
-| [SysMLモデリング前PlantUML生成プロンプト（実験5）](experiments/sysml-pre-model-plantuml-prompt/README.md) | 実験1のSEデータから、正本境界を保ったレビュー用PlantUMLを投影する | 0.1.0・実験中 |
-| [Engineering Discovery Chat Bundle（実験6）](experiments/engineering-discovery-chat/README.md) | 顧客のEngineering PainとDecisionを会話で診断し、提案・PoCへ投影する | 0.1・方法論候補 |
+| [実験1：SEデータプロンプト](experiments/hierarchical-se-prompt/README.md) | 会話からツール非依存のSEデータを作り、レビューや各種成果物へつなげる | 1.1.0・実験中 |
+| [実験2：法規・規格・認証統合SE初稿生成プロンプト](experiments/compliance-integrated-se-prompt/README.md) | 原典、適用性、義務、工学要求、証拠を分離したCompliance Layer付き初稿をAIで作る | 0.3.1・実験中 |
+| [実験3：企画・要件定義構造化SE初稿生成プロンプト](experiments/structured-document-se-prompt/README.md) | 実験1のSE意味モデルから企画書・要件定義書を投影する | 0.1.0・実験中 |
+| [実験4：Adaptive Graph Visualization](experiments/adaptive-graph-visualization/README.md) | yFilesでSemantic Zoom、Focus表示、エッジ可読性を検証する | 0.1.0・実験中 |
+| [実験5：SysMLモデリング前PlantUML生成プロンプト](experiments/sysml-pre-model-plantuml-prompt/README.md) | 実験1のSEデータから、正本境界を保ったレビュー用PlantUMLを投影する | 0.1.0・実験中 |
+| [実験6：Engineering Discovery Chat Bundle](experiments/engineering-discovery-chat/README.md) | 顧客のEngineering PainとDecisionを会話で診断し、提案・PoCへ投影する | 0.1・方法論候補 |
 
 ## 読み始める場所
 

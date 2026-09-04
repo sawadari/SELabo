@@ -1,0 +1,42 @@
+{
+  "profile_name": "engineering_discovery_chat_default",
+  "version": "0.1",
+  "language": "Japanese",
+  "initial_hypothesis_maturity": "40_of_100_candidate",
+  "analysis_unit": "capability_cell",
+  "max_questions_per_turn": 3,
+  "max_direct_pain_candidates": 3,
+  "max_upstream_cause_candidates": 4,
+  "question_strategy": "information_gain_x_decision_impact_x_hypothesis_discrimination_x_answerability",
+  "inference_policy": "broad_hypothesis_generation_with_explicit_provenance",
+  "case_library_policy": "analogy_and_coverage_only_not_customer_fact",
+  "ai_policy": "no_ai_native_ai_customer_ai_custom_ai_comparison_required",
+  "bottleneck_migration_required_for_ai_proposal": true,
+  "authority_boundary_required": true,
+  "default_output_mode": "hypothesis_snapshot_plus_next_questions",
+  "do_not_repeat_answered_questions": true,
+  "do_not_force_questions_when_sufficient": true,
+  "source_statuses": [
+    "user_confirmed_fact",
+    "customer_reported_fact",
+    "source_derived_fact",
+    "user_candidate",
+    "ai_hypothesis",
+    "analogical_hypothesis",
+    "assumption",
+    "unknown"
+  ],
+  "confidence_levels": [
+    "low",
+    "medium",
+    "high"
+  ],
+  "commands": {
+    "interview": "次に聞くべき質問と理由を出す",
+    "diagnose": "現在の課題構造と因果仮説を整理する",
+    "proposal": "現在情報から提案骨子を作る",
+    "poc": "PoC仮説・評価方法・Exit Criteriaを作る",
+    "snapshot": "Opportunity Dataの持ち運び用スナップショットを出す",
+    "blind_spots": "Case LibraryとPain Modelから見落とし候補を出す"
+  }
+}

@@ -78,3 +78,9 @@ ChatGPTで回帰テストを行う場合は、[プロンプト専用回帰テス
 実験1の`10_se_model.json`を意味上の正本として、SysML v1.xへ正式にモデリングする前のレビュー用PlantUMLを生成する実験です。正本にないInterface、State、Constraint、Relationshipを図の都合で創作せず、`CANONICAL`、`VIEW_DERIVED`、`UNRESOLVED`を分けて表示します。
 
 詳細は[実験5のREADME](sysml-pre-model-plantuml-prompt/README.md)を参照してください。実際のスマート扇風機試行は[2026-08-31の評価実行](../evaluation_runs/2026-08-31/sysml-pre-model-plantuml/smart-fan/README.md)にあります。
+
+### Engineering Discovery Chat Bundle（実験6）
+
+顧客の会話・議事録・既存資料から、Capability CellごとのEngineering Pain、Engineering Decision、因果仮説、AI適用性、AI導入後の次ボトルネックを整理し、ヒアリング・提案・PoCへ投影する実験です。Case Libraryは顧客事実ではなく、仮説生成と見落とし確認にだけ使います。
+
+詳細は[実験6のREADME](engineering-discovery-chat/README.md)を参照してください。添付Bundleの機密確認は[確認記録](engineering-discovery-chat/CONFIDENTIALITY_REVIEW.md)にあります。

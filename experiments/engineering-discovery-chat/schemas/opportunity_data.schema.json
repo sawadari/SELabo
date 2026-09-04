@@ -1,0 +1,588 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Engineering Opportunity Data",
+  "type": "object",
+  "required": [
+    "meta",
+    "capability_cells",
+    "unknowns"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "opportunity_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "candidate",
+            "discovery",
+            "proposal_candidate",
+            "poc_candidate",
+            "production_candidate"
+          ]
+        },
+        "last_updated": {
+          "type": "string"
+        },
+        "overall_confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "source_registry": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "capability_cells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "scope"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "department_role": {
+            "type": "string"
+          },
+          "product_system": {
+            "type": "string"
+          },
+          "development_phase": {
+            "type": "string"
+          },
+          "development_type": {
+            "type": "string"
+          },
+          "novelty_modifiers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "symptoms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/claim"
+            }
+          },
+          "business_consequences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/claim"
+            }
+          },
+          "engineering_decisions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/decision"
+            }
+          },
+          "pain_hypotheses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/pain"
+            }
+          },
+          "causal_hypotheses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/causal"
+            }
+          },
+          "actionable_root_pains": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/pain"
+            }
+          },
+          "current_methods": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "environment": {
+            "$ref": "#/$defs/environment"
+          },
+          "current_bottleneck": {
+            "type": "string"
+          },
+          "ai_applicability": {
+            "$ref": "#/$defs/ai"
+          },
+          "projected_bottleneck": {
+            "type": "string"
+          },
+          "authority_assurance": {
+            "$ref": "#/$defs/authority"
+          },
+          "kpis": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/kpi"
+            }
+          },
+          "business": {
+            "$ref": "#/$defs/business"
+          },
+          "offering_hypotheses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/offering"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "why_it_matters": {
+            "type": "string"
+          },
+          "priority": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "status": {
+            "enum": [
+              "open",
+              "answered",
+              "deferred",
+              "not_applicable"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "question",
+          "priority"
+        ]
+      }
+    },
+    "hypothesis_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string"
+          },
+          "element_id": {
+            "type": "string"
+          },
+          "change": {
+            "enum": [
+              "created",
+              "confirmed",
+              "revised",
+              "contradicted",
+              "withdrawn",
+              "superseded"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "origin": {
+          "type": "string"
+        },
+        "evidence_strength": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "user_confirmed_fact",
+            "customer_reported_fact",
+            "source_derived_fact",
+            "user_candidate",
+            "ai_hypothesis",
+            "analogical_hypothesis",
+            "assumption",
+            "unknown"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "enum": [
+            "active",
+            "confirmed",
+            "revised",
+            "contradicted",
+            "withdrawn",
+            "superseded"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "origin"
+      ]
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "frequency": {
+          "type": "string"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lead_time": {
+          "type": "string"
+        },
+        "error_consequence": {
+          "type": "string"
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      }
+    },
+    "pain": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "family_id": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "direct",
+            "upstream_candidate",
+            "actionable_root",
+            "downstream_effect"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "causal": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "chain": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "statement": {
+          "type": "string"
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "discriminating_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "data_sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "models": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "systems_of_record": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "versions_configuration": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "security_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sharing_boundaries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ai": {
+      "type": "object",
+      "properties": {
+        "necessity": {
+          "enum": [
+            "no_ai",
+            "native_ai",
+            "customer_ai",
+            "custom_ai",
+            "undetermined"
+          ]
+        },
+        "patterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "enum": [
+            "L0_read_support",
+            "L1_engineering_candidate",
+            "L2_engineering_action",
+            "L3_authoritative_change",
+            "undetermined"
+          ]
+        },
+        "human_approver": {
+          "type": "string"
+        },
+        "evidence_required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "audit_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "kpi": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "baseline": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "measurement_method": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "confirmed",
+            "candidate",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "business": {
+      "type": "object",
+      "properties": {
+        "sponsor": {
+          "type": "string"
+        },
+        "economic_buyer": {
+          "type": "string"
+        },
+        "timing": {
+          "type": "string"
+        },
+        "budget_status": {
+          "type": "string"
+        },
+        "production_path": {
+          "type": "string"
+        },
+        "expansion_potential": {
+          "type": "string"
+        }
+      }
+    },
+    "offering": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "offering_family": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "sequence": {
+          "type": "integer"
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      }
+    }
+  }
+}

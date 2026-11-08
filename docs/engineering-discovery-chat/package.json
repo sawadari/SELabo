@@ -1,0 +1,7 @@
+{
+  "name": "se-labo-engineering-discovery-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser-only experiment 6 prototype"
+}

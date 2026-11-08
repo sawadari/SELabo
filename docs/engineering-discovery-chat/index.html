@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>Engineering Discovery | SE Labo Experiment 6</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <a class="back" href="../">SE Labo</a>
+      <span class="slash">/</span>
+      <strong>Engineering Discovery</strong>
+      <span class="version">EXPERIMENT 06 · v0.1 web</span>
+    </div>
+    <a class="source" href="https://github.com/sawadari/SELabo/tree/main/experiments/engineering-discovery-chat" target="_blank" rel="noopener noreferrer">Methodology ↗</a>
+  </header>
+  <main class="page">
+    <div class="intro">
+      <div>
+        <p class="eyebrow">Engineering Discovery &amp; Proposal Copilot — prototype</p>
+        <h1>現場の困り事から、設計判断の課題へ。</h1>
+        <p>顧客の状況を文章で入力してください。暫定仮説、上流原因候補、次に確認すべき最大3問を提示します。</p>
+      </div>
+      <span class="mode">ブラウザ内で処理 · LLM未接続</span>
+    </div>
+    <div class="notice" role="note">
+      <strong>実験上の制約：</strong> キーワードに基づくルールベース試作です。AIによる意味理解・116ケース参照・因果推定ではありません。入力内容を顧客の確定事実とみなしません。入力内容はサーバーへ送信せず、ブラウザのメモリ内だけで扱います。公開Webページには機密情報を入力しないでください。
+    </div>
+    <div class="workspace">
+      <section class="panel conversation" aria-labelledby="conversation-title">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">01 / INPUT &amp; DIALOGUE</p>
+            <h2 id="conversation-title">会話と入力</h2>
+          </div>
+          <button type="button" class="ghost" id="reset-btn">新規案件</button>
+        </div>
+        <div class="feed" id="feed" aria-live="polite" aria-relevant="additions">
+          <div class="message assistant">対象部門、製品・システム、開発上の困り事、今の対応方法など、分かっている範囲で教えてください。未確認情報でも構いません。</div>
+        </div>
+        <div class="compose">
+          <div class="answer-target" id="answer-target" hidden></div>
+          <label for="message-input">案件情報または追加の回答</label>
+          <textarea id="message-input" rows="5" maxlength="8000" placeholder="例：車載ECUの派生開発で、仕様変更後の回帰テスト範囲を決めるのに時間がかかっています。MBDは利用中です。"></textarea>
+          <div class="compose-actions">
+            <button type="button" class="secondary" id="sample-btn">架空サンプルを入力</button>
+            <button type="button" class="primary" id="analyze-btn">入力して仮説を更新</button>
+          </div>
+          <div class="status-line" id="status" role="status"></div>
+        </div>
+      </section>
+      <section class="panel results" aria-labelledby="results-title">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">02 / HYPOTHESIS &amp; DECISION</p>
+            <h2 id="results-title">暫定診断</h2>
+          </div>
+          <button type="button" class="ghost" id="export-btn" disabled>JSON出力</button>
+        </div>
+        <div class="tabs" role="group" aria-label="表示モード">
+          <button type="button" class="tab active" data-view="hypothesis" aria-pressed="true">仮説</button>
+          <button type="button" class="tab" data-view="causal" aria-pressed="false">課題構造</button>
+          <button type="button" class="tab" data-view="proposal" aria-pressed="false">提案骨子</button>
+          <button type="button" class="tab" data-view="poc" aria-pressed="false">PoC骨子</button>
+        </div>
+        <div class="result-body" id="result-body" aria-live="polite">
+          <div class="empty">
+            <div class="empty-icon">◎</div>
+            <h3>最初の入力を待っています</h3>
+            <p>文章を受け取ると、仮説と追加の確認事項を生成します。</p>
+          </div>
+        </div>
+        <div class="footer-actions">
+          <button type="button" class="secondary" id="copy-btn" disabled>表示内容をコピー</button>
+          <span>生成物は検証用の候補です。人による確認が必要です。</span>
+        </div>
+      </section>
+    </div>
+    <p class="footnote">
+      Source: <a href="https://github.com/sawadari/SELabo/blob/main/experiments/engineering-discovery-chat/02_ENGINEERING_PAIN_CAUSAL_MODEL.md" target="_blank" rel="noopener noreferrer">Engineering Pain Causal Model</a>
+      / <a href="https://github.com/sawadari/SELabo/blob/main/experiments/engineering-discovery-chat/04_AI_AND_OFFERING_PATTERNS.md" target="_blank" rel="noopener noreferrer">Offering Patterns</a>
+      / <a href="https://github.com/sawadari/SELabo/blob/main/experiments/engineering-discovery-chat/README.md" target="_blank" rel="noopener noreferrer">Experiment 6 README</a>
+    </p>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

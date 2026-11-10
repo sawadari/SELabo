@@ -1,0 +1,52 @@
+{
+  "source_fragments": [
+    {
+      "id": "SRC-0001",
+      "title": "架空の製品企画メモ",
+      "source_type": "conversation",
+      "classification": "source_data",
+      "origin": "user_explicit",
+      "statement": "静かに使える小型卓上ファンを検討している。価格、需要、購入意向は未調査とする。",
+      "locator": null,
+      "recorded_at": null,
+      "is_synthetic": true,
+      "reliability": "unknown",
+      "permission_status": "approved_for_processing",
+      "limitations": "研究用の架空シナリオ。顧客調査の記録ではない。"
+    }
+  ],
+  "scope": {
+    "subject": "架空の静音デスクファンの市場企画",
+    "purpose": "利用者の価値と代替品を比較し、需要の確かめ方を考える。",
+    "in_scope": [
+      "顧客課題の仮説",
+      "価値提案候補",
+      "戦略代替案",
+      "初期の検証計画"
+    ],
+    "out_of_scope": [
+      "実顧客への調査実施",
+      "市場規模やROIの確定",
+      "正式な投資承認"
+    ],
+    "controlled_by_organization": [
+      "提案の内容",
+      "自社の営業・提供体制の候補"
+    ],
+    "external_and_uncontrolled": [
+      "顧客の購買判断",
+      "競合行動",
+      "外部環境"
+    ],
+    "time_horizon": "企画初期（具体的な期間は未確認）"
+  },
+  "glossary": [
+    {
+      "term": "現状維持案",
+      "definition": "新たなサービス購入/投資を行わない比較基準。",
+      "aliases": [
+        "status quo"
+      ]
+    }
+  ]
+}

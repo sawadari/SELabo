@@ -1,0 +1,90 @@
+{
+  "manifest_version": "1.0.0",
+  "source_of_truth": "10_vse_model.json",
+  "model_sha256": "ec5746f878d44a93fe72ea47e009de8f7c619d7e7338aa01f78a4221822ebc19",
+  "files": [
+    {
+      "path": "00_manifest.json",
+      "sha256": "a9d091eaaa008cc329d2839ca9b769eb141d647c10faa4e87fc97038ac9738ba",
+      "size_bytes": 1268
+    },
+    {
+      "path": "01_executive_summary.md",
+      "sha256": "a4fed3fa8a0cdc8056684c5568b8f5092af7b64c56271ab8863d2c8c327d68fd",
+      "size_bytes": 2032
+    },
+    {
+      "path": "02_source_scope_glossary.json",
+      "sha256": "ac99004567dbbd0e3d5e28af80bdd756bcadd6ad27ac3f6a4f2f45f744772648",
+      "size_bytes": 1582
+    },
+    {
+      "path": "03_stakeholders_ecosystem.md",
+      "sha256": "644b696d79c888d99c2a4b31d7f4c9ba2f031ddc871dbc42aac6fc8aa0c66077",
+      "size_bytes": 790
+    },
+    {
+      "path": "04_customer_problems.md",
+      "sha256": "2266ef2d0bc464cd37295a6498412bb60fdd10308dce012926d25a4dc4ec66db",
+      "size_bytes": 659
+    },
+    {
+      "path": "05_value_and_hypotheses.md",
+      "sha256": "f4bdf7f2e60f297a324ae0f87cd4f6e0110cb79ef1ed720bce860212f4dd29d5",
+      "size_bytes": 1226
+    },
+    {
+      "path": "06_strategy_alternatives.md",
+      "sha256": "601b9152163c199d6dd87ce790edf8fdc71d66b70edacc8e207d4f3567966698",
+      "size_bytes": 1286
+    },
+    {
+      "path": "07_execution_and_sales.md",
+      "sha256": "7da045e85b1372ea92314f22868d377d634cf25aa66c132809b5a658b13c2856",
+      "size_bytes": 745
+    },
+    {
+      "path": "08_validation_plan.md",
+      "sha256": "c67ba21c552741b7b67ccfc547dfd4a1cb9af5c2186e748b94c924ad5303c13f",
+      "size_bytes": 947
+    },
+    {
+      "path": "09_traceability.csv",
+      "sha256": "ab64b3c08b7ba37283e55a6988a6c96af302a77f7468505ab5c838cb92c38478",
+      "size_bytes": 978
+    },
+    {
+      "path": "10_vse_model.json",
+      "sha256": "ec5746f878d44a93fe72ea47e009de8f7c619d7e7338aa01f78a4221822ebc19",
+      "size_bytes": 13867
+    },
+    {
+      "path": "11_decision_register.md",
+      "sha256": "52a26afdf676fa2566ad104d79e44f104e314feb69b9feaffd748624157dc1c7",
+      "size_bytes": 543
+    },
+    {
+      "path": "12_risk_assumption_register.md",
+      "sha256": "162a83de179f2f3b6ec633f736ac24450980db453fbf81e17653a0be9d8084c5",
+      "size_bytes": 1614
+    },
+    {
+      "path": "13_quality_report.md",
+      "sha256": "9498296c20de0db8eecec580760b600432d75c814de8a7bf26c804df8033c991",
+      "size_bytes": 1068
+    },
+    {
+      "path": "14_human_confirmation_backlog.md",
+      "sha256": "45431ce22cfb2d38618a865503e4f20f0bd897927f38322be37b42611be4877e",
+      "size_bytes": 554
+    },
+    {
+      "path": "15_visualization_specs.md",
+      "sha256": "2f8ace8e0b96480494b5d87ede29017e83e00da0a34e9ecd0138c8b300965a6a",
+      "size_bytes": 986
+    }
+  ],
+  "hash_exclusions": [
+    "16_generation_manifest.json (self-reference)"
+  ]
+}

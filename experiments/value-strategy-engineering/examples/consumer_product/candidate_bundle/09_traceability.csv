@@ -1,0 +1,9 @@
+﻿relation_id,source_id,target_id,relation_type,certainty,causal_status,basis
+REL-0001,OBJ-0001,PRB-0001,addresses,hypothesized,,架空ケースにおけるレビュー用の候補関係。
+REL-0002,ACT-0001,PRB-0001,experiences,hypothesized,,架空ケースにおけるレビュー用の候補関係。
+REL-0003,ALT-0001,PRB-0001,addresses,hypothesized,,架空ケースにおけるレビュー用の候補関係。
+REL-0004,ALT-0002,PRB-0001,addresses,hypothesized,,架空ケースにおけるレビュー用の候補関係。
+REL-0005,ALT-0002,VAL-0001,offers,hypothesized,,架空ケースにおけるレビュー用の候補関係。
+REL-0006,EXP-0001,HYP-0001,tests,hypothesized,,架空ケースにおけるレビュー用の候補関係。
+REL-0007,INT-0001,ALT-0002,implements,hypothesized,,架空ケースにおけるレビュー用の候補関係。
+REL-0008,INT-0001,ACT-0001,targets,hypothesized,,架空ケースにおけるレビュー用の候補関係。

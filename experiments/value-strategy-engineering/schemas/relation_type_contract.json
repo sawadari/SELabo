@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "collection_id_prefix": {"objectives":"OBJ", "actors":"ACT", "problems":"PRB", "values":"VAL", "hypotheses":"HYP", "alternatives":"ALT", "capabilities":"CAP", "decisions":"DEC", "interventions":"INT", "evidence":"EVD", "outcomes":"OUT", "risks":"RSK", "experiments":"EXP"},
+  "contracts": {
+    "addresses":{"source":["ALT","INT","OBJ"],"target":["PRB"]},
+    "experiences":{"source":["ACT"],"target":["PRB"]},
+    "proposes":{"source":["ACT"],"target":["ALT","INT"]},
+    "supports":{"source":["EVD"],"target":["HYP"]},
+    "contradicts":{"source":["EVD"],"target":["HYP"]},
+    "tests":{"source":["EXP"],"target":["HYP"]},
+    "implements":{"source":["INT"],"target":["ALT"]},
+    "measures":{"source":["OUT"],"target":["OBJ"]},
+    "risks":{"source":["RSK"],"target":["ALT","DEC","INT"]},
+    "depends_on":{"source":["*"],"target":["*"]},
+    "selected_over":{"source":["ALT"],"target":["ALT"]},
+    "derived_from":{"source":["*"],"target":["*"]},
+    "affects":{"source":["*"],"target":["*"]},
+    "targets":{"source":["INT"],"target":["ACT"]},
+    "owned_by":{"source":["*"],"target":["ACT"]},
+    "offers":{"source":["ALT"],"target":["VAL"]},
+    "mitigates":{"source":["INT","ALT"],"target":["RSK"]},
+    "assumes":{"source":["*"],"target":["HYP"]},
+    "participates_in":{"source":["ACT"],"target":["INT","EXP"]},
+    "causally_influences":{"source":["INT"],"target":["OUT"]},
+    "compared_with":{"source":["ALT"],"target":["ALT"]}
+  }
+}

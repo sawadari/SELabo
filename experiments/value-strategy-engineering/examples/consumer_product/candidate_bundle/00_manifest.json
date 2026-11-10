@@ -1,0 +1,42 @@
+{
+  "artifact_type": "vse_candidate_projection_bundle",
+  "schema_version": "1.0.0",
+  "project_slug": "consumer_product",
+  "target_subject": "架空の静音デスクファンの市場企画",
+  "source_of_truth": "10_vse_model.json",
+  "gate_state": "reviewable_40_candidate",
+  "model_generated_at": null,
+  "synthetic_case": true,
+  "expected_files": [
+    "00_manifest.json",
+    "01_executive_summary.md",
+    "02_source_scope_glossary.json",
+    "03_stakeholders_ecosystem.md",
+    "04_customer_problems.md",
+    "05_value_and_hypotheses.md",
+    "06_strategy_alternatives.md",
+    "07_execution_and_sales.md",
+    "08_validation_plan.md",
+    "09_traceability.csv",
+    "10_vse_model.json",
+    "11_decision_register.md",
+    "12_risk_assumption_register.md",
+    "13_quality_report.md",
+    "14_human_confirmation_backlog.md",
+    "15_visualization_specs.md",
+    "16_generation_manifest.json"
+  ],
+  "validation": {
+    "static_validation_ok": true,
+    "errors": [],
+    "unperformed": [
+      "実顧客調査",
+      "人の正式意思決定",
+      "因果効果確認",
+      "実在専門家の評価"
+    ]
+  },
+  "limitations": [
+    "本レポートは候補データからの機械的投影であり、新たな市場検証ではない。"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "source_fragments": [
+    {
+      "id": "SRC-0001",
+      "title": "架空ケースの前提",
+      "source_type": "conversation",
+      "classification": "source_data",
+      "origin": "user_explicit",
+      "statement": "製造業でALMを導入済みだが、教育やマニュアルの準備後も利用定着が進まないという架空の相談がある。",
+      "locator": null,
+      "recorded_at": null,
+      "is_synthetic": true,
+      "reliability": "unknown",
+      "permission_status": "approved_for_processing",
+      "limitations": "研究用の架空シナリオ。顧客調査の記録ではない。"
+    },
+    {
+      "id": "SRC-0002",
+      "title": "架空ケースの補助仮定",
+      "source_type": "conversation",
+      "classification": "source_data",
+      "origin": "user_explicit",
+      "statement": "一部の顧客では文書管理や他のモデリングツールとの二重管理が懸念されると仮定する。",
+      "locator": null,
+      "recorded_at": null,
+      "is_synthetic": true,
+      "reliability": "unknown",
+      "permission_status": "approved_for_processing",
+      "limitations": "研究用の架空シナリオ。顧客調査の記録ではない。"
+    }
+  ],
+  "scope": {
+    "subject": "架空の製造業顧客向けALM定着改善サービスの企画",
+    "purpose": "顧客が抱える可能性のある課題を整理し、現状維持を含めて提案候補と検証行動を比較する。",
+    "in_scope": [
+      "顧客課題の仮説",
+      "価値提案候補",
+      "戦略代替案",
+      "初期の検証計画"
+    ],
+    "out_of_scope": [
+      "実顧客への調査実施",
+      "市場規模やROIの確定",
+      "正式な投資承認"
+    ],
+    "controlled_by_organization": [
+      "提案の内容",
+      "自社の営業・提供体制の候補"
+    ],
+    "external_and_uncontrolled": [
+      "顧客の購買判断",
+      "競合行動",
+      "外部環境"
+    ],
+    "time_horizon": "企画初期（具体的な期間は未確認）"
+  },
+  "glossary": [
+    {
+      "term": "現状維持案",
+      "definition": "新たなサービス購入/投資を行わない比較基準。",
+      "aliases": [
+        "status quo"
+      ]
+    }
+  ]
+}

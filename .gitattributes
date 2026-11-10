@@ -6,3 +6,6 @@
 *.jpeg binary
 *.gif binary
 *.pdf binary
+
+experiments/value-strategy-engineering/*.csv -text
+experiments/value-strategy-engineering/**/*.csv -text

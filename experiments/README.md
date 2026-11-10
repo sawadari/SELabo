@@ -1,4 +1,4 @@
-# SE実験の一覧（実験1〜6）
+# SE実験の一覧（実験1〜7）
 
 このフォルダーには、SEに関する実験を置きます。実験ごとにフォルダーを分けているため、興味のある実験だけを読んだり、試したりできます。
 
@@ -90,3 +90,9 @@ yFiles for HTMLを使い、Synthetic Graphに対するMacro / Group / Entity / F
 顧客の会話・議事録・既存資料から、Capability CellごとのEngineering Pain、Engineering Decision、因果仮説、AI適用性、AI導入後の次ボトルネックを整理し、ヒアリング・提案・PoCへ投影する実験です。Case Libraryは顧客事実ではなく、仮説生成と見落とし確認にだけ使います。
 
 詳細は[実験6のREADME](engineering-discovery-chat/README.md)を参照してください。添付Bundleの機密確認は[確認記録](engineering-discovery-chat/CONFIDENTIALITY_REVIEW.md)にあります。
+
+### 実験7：VSEデータプロンプト
+
+会話や資料から、顧客課題、価値仮説、戦略の代替案、意思決定、検証を、つながりを持つ候補データとして整理する実験です。事業成果への有効性は未実証であり、人によるレビューと実環境での検証が必要です。
+
+使い方、架空例、評価方法は[実験7のREADME](value-strategy-engineering/README.md)を参照してください。

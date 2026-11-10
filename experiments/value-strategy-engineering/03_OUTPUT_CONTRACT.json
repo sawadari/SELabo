@@ -1,0 +1,143 @@
+{
+  "contract_name": "vse_candidate_bundle",
+  "contract_version": "1.0.0",
+  "archive": {
+    "required": true,
+    "name_template": "<project_slug>_vse_candidate_bundle.zip",
+    "encoding": "UTF-8",
+    "must_not_claim_success_when_not_created": true
+  },
+  "source_of_truth": {
+    "file": "10_vse_model.json",
+    "role": "candidate_semantic_source_of_truth",
+    "other_files_are_projections": true,
+    "not_a_confirmed_market_truth": true,
+    "no_semantic_fact_only_in_projections": true
+  },
+  "required_files": [
+    {
+      "path": "00_manifest.json",
+      "purpose": "入力範囲、実行条件、モデル版、出力結果、未実施検査"
+    },
+    {
+      "path": "01_executive_summary.md",
+      "purpose": "結論、目的、主要候補、確実性、次に確かめること"
+    },
+    {
+      "path": "02_source_scope_glossary.json",
+      "purpose": "入力資料、出自、対象境界、用語の投影"
+    },
+    {
+      "path": "03_stakeholders_ecosystem.md",
+      "purpose": "顧客/競合/内部関係者と購買関係"
+    },
+    {
+      "path": "04_customer_problems.md",
+      "purpose": "課題、顧客行動、現状維持の理由"
+    },
+    {
+      "path": "05_value_and_hypotheses.md",
+      "purpose": "価値仮説、説明仮説、反証条件"
+    },
+    {
+      "path": "06_strategy_alternatives.md",
+      "purpose": "戦略代替案、資源制約、非選択理由"
+    },
+    {
+      "path": "07_execution_and_sales.md",
+      "purpose": "施策候補、営業/提供体制、責任"
+    },
+    {
+      "path": "08_validation_plan.md",
+      "purpose": "仮説検証計画、指標、バイアス、更新条件"
+    },
+    {
+      "path": "09_traceability.csv",
+      "purpose": "型付き要素関係、因果状態"
+    },
+    {
+      "path": "10_vse_model.json",
+      "purpose": "ツール非依存の候補意味ソース"
+    },
+    {
+      "path": "11_decision_register.md",
+      "purpose": "決定者・判断理由・代替案・見直し条件"
+    },
+    {
+      "path": "12_risk_assumption_register.md",
+      "purpose": "リスク、仮定、制約、反証例"
+    },
+    {
+      "path": "13_quality_report.md",
+      "purpose": "検査結果、Gate、構文と意味の区別"
+    },
+    {
+      "path": "14_human_confirmation_backlog.md",
+      "purpose": "人による確認事項と優先度"
+    },
+    {
+      "path": "15_visualization_specs.md",
+      "purpose": "関係グラフ、顧客ジャーニー、仮説評価の図仕様"
+    },
+    {
+      "path": "16_generation_manifest.json",
+      "purpose": "各生成ファイルのSHA256と検証状態"
+    }
+  ],
+  "mandatory_sections": {
+    "01_executive_summary.md": [
+      "目的",
+      "対象範囲",
+      "主要な仮説",
+      "代替案",
+      "最大の不確実性",
+      "次に確認すること"
+    ],
+    "06_strategy_alternatives.md": [
+      "現状維持案",
+      "比較する問題",
+      "評価基準",
+      "不確実性"
+    ],
+    "08_validation_plan.md": [
+      "対象仮説",
+      "観測方法",
+      "反証条件",
+      "交絡要因",
+      "実施責任者"
+    ],
+    "13_quality_report.md": [
+      "実施した検査",
+      "未実施検査",
+      "Gate状態",
+      "意味的妥当性の限界"
+    ]
+  },
+  "validation": {
+    "parse_json": true,
+    "schema_check_when_available": true,
+    "referential_integrity": true,
+    "type_and_direction": true,
+    "no_promote_ai_to_fact": true,
+    "no_uncited_business_numbers": true,
+    "no_simulated_customer_as_observation": true,
+    "no_unapproved_external_action": true,
+    "projection_consistency": true
+  },
+  "truncation": {
+    "never_report_partial_output_as_complete": true,
+    "prefer_split_generation_and_stable_ids_over_silent_omission": true
+  },
+  "fallback": {
+    "when_no_file_tool": "重要成果と、モデル全文を分割出力し、ZIP未作成と明記する。架空リンクは禁止。"
+  },
+  "final_chat_response": {
+    "must_include": [
+      "archive_link_if_created",
+      "gate_state",
+      "provisional_assumptions",
+      "human_confirmation_count",
+      "not_performed_checks"
+    ]
+  }
+}

@@ -6,7 +6,7 @@ SEとは、複雑な製品やサービスを「誰のために、何を実現し
 
 このリポジトリでは、完成した標準や正解を公開するのではありません。試したい考え方、実行方法、結果の確認方法を、実験として公開します。
 
-## 公開中の実験（実験1〜6）
+## 公開中の実験（実験1〜7）
 
 | 実験 | 何を試すか | 状態 |
 |---|---|---|
@@ -16,6 +16,7 @@ SEとは、複雑な製品やサービスを「誰のために、何を実現し
 | [実験4：Adaptive Graph Visualization](experiments/adaptive-graph-visualization/README.md) | yFilesでSemantic Zoom、Focus表示、エッジ可読性を検証する | 0.1.0・実験中 |
 | [実験5：SysMLモデリング前PlantUML生成プロンプト](experiments/sysml-pre-model-plantuml-prompt/README.md) | 実験1のSEデータから、正本境界を保ったレビュー用PlantUMLを投影する | 0.1.0・実験中 |
 | [実験6：Engineering Discovery Chat Bundle](experiments/engineering-discovery-chat/README.md) | 顧客のEngineering PainとDecisionを会話で診断し、提案・PoCへ投影する | 0.1・方法論候補 |
+| [実験7：VSEデータプロンプト](experiments/value-strategy-engineering/README.md) | 会話や資料から、価値・戦略・意思決定をレビュー可能な候補データに整理する | 1.0.0・実験中 |
 
 ## 読み始める場所
 

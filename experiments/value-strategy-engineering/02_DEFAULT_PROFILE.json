@@ -1,0 +1,176 @@
+{
+  "profile_name": "vse_one_shot_reviewable_40",
+  "profile_version": "1.0.0",
+  "output_language": "ja",
+  "default_domain": "b2b_consulting",
+  "goal": "不完全な会話・資料から、事業機会/顧客/価値/戦略代替案/検証方法を追跡可能な候補データとして生成し人のレビュー開始を可能にする",
+  "not_intended_for": [
+    "demand_prediction_guarantee",
+    "market_fact_validation",
+    "legal_or_contract_approval",
+    "external_publication",
+    "autonomous_sales_contact",
+    "causal_claim_without_design"
+  ],
+  "execution": {
+    "one_shot": true,
+    "ask_user_questions": false,
+    "generate_files": true,
+    "generate_zip": true,
+    "preserve_full_sources": true,
+    "output_only_relevant_projections_in_chat": true
+  },
+  "authority": {
+    "priority": [
+      "user_confirmed",
+      "safety_and_truthfulness",
+      "source_integrity",
+      "semantic_consistency",
+      "reviewability",
+      "output_convenience"
+    ],
+    "origins": [
+      "user_explicit",
+      "user_confirmed",
+      "assistant_prior_unconfirmed",
+      "ai_context_inference",
+      "ai_generic_seed",
+      "external_candidate",
+      "imported_document",
+      "observed_measurement"
+    ],
+    "claim_states": [
+      "stated",
+      "inferred",
+      "assumed",
+      "observed"
+    ],
+    "decision_states": [
+      "not_decided",
+      "proposed",
+      "selected_provisional",
+      "user_confirmed",
+      "rejected",
+      "deferred"
+    ],
+    "validity_states": [
+      "active",
+      "stale",
+      "superseded"
+    ],
+    "confidence_scale": [
+      "high",
+      "medium",
+      "low",
+      "unknown"
+    ]
+  },
+  "viewpoints": [
+    {
+      "id": "V0",
+      "name": "事業・機会",
+      "question": "何を改善したいか、なぜ今か"
+    },
+    {
+      "id": "V1",
+      "name": "関係者・エコシステム",
+      "question": "誰が影響を受け、誰が決めるか"
+    },
+    {
+      "id": "V2",
+      "name": "顧客・業務文脈",
+      "question": "誰が何に困り、どう行動するか"
+    },
+    {
+      "id": "V3",
+      "name": "市場・価値仮説",
+      "question": "どの説明がもっとも妥当で、何が反証するか"
+    },
+    {
+      "id": "V4",
+      "name": "価値提供構想",
+      "question": "何をどの仕組みで提供するか"
+    },
+    {
+      "id": "V5",
+      "name": "戦略・意思決定",
+      "question": "何を選び、何を選ばず、なぜか"
+    },
+    {
+      "id": "V6",
+      "name": "実行・営業",
+      "question": "誰がどの接点で行い、どの負担が生じるか"
+    },
+    {
+      "id": "V7",
+      "name": "検証・学習",
+      "question": "何を観測し、何を更新するか"
+    }
+  ],
+  "independent_axes": {
+    "viewpoints_are_not_steps": true,
+    "lifecycle": [
+      "opportunity",
+      "discovery",
+      "concept",
+      "pilot",
+      "growth",
+      "operation",
+      "retirement"
+    ],
+    "stakeholder_roles": [
+      "user",
+      "influencer",
+      "champion",
+      "budget_owner",
+      "approver",
+      "procurement",
+      "partner",
+      "competitor"
+    ],
+    "domains": [
+      "market",
+      "customer",
+      "offer",
+      "process",
+      "organization",
+      "economics",
+      "technology",
+      "regulatory"
+    ],
+    "scope_of_control": [
+      "controllable",
+      "influenceable",
+      "external"
+    ]
+  },
+  "inference_policy": {
+    "generate_missing_perspectives_as_provisional": true,
+    "require_falsification_for_hypotheses": true,
+    "include_status_quo_in_alternatives": true,
+    "never_fabricate_statistics_price_roi_or_customer_quote": true,
+    "causality_requires_distinct_basis_from_trace": true,
+    "label_simulated_customers": true,
+    "prior_ai_claims_are_not_user_confirmed": true
+  },
+  "output": {
+    "source_of_truth": "10_vse_model.json",
+    "archive_name_template": "<project_slug>_vse_candidate_bundle.zip",
+    "projection_files_from_model_only": true,
+    "avoid_artificial_element_count_limits": true
+  },
+  "review": {
+    "gate": "17_FORTY_POINT_GATE.md",
+    "reviewer_tier": "J0",
+    "stop_after_reviewable_candidate": true,
+    "hard_blockers": [
+      "unsupported_facts",
+      "unsupported_roi_or_quantification",
+      "simulated_customer_as_real_evidence",
+      "causal_overclaim",
+      "unmanaged_conflict",
+      "missing_decision_alternatives",
+      "unresolved_privacy_or_authority_violation"
+    ]
+  }
+}

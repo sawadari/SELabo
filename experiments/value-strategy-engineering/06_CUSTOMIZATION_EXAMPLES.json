@@ -1,0 +1,53 @@
+{
+  "examples": [
+    {
+      "id": "b2b_alm",
+      "purpose": "ALM定着課題の診断・価値提案・商談化",
+      "overrides": {
+        "default_domain": "b2b_consulting"
+      },
+      "constraints": [
+        "顧客情報は匿名化",
+        "ROIは算出条件が無ければ未定義",
+        "現状維持案を含める"
+      ]
+    },
+    {
+      "id": "consumer_product",
+      "purpose": "新しい生活用品の製品企画と市場・利用者仮説",
+      "overrides": {
+        "default_domain": "product_planning"
+      },
+      "constraints": [
+        "利用者と購買者を区別",
+        "一般化できない小標本を市場需要と呼ばない"
+      ]
+    },
+    {
+      "id": "saas",
+      "purpose": "小規模SaaSの顧客獲得・継続率",
+      "overrides": {
+        "default_domain": "digital_service"
+      },
+      "constraints": [
+        "獲得率と継続率を別々に測定",
+        "顧客インタビューと行動ログの違いを保持"
+      ]
+    },
+    {
+      "id": "strategy",
+      "purpose": "新規市場参入と社内能力再構成",
+      "overrides": {
+        "default_domain": "other"
+      },
+      "constraints": [
+        "競合と規制の確認が必須",
+        "市場不参入という選択肢を含める"
+      ]
+    }
+  ],
+  "shared_prohibitions": [
+    "外部への自動送信・公開・営業連絡はしない",
+    "虚偽の出典や調査結果を生成しない"
+  ]
+}

@@ -1,0 +1,907 @@
+{
+  "meta": {
+    "artifact_type": "vse_candidate_model",
+    "schema_version": "1.0.0",
+    "target_subject": "架空の製造業顧客向けALM定着改善サービスの企画",
+    "domain": "b2b_consulting",
+    "language": "ja",
+    "target_maturity": "reviewable_candidate_40",
+    "source_of_truth_status": "candidate_semantic_source_of_truth",
+    "generated_at": null,
+    "synthetic_case": true,
+    "project_slug": "b2b_alm"
+  },
+  "scope": {
+    "subject": "架空の製造業顧客向けALM定着改善サービスの企画",
+    "purpose": "顧客が抱える可能性のある課題を整理し、現状維持を含めて提案候補と検証行動を比較する。",
+    "in_scope": [
+      "顧客課題の仮説",
+      "価値提案候補",
+      "戦略代替案",
+      "初期の検証計画"
+    ],
+    "out_of_scope": [
+      "実顧客への調査実施",
+      "市場規模やROIの確定",
+      "正式な投資承認"
+    ],
+    "controlled_by_organization": [
+      "提案の内容",
+      "自社の営業・提供体制の候補"
+    ],
+    "external_and_uncontrolled": [
+      "顧客の購買判断",
+      "競合行動",
+      "外部環境"
+    ],
+    "time_horizon": "企画初期（具体的な期間は未確認）"
+  },
+  "source_fragments": [
+    {
+      "id": "SRC-0001",
+      "title": "架空ケースの前提",
+      "source_type": "conversation",
+      "classification": "source_data",
+      "origin": "user_explicit",
+      "statement": "製造業でALMを導入済みだが、教育やマニュアルの準備後も利用定着が進まないという架空の相談がある。",
+      "locator": null,
+      "recorded_at": null,
+      "is_synthetic": true,
+      "reliability": "unknown",
+      "permission_status": "approved_for_processing",
+      "limitations": "研究用の架空シナリオ。顧客調査の記録ではない。"
+    },
+    {
+      "id": "SRC-0002",
+      "title": "架空ケースの補助仮定",
+      "source_type": "conversation",
+      "classification": "source_data",
+      "origin": "user_explicit",
+      "statement": "一部の顧客では文書管理や他のモデリングツールとの二重管理が懸念されると仮定する。",
+      "locator": null,
+      "recorded_at": null,
+      "is_synthetic": true,
+      "reliability": "unknown",
+      "permission_status": "approved_for_processing",
+      "limitations": "研究用の架空シナリオ。顧客調査の記録ではない。"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "現状維持案",
+      "definition": "新たなサービス購入/投資を行わない比較基準。",
+      "aliases": [
+        "status quo"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "OBJ-0001",
+      "title": "顧客課題に適合する提案機会を特定する",
+      "description": "営業受注だけでなく顧客の改善可能性と検証を優先する。",
+      "origin": "user_explicit",
+      "claim_state": "stated",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "viewpoints": [
+        "V0",
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "success_criteria": [
+        "課題を顧客の事実として確認",
+        "現状維持を含む代替案の議論を開始"
+      ]
+    }
+  ],
+  "actors": [
+    {
+      "id": "ACT-0001",
+      "title": "顧客の開発担当者",
+      "description": "日常的にALMの入力と参照を担当する人。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V1",
+        "V2"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "actor_role": "end_user",
+      "control_boundary": "external",
+      "buying_role": [
+        "user"
+      ]
+    },
+    {
+      "id": "ACT-0002",
+      "title": "顧客の管理者",
+      "description": "導入目的と投資判断に関与する可能性のある人。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V1",
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "actor_role": "budget_owner_candidate",
+      "control_boundary": "external",
+      "buying_role": [
+        "budget_owner",
+        "approver"
+      ]
+    },
+    {
+      "id": "ACT-0003",
+      "title": "自社のコンサルティング担当",
+      "description": "診断・改善提案を検討する担当。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V1",
+        "V6"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "actor_role": "consultant",
+      "control_boundary": "internal",
+      "buying_role": [
+        "none"
+      ]
+    },
+    {
+      "id": "ACT-0004",
+      "title": "顧客の購買担当",
+      "description": "発注・契約条件を確認する可能性のある人。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V1",
+        "V6"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "actor_role": "procurement",
+      "control_boundary": "external",
+      "buying_role": [
+        "procurement"
+      ]
+    },
+    {
+      "id": "ACT-0005",
+      "title": "自社の事業責任者",
+      "description": "サービス投資と提供範囲の判断候補者。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V0",
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "actor_role": "decision_authority_candidate",
+      "control_boundary": "internal",
+      "buying_role": [
+        "none"
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "id": "PRB-0001",
+      "title": "ALM利用が定着しない",
+      "description": "利用者が既存業務の中でALMを使い続けられない可能性がある。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "viewpoints": [
+        "V0",
+        "V2"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "current_state": "導入・教育済みとされるが利用が不十分",
+      "desired_state": "利用者と管理者が業務上の成果を得ながら運用できる",
+      "customer_actor_id": "ACT-0001",
+      "importance_unverified": true
+    },
+    {
+      "id": "PRB-0002",
+      "title": "既存文書・モデルとの二重管理",
+      "description": "情報管理の責任分担が不明な場合に入力負荷が高まる可能性がある。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [
+        "SRC-0002"
+      ],
+      "viewpoints": [
+        "V2",
+        "V3"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "current_state": "既存文書やモデルとの連携状況が不明",
+      "desired_state": "情報の管理責任と参照元が明確",
+      "customer_actor_id": "ACT-0001",
+      "importance_unverified": true
+    }
+  ],
+  "values": [
+    {
+      "id": "VAL-0001",
+      "title": "利用負荷の削減と業務の見通し",
+      "description": "顧客が情報の重複や確認作業を減らせるかを検討する。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V3",
+        "V4"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "beneficiary_actor_ids": [
+        "ACT-0001",
+        "ACT-0002"
+      ],
+      "value_measure": "業務完了時間・重複登録・追跡可能性（いずれも測定方法未確定）",
+      "comparison_baseline": "現在の業務運用"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "HYP-0001",
+      "title": "操作習熟不足の仮説",
+      "description": "操作理解の不足が利用定着の主要障害であるという候補。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V2",
+        "V3"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "hypothesis_kind": "descriptive",
+      "prediction": "利用者は基礎操作の不明点を多く挙げる。",
+      "falsification_condition": "操作に問題がなく、業務設計が主障害という証拠が多い。",
+      "verification_plan": "匿名化した利用者ヒアリングと操作観察。",
+      "alternative_explanations": [
+        "役割不明",
+        "二重管理"
+      ]
+    },
+    {
+      "id": "HYP-0002",
+      "title": "業務責任の曖昧さの仮説",
+      "description": "業務の入口・出口や役割分担が曖昧なことが継続利用を阻害するという候補。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V2",
+        "V3"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "hypothesis_kind": "causal",
+      "prediction": "定着できない工程では担当・完了基準を説明できない。",
+      "falsification_condition": "責任・完了基準が明確でも定着が同程度に低い。",
+      "verification_plan": "作業手順・成果物と担当者の整合レビュー。",
+      "alternative_explanations": [
+        "操作習熟不足",
+        "重複登録"
+      ]
+    },
+    {
+      "id": "HYP-0003",
+      "title": "二重登録負担の仮説",
+      "description": "既存ツールとの情報重複が運用負担を増大させるという候補。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V2",
+        "V3"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "hypothesis_kind": "causal",
+      "prediction": "同一情報を複数手段へ入力する事例が見つかる。",
+      "falsification_condition": "入力重複がほぼ無く、別原因で利用を避けている。",
+      "verification_plan": "実際の成果物フローを匿名化して観察。",
+      "alternative_explanations": [
+        "ツール自体の速度",
+        "権限設定"
+      ]
+    },
+    {
+      "id": "HYP-0004",
+      "title": "初期診断への支払意思の仮説",
+      "description": "顧客は教育の追加より診断への投資を選ぶ可能性がある。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V3",
+        "V5",
+        "V6"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "hypothesis_kind": "purchase",
+      "prediction": "予算責任者は診断の範囲と成果条件を受け入れ可能と評価する。",
+      "falsification_condition": "予算責任者は診断より自力改善または追加教育を選ぶ。",
+      "verification_plan": "許諾を得た実顧客によるコンセプト比較。",
+      "alternative_explanations": [
+        "予算不足",
+        "購買フロー不成立"
+      ]
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "ALT-0001",
+      "title": "現状維持",
+      "description": "既存教育・運用を継続し、新規の診断投資を行わない。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V4",
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "option_kind": "status_quo",
+      "comparison_problem_id": "PRB-0001",
+      "tradeoffs": [
+        "追加費用は抑えられる可能性",
+        "根本原因が残る可能性"
+      ],
+      "selection_status": "candidate"
+    },
+    {
+      "id": "ALT-0002",
+      "title": "追加の操作教育",
+      "description": "利用者の操作知識不足を主障害と仮定する施策。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V4",
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "option_kind": "change",
+      "comparison_problem_id": "PRB-0001",
+      "tradeoffs": [
+        "操作不足に有効かもしれない",
+        "業務責任や重複問題を解決しない可能性"
+      ],
+      "selection_status": "candidate"
+    },
+    {
+      "id": "ALT-0003",
+      "title": "業務・定着診断",
+      "description": "業務プロセス、役割、情報管理の課題を診断して改善案を作る。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V4",
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "option_kind": "change",
+      "comparison_problem_id": "PRB-0001",
+      "tradeoffs": [
+        "原因仮説を横断的に確認できる",
+        "現場の調査協力が必要"
+      ],
+      "selection_status": "candidate"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-0001",
+      "title": "診断ヒアリングと業務分析能力",
+      "description": "自社が提供可能かを判断する必要がある能力。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V4",
+        "V6"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "capability_owner": "self",
+      "availability": "unknown"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-0001",
+      "title": "開発候補の採否",
+      "description": "静音価値の検証を受けて開発方針を判断する。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "decision_status": "open",
+      "chosen_alternative_id": null,
+      "decision_authority_actor_id": "ACT-0002",
+      "criteria": [
+        "顧客の選択理由",
+        "騒音と送風性能の比較",
+        "価格と提供可能性"
+      ],
+      "revisit_trigger": "利用者の実試験データ取得後"
+    }
+  ],
+  "interventions": [
+    {
+      "id": "INT-0001",
+      "title": "試作コンセプトの比較を準備する",
+      "description": "自動的に顧客へ送らず、承認後に実施する。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V6"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "target_actor_ids": [
+        "ACT-0001"
+      ],
+      "execution_owner_id": "ACT-0002",
+      "cost_status": "unestimated"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVD-0001",
+      "title": "架空の相談記述",
+      "description": "ALM定着が不十分という架空ケースの入力。実顧客の観測ではない。",
+      "origin": "user_explicit",
+      "claim_state": "stated",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "viewpoints": [
+        "V0",
+        "V3"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "evidence_kind": "documented_record",
+      "source_fragment_id": "SRC-0001",
+      "verification_status": "unverified",
+      "limitations": "架空ケース。実市場の証拠には使えない。"
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "OUT-0001",
+      "title": "顧客による課題の確認状況",
+      "description": "今後の検証で対象顧客が実課題を認識するか確認する。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V7"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "observation_status": "planned",
+      "measure_name": "課題認識の確認",
+      "value": null,
+      "unit": "顧客",
+      "period": "未設定",
+      "comparison_baseline": "未調査",
+      "attribution_status": "not_assessed"
+    }
+  ],
+  "risks": [
+    {
+      "id": "RSK-0001",
+      "title": "根拠のないROI訴求",
+      "description": "根拠のない数値で提案すると顧客の信頼を損なう。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V5",
+        "V7"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "cause": "実測データが無い",
+      "event": "ROIを断定して提案",
+      "consequence": "誤判断・信用低下",
+      "mitigation_candidate": "算出条件を確認し、未確認の数値は提示しない",
+      "risk_acceptance_status": "not_assessed"
+    }
+  ],
+  "experiments": [
+    {
+      "id": "EXP-0001",
+      "title": "匿名化ヒアリングで原因仮説を区別する",
+      "description": "実顧客の許諾を得るまでは開始しない。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V7"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "target_hypothesis_ids": [
+        "HYP-0001",
+        "HYP-0002",
+        "HYP-0003"
+      ],
+      "method": "interview",
+      "primary_measure": "主要原因として挙がる障害と、業務上の具体例",
+      "decision_rule": "複数の独立証拠が得られた原因を優先し、矛盾は保留する",
+      "confounders": [
+        "役職による回答バイアス",
+        "成功顧客のみを対象にする選択バイアス"
+      ],
+      "status": "planned",
+      "result_outcome_ids": []
+    },
+    {
+      "id": "EXP-0002",
+      "title": "価値提案を比較して購買条件を確認する",
+      "description": "架空の購買反応ではなく、許諾を得た顧客との検証を計画する。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V6",
+        "V7"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "target_hypothesis_ids": [
+        "HYP-0004"
+      ],
+      "method": "prototype_test",
+      "primary_measure": "評価された価値・導入条件・反対理由",
+      "decision_rule": "受容条件の具体性と反対証拠を含めて検討する",
+      "confounders": [
+        "既存関係の有無",
+        "予算タイミング"
+      ],
+      "status": "planned",
+      "result_outcome_ids": []
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-0001",
+      "source_id": "OBJ-0001",
+      "target_id": "PRB-0001",
+      "relation_type": "addresses",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0002",
+      "source_id": "ACT-0001",
+      "target_id": "PRB-0001",
+      "relation_type": "experiences",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0003",
+      "source_id": "ACT-0001",
+      "target_id": "PRB-0002",
+      "relation_type": "experiences",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0004",
+      "source_id": "EVD-0001",
+      "target_id": "HYP-0001",
+      "relation_type": "supports",
+      "basis": "相談記述は操作不足の直接証拠ではない。仮説検討のきっかけ。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0005",
+      "source_id": "ALT-0001",
+      "target_id": "PRB-0001",
+      "relation_type": "addresses",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0006",
+      "source_id": "ALT-0002",
+      "target_id": "PRB-0001",
+      "relation_type": "addresses",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0007",
+      "source_id": "ALT-0003",
+      "target_id": "PRB-0001",
+      "relation_type": "addresses",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0008",
+      "source_id": "ALT-0003",
+      "target_id": "VAL-0001",
+      "relation_type": "offers",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0009",
+      "source_id": "EXP-0001",
+      "target_id": "HYP-0001",
+      "relation_type": "tests",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0010",
+      "source_id": "EXP-0001",
+      "target_id": "HYP-0002",
+      "relation_type": "tests",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0011",
+      "source_id": "EXP-0001",
+      "target_id": "HYP-0003",
+      "relation_type": "tests",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0012",
+      "source_id": "EXP-0002",
+      "target_id": "HYP-0004",
+      "relation_type": "tests",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0013",
+      "source_id": "INT-0001",
+      "target_id": "ALT-0003",
+      "relation_type": "implements",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0014",
+      "source_id": "INT-0001",
+      "target_id": "ACT-0001",
+      "relation_type": "targets",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0015",
+      "source_id": "RSK-0001",
+      "target_id": "ALT-0003",
+      "relation_type": "risks",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0016",
+      "source_id": "ALT-0003",
+      "target_id": "ALT-0001",
+      "relation_type": "compared_with",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0017",
+      "source_id": "ALT-0003",
+      "target_id": "ALT-0002",
+      "relation_type": "compared_with",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0018",
+      "source_id": "INT-0001",
+      "target_id": "OUT-0001",
+      "relation_type": "causally_influences",
+      "basis": "仮説として検証する。因果が確定したわけではない。",
+      "certainty": "hypothesized",
+      "causal_status": "hypothesized"
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "QST-0001",
+      "question": "顧客がALMを利用しない直接の障害は、操作・役割・二重登録のどれか。",
+      "priority": "critical",
+      "impact_refs": [
+        "PRB-0001",
+        "HYP-0001",
+        "HYP-0002",
+        "HYP-0003"
+      ],
+      "owner_role": "顧客の現場担当者",
+      "verification_action": "許諾を得た業務ヒアリングと成果物フロー確認",
+      "status": "open"
+    },
+    {
+      "id": "QST-0002",
+      "question": "診断サービスに予算と意思決定権限を持つ顧客担当者は誰か。",
+      "priority": "high",
+      "impact_refs": [
+        "HYP-0004",
+        "ALT-0003",
+        "DEC-0001"
+      ],
+      "owner_role": "顧客の予算責任者",
+      "verification_action": "正式な顧客窓口を通じて確認する",
+      "status": "open"
+    },
+    {
+      "id": "QST-0003",
+      "question": "自社が診断サービスを提供できる工数・契約範囲は何か。",
+      "priority": "high",
+      "impact_refs": [
+        "CAP-0001",
+        "DEC-0001"
+      ],
+      "owner_role": "自社の事業責任者",
+      "verification_action": "社内能力と採算基準を確認する",
+      "status": "open"
+    }
+  ],
+  "findings": [
+    {
+      "id": "FND-0001",
+      "severity": "high",
+      "rule_id": "Q-PRB-01",
+      "evidence_refs": [
+        "PRB-0001",
+        "HYP-0002"
+      ],
+      "message": "主要な原因は未確認。複数の説明を保持する必要がある。",
+      "minimum_repair": "顧客ヒアリングで仮説の区別を試みる。",
+      "requires_human": true
+    }
+  ],
+  "change_log": [
+    {
+      "id": "CHG-0001",
+      "event_type": "created",
+      "target_id": "DEC-0001",
+      "reason": "架空ケースの初稿作成",
+      "changed_by": "synthetic_generator",
+      "date": null
+    }
+  ],
+  "quality_summary": {
+    "gate_state": "reviewable_40_candidate",
+    "review_tier": "J0",
+    "checks": [
+      {
+        "rule_id": "Q-GAT-01",
+        "status": "pass_with_provisional_assumption",
+        "detail": "架空の初期入力に対し問題・複数代替案・反証計画がある。実需要は未検証。"
+      }
+    ],
+    "not_performed": [
+      "実顧客へのインタビュー",
+      "市場規模の検証",
+      "因果効果の実測",
+      "実在専門家によるレビュー",
+      "独立LLM Reviewer"
+    ],
+    "limitations": [
+      "架空ケースの構造テストであり、実在顧客に有効とは限らない。"
+    ],
+    "linguistic_quality": "not_assessed",
+    "semantic_validity": "unknown_with_reason"
+  }
+}

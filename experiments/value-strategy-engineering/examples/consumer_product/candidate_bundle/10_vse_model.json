@@ -1,0 +1,429 @@
+{
+  "meta": {
+    "artifact_type": "vse_candidate_model",
+    "schema_version": "1.0.0",
+    "target_subject": "架空の静音デスクファンの市場企画",
+    "domain": "product_planning",
+    "language": "ja",
+    "target_maturity": "reviewable_candidate_40",
+    "source_of_truth_status": "candidate_semantic_source_of_truth",
+    "generated_at": null,
+    "synthetic_case": true,
+    "project_slug": "consumer_product"
+  },
+  "scope": {
+    "subject": "架空の静音デスクファンの市場企画",
+    "purpose": "利用者の価値と代替品を比較し、需要の確かめ方を考える。",
+    "in_scope": [
+      "顧客課題の仮説",
+      "価値提案候補",
+      "戦略代替案",
+      "初期の検証計画"
+    ],
+    "out_of_scope": [
+      "実顧客への調査実施",
+      "市場規模やROIの確定",
+      "正式な投資承認"
+    ],
+    "controlled_by_organization": [
+      "提案の内容",
+      "自社の営業・提供体制の候補"
+    ],
+    "external_and_uncontrolled": [
+      "顧客の購買判断",
+      "競合行動",
+      "外部環境"
+    ],
+    "time_horizon": "企画初期（具体的な期間は未確認）"
+  },
+  "source_fragments": [
+    {
+      "id": "SRC-0001",
+      "title": "架空の製品企画メモ",
+      "source_type": "conversation",
+      "classification": "source_data",
+      "origin": "user_explicit",
+      "statement": "静かに使える小型卓上ファンを検討している。価格、需要、購入意向は未調査とする。",
+      "locator": null,
+      "recorded_at": null,
+      "is_synthetic": true,
+      "reliability": "unknown",
+      "permission_status": "approved_for_processing",
+      "limitations": "研究用の架空シナリオ。顧客調査の記録ではない。"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "現状維持案",
+      "definition": "新たなサービス購入/投資を行わない比較基準。",
+      "aliases": [
+        "status quo"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "OBJ-0001",
+      "title": "検証可能な企画候補を作る",
+      "description": "小型デスクファンの価値仮説と比較案を検討する。",
+      "origin": "user_explicit",
+      "claim_state": "stated",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "viewpoints": [
+        "V0"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true
+    }
+  ],
+  "actors": [
+    {
+      "id": "ACT-0001",
+      "title": "在宅作業者",
+      "description": "卓上で製品を使用する想定利用者。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V1",
+        "V2"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "actor_role": "user",
+      "control_boundary": "external",
+      "buying_role": [
+        "user"
+      ]
+    },
+    {
+      "id": "ACT-0002",
+      "title": "製品企画責任者",
+      "description": "企画の採否と試作を判断する自社の責任者候補。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V1",
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "actor_role": "decision_authority_candidate",
+      "control_boundary": "internal",
+      "buying_role": [
+        "none"
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "id": "PRB-0001",
+      "title": "作業時の騒音",
+      "description": "騒音が集中を妨げる可能性がある。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V2"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "current_state": "利用者の実態は未調査",
+      "desired_state": "集中を妨げずに送風する",
+      "customer_actor_id": "ACT-0001",
+      "importance_unverified": true
+    }
+  ],
+  "values": [
+    {
+      "id": "VAL-0001",
+      "title": "静かに使える価値",
+      "description": "騒音への不満を減らすという価値仮説。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V3"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "beneficiary_actor_ids": [
+        "ACT-0001"
+      ],
+      "value_measure": "主観的静音性と音圧レベル（方法未設定）",
+      "comparison_baseline": "既存製品"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "HYP-0001",
+      "title": "静音性の価値仮説",
+      "description": "利用者にとって静音性が購入選択の重要要因となる可能性。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V3"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "hypothesis_kind": "value",
+      "prediction": "対象者が既存製品との比較で静音性を優先して評価する。",
+      "falsification_condition": "静音性が優先選択要因でない回答/行動が多数見られる。",
+      "verification_plan": "利用試験と選択理由の確認を計画。",
+      "alternative_explanations": [
+        "価格優先",
+        "送風性能優先"
+      ]
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "ALT-0001",
+      "title": "既存製品を選ぶ",
+      "description": "新しい製品を開発せず既存製品を選ぶ。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "option_kind": "status_quo",
+      "comparison_problem_id": "PRB-0001",
+      "selection_status": "candidate"
+    },
+    {
+      "id": "ALT-0002",
+      "title": "静音志向の新製品",
+      "description": "静音性を主な価値として新製品を設計する。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V4",
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "option_kind": "change",
+      "comparison_problem_id": "PRB-0001",
+      "selection_status": "candidate"
+    }
+  ],
+  "capabilities": [],
+  "decisions": [
+    {
+      "id": "DEC-0001",
+      "title": "開発候補の採否",
+      "description": "静音価値の検証を受けて開発方針を判断する。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V5"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "decision_status": "open",
+      "chosen_alternative_id": null,
+      "decision_authority_actor_id": "ACT-0002",
+      "criteria": [
+        "顧客の選択理由",
+        "騒音と送風性能の比較",
+        "価格と提供可能性"
+      ],
+      "revisit_trigger": "利用者の実試験データ取得後"
+    }
+  ],
+  "interventions": [
+    {
+      "id": "INT-0001",
+      "title": "試作コンセプトの比較を準備する",
+      "description": "自動的に顧客へ送らず、承認後に実施する。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V6"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "target_actor_ids": [
+        "ACT-0001"
+      ],
+      "execution_owner_id": "ACT-0002",
+      "cost_status": "unestimated"
+    }
+  ],
+  "evidence": [],
+  "outcomes": [],
+  "risks": [],
+  "experiments": [
+    {
+      "id": "EXP-0001",
+      "title": "コンセプト比較",
+      "description": "実参加者によるコンセプト選択を計画。",
+      "origin": "ai_generic_seed",
+      "claim_state": "assumed",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "confidence": "low",
+      "source_refs": [],
+      "viewpoints": [
+        "V7"
+      ],
+      "rationale": "架空ケースの分析から生成した検証前の候補であり、実世界の事実ではない。",
+      "human_confirmation_required": true,
+      "target_hypothesis_ids": [
+        "HYP-0001"
+      ],
+      "method": "prototype_test",
+      "primary_measure": "実参加者が重視した選択理由",
+      "decision_rule": "価格・静音性のトレードオフが説明できるかを確認する",
+      "confounders": [
+        "既存ブランド選好"
+      ],
+      "status": "planned",
+      "result_outcome_ids": []
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-0001",
+      "source_id": "OBJ-0001",
+      "target_id": "PRB-0001",
+      "relation_type": "addresses",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0002",
+      "source_id": "ACT-0001",
+      "target_id": "PRB-0001",
+      "relation_type": "experiences",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0003",
+      "source_id": "ALT-0001",
+      "target_id": "PRB-0001",
+      "relation_type": "addresses",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0004",
+      "source_id": "ALT-0002",
+      "target_id": "PRB-0001",
+      "relation_type": "addresses",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0005",
+      "source_id": "ALT-0002",
+      "target_id": "VAL-0001",
+      "relation_type": "offers",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0006",
+      "source_id": "EXP-0001",
+      "target_id": "HYP-0001",
+      "relation_type": "tests",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0007",
+      "source_id": "INT-0001",
+      "target_id": "ALT-0002",
+      "relation_type": "implements",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    },
+    {
+      "id": "REL-0008",
+      "source_id": "INT-0001",
+      "target_id": "ACT-0001",
+      "relation_type": "targets",
+      "basis": "架空ケースにおけるレビュー用の候補関係。",
+      "certainty": "hypothesized"
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "QST-0001",
+      "question": "どの利用者・使用環境で静音性が価値になるか。",
+      "priority": "high",
+      "impact_refs": [
+        "HYP-0001"
+      ],
+      "owner_role": "企画担当",
+      "verification_action": "実利用者の試作比較",
+      "status": "open"
+    }
+  ],
+  "findings": [],
+  "change_log": [],
+  "quality_summary": {
+    "gate_state": "reviewable_40_candidate",
+    "review_tier": "J0",
+    "checks": [
+      {
+        "rule_id": "Q-GAT-01",
+        "status": "pass_with_provisional_assumption",
+        "detail": "架空ケースの比較・反証計画がレビュー可能。実市場未検証。"
+      }
+    ],
+    "not_performed": [
+      "実顧客へのインタビュー",
+      "市場規模の検証",
+      "因果効果の実測",
+      "実在専門家によるレビュー",
+      "独立LLM Reviewer"
+    ],
+    "limitations": [
+      "架空ケースの構造テストであり、実在顧客に有効とは限らない。"
+    ],
+    "linguistic_quality": "not_assessed",
+    "semantic_validity": "unknown_with_reason"
+  }
+}

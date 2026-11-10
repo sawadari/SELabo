@@ -1,0 +1,387 @@
+{
+  "package_name": "VSE_Value_Strategy_Engineering",
+  "version": "1.0.0",
+  "created_date": "2026-11-10",
+  "language": "ja",
+  "distribution": "standalone_zip",
+  "source_reference": {
+    "repository": "https://github.com/sawadari/SELabo",
+    "reference_readme": "https://github.com/sawadari/SELabo/blob/main/experiments/hierarchical-se-prompt/README.md",
+    "reference_readme_blob_sha": "88f156e8406127b2f7382d94c3ae68d08140cda6",
+    "relationship": "元の実験の構成・品質思想を参照して、VSEとして独立新規設計。GitHubの変更は未実施。"
+  },
+  "model_schema": "schemas/vse_model.schema.json",
+  "executive_prompt": "01_CORE_PROMPT.md",
+  "quality_policy": "04_QUALITY_RULES.md",
+  "synthetic_examples_only": true,
+  "known_validation_scope": [
+    "2架空例のJSON Schema検査",
+    "2架空例の参照・状態検査",
+    "各例17ファイル投影",
+    "12回帰テスト"
+  ],
+  "not_validated": [
+    "実顧客の需要",
+    "施策の因果効果",
+    "実在専門家による外部評価",
+    "市場収益性"
+  ],
+  "file_count_excluding_manifest": 71,
+  "files": [
+    {
+      "path": "01_CORE_PROMPT.md",
+      "sha256": "09af9006b19ece08de83808d01e45b77f393b24250cc96cdf1b97a984b5b7336",
+      "bytes": 6901
+    },
+    {
+      "path": "02_DEFAULT_PROFILE.json",
+      "sha256": "5c0eec588c0c01791441c1ed32bbe98f7da184257b99b8472a7c8fbc77fbb0f2",
+      "bytes": 4484
+    },
+    {
+      "path": "03_OUTPUT_CONTRACT.json",
+      "sha256": "bab2475cfe70e4bb7698d7a96f74dd130bbf92dd4ac13a06d972bb6a381ca536",
+      "bytes": 4176
+    },
+    {
+      "path": "04_QUALITY_RULES.md",
+      "sha256": "a8afd1e4bd6234d538254652d74b14b423a2a64f886b60f463b5bd94795b2e48",
+      "bytes": 5091
+    },
+    {
+      "path": "05_USE_CASE_GUIDE.md",
+      "sha256": "2e32e146c220cecf745387911c5a9a475476e6558eb1eb88b7d21c62bfd277f1",
+      "bytes": 2325
+    },
+    {
+      "path": "06_CUSTOMIZATION_EXAMPLES.json",
+      "sha256": "2d012bbd719c0c2df79ba3b6d772a1dccef1e4098df9e80301bf228875a1c76e",
+      "bytes": 1480
+    },
+    {
+      "path": "07_VALIDATION_REPORT.md",
+      "sha256": "c559d73e8ffad612d914f315ac62e0f794b83d8b4521aecae280caf2b5f3c992",
+      "bytes": 2615
+    },
+    {
+      "path": "08_REFERENCES.md",
+      "sha256": "f5425738f9834f1c76b456978ca0207eb1a8ba138081619ee1b4becb8ffa8c8f",
+      "bytes": 4539
+    },
+    {
+      "path": "09_REFERENCE_BASIS.md",
+      "sha256": "fb145442b87e3d0242991cb55869cace3b67f933df894647b343a3240ecbd714",
+      "bytes": 2586
+    },
+    {
+      "path": "10_JAPANESE_TECHNICAL_WRITING_STANDARD.md",
+      "sha256": "700344255019fd433f2fbfcda4ac24c1088a58a084a3db796fb8c061cb6ba096",
+      "bytes": 3082
+    },
+    {
+      "path": "11_JAPANESE_WRITING_PROFILE.json",
+      "sha256": "d7afe634fac6d409e875bd9b62926a490a6ff2e878d64e83f06c91631028f940",
+      "bytes": 1580
+    },
+    {
+      "path": "12_RULE_SOURCE_TRACEABILITY.csv",
+      "sha256": "146f560f4c29ea24ed922000424b365472b1a66cd430f42b94189baed96a781b",
+      "bytes": 1570
+    },
+    {
+      "path": "13_CHATGPT_DISTRIBUTION_GUIDE.md",
+      "sha256": "f9087d6e0390610c2099c654444b2673788db1b4968f3a84a85bf455af095124",
+      "bytes": 1976
+    },
+    {
+      "path": "14_CHATGPT_APP_CONCEPT_SPEC.md",
+      "sha256": "5535d920c57ec36869f3df3a281d2e5419ed4a77748170c3795037ce8c5c44df",
+      "bytes": 1667
+    },
+    {
+      "path": "15_RELEASE_NOTES.md",
+      "sha256": "d9879fb30d865451ab9cd05a892f9fb7c9fcdc91bb548d4ce1d316b25d4891af",
+      "bytes": 637
+    },
+    {
+      "path": "16_PUBLICATION_CHECKLIST.md",
+      "sha256": "45e098c4a60c879728ba674e47414e4f9e4099085abaa3195ea1ce2250a7131d",
+      "bytes": 1147
+    },
+    {
+      "path": "17_FORTY_POINT_GATE.md",
+      "sha256": "f5ab462733ef5c498b20fba6459d94ed004bb3b5d2bdc5af4579a860113741d2",
+      "bytes": 3071
+    },
+    {
+      "path": "18_AI_EVALUATION_PROTOCOL.md",
+      "sha256": "e8323e1c2913e1c467c6f30a9c65a825e4c137997eb8861944af59c6a1bd78e1",
+      "bytes": 3402
+    },
+    {
+      "path": "19_EXPERIMENT_PLAN.md",
+      "sha256": "a4a5526b89f577b97151284e00e43931202ccaaf1c4d91489379c3f9c6019051",
+      "bytes": 3684
+    },
+    {
+      "path": "20_SOURCE_TRUST_AND_HUMAN_AUTHORITY.md",
+      "sha256": "92b34dd07df78cdaf0300763b11334c5b19a55a7143f11640e5d52a198566ded",
+      "bytes": 2120
+    },
+    {
+      "path": "21_CONCEPTUAL_MODEL_AND_ONTOLOGY.md",
+      "sha256": "51188dedce2840a24917f5ee75104f45c153bbfdf97fc0859ae56f7fa3d0403c",
+      "bytes": 3968
+    },
+    {
+      "path": "22_DECISION_AND_LEARNING_PROTOCOL.md",
+      "sha256": "28e73702c278dff93fc747ec2a5b9b59e9adf0c47728f6d658466851cd16d9e9",
+      "bytes": 2180
+    },
+    {
+      "path": "23_FOUR_ROUND_CRITIQUE_AND_DESIGN_DECISIONS.md",
+      "sha256": "4ac46e8be7c31f16093eb931d3e3136ad7c1146359e21b8f309bde37d6403827",
+      "bytes": 3259
+    },
+    {
+      "path": "24_COMPARATIVE_EVIDENCE_MATRIX.md",
+      "sha256": "de2b3715ad54f9a5f5c220f5a553b1fb42b9d94d20c95caf80ed75a754c970fe",
+      "bytes": 2190
+    },
+    {
+      "path": "25_RUNTIME_AND_VALIDATION_GUIDE.md",
+      "sha256": "1d36a0246b785bd5057a793254dce94b08e138936ab452a72375aef94b2a9d7b",
+      "bytes": 1588
+    },
+    {
+      "path": "README.md",
+      "sha256": "eb190f205438aa9a5d0a12316184c1601c32b67cf1327f7b69a48020a8681651",
+      "bytes": 14057
+    },
+    {
+      "path": "examples/b2b_alm/10_vse_model.json",
+      "sha256": "5d14e29d3f2c63777d9c43709ed7bef50143b7cf67b1012d037af8af27e8271b",
+      "bytes": 30925
+    },
+    {
+      "path": "examples/b2b_alm/INPUT.md",
+      "sha256": "59c4c2dcb19f4f312320e61ea8d7268f29c439b76eb152ad92f21eaab1ffa7ee",
+      "bytes": 850
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/00_manifest.json",
+      "sha256": "095280e76f718fccc6ff39e39135bce5e9b3848afdac859b981a888361944bf9",
+      "bytes": 1277
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/01_executive_summary.md",
+      "sha256": "98cdd2454f167a92869ec9a22d9104f988635f8b4ab157591b31827752d60962",
+      "bytes": 3687
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/02_source_scope_glossary.json",
+      "sha256": "79d460665ba089e2c7686515d44165cbc20bbfd797a7207bf2e5a28949620e4e",
+      "bytes": 2261
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/03_stakeholders_ecosystem.md",
+      "sha256": "bb8cc9ac832d3ec5ac071d1472284f1a63c4cbf0144cab6bffd5da3ad5effa9f",
+      "bytes": 1330
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/04_customer_problems.md",
+      "sha256": "d04173d27cd31bc6857069d3b32a6b6e2697a78cad98bbf5e25dbb3e4d0dc5d4",
+      "bytes": 1077
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/05_value_and_hypotheses.md",
+      "sha256": "501a17ca4718d961605ea9c19593c3f67b6d12f7b5113bac6145f558fcf73d62",
+      "bytes": 2736
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/06_strategy_alternatives.md",
+      "sha256": "7ff70a15b182a4b2c0485ee3a80c0880db377860668cd271b076dbc64f9987d0",
+      "bytes": 1760
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/07_execution_and_sales.md",
+      "sha256": "4b376b52a638abedf8690f19e56eccebd1b55b298c25e9bfe64912adce486668",
+      "bytes": 965
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/08_validation_plan.md",
+      "sha256": "2b812ede4220a66d004e3ce1c195ccfdaec56b94384abdca74c45f9e4982c658",
+      "bytes": 1775
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/09_traceability.csv",
+      "sha256": "110b98fa0620654d1ebf5c03e5822b398ba7b37d0b3a9f766fdbadff2587245c",
+      "bytes": 2162
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/10_vse_model.json",
+      "sha256": "5d14e29d3f2c63777d9c43709ed7bef50143b7cf67b1012d037af8af27e8271b",
+      "bytes": 30925
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/11_decision_register.md",
+      "sha256": "c5bc27563d3d1c4d60ac2d955bea70463eaa5afbdb532e1149baa0d2569ed083",
+      "bytes": 561
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/12_risk_assumption_register.md",
+      "sha256": "f966a1916f4a123de5519674e6dc726804fb0abf12393800955a94b340e31dee",
+      "bytes": 3585
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/13_quality_report.md",
+      "sha256": "8586b9453aa84d88aa6f06059ee2677fcf1aa480d8d660bc0d4b6a8521c0f531",
+      "bytes": 1107
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/14_human_confirmation_backlog.md",
+      "sha256": "5f02c0ee603a25d43973d8eb17d4377705ba1673d388429b00a664cef4a959f1",
+      "bytes": 1091
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/15_visualization_specs.md",
+      "sha256": "f3ceb008c70ef4c5a208b1c82062fc015d955cad475d6c48e89ae1a2153ba341",
+      "bytes": 1627
+    },
+    {
+      "path": "examples/b2b_alm/candidate_bundle/16_generation_manifest.json",
+      "sha256": "1404f1a01322cb490122d53965cfa940cc57c71f53464e34d45cf0c601878798",
+      "bytes": 2881
+    },
+    {
+      "path": "examples/consumer_product/10_vse_model.json",
+      "sha256": "ec5746f878d44a93fe72ea47e009de8f7c619d7e7338aa01f78a4221822ebc19",
+      "bytes": 13867
+    },
+    {
+      "path": "examples/consumer_product/INPUT.md",
+      "sha256": "203e0e9e75b54baf2d5da82eba92dc66f2a900e103cf58b03c56e5b78bde2a4f",
+      "bytes": 476
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/00_manifest.json",
+      "sha256": "a9d091eaaa008cc329d2839ca9b769eb141d647c10faa4e87fc97038ac9738ba",
+      "bytes": 1268
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/01_executive_summary.md",
+      "sha256": "a4fed3fa8a0cdc8056684c5568b8f5092af7b64c56271ab8863d2c8c327d68fd",
+      "bytes": 2032
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/02_source_scope_glossary.json",
+      "sha256": "ac99004567dbbd0e3d5e28af80bdd756bcadd6ad27ac3f6a4f2f45f744772648",
+      "bytes": 1582
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/03_stakeholders_ecosystem.md",
+      "sha256": "644b696d79c888d99c2a4b31d7f4c9ba2f031ddc871dbc42aac6fc8aa0c66077",
+      "bytes": 790
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/04_customer_problems.md",
+      "sha256": "2266ef2d0bc464cd37295a6498412bb60fdd10308dce012926d25a4dc4ec66db",
+      "bytes": 659
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/05_value_and_hypotheses.md",
+      "sha256": "f4bdf7f2e60f297a324ae0f87cd4f6e0110cb79ef1ed720bce860212f4dd29d5",
+      "bytes": 1226
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/06_strategy_alternatives.md",
+      "sha256": "601b9152163c199d6dd87ce790edf8fdc71d66b70edacc8e207d4f3567966698",
+      "bytes": 1286
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/07_execution_and_sales.md",
+      "sha256": "7da045e85b1372ea92314f22868d377d634cf25aa66c132809b5a658b13c2856",
+      "bytes": 745
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/08_validation_plan.md",
+      "sha256": "c67ba21c552741b7b67ccfc547dfd4a1cb9af5c2186e748b94c924ad5303c13f",
+      "bytes": 947
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/09_traceability.csv",
+      "sha256": "ab64b3c08b7ba37283e55a6988a6c96af302a77f7468505ab5c838cb92c38478",
+      "bytes": 978
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/10_vse_model.json",
+      "sha256": "ec5746f878d44a93fe72ea47e009de8f7c619d7e7338aa01f78a4221822ebc19",
+      "bytes": 13867
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/11_decision_register.md",
+      "sha256": "52a26afdf676fa2566ad104d79e44f104e314feb69b9feaffd748624157dc1c7",
+      "bytes": 543
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/12_risk_assumption_register.md",
+      "sha256": "162a83de179f2f3b6ec633f736ac24450980db453fbf81e17653a0be9d8084c5",
+      "bytes": 1614
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/13_quality_report.md",
+      "sha256": "9498296c20de0db8eecec580760b600432d75c814de8a7bf26c804df8033c991",
+      "bytes": 1068
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/14_human_confirmation_backlog.md",
+      "sha256": "45431ce22cfb2d38618a865503e4f20f0bd897927f38322be37b42611be4877e",
+      "bytes": 554
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/15_visualization_specs.md",
+      "sha256": "2f8ace8e0b96480494b5d87ede29017e83e00da0a34e9ecd0138c8b300965a6a",
+      "bytes": 986
+    },
+    {
+      "path": "examples/consumer_product/candidate_bundle/16_generation_manifest.json",
+      "sha256": "8d9344563c6589c17b35b1138114adacc2d2e03b1f9e5353830d1c9ba9139509",
+      "bytes": 2875
+    },
+    {
+      "path": "schemas/relation_type_contract.json",
+      "sha256": "b36a2c4e301d864fa7271e51047f0f20630f2dadb9ecdc832d1e4c686c1acbff",
+      "bytes": 1480
+    },
+    {
+      "path": "schemas/vse_model.schema.json",
+      "sha256": "2b8d13b79d785e3479950388efcc3a1e3e7c78760ccded7a4fa8d5806f52c925",
+      "bytes": 31078
+    },
+    {
+      "path": "scripts/build_synthetic_examples.py",
+      "sha256": "ecfbc56e2f18b1154877ea82fbe2196938b6f7db8842ec4ab3e7b12cf24c45cc",
+      "bytes": 20374
+    },
+    {
+      "path": "scripts/render_projections.py",
+      "sha256": "74d61f0abf1a656d443cba1025ca96504594261c1a6e8accb10d004383109e79",
+      "bytes": 12775
+    },
+    {
+      "path": "scripts/validate_package.py",
+      "sha256": "045b43031b5d42767dac110b188445fe6d7e730e7d50034aacae1225e29bafd5",
+      "bytes": 1983
+    },
+    {
+      "path": "scripts/validate_vse.py",
+      "sha256": "16f50638cb51acbbf2d2459d7a9d1fd14650fa19bcf28ab8f766443079ec6217",
+      "bytes": 12121
+    },
+    {
+      "path": "tests/test_vse.py",
+      "sha256": "9fcd3fd667217eff881377c4f757b69da79b1a01bf94ff532e0e63dc608bcff5",
+      "bytes": 4271
+    }
+  ]
+}

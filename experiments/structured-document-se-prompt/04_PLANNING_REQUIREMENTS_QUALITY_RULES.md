@@ -2,13 +2,16 @@
 
 この規則は、実験1の品質規則へ追加します。実験1の規則と同じく、AI候補を正式な承認、ベースライン、契約、受入完了として扱いません。
 
-## 1. 正本と文書ビュー
+## 1. 正本と文書投影モデル
 
 - `10_se_model.json`だけを候補意味正本とする。
+- `20_document_model.json`は非正本の文書投影モデルとし、文書の章構成・分類・表示用値・正本参照を保持する。新しい事実の正本にしない。
+- 文書モデルには`source_binding.source_of_truth`、正本のSchemaバージョン、コンテンツハッシュ、候補ポリシーを持たせる。
 - `planning`、`requirements`、`screens`、`reports`、`api_contracts`、`data_models`、`acceptance_criteria`の意味要素はIDで共有する。
 - `document_views`は章、順序、対象ID、表示形式を定義する。ビューへ正本にない事実を追加しない。
 - 企画書と要件定義書に同じ事実を独立コピーしない。
 - 文書上の章番号、表番号、ページ番号を意味要素の正本IDにしない。
+- `active`は本文、`stale`/`superseded`は履歴・付録へ投影する。`candidate`、`inferred`、`assumed`は表示上も候補と明示する。
 
 ## 2. 企画の網羅性
 
@@ -23,6 +26,8 @@
 
 不明な費用、KPI、日付、効果を推定値で埋めず、`null`、`value_state: tbd`、またはfindingへ残します。
 
+- スケジュールは状態とマイルストーンを分け、日付・状態が不明なマイルストーンを生成しない。予算は状態、通貨、内訳、見積根拠、人の確認要否を分ける。
+
 ## 3. 要求と実現要素
 
 - 事業目的・ニーズ・要求・実現要素を別の要素種別として扱う。
@@ -30,12 +35,15 @@
 - 要求の`requirement_category`を使って業務、機能、非機能、運用、セキュリティ、データ、インターフェース等を区別する。
 - 各要求は、該当する画面、帳票、API、データモデル、受入条件、文書ビューへIDで接続する。該当しない場合は空配列と理由を残す。
 - 1つの要求に複数の中心義務を詰め込まない。
+- 要件定義書では`DOCREQ-*`の単一レジストリを作り、`source_requirement_ref`で正本要求へ戻す。本文の要求文はsourceの`statement`と一致させる。意味が変わる言い換えには人の確認を要求する。
+- 要求分類の配列は要求本文の複製ではなく、同じ`DOCREQ-*`への参照配列とする。
 
 ## 4. APIとデータ
 
 - HTTP APIの詳細仕様はOpenAPI、イベントAPIの詳細仕様はAsyncAPIの外部契約として保持する。
 - `api_contracts.spec_ref`が未指定の場合、AIはパス、型、ステータスコードを架空生成しない。
 - `data_models`はエンティティ、属性、関係の候補を保持し、ER図は投影とする。
+- 文書投影モデルにはデータモデル、エンティティ、属性、ライフサイクル、分類、データ品質基準の状態を保持する。品質基準がない場合は`not_determined`とし、精度・完全性・保持期間などを推測しない。
 - API、画面、データの説明文へ要求の規範内容を重複記載しない。
 
 ## 5. 検証と受入
@@ -52,6 +60,7 @@
 - AI推測には`origin: ai_context_inference`等を付け、`claim_state`、`decision_state`、`baseline_state`と分離する。
 - `value_state: known`は実測または人が確認した値だけに使う。
 - 文書ビューの生成時にも、正本の`null`、`tbd`、未確認状態を保持する。
+- `quality`の`schema_validation`、`reference_integrity`、`projection_consistency`、`japanese_writing_validation`は、未実施なら`not_performed`とする。
 
 ## 7. 追加チェック結果
 
@@ -65,5 +74,9 @@
 | Q-PR-06 | document_viewsの参照IDがすべて正本に存在する |
 | Q-PR-07 | 企画書・要件定義書が正本にない独立事実を追加していない |
 | Q-PR-08 | AI候補を承認済み企画・要求・契約・受入として表現していない |
+| Q-PR-09 | 文書モデルの正本ハッシュとsource_bindingを確認した |
+| Q-PR-10 | DOCREQ本文が正本要求のstatementと一致している |
+| Q-PR-11 | active/stale/supersededとcandidate/inferred/assumedの投影方針を確認した |
+| Q-PR-12 | データモデルとデータ品質基準の未確定状態を確認した |
 
 判定値は実験1と同じく`pass`、`pass_with_provisional_assumption`、`fail`、`not_applicable`、`not_performed`を使用します。

@@ -1,0 +1,5 @@
+document_kind,section_id,order,element_id,source_refs,derivation,state,source_of_truth
+planning,PLN-01,1,SRC-0001,SRC-0001,direct,candidate,10_se_model.json
+planning,PLN-02,2,SRC-0001,SRC-0001,direct,candidate,10_se_model.json
+planning,PLN-03,3,SRC-0001,SRC-0001,direct,candidate,10_se_model.json
+requirements_definition,REQ-01,1,DOCREQ-0001,REQ-0001;SRC-0001,direct,candidate,10_se_model.json

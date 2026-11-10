@@ -1,0 +1,1162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:selabo:document-projection:1.0.0",
+  "title": "SELabo Document Projection Model",
+  "description": "10_se_model.jsonから企画書・要件定義書を生成するための非正本中間モデル。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "meta",
+    "source_binding",
+    "document_kinds",
+    "traceability",
+    "quality"
+  ],
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/meta",
+      "x-i18n": {
+        "ja-JP": {
+          "label": "メタデータ",
+          "description": "生成文書とSchemaの管理情報"
+        }
+      }
+    },
+    "source_binding": {
+      "$ref": "#/$defs/sourceBinding"
+    },
+    "document_kinds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "planning",
+          "requirements_definition"
+        ]
+      }
+    },
+    "planning": {
+      "$ref": "#/$defs/planning",
+      "x-presence": "conditional_required"
+    },
+    "requirements_definition": {
+      "$ref": "#/$defs/requirementsDefinition",
+      "x-presence": "conditional_required"
+    },
+    "traceability": {
+      "$ref": "#/$defs/traceability"
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "quality": {
+      "$ref": "#/$defs/quality"
+    },
+    "rendering": {
+      "$ref": "#/$defs/rendering",
+      "x-presence": "recommended"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "document_kinds": {
+            "contains": {
+              "const": "planning"
+            }
+          }
+        },
+        "required": [
+          "document_kinds"
+        ]
+      },
+      "then": {
+        "required": [
+          "planning"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "document_kinds": {
+            "contains": {
+              "const": "requirements_definition"
+            }
+          }
+        },
+        "required": [
+          "document_kinds"
+        ]
+      },
+      "then": {
+        "required": [
+          "requirements_definition"
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "idArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "origin": {
+      "type": "string",
+      "enum": [
+        "user_explicit",
+        "user_confirmed",
+        "assistant_prior_unconfirmed",
+        "ai_context_inference",
+        "ai_generic_seed",
+        "external_candidate",
+        "manual"
+      ]
+    },
+    "claimState": {
+      "type": "string",
+      "enum": [
+        "stated",
+        "inferred",
+        "assumed"
+      ]
+    },
+    "decisionState": {
+      "type": "string",
+      "enum": [
+        "not_decided",
+        "proposed",
+        "selected_provisional",
+        "user_confirmed",
+        "rejected",
+        "deferred"
+      ]
+    },
+    "validityState": {
+      "type": "string",
+      "enum": [
+        "active",
+        "stale",
+        "superseded"
+      ]
+    },
+    "baselineState": {
+      "type": "string",
+      "enum": [
+        "outside_baseline",
+        "proposed_for_baseline",
+        "baselined"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "presenceState": {
+      "type": "string",
+      "enum": [
+        "known",
+        "candidate",
+        "not_determined",
+        "not_applicable"
+      ]
+    },
+    "derivation": {
+      "type": "string",
+      "enum": [
+        "direct",
+        "summary",
+        "aggregate",
+        "classified",
+        "inferred",
+        "ai_seed",
+        "manual"
+      ]
+    },
+    "traceableValue": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "value",
+        "source_refs",
+        "derivation",
+        "origin",
+        "claim_state",
+        "decision_state",
+        "validity_state",
+        "baseline_state",
+        "confidence",
+        "human_confirmation_required",
+        "rationale"
+      ],
+      "properties": {
+        "value": {},
+        "state": {
+          "$ref": "#/$defs/presenceState"
+        },
+        "source_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "derivation": {
+          "$ref": "#/$defs/derivation"
+        },
+        "origin": {
+          "$ref": "#/$defs/origin"
+        },
+        "claim_state": {
+          "$ref": "#/$defs/claimState"
+        },
+        "decision_state": {
+          "$ref": "#/$defs/decisionState"
+        },
+        "validity_state": {
+          "$ref": "#/$defs/validityState"
+        },
+        "baseline_state": {
+          "$ref": "#/$defs/baselineState"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "human_confirmation_required": {
+          "type": "boolean"
+        },
+        "rationale": {
+          "type": "string"
+        }
+      }
+    },
+    "traceableValueArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/traceableValue"
+      }
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_type",
+        "schema_version",
+        "target_system",
+        "language",
+        "document_status",
+        "writing_profile_ref"
+      ],
+      "properties": {
+        "artifact_type": {
+          "const": "document_projection_model"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "project_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target_system": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "document_status": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "reviewed",
+            "approved",
+            "baselined"
+          ]
+        },
+        "generated_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "writing_profile_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "sourceBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_of_truth",
+        "schema_version",
+        "projection_policy",
+        "allowed_validity_states",
+        "candidate_policy"
+      ],
+      "properties": {
+        "source_of_truth": {
+          "const": "10_se_model.json"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "content_hash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(sha256:)?[0-9a-fA-F]{64}$"
+        },
+        "projection_policy": {
+          "type": "string",
+          "enum": [
+            "source_resolved",
+            "source_resolved_with_summary"
+          ]
+        },
+        "allowed_validity_states": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/validityState"
+          },
+          "uniqueItems": true
+        },
+        "candidate_policy": {
+          "type": "string",
+          "enum": [
+            "include_marked",
+            "appendix_only",
+            "exclude"
+          ]
+        }
+      }
+    },
+    "planning": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "title",
+        "executive_summary",
+        "background",
+        "problem_opportunity",
+        "purpose",
+        "objectives",
+        "scope",
+        "stakeholder_refs",
+        "kpi_refs",
+        "risk_refs",
+        "assumption_refs",
+        "open_issues"
+      ],
+      "properties": {
+        "title": {
+          "$ref": "#/$defs/traceableValue"
+        },
+        "executive_summary": {
+          "$ref": "#/$defs/traceableValue"
+        },
+        "background": {
+          "$ref": "#/$defs/traceableValueArray"
+        },
+        "problem_opportunity": {
+          "$ref": "#/$defs/traceableValueArray"
+        },
+        "purpose": {
+          "$ref": "#/$defs/traceableValueArray"
+        },
+        "objectives": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/traceableValue"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "id",
+                  "kpi_refs"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "kpi_refs": {
+                    "$ref": "#/$defs/idArray"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "expected_benefits": {
+          "$ref": "#/$defs/traceableValueArray"
+        },
+        "scope": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": [
+            "included",
+            "excluded"
+          ],
+          "properties": {
+            "included": {
+              "$ref": "#/$defs/traceableValueArray"
+            },
+            "excluded": {
+              "$ref": "#/$defs/traceableValueArray"
+            },
+            "lifecycle": {
+              "$ref": "#/$defs/traceableValueArray"
+            }
+          }
+        },
+        "stakeholder_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "kpi_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "source_ref",
+              "derivation"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "source_ref": {
+                "type": "string"
+              },
+              "derivation": {
+                "$ref": "#/$defs/derivation"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "selected_concept": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        },
+        "business_case": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        },
+        "schedule": {
+          "$ref": "#/$defs/schedule"
+        },
+        "budget": {
+          "$ref": "#/$defs/budget"
+        },
+        "governance": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        },
+        "dependencies": {
+          "$ref": "#/$defs/idArray"
+        },
+        "risk_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "assumption_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "constraints": {
+          "$ref": "#/$defs/idArray"
+        },
+        "approval_criteria": {
+          "$ref": "#/$defs/traceableValueArray"
+        },
+        "open_issues": {
+          "$ref": "#/$defs/idArray"
+        }
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "state",
+        "milestones"
+      ],
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/presenceState"
+        },
+        "milestones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "planned_date",
+              "status",
+              "source_refs",
+              "human_confirmation_required"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "planned_date": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "status": {
+                "$ref": "#/$defs/presenceState"
+              },
+              "source_refs": {
+                "$ref": "#/$defs/idArray"
+              },
+              "human_confirmation_required": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "state",
+        "currency",
+        "source_refs",
+        "human_confirmation_required"
+      ],
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/presenceState"
+        },
+        "currency": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capex": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "opex": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        },
+        "contingency": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "estimation_basis": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/traceableValue"
+          }
+        },
+        "source_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "human_confirmation_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "requirementsDefinition": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "purpose",
+        "system_context",
+        "scope",
+        "stakeholder_refs",
+        "need_refs",
+        "requirements",
+        "views",
+        "interfaces",
+        "verification",
+        "validation",
+        "acceptance",
+        "glossary",
+        "open_issues"
+      ],
+      "properties": {
+        "purpose": {
+          "$ref": "#/$defs/traceableValue"
+        },
+        "system_context": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": [
+            "target_system",
+            "external_systems",
+            "operational_environment"
+          ],
+          "properties": {
+            "target_system": {
+              "type": "string"
+            },
+            "external_systems": {
+              "$ref": "#/$defs/idArray"
+            },
+            "operational_environment": {
+              "$ref": "#/$defs/traceableValueArray"
+            }
+          }
+        },
+        "scope": {
+          "$ref": "#/$defs/planning/properties/scope"
+        },
+        "stakeholder_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "need_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "use_case_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "scenario_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "requirements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/documentRequirement"
+          }
+        },
+        "views": {
+          "$ref": "#/$defs/requirementViews"
+        },
+        "data_model": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/dataModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "interfaces": {
+          "type": "object",
+          "required": [
+            "interface_refs"
+          ],
+          "properties": {
+            "interface_refs": {
+              "$ref": "#/$defs/idArray"
+            }
+          },
+          "additionalProperties": true
+        },
+        "operations": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        },
+        "maintenance": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        },
+        "migration": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        },
+        "security_privacy": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        },
+        "verification": {
+          "type": "object",
+          "required": [
+            "verification_case_refs"
+          ],
+          "properties": {
+            "verification_case_refs": {
+              "$ref": "#/$defs/idArray"
+            }
+          },
+          "additionalProperties": true
+        },
+        "validation": {
+          "type": "object",
+          "properties": {
+            "validation_case_refs": {
+              "$ref": "#/$defs/idArray"
+            }
+          },
+          "additionalProperties": true
+        },
+        "acceptance": {
+          "type": "object",
+          "required": [
+            "acceptance_criteria_refs"
+          ],
+          "properties": {
+            "acceptance_criteria_refs": {
+              "$ref": "#/$defs/idArray"
+            }
+          },
+          "additionalProperties": true
+        },
+        "glossary": {
+          "$ref": "#/$defs/idArray"
+        },
+        "open_issues": {
+          "$ref": "#/$defs/idArray"
+        }
+      }
+    },
+    "documentRequirement": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "source_requirement_ref",
+        "classification",
+        "title",
+        "statement_policy",
+        "rendered_statement",
+        "normative_level",
+        "source_need_refs",
+        "verification_refs",
+        "validity_state",
+        "baseline_state"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^DOCREQ-[0-9]{4,}$"
+        },
+        "source_requirement_ref": {
+          "type": "string"
+        },
+        "classification": {
+          "type": "object",
+          "required": [
+            "primary",
+            "classification_basis",
+            "confidence"
+          ],
+          "properties": {
+            "primary": {
+              "type": "string"
+            },
+            "secondary": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "classification_basis": {
+              "type": "string"
+            },
+            "confidence": {
+              "$ref": "#/$defs/confidence"
+            }
+          },
+          "additionalProperties": true
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement_policy": {
+          "const": "resolve_from_source"
+        },
+        "rendered_statement": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/traceableValue"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          ]
+        },
+        "normative_level": {
+          "type": "string",
+          "enum": [
+            "mandatory",
+            "prohibition",
+            "recommendation",
+            "permission",
+            "descriptive"
+          ]
+        },
+        "priority": {
+          "$ref": "#/$defs/traceableValue"
+        },
+        "source_need_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "verification_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "acceptance_criteria": {
+          "$ref": "#/$defs/traceableValue"
+        },
+        "validity_state": {
+          "$ref": "#/$defs/validityState"
+        },
+        "baseline_state": {
+          "$ref": "#/$defs/baselineState"
+        }
+      }
+    },
+    "requirementViews": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "functional_refs",
+        "nonfunctional_refs",
+        "business_refs",
+        "security_refs",
+        "data_refs",
+        "interface_refs",
+        "operational_refs",
+        "support_refs",
+        "migration_refs",
+        "regulatory_refs",
+        "constraint_refs",
+        "test_requirement_refs",
+        "other_refs",
+        "unclassified_refs"
+      ],
+      "properties": {
+        "functional_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "nonfunctional_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "business_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "security_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "data_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "interface_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "operational_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "support_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "migration_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "regulatory_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "constraint_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "test_requirement_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "other_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "unclassified_refs": {
+          "$ref": "#/$defs/idArray"
+        }
+      }
+    },
+    "dataModel": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "model_refs",
+        "entities",
+        "quality_requirements"
+      ],
+      "properties": {
+        "model_refs": {
+          "$ref": "#/$defs/idArray"
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "id",
+              "name",
+              "source_refs",
+              "attributes",
+              "lifecycle",
+              "classification"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "owner_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "source_refs": {
+                "$ref": "#/$defs/idArray"
+              },
+              "attributes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "required": [
+                    "name",
+                    "value_type"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "value_type": {
+                      "type": "string"
+                    },
+                    "required_state": {
+                      "$ref": "#/$defs/presenceState"
+                    }
+                  }
+                }
+              },
+              "lifecycle": {
+                "$ref": "#/$defs/presenceState"
+              },
+              "classification": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "quality_requirements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "quality_type",
+              "state",
+              "source_refs",
+              "human_confirmation_required"
+            ],
+            "properties": {
+              "quality_type": {
+                "type": "string"
+              },
+              "state": {
+                "$ref": "#/$defs/presenceState"
+              },
+              "target": {},
+              "unit": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "source_refs": {
+                "$ref": "#/$defs/idArray"
+              },
+              "human_confirmation_required": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "traceability": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "relation_source",
+        "relations"
+      ],
+      "properties": {
+        "relation_source": {
+          "const": "se_model.relations"
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "relation_id",
+              "relation_type",
+              "source_id",
+              "target_id",
+              "source_of_truth"
+            ],
+            "properties": {
+              "relation_id": {
+                "type": "string"
+              },
+              "relation_type": {
+                "type": "string"
+              },
+              "source_id": {
+                "type": "string"
+              },
+              "target_id": {
+                "type": "string"
+              },
+              "source_of_truth": {
+                "const": "10_se_model.json"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "coverage": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "qualityResult": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "pass_with_provisional_assumption",
+        "fail",
+        "not_applicable",
+        "not_performed"
+      ]
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "schema_validation",
+        "reference_integrity",
+        "projection_consistency",
+        "japanese_writing_validation",
+        "unresolved_findings",
+        "not_performed"
+      ],
+      "properties": {
+        "schema_validation": {
+          "$ref": "#/$defs/qualityResult"
+        },
+        "reference_integrity": {
+          "$ref": "#/$defs/qualityResult"
+        },
+        "projection_consistency": {
+          "$ref": "#/$defs/qualityResult"
+        },
+        "japanese_writing_validation": {
+          "$ref": "#/$defs/qualityResult"
+        },
+        "unresolved_findings": {
+          "$ref": "#/$defs/idArray"
+        },
+        "not_performed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rendering": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "planning_profile",
+        "requirements_profile"
+      ],
+      "properties": {
+        "planning_profile": {
+          "type": "string"
+        },
+        "requirements_profile": {
+          "type": "string"
+        },
+        "formats": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+profile_id: planning_standard_ja_v1
+document_kind: planning
+language: ja-JP
+source_model: 10_se_model.json
+projection_model: 20_document_model.json
+status_policy:
+  active: body
+  stale: appendix_history
+  superseded: appendix_history
+candidate_policy: visibly_mark_candidate
+section_order:
+  - executive_summary
+  - background
+  - problem_opportunity
+  - purpose
+  - objectives
+  - expected_benefits
+  - scope
+  - stakeholders
+  - kpis
+  - alternatives
+  - schedule
+  - budget
+  - governance
+  - risks_and_assumptions
+  - open_issues
+render_formats:
+  - markdown
+  - html
+  - docx
+  - pdf
+quality_gates:
+  - schema
+  - source
+  - candidate
+  - traceability
+  - japanese
+  - planning_completeness
+  - human_review

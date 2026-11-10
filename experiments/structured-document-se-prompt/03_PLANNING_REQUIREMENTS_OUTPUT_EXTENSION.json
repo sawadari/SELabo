@@ -1,6 +1,6 @@
 {
   "contract_name": "structured_planning_requirements_candidate_bundle_extension",
-  "contract_version": "0.1.0",
+  "contract_version": "0.2.0",
   "extends": "../hierarchical-se-prompt/03_OUTPUT_CONTRACT.json",
   "source_of_truth_extension": {
     "file": "10_se_model.json",
@@ -17,6 +17,14 @@
       "document_views"
     ],
     "external_api_specs_remain_external": true
+  },
+  "document_projection_model": {
+    "file": "document_generation/20_document_model.json",
+    "schema": "document_generation/schemas/se_document_projection.schema.json",
+    "authoritative": false,
+    "source_binding_required": true,
+    "single_requirement_registry": true,
+    "requirement_statement_policy": "resolve_from_source"
   },
   "required_files": [
     {
@@ -72,6 +80,60 @@
         "重複事実の検査",
         "未実施検査"
       ]
+    },
+    {
+      "path": "document_generation/20_document_model.json",
+      "format": "json",
+      "purpose": "non-authoritative document projection model resolved from 10_se_model.json",
+      "required_sections": [
+        "meta",
+        "source_binding",
+        "document_kinds",
+        "planning",
+        "requirements_definition",
+        "traceability",
+        "quality"
+      ]
+    },
+    {
+      "path": "document_generation/scripts/project_document_model.py",
+      "format": "python",
+      "purpose": "deterministic fixture transformer from semantic model to document projection model"
+    },
+    {
+      "path": "document_generation/scripts/validate_document_projection.py",
+      "format": "python",
+      "purpose": "schema, source hash, DOCREQ statement and traceability validation"
+    },
+    {
+      "path": "document_generation/scripts/render_document_views.py",
+      "format": "python",
+      "purpose": "deterministic Markdown and CSV rendering from the document projection model"
+    },
+    {
+      "path": "document_generation/21_planning_document.md",
+      "format": "markdown",
+      "purpose": "planning view rendered from 20_document_model.json"
+    },
+    {
+      "path": "document_generation/22_requirements_definition.md",
+      "format": "markdown",
+      "purpose": "requirements definition view rendered from 20_document_model.json"
+    },
+    {
+      "path": "document_generation/23_document_traceability.csv",
+      "format": "csv",
+      "purpose": "traceability rows for rendered document sections"
+    },
+    {
+      "path": "document_generation/24_document_quality_report.md",
+      "format": "markdown",
+      "purpose": "document projection quality and not_performed report"
+    },
+    {
+      "path": "document_generation/25_document_generation_manifest.json",
+      "format": "json",
+      "purpose": "source binding and generated bundle manifest"
     }
   ],
   "validation_extension": {
@@ -81,7 +143,11 @@
     "document_view_reference_check": true,
     "unknown_value_preservation_check": true,
     "api_spec_external_reference_check": true,
-    "no_false_approval_claim": true
+    "no_false_approval_claim": true,
+    "document_projection_schema_validation_required": true,
+    "source_hash_check_required": true,
+    "docreq_statement_unchanged_check_required": true,
+    "not_performed_state_must_be_explicit": true
   },
   "final_chat_response_extension": {
     "include": [

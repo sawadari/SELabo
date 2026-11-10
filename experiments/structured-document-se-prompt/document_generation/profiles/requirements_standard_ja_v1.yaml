@@ -1,0 +1,49 @@
+profile_id: requirements_standard_ja_v1
+document_kind: requirements_definition
+language: ja-JP
+source_model: 10_se_model.json
+projection_model: 20_document_model.json
+status_policy:
+  active: body
+  stale: appendix_history
+  superseded: appendix_history
+candidate_policy: visibly_mark_candidate
+requirement_policy:
+  registry: single_registry
+  id_prefix: DOCREQ-
+  statement_policy: resolve_from_source
+  design_candidate_policy: exclude_from_normative_requirement_body
+section_order:
+  - purpose
+  - system_context
+  - scope
+  - stakeholders_and_needs
+  - functional_requirements
+  - nonfunctional_requirements
+  - business_requirements
+  - security_and_privacy
+  - data_requirements
+  - interface_requirements
+  - operations_and_support
+  - migration_requirements
+  - verification_and_validation
+  - acceptance
+  - glossary
+  - open_issues
+render_formats:
+  - markdown
+  - html
+  - docx
+  - pdf
+quality_gates:
+  - schema
+  - reference
+  - source
+  - requirement_integrity
+  - candidate
+  - traceability
+  - japanese
+  - requirements_completeness
+  - regulatory
+  - safety
+  - human_review

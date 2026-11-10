@@ -1,0 +1,18 @@
+{
+  "artifact_type": "document_generation_bundle_candidate",
+  "source_of_truth": "10_se_model.json",
+  "document_model": "20_document_model.json",
+  "outputs": [
+    "21_planning_document.md",
+    "22_requirements_definition.md",
+    "23_document_traceability.csv",
+    "24_document_quality_report.md"
+  ],
+  "render_formats_not_performed": [
+    "html",
+    "docx",
+    "pdf"
+  ],
+  "document_status": "candidate",
+  "source_hash": "sha256:b60ad34ad7d79e42c8fa8d64513d252c4989eb4675eaba58d39285250e7ef720"
+}

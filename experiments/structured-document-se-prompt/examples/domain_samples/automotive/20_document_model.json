@@ -1,0 +1,915 @@
+{
+  "meta": {
+    "artifact_type": "document_projection_model",
+    "schema_version": "1.0.0",
+    "project_id": null,
+    "target_system": "次世代電動SUV",
+    "language": "ja-JP",
+    "document_status": "candidate",
+    "generated_at": null,
+    "writing_profile_ref": "../hierarchical-se-prompt/11_JAPANESE_WRITING_PROFILE.json"
+  },
+  "source_binding": {
+    "source_of_truth": "10_se_model.json",
+    "schema_version": "1.1.0",
+    "content_hash": "sha256:e6b162ad3ccb8f23c2382ab1e323520b71e07f5b12f9c09f69f8474533879f4e",
+    "projection_policy": "source_resolved_with_summary",
+    "allowed_validity_states": [
+      "active",
+      "stale",
+      "superseded"
+    ],
+    "candidate_policy": "include_marked"
+  },
+  "document_kinds": [
+    "planning",
+    "requirements_definition"
+  ],
+  "planning": {
+    "title": {
+      "value": "次世代電動SUV 企画書",
+      "state": "candidate",
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "derivation": "summary",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "human_confirmation_required": true,
+      "rationale": "10_se_model.jsonの要素からsummaryとして生成した"
+    },
+    "executive_summary": {
+      "value": "商品企画、車両システム設計、評価計画に分散した要求と前提条件を一貫して追跡しにくい 商品企画、車両システム設計、評価計画に分散した要求と前提条件を一貫して追跡しにくい 次世代電動SUVの商品価値と車両システム要求を整合させる",
+      "state": "candidate",
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "derivation": "summary",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "human_confirmation_required": true,
+      "rationale": "10_se_model.jsonの要素からsummaryとして生成した"
+    },
+    "background": [
+      {
+        "value": "商品企画、車両システム設計、評価計画に分散した要求と前提条件を一貫して追跡しにくい",
+        "state": "candidate",
+        "source_refs": [
+          "SRC-0001"
+        ],
+        "derivation": "direct",
+        "origin": "ai_context_inference",
+        "claim_state": "inferred",
+        "decision_state": "proposed",
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+      }
+    ],
+    "problem_opportunity": [
+      {
+        "value": "商品企画、車両システム設計、評価計画に分散した要求と前提条件を一貫して追跡しにくい",
+        "state": "candidate",
+        "source_refs": [
+          "SRC-0001"
+        ],
+        "derivation": "direct",
+        "origin": "ai_context_inference",
+        "claim_state": "inferred",
+        "decision_state": "proposed",
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+      }
+    ],
+    "purpose": [
+      {
+        "value": "次世代電動SUVの商品価値と車両システム要求を整合させる",
+        "state": "candidate",
+        "source_refs": [
+          "SRC-0001"
+        ],
+        "derivation": "direct",
+        "origin": "ai_context_inference",
+        "claim_state": "inferred",
+        "decision_state": "proposed",
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+      }
+    ],
+    "objectives": [
+      {
+        "value": "商品企画の性能目標と車両システム要求を整合させる。",
+        "state": "candidate",
+        "source_refs": [
+          "OBJ-0001",
+          "SRC-0001"
+        ],
+        "derivation": "direct",
+        "origin": "ai_context_inference",
+        "claim_state": "inferred",
+        "decision_state": "proposed",
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "confidence": "medium",
+        "human_confirmation_required": true,
+        "rationale": "10_se_model.jsonの値を文書投影へ保持した",
+        "id": "OBJ-0001",
+        "kpi_refs": [
+          "KPI-0001"
+        ]
+      }
+    ],
+    "scope": {
+      "included": [
+        {
+          "value": "車両基本性能要求",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "高電圧バッテリー・充電要求",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "車両エネルギー管理",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "評価・受入条件",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "excluded": [
+        {
+          "value": "量産工場の設備制御",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "対象市場未確定の法規認証取得",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "自動運転機能の詳細設計",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "lifecycle": [
+        {
+          "value": "concept",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "utilization",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "support",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "external_systems": [
+        "充電インフラ",
+        "車両クラウドサービス",
+        "試験・計測環境"
+      ],
+      "operational_environment": [
+        {
+          "value": "一般道・高速道路を想定した車両利用環境で評価する",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "開発・評価担当者が車両システム要求と検証結果を管理する",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ]
+    },
+    "stakeholder_refs": [
+      "STK-0001",
+      "STK-0002"
+    ],
+    "kpi_refs": [
+      "KPI-0001"
+    ],
+    "risk_refs": [],
+    "assumption_refs": [
+      "ASM-0001"
+    ],
+    "open_issues": [
+      "ASM-0001"
+    ],
+    "alternatives": [],
+    "schedule": {
+      "state": "not_determined",
+      "milestones": []
+    },
+    "budget": {
+      "state": "not_determined",
+      "currency": "JPY",
+      "capex": null,
+      "opex": null,
+      "contingency": null,
+      "estimation_basis": [
+        {
+          "value": "費用見積条件が未指定",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "human_confirmation_required": true,
+      "rationale": "費用が未指定の場合はnot_determinedとし、金額を推測しない。"
+    },
+    "governance": {
+      "sponsor_ref": null,
+      "decision_process": "企画レビューで確認する",
+      "approval_state": "proposed"
+    },
+    "dependencies": [],
+    "constraints": [],
+    "approval_criteria": []
+  },
+  "requirements_definition": {
+    "purpose": {
+      "value": "次世代電動SUVの商品価値と車両システム要求を整合させる",
+      "state": "candidate",
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "derivation": "direct",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "human_confirmation_required": true,
+      "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+    },
+    "system_context": {
+      "target_system": "次世代電動SUV",
+      "external_systems": [
+        "充電インフラ",
+        "車両クラウドサービス",
+        "試験・計測環境"
+      ],
+      "operational_environment": [
+        {
+          "value": "一般道・高速道路を想定した車両利用環境で評価する",
+          "state": "candidate",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "ai_context_inference",
+          "claim_state": "inferred",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "low",
+          "human_confirmation_required": true,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "開発・評価担当者が車両システム要求と検証結果を管理する",
+          "state": "candidate",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "ai_context_inference",
+          "claim_state": "inferred",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "low",
+          "human_confirmation_required": true,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ]
+    },
+    "scope": {
+      "included": [
+        {
+          "value": "車両基本性能要求",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "高電圧バッテリー・充電要求",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "車両エネルギー管理",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "評価・受入条件",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "excluded": [
+        {
+          "value": "量産工場の設備制御",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "対象市場未確定の法規認証取得",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "自動運転機能の詳細設計",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "lifecycle": [
+        {
+          "value": "concept",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "utilization",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "support",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "external_systems": [
+        "充電インフラ",
+        "車両クラウドサービス",
+        "試験・計測環境"
+      ],
+      "operational_environment": [
+        {
+          "value": "一般道・高速道路を想定した車両利用環境で評価する",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "開発・評価担当者が車両システム要求と検証結果を管理する",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ]
+    },
+    "stakeholder_refs": [
+      "STK-0001",
+      "STK-0002"
+    ],
+    "need_refs": [
+      "NEED-0001"
+    ],
+    "use_case_refs": [
+      "UC-0001"
+    ],
+    "scenario_refs": [],
+    "requirements": [
+      {
+        "id": "DOCREQ-0001",
+        "source_requirement_ref": "REQ-0001",
+        "classification": {
+          "primary": "functional",
+          "secondary": [
+            "screen",
+            "api",
+            "data"
+          ],
+          "classification_basis": "10_se_model.json.requirement_category",
+          "confidence": "medium"
+        },
+        "title": "充電状態表示",
+        "statement_policy": "resolve_from_source",
+        "rendered_statement": {
+          "value": "走行用バッテリーの充電状態を取得できるとき、次世代電動SUVは、運転者に充電状態を表示する。",
+          "state": "candidate",
+          "source_refs": [
+            "REQ-0001",
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "ai_context_inference",
+          "claim_state": "inferred",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": true,
+          "rationale": "要求本文は10_se_model.jsonのsource statementを変更せずに投影した"
+        },
+        "normative_level": "mandatory",
+        "source_need_refs": [
+          "NEED-0001"
+        ],
+        "verification_refs": [
+          "VER-0001"
+        ],
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "render_location": "body",
+        "candidate_marker": "候補",
+        "acceptance_criteria": {
+          "value": "受付結果が表示されること",
+          "state": "candidate",
+          "source_refs": [
+            "REQ-0001",
+            "SRC-0001",
+            "ACC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "ai_context_inference",
+          "claim_state": "inferred",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": true,
+          "rationale": "正本にある受入条件候補を変更せずに投影した"
+        }
+      }
+    ],
+    "views": {
+      "functional_refs": [
+        "DOCREQ-0001"
+      ],
+      "nonfunctional_refs": [],
+      "business_refs": [],
+      "security_refs": [],
+      "data_refs": [],
+      "interface_refs": [],
+      "operational_refs": [],
+      "support_refs": [],
+      "migration_refs": [],
+      "regulatory_refs": [],
+      "constraint_refs": [],
+      "test_requirement_refs": [
+        "DOCREQ-0001"
+      ],
+      "other_refs": [],
+      "unclassified_refs": []
+    },
+    "data_model": {
+      "model_refs": [
+        "DATA-0001"
+      ],
+      "entities": [
+        {
+          "id": "DATA-0001-ENTITY-0001",
+          "name": "充電状態情報",
+          "description": null,
+          "owner_ref": null,
+          "source_refs": [
+            "SRC-0001",
+            "DATA-0001"
+          ],
+          "attributes": [
+            {
+              "name": "充電状態",
+              "value_type": "text",
+              "required_state": "not_determined"
+            }
+          ],
+          "lifecycle": "candidate",
+          "classification": "logical"
+        }
+      ],
+      "quality_requirements": [
+        {
+          "quality_type": "data_quality_profile",
+          "state": "not_determined",
+          "target": null,
+          "unit": null,
+          "source_refs": [
+            "SRC-0001",
+            "DATA-0001"
+          ],
+          "human_confirmation_required": true,
+          "rationale": "正本にデータ品質基準がないため、品質目標を推測しない。"
+        }
+      ]
+    },
+    "glossary": [
+      "TERM-0001"
+    ],
+    "glossary_entries": [
+      {
+        "id": "TERM-0001",
+        "term": "車両システム要求",
+        "definition": "車両全体または車両サブシステムが満たすべき機能・性能・制約を記述した要求",
+        "source_refs": [
+          "SRC-0001"
+        ]
+      }
+    ],
+    "interfaces": {
+      "interface_refs": [
+        "API-0001"
+      ],
+      "external_contracts": [
+        {
+          "id": "API-0001",
+          "spec_ref": null
+        }
+      ]
+    },
+    "operations": {
+      "source_refs": []
+    },
+    "maintenance": {
+      "source_refs": []
+    },
+    "migration": {
+      "source_refs": []
+    },
+    "security_privacy": {
+      "source_refs": []
+    },
+    "verification": {
+      "verification_case_refs": [
+        "VER-0001"
+      ]
+    },
+    "validation": {
+      "validation_case_refs": [
+        "VAL-0001"
+      ]
+    },
+    "acceptance": {
+      "acceptance_criteria_refs": [
+        "ACC-0001"
+      ]
+    },
+    "open_issues": [
+      "ASM-0001"
+    ]
+  },
+  "traceability": {
+    "relation_source": "se_model.relations",
+    "relations": [
+      {
+        "relation_id": "REL-0001",
+        "relation_type": "derives_from",
+        "source_id": "REQ-0001",
+        "target_id": "NEED-0001",
+        "source_of_truth": "10_se_model.json"
+      },
+      {
+        "relation_id": "REL-0002",
+        "relation_type": "realizes",
+        "source_id": "REQ-0001",
+        "target_id": "SCR-0001",
+        "source_of_truth": "10_se_model.json"
+      },
+      {
+        "relation_id": "REL-0003",
+        "relation_type": "verifies",
+        "source_id": "VER-0001",
+        "target_id": "REQ-0001",
+        "source_of_truth": "10_se_model.json"
+      }
+    ],
+    "coverage": {
+      "source_requirement_count": 1,
+      "document_requirement_count": 1,
+      "source_requirement_registry_is_single": true
+    }
+  },
+  "quality": {
+    "schema_validation": "not_performed",
+    "reference_integrity": "not_performed",
+    "projection_consistency": "pass_with_provisional_assumption",
+    "japanese_writing_validation": "not_performed",
+    "unresolved_findings": [],
+    "not_performed": [
+      "document projection schema validation",
+      "reference integrity validation",
+      "Japanese technical writing validation",
+      "Markdown/HTML/DOCX/PDF rendering",
+      "OpenAPI/AsyncAPI external contract lint",
+      "human review and approval"
+    ]
+  },
+  "rendering": {
+    "planning_profile": "document_generation/profiles/planning_standard_ja_v1.yaml",
+    "requirements_profile": "document_generation/profiles/requirements_standard_ja_v1.yaml",
+    "formats": [
+      "markdown",
+      "html",
+      "docx",
+      "pdf"
+    ]
+  }
+}

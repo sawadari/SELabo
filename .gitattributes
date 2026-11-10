@@ -9,3 +9,4 @@
 
 experiments/value-strategy-engineering/*.csv -text
 experiments/value-strategy-engineering/**/*.csv -text
+experiments/structured-document-se-prompt/**/*.csv -text

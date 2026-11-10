@@ -2,7 +2,7 @@
 
 ## 仮説
 
-実験1の階層型SEモデルへ企画・要件定義の意味要素と文書ビューを追加すると、企画書と要件定義書の重複記述を減らしながら、目的から受入条件までのトレーサビリティを保った初稿を作れる。
+実験1の階層型SEモデルへ企画・要件定義の意味要素を追加し、`10_se_model.json`→`20_document_model.json`→文書レンダラーの3層に分けると、企画書と要件定義書の重複記述を減らしながら、目的から受入条件までのトレーサビリティを保った初稿を作れる。
 
 ## 比較条件
 
@@ -22,6 +22,10 @@
 - 要求から画面、帳票、API、データ、検証、受入への参照率
 - 企画書と要件定義書間の名称・数値・単位の不一致
 - 未指定値が確定値へ変化した件数
+- `10_se_model.json`から`20_document_model.json`への正本ハッシュ一致
+- DOCREQ本文と正本要求`statement`の一致率
+- active/stale/superseded、candidate/inferred/assumedの表示分類漏れ
+- データモデル・データ品質基準の未確定状態の保持率
 - dangling reference、重複ID、未分類要求の件数
 - 人が採用、修正、却下した候補の割合
 - 初稿作成時間とレビュー時間
@@ -32,4 +36,8 @@ Schemaと参照整合性の失敗がなく、B2で目的から受入条件まで
 
 ## 未実施として扱う試験
 
-OpenAPI/AsyncAPIの外部仕様が提供されていない場合のlint、Word/PDFのレイアウト、実ユーザーの受入、社内テンプレート適合、業界別標準との完全一致は、実行していない限り`not_performed`と記録します。
+OpenAPI/AsyncAPIの外部仕様が提供されていない場合のlint、Word/PDFのレイアウト、実ユーザーの受入、社内テンプレート適合、業界別標準との完全一致は、実行していない限り`not_performed`と記録します。文書モデルの品質状態でも、Schema、参照整合性、日本語検証、レンダリング、人レビューを実施していなければ`not_performed`を使います。
+
+## 品質ゲート
+
+Schema、Reference、Source、Requirement Integrity、Candidate、Traceability、Japanese、Planning Completeness、Requirements Completeness、Regulatory、Safety、人レビューの順に、実施結果と未実施を分けて記録します。未確定のスケジュール、予算、閾値、責任者、規制適用性、データ品質基準は推測で埋めません。

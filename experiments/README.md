@@ -73,6 +73,8 @@ ChatGPTで回帰テストを行う場合は、[プロンプト専用回帰テス
 
 代表モデルの検証は、[検証スクリプト](structured-document-se-prompt/scripts/validate_candidate.py)で実行できます。
 
+文書投影モデルと、企画書・要件定義書のドメイン別サンプルは、[実験3のREADME](structured-document-se-prompt/README.md)から確認できます。
+
 ### 実験4：Adaptive Graph Visualization
 
 yFiles for HTMLを使い、Synthetic Graphに対するMacro / Group / Entity / FocusのLOD切替、階層展開、エッジ集約、可読性メトリクスを検証する実験です。

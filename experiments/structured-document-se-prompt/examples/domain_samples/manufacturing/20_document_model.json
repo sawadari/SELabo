@@ -1,0 +1,848 @@
+{
+  "meta": {
+    "artifact_type": "document_projection_model",
+    "schema_version": "1.0.0",
+    "project_id": null,
+    "target_system": "工場設備保全依頼管理システム",
+    "language": "ja-JP",
+    "document_status": "candidate",
+    "generated_at": null,
+    "writing_profile_ref": "../hierarchical-se-prompt/11_JAPANESE_WRITING_PROFILE.json"
+  },
+  "source_binding": {
+    "source_of_truth": "10_se_model.json",
+    "schema_version": "1.1.0",
+    "content_hash": "sha256:b60ad34ad7d79e42c8fa8d64513d252c4989eb4675eaba58d39285250e7ef720",
+    "projection_policy": "source_resolved_with_summary",
+    "allowed_validity_states": [
+      "active",
+      "stale",
+      "superseded"
+    ],
+    "candidate_policy": "include_marked"
+  },
+  "document_kinds": [
+    "planning",
+    "requirements_definition"
+  ],
+  "planning": {
+    "title": {
+      "value": "工場設備保全依頼管理システム 企画書",
+      "state": "candidate",
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "derivation": "summary",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "human_confirmation_required": true,
+      "rationale": "10_se_model.jsonの要素からsummaryとして生成した"
+    },
+    "executive_summary": {
+      "value": "電話・紙・個別チャットに分散した設備異常と復旧状況を把握しにくい 電話・紙・個別チャットに分散した設備異常と復旧状況を把握しにくい 工場設備の保全依頼受付と復旧状況確認を一元化する",
+      "state": "candidate",
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "derivation": "summary",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "human_confirmation_required": true,
+      "rationale": "10_se_model.jsonの要素からsummaryとして生成した"
+    },
+    "background": [
+      {
+        "value": "電話・紙・個別チャットに分散した設備異常と復旧状況を把握しにくい",
+        "state": "candidate",
+        "source_refs": [
+          "SRC-0001"
+        ],
+        "derivation": "direct",
+        "origin": "ai_context_inference",
+        "claim_state": "inferred",
+        "decision_state": "proposed",
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+      }
+    ],
+    "problem_opportunity": [
+      {
+        "value": "電話・紙・個別チャットに分散した設備異常と復旧状況を把握しにくい",
+        "state": "candidate",
+        "source_refs": [
+          "SRC-0001"
+        ],
+        "derivation": "direct",
+        "origin": "ai_context_inference",
+        "claim_state": "inferred",
+        "decision_state": "proposed",
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+      }
+    ],
+    "purpose": [
+      {
+        "value": "工場設備の保全依頼受付と復旧状況確認を一元化する",
+        "state": "candidate",
+        "source_refs": [
+          "SRC-0001"
+        ],
+        "derivation": "direct",
+        "origin": "ai_context_inference",
+        "claim_state": "inferred",
+        "decision_state": "proposed",
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "confidence": "low",
+        "human_confirmation_required": true,
+        "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+      }
+    ],
+    "objectives": [
+      {
+        "value": "設備異常の受付所要時間を短縮する。",
+        "state": "candidate",
+        "source_refs": [
+          "OBJ-0001",
+          "SRC-0001"
+        ],
+        "derivation": "direct",
+        "origin": "ai_context_inference",
+        "claim_state": "inferred",
+        "decision_state": "proposed",
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "confidence": "medium",
+        "human_confirmation_required": true,
+        "rationale": "10_se_model.jsonの値を文書投影へ保持した",
+        "id": "OBJ-0001",
+        "kpi_refs": [
+          "KPI-0001"
+        ]
+      }
+    ],
+    "scope": {
+      "included": [
+        {
+          "value": "設備異常登録",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "保全作業割当確認",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "復旧状況通知",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "excluded": [
+        {
+          "value": "設備の自動制御",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "安全インターロックの変更",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "lifecycle": [
+        {
+          "value": "concept",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "utilization",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "support",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "external_systems": [
+        "工場認証サービス",
+        "設備台帳システム"
+      ],
+      "operational_environment": [
+        {
+          "value": "製造ライン担当者が異常を登録する",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "保全担当者が復旧状況を更新する",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ]
+    },
+    "stakeholder_refs": [
+      "STK-0001",
+      "STK-0002"
+    ],
+    "kpi_refs": [
+      "KPI-0001"
+    ],
+    "risk_refs": [],
+    "assumption_refs": [
+      "ASM-0001"
+    ],
+    "open_issues": [
+      "ASM-0001"
+    ],
+    "alternatives": [],
+    "schedule": {
+      "state": "not_determined",
+      "milestones": []
+    },
+    "budget": {
+      "state": "not_determined",
+      "currency": "JPY",
+      "capex": null,
+      "opex": null,
+      "contingency": null,
+      "estimation_basis": [
+        {
+          "value": "費用見積条件が未指定",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "human_confirmation_required": true,
+      "rationale": "費用が未指定の場合はnot_determinedとし、金額を推測しない。"
+    },
+    "governance": {
+      "sponsor_ref": null,
+      "decision_process": "企画レビューで確認する",
+      "approval_state": "proposed"
+    },
+    "dependencies": [],
+    "constraints": [],
+    "approval_criteria": []
+  },
+  "requirements_definition": {
+    "purpose": {
+      "value": "工場設備の保全依頼受付と復旧状況確認を一元化する",
+      "state": "candidate",
+      "source_refs": [
+        "SRC-0001"
+      ],
+      "derivation": "direct",
+      "origin": "ai_context_inference",
+      "claim_state": "inferred",
+      "decision_state": "proposed",
+      "validity_state": "active",
+      "baseline_state": "outside_baseline",
+      "confidence": "low",
+      "human_confirmation_required": true,
+      "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+    },
+    "system_context": {
+      "target_system": "工場設備保全依頼管理システム",
+      "external_systems": [
+        "工場認証サービス",
+        "設備台帳システム"
+      ],
+      "operational_environment": [
+        {
+          "value": "製造ライン担当者が異常を登録する",
+          "state": "candidate",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "ai_context_inference",
+          "claim_state": "inferred",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "low",
+          "human_confirmation_required": true,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "保全担当者が復旧状況を更新する",
+          "state": "candidate",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "ai_context_inference",
+          "claim_state": "inferred",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "low",
+          "human_confirmation_required": true,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ]
+    },
+    "scope": {
+      "included": [
+        {
+          "value": "設備異常登録",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "保全作業割当確認",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "復旧状況通知",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "excluded": [
+        {
+          "value": "設備の自動制御",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "安全インターロックの変更",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "lifecycle": [
+        {
+          "value": "concept",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "utilization",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "support",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ],
+      "external_systems": [
+        "工場認証サービス",
+        "設備台帳システム"
+      ],
+      "operational_environment": [
+        {
+          "value": "製造ライン担当者が異常を登録する",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        },
+        {
+          "value": "保全担当者が復旧状況を更新する",
+          "state": "known",
+          "source_refs": [
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "manual",
+          "claim_state": "stated",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": false,
+          "rationale": "10_se_model.jsonの値を文書投影へ保持した"
+        }
+      ]
+    },
+    "stakeholder_refs": [
+      "STK-0001",
+      "STK-0002"
+    ],
+    "need_refs": [
+      "NEED-0001"
+    ],
+    "use_case_refs": [
+      "UC-0001"
+    ],
+    "scenario_refs": [],
+    "requirements": [
+      {
+        "id": "DOCREQ-0001",
+        "source_requirement_ref": "REQ-0001",
+        "classification": {
+          "primary": "functional",
+          "secondary": [
+            "screen",
+            "api",
+            "data"
+          ],
+          "classification_basis": "10_se_model.json.requirement_category",
+          "confidence": "medium"
+        },
+        "title": "設備異常受付",
+        "statement_policy": "resolve_from_source",
+        "rendered_statement": {
+          "value": "有効な設備異常を受信したとき、工場設備保全依頼管理システムは、受付結果を画面に表示する。",
+          "state": "candidate",
+          "source_refs": [
+            "REQ-0001",
+            "SRC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "ai_context_inference",
+          "claim_state": "inferred",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": true,
+          "rationale": "要求本文は10_se_model.jsonのsource statementを変更せずに投影した"
+        },
+        "normative_level": "mandatory",
+        "source_need_refs": [
+          "NEED-0001"
+        ],
+        "verification_refs": [
+          "VER-0001"
+        ],
+        "validity_state": "active",
+        "baseline_state": "outside_baseline",
+        "render_location": "body",
+        "candidate_marker": "候補",
+        "acceptance_criteria": {
+          "value": "受付結果が表示されること",
+          "state": "candidate",
+          "source_refs": [
+            "REQ-0001",
+            "SRC-0001",
+            "ACC-0001"
+          ],
+          "derivation": "direct",
+          "origin": "ai_context_inference",
+          "claim_state": "inferred",
+          "decision_state": "proposed",
+          "validity_state": "active",
+          "baseline_state": "outside_baseline",
+          "confidence": "medium",
+          "human_confirmation_required": true,
+          "rationale": "正本にある受入条件候補を変更せずに投影した"
+        }
+      }
+    ],
+    "views": {
+      "functional_refs": [
+        "DOCREQ-0001"
+      ],
+      "nonfunctional_refs": [],
+      "business_refs": [],
+      "security_refs": [],
+      "data_refs": [],
+      "interface_refs": [],
+      "operational_refs": [],
+      "support_refs": [],
+      "migration_refs": [],
+      "regulatory_refs": [],
+      "constraint_refs": [],
+      "test_requirement_refs": [
+        "DOCREQ-0001"
+      ],
+      "other_refs": [],
+      "unclassified_refs": []
+    },
+    "data_model": {
+      "model_refs": [
+        "DATA-0001"
+      ],
+      "entities": [
+        {
+          "id": "DATA-0001-ENTITY-0001",
+          "name": "設備保全依頼",
+          "description": null,
+          "owner_ref": null,
+          "source_refs": [
+            "SRC-0001",
+            "DATA-0001"
+          ],
+          "attributes": [
+            {
+              "name": "設備識別番号",
+              "value_type": "text",
+              "required_state": "not_determined"
+            }
+          ],
+          "lifecycle": "candidate",
+          "classification": "logical"
+        }
+      ],
+      "quality_requirements": [
+        {
+          "quality_type": "data_quality_profile",
+          "state": "not_determined",
+          "target": null,
+          "unit": null,
+          "source_refs": [
+            "SRC-0001",
+            "DATA-0001"
+          ],
+          "human_confirmation_required": true,
+          "rationale": "正本にデータ品質基準がないため、品質目標を推測しない。"
+        }
+      ]
+    },
+    "glossary": [
+      "TERM-0001"
+    ],
+    "glossary_entries": [
+      {
+        "id": "TERM-0001",
+        "term": "設備異常",
+        "definition": "設備の停止、性能低下、または異常兆候を示す業務情報",
+        "source_refs": [
+          "SRC-0001"
+        ]
+      }
+    ],
+    "interfaces": {
+      "interface_refs": [
+        "API-0001"
+      ],
+      "external_contracts": [
+        {
+          "id": "API-0001",
+          "spec_ref": null
+        }
+      ]
+    },
+    "operations": {
+      "source_refs": []
+    },
+    "maintenance": {
+      "source_refs": []
+    },
+    "migration": {
+      "source_refs": []
+    },
+    "security_privacy": {
+      "source_refs": []
+    },
+    "verification": {
+      "verification_case_refs": [
+        "VER-0001"
+      ]
+    },
+    "validation": {
+      "validation_case_refs": [
+        "VAL-0001"
+      ]
+    },
+    "acceptance": {
+      "acceptance_criteria_refs": [
+        "ACC-0001"
+      ]
+    },
+    "open_issues": [
+      "ASM-0001"
+    ]
+  },
+  "traceability": {
+    "relation_source": "se_model.relations",
+    "relations": [
+      {
+        "relation_id": "REL-0001",
+        "relation_type": "derives_from",
+        "source_id": "REQ-0001",
+        "target_id": "NEED-0001",
+        "source_of_truth": "10_se_model.json"
+      },
+      {
+        "relation_id": "REL-0002",
+        "relation_type": "realizes",
+        "source_id": "REQ-0001",
+        "target_id": "SCR-0001",
+        "source_of_truth": "10_se_model.json"
+      },
+      {
+        "relation_id": "REL-0003",
+        "relation_type": "verifies",
+        "source_id": "VER-0001",
+        "target_id": "REQ-0001",
+        "source_of_truth": "10_se_model.json"
+      }
+    ],
+    "coverage": {
+      "source_requirement_count": 1,
+      "document_requirement_count": 1,
+      "source_requirement_registry_is_single": true
+    }
+  },
+  "quality": {
+    "schema_validation": "not_performed",
+    "reference_integrity": "not_performed",
+    "projection_consistency": "pass_with_provisional_assumption",
+    "japanese_writing_validation": "not_performed",
+    "unresolved_findings": [],
+    "not_performed": [
+      "document projection schema validation",
+      "reference integrity validation",
+      "Japanese technical writing validation",
+      "Markdown/HTML/DOCX/PDF rendering",
+      "OpenAPI/AsyncAPI external contract lint",
+      "human review and approval"
+    ]
+  },
+  "rendering": {
+    "planning_profile": "document_generation/profiles/planning_standard_ja_v1.yaml",
+    "requirements_profile": "document_generation/profiles/requirements_standard_ja_v1.yaml",
+    "formats": [
+      "markdown",
+      "html",
+      "docx",
+      "pdf"
+    ]
+  }
+}

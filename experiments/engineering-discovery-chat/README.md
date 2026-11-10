@@ -217,3 +217,15 @@ AIは、最初から20問聞くのではなく、
 初回の評価では、同じ入力に対して、仮説の明示、質問数上限、FactとHypothesisの分離、Case Libraryの事実誤認防止、AI適用前のNo-AI比較、Bottleneck Migration、Authority Boundaryの記録を確認します。
 
 この取り込み時点では顧客相談の実行結果はありません。質問の有効性、Root Pain判定、提案骨子の粒度、実案件での再現性は、今後の評価runで確認します。
+
+---
+
+## GitHub Pages用Webプロトタイプ（別実装）
+
+[Web版ソース・利用方法](../../docs/engineering-discovery-chat/README.md) に、ブラウザのみで動作する実験的な診断UIを追加しています。
+
+- 対応：文章入力、Pain Family候補、最大3問、課題構造、提案・PoC骨子、Opportunity Data候補JSON
+- 制約：キーワード照合のルールベースであり、LLMによる対話診断や116ケースの活用は**未実装**
+- 公開予定URL：<https://sawadari.github.io/SELabo/engineering-discovery-chat/> （GitHub Pagesの`main /docs`公開設定後）
+
+正式な実験6の診断方法は本フォルダー内のプロンプト・知識・Profile・Schema・Output Contractが正本です。Web版は、入出力と操作フローの検証用として区別してください。
